@@ -1,0 +1,54 @@
+﻿using System;
+using ElementLogic.AMS.UI.Tests.Configuration;
+using SeleniumEssential;
+
+namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Warehouse.Zones
+{
+    public class WarehouseZoneList
+    {
+        private const string PageHeader =
+            "#ctl00_ContentPlaceHolderContent_warehouseZoneListView1_lblHeader";
+        
+        private const string ResultTable = ".rgMasterTable > tbody";
+        
+        private const string FirstSearchResultRow =
+            "#ctl00_ContentPlaceHolderContent_warehouseZoneListView1_radgridZones_ctl00__0";
+        
+        private const string AddButton =
+            "#ctl00_ContentPlaceHolderContent_warehouseZoneListView1_radgridZones_ctl00_ctl02_ctl00_rtbGridTopBar .rtbText";
+
+        public static WarehouseZoneList Instance => Singleton.Value;
+
+        public void Navigate()
+        {
+            const string warehouseZoneListPageUrl = "/Pages/Warehouse/WarehouseZoneList.aspx";
+            string baseUrl = ConfigFileReader.Instance.ConfigurationKeyValue("Application:Url");
+            PageObjectHelper.Instance.Navigate(baseUrl, warehouseZoneListPageUrl);
+        }
+
+        public string GetPageTitle()
+        {
+            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
+        }
+
+        public bool IsFirstSearchResultRowDisplayed()
+        {
+            return PageObjectHelper.Instance.IsDisplayed(FirstSearchResultRow, true);
+        }
+
+        public bool ClickAddButton()
+        {
+            return PageObjectHelper.Instance.Click(AddButton);
+        }
+
+        public bool IsNewZoneAdded(string zone)
+        {
+            return PageObjectHelper.Instance.TableDataExists(ResultTable, 2, zone);
+        }
+
+        private WarehouseZoneList() { }
+
+        private static readonly Lazy<WarehouseZoneList> Singleton =
+            new Lazy<WarehouseZoneList>(() => new WarehouseZoneList());
+    }
+}
