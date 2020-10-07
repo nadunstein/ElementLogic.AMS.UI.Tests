@@ -150,6 +150,8 @@
     </Reference>
     <Reference Include="SeleniumEssential">
       <HintPath>..\..\SeleniumDlls\SeleniumEssential\SeleniumEssential\bin\Debug\SeleniumEssential.dll</HintPath>
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="SpecFlow.Assist.Dynamic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SpecFlow.Assist.Dynamic.1.4.2\lib\net472\SpecFlow.Assist.Dynamic.dll</HintPath>
@@ -505,9 +507,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Drivers\ChromeDriver\chromedriver.exe" />
+    <Content Include="SeleniumEssential.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\AdminModule\Activity\Pick\PicklistSearch\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\SpecFlow.3.1.97\build\SpecFlow.targets" Condition="Exists('..\packages\SpecFlow.3.1.97\build\SpecFlow.targets')" />
