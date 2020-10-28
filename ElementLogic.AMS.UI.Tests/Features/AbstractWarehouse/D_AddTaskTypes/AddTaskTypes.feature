@@ -85,10 +85,10 @@ Scenario: Adding a new Task Types for PrepTaskgroup Autostore Pick in Task types
 	| Code             | 4                                                                         |
 	| Name             | PrepTaskgroup                                                             |
 	| Priority         | 1                                                                         |
-	| Min Queue Length | 40                                                                        |
-	| Max Queue Length | 400                                                                       |
+	| Min Queue Length | 3                                                                         |
+	| Max Queue Length | 5                                                                         |
 	| SQL              | select extpicklistid from orders where extpicklistid=? and ordertypeid=28 |
-	| Sequence         | 4                                                                         |
+	| Sequence         | 1                                                                         |
 	| Shipment         | 4                                                                         |
 	| Activity Type    | Picking                                                                   |
 

@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using BoDi;
-using ElementLogic.AMS.UI.Tests.Configuration;
+using ElementLogic.AMS.UI.Tests.Integration;
 using OpenQA.Selenium;
 using SeleniumEssential;
 using TechTalk.SpecFlow;
@@ -40,12 +40,13 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
 
             _scenarioContext["RunTestsInline"] = false;
             var browserMode =
-                bool.Parse(ConfigFileReader.Instance.ConfigurationKeyValue("BrowserSettings:ChromeBrowser:HeadlessMode"));
+                bool.Parse(JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", 
+                    "BrowserSettings:ChromeBrowser:HeadlessMode"));
             _driver = WebDriverHelper.Instance.InitializeChromeDriver("Drivers/ChromeDriver", browserMode);
             _objectContainer.RegisterInstanceAs(_driver);
         }
 
-        [AfterScenario(Order = 4)]
+        [AfterScenario(Order = 5)]
         public void CloseBrowser()
         {
             _currentFeatureName = _featureContext.FeatureInfo.Title;

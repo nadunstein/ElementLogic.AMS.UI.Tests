@@ -12,6 +12,7 @@ Scenario: (A) Change the Required Parameters
 	And I change the 'Picking.AutoStore.DisplayNewContainer' parameter value as '1'
 	And I change the 'PickingAutoPlaceOnTrolleyAfterPick' parameter value as '1'
 	And I change the 'MinimumLocationsPerBinForLocationScanningForPicking' parameter value as '1'
+	And I change the 'ProductImageServiceEndpoint' parameter value as 'https://testdatabasebackups.blob.core.windows.net/uitests/{0}'
 
 @Regression
 @WarehouseImplementationTest

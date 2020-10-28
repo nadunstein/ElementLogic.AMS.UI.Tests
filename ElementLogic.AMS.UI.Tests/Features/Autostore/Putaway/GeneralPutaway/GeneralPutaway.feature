@@ -2,7 +2,8 @@
 	As a user, I want to verify the scenarios related to Autostore general putaway
 
 @Regression
-@AS_Putaway_GeneralPutaway
+@Scenario:'1'
+@Autostore:Putaway:GeneralPutaway
 Scenario: Verify normal autostore putaway with multiple missions
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I click on 'A 1/1 AutoStore Bin' putaway tile in AutoStore Main Menu
@@ -25,7 +26,8 @@ Scenario: Verify normal autostore putaway with multiple missions
 	Then I Navigate to Autostore Putaway Selection page
 
 @Regression
-@AS_Putaway_VerifyProductImage
+@Scenario:'2'
+@Autostore:Putaway:GeneralPutaway
 Scenario: Verify user can view the product image by performing Putaway with multi location bin
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I click on 'B 1/2 AutoStore Bin' putaway tile in AutoStore Main Menu

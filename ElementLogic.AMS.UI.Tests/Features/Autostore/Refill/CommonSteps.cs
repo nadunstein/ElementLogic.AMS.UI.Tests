@@ -1,4 +1,5 @@
 ﻿using ElementLogic.AMS.UI.Tests.Pages.Autostore.Refill;
+using ElementLogic.AMS.UI.Tests.TestDataPreparationHelper;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -19,7 +20,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Refill
         [When(@"I click on Select button from refill taskgroup selection page in Autostore")]
         public void WhenIClickOnSelectButtonFromRefillTaskgroupSelectionPageInAutostore()
         {
-            var nameOfTheTrolley = _scenarioContext["RefillTrolley"].ToString();
+            var nameOfTheTrolley = TestDataFactory.Instance.GetRefillTrolleyForScenario(_scenarioContext);
             Assert.IsTrue(RefillTaskgroupSelection.Instance.ClickTaskgroupSelectButton(nameOfTheTrolley),
                 "Unable to click on Select button from refill taskgroup selection page in Autostore");
         }
@@ -84,6 +85,12 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Refill
         {
             Assert.IsTrue(RefillMission.Instance.ClickConfirmButton(),
                 "Unable to click on Confirm button in Autostore Refill mission page");
+
+            if (RefillTaskgroupSelection.Instance.GetPageTitle().Equals("Task group selection"))
+            {
+                Assert.IsTrue(RefillTaskgroupSelection.Instance.ClickExitButton(),
+                    "Unable to click Exit button in refill taskgroup selection page");
+            }
         }
 
         private CommonSteps(ScenarioContext scenarioContext)

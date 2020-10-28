@@ -17,13 +17,12 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
 
         public bool IsPopupDisplayed()
         {
-            var isPopupDisplayed = PageObjectHelper.Instance.IsDisplayed(Iframe ,true);
-            PageObjectHelper.Instance.SwitchToIframeContent(Iframe);
-            return isPopupDisplayed;
+            return PageObjectHelper.Instance.IsDisplayed(Iframe ,true);
         }
 
         public string GetPopupMessage()
         {
+            PageObjectHelper.Instance.SwitchToIframeContent(Iframe);
             return PageObjectHelper.Instance.GetTextValue(PopUpMessage);
         }
 

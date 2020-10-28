@@ -1,7 +1,7 @@
-﻿using System.Globalization;
-using ElementLogic.AMS.UI.Tests.Data.DatabaseQueries;
+﻿using ElementLogic.AMS.UI.Tests.Data.DatabaseQueries;
 using ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick;
 using NUnit.Framework;
+using System.Globalization;
 using TechTalk.SpecFlow;
 
 namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick
@@ -17,16 +17,30 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick
         {
             Assert.AreEqual("Picking", PickMission.Instance.GetPageTitle(),
                 $"Autostore Pick mission {missionNumber} page is not loaded");
-            Assert.IsTrue(PickMission.Instance.GetTaskQueueLabelValue().Contains($"Task {missionNumber} of"),
+            Assert.IsTrue(PickMission.Instance.GetTaskQueueValue().Contains($"Task {missionNumber} of"),
                 $"The Autostore Pick mission {missionNumber} is not loaded");
 
-            _scenarioContext["task_id"] = PickMission.Instance.GetMissionIdLabelValue();
+            _scenarioContext["task_id"] = PickMission.Instance.GetMissionIdValue();
             var splitLocationId = PickMission.Instance.GetPickLocation().Split(new char[] { '-' });
             _scenarioContext["bin_id"] = splitLocationId[1];
-            _scenarioContext["ExtProductId"] = PickMission.Instance.GetProductNumberLabelValue();
+            _scenarioContext["ExtProductId"] = PickMission.Instance.GetProductNumber();
             _scenarioContext["TotalQuantity"] =
                 (_scenarioContext.ContainsKey("TotalQuantity") ? (int)_scenarioContext["TotalQuantity"] : 0)
                 + PickMission.Instance.GetPickQuantityFieldValue();
+        }
+
+        [Then(@"The new order popup is displayed in Autostore Pick Mission page")]
+        public void ThenTheNewOrderPopupIsDisplayedInAutostorePickMissionPage()
+        {
+            Assert.IsTrue(NewOrderPopup.Instance.IsPopupDisplayed(),
+                "The new order popup is not displayed in Autostore Pick Mission page");
+        }
+
+        [When(@"I click OK button on new order popup in Autostore Pick Mission page")]
+        public void WhenIClickOkButtonOnNewOrderPopupInAutostorePickMissionPage()
+        {
+            Assert.IsTrue(NewOrderPopup.Instance.ClickOkButton(),
+                "Unable to click OK button on new order popup in Autostore Pick Mission page");
         }
 
         [Then(@"I verify the Quantity field value is '(.*)' in Autostore Pick Mission page")]
@@ -52,7 +66,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick
                 "The successfully added a new container notification is not displayed in Autostore Pick Mission page");
             var addNewContainerNotification = PickMission.Instance.GetAddNewContainerNotificationTextValue();
             Assert.AreEqual($"A new container added successfully ({_addedNewContainer})", addNewContainerNotification,
-                "The message content of the successfully container added is wrong");
+                "The successfully added a new container notification is wrong in Autostore Pick Mission page");
         }
 
         [Then(@"I include the product scan value to scan field in Autostore Pick Mission page")]
@@ -60,18 +74,44 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick
         {
             var productScanValue =
                 Parameter.Instance.GetParameterData("AutoStore.Picking.Scanning.ValidateProduct").ParameterValue.Contains("1")
-                    ? PickMission.Instance.GetProductNumberLabelValue()
+                    ? PickMission.Instance.GetProductNumber()
                     : PickMission.Instance.GetPickLocation();
 
             Assert.IsTrue(PickMission.Instance.InsertProductScanValue(productScanValue),
                 "Unable to include the product scan value to scan field in Autostore Pick Mission page");
         }
 
+        [Then(@"I verify the container scan field is displayed in Autostore Pick Mission page")]
+        public void ThenIVerifyTheContainerScanFieldIsDisplayedInAutostorePickMissionPage()
+        {
+            Assert.IsTrue(PickMission.Instance.IsContainerScanFieldDisplayed(),
+                "The container scan field is not displayed in Autostore Pick Mission page");
+        }
+
+        [Then(@"I verify the container scan field is not displayed in Autostore Pick Mission page")]
+        public void ThenIVerifyTheContainerScanFieldIsNotDisplayedInAutostorePickMissionPage()
+        {
+            Assert.IsTrue(PickMission.Instance.IsContainerScanFieldNotDisplayed(),
+                "The container scan field is displayed in Autostore Pick Mission page");
+        }
+
+        [Then(@"I include the container scan value as '(.*)' to the container scan field in Autostore Pick Mission page")]
+        public void ThenIIncludeTheContainerScanValueAsToTheContainerScanFieldInAutostorePickMissionPage(string containerScanCode)
+        {
+            if (containerScanCode == "Empty")
+            {
+                containerScanCode = string.Empty;
+            }
+
+            Assert.IsTrue(PickMission.Instance.InsertContainerScanValue(containerScanCode),
+                $"Unable to include the container scan value as '{containerScanCode}' to the container scan field in Autostore Pick Mission page");
+        }
+
         [When(@"I click on the confirm button in Autostore Pick Mission page")]
         public void WhenIClickOnTheConfirmButtonInAutostorePickMissionPage()
         {
             var quantityFieldValue = PickMission.Instance.GetPickQuantityFieldValue().ToString();
-            var productId = PickMission.Instance.GetProductNumberLabelValue();
+            var productId = PickMission.Instance.GetProductNumber();
             var pickLocationBinId = PickMission.Instance.GetPickLocation();
             var actLocationQuantity = ProductLocation.Instance.GetLocationQuantity(pickLocationBinId, productId)
                 .ToString(CultureInfo.CurrentCulture);
@@ -92,10 +132,34 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick
                 "The possible delay notification is not displayed in Autostore Pick Mission page");
         }
 
+        [Then(@"The '(.*)' Validation message is displayed in AutoStore Pick Mission page")]
+        [Then(@"The '(.*)' Validation message is displayed in Autostore Place in Container page")]
+        public void ThenTheValidationMessageIsDisplayedInAutostorePlaceInContainerPage(string expectedValidationMessage)
+        {
+            Assert.IsTrue(ContainerValidationPopup.Instance.IsPopupDisplayed(),
+                "The container validation popup is not displayed in AutoStore Place in Container page");
+            Assert.IsTrue(ContainerValidationPopup.Instance.GetPopupMessage().Contains(expectedValidationMessage),
+                "The container validation popup message is wrong in AutoStore Pick/Place page");
+        }
+
+        [Then(@"I click on OK button in container validation popup in AutoStore Pick Mission page")]
+        [Then(@"I click on OK button in container validation popup in AutoStore Place in Container page")]
+        public void ThenIClickOnOKButtonInContainerValidationPopup()
+        {
+            Assert.IsTrue(ContainerValidationPopup.Instance.ClickOkButton(),
+                "Unable to click on OK button in container validation popup in AutoStore Place in Container page");
+        }
+
         [Then(@"The AutoStore Place in Container page is loaded")]
         public void ThenTheAutoStorePlaceInContainerPageIsLoaded()
         {
-            Assert.AreEqual("Place in Container", PlaceInContainer.Instance.GetPageTitle(),
+            var pageHeaderName = PlaceInContainer.Instance.GetPageTitle();
+            if (pageHeaderName != "Place in Container")
+            {
+                pageHeaderName = PlaceInContainer.Instance.GetPageTitle();
+            }
+
+            Assert.AreEqual("Place in Container", pageHeaderName,
                 "The AutoStore Place in Container page is not loaded");
         }
 
@@ -114,15 +178,38 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick
                 $"Unable to change the quantity of the Quantity field as '{newQuantity}' in Autostore Place in Container page");
         }
 
+        [When(@"I click on '(.*)' option item in Autostore Pick Mission page")]
+        public void WhenIClickOnOptionItemInAutostorePickMissionPage(string optionToBeSelected)
+        {
+            Assert.IsTrue(PickMission.Instance.SelectOption(optionToBeSelected),
+                $"Unable to click on '{optionToBeSelected}' option item in Autostore Pick Mission page");
+        }
+
+        [Then(@"The Add new container popup is displayed in Autostore Pick Mission page")]
         [Then(@"The Add new container popup is displayed in AutoStore Place in Container page")]
-        public void TheThenAddNewContainerPopupIsDisplayedInAutoStorePlaceInContainerPage()
+        public void TheThenAddNewContainerPopupIsDisplayed()
         {
             Assert.IsTrue(AddNewContainerPopup.Instance.IsPopupDisplayed(),
                 "The Add new container popup is not displayed in AutoStore Place in Container page");
         }
 
+        [Then(@"I select the boxtype as '(.*)' from container selection list in Add new container popup in Autostore Pick Mission page")]
+        public void ThenISelectTheBoxtypeAsFromContainerSelectionListInAddNewContainerPopupInAutostorePickMissionPage(string boxType)
+        {
+            Assert.IsTrue(AddNewContainerPopup.Instance.SelectContainerFromTheList(boxType),
+                $"Unable to select the boxtype as '{boxType}' from container selection list in Add new container popup in Autostore Pick Mission page");
+        }
+
+        [Then(@"I select the boxtype as '(.*)' from box type selection dropdown in Add new container popup in Autostore Pick Mission page")]
+        public void ThenISelectTheBoxtypeAsFromBoxTypeSelectionDropdownInAddNewContainerPopupInAutostorePickMissionPage(string boxTypeToBeSelected)
+        {
+            Assert.IsTrue(AddNewContainerPopup.Instance.SelectBoxType(boxTypeToBeSelected),
+                $"Unable to select the boxtype as '{boxTypeToBeSelected}' from box type selection dropdown in Add new container popup in Autostore Pick Mission page");
+        }
+
+        [When(@"I click on '(.*)' button on Add new container popup in Autostore Pick Mission page")]
         [When(@"I click on '(.*)' button on Add new container popup in AutoStore Place in Container page")]
-        public void WhenIClickOnButtonOnAddNewContainerPopupInAutoStorePlaceInContainerPage(string buttonToBeClicked)
+        public void WhenIClickOnButtonOnAddNewContainerPopup(string buttonToBeClicked)
         {
             var isButtonClicked = buttonToBeClicked switch
             {
@@ -134,6 +221,55 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick
 
             Assert.IsTrue(isButtonClicked,
                 $"Unable to Click on {buttonToBeClicked} button on Add new container popup in AutoStore Place in Container page");
+        }
+
+        [Then(@"I include the container scan value as '(.*)' to the container scan field in Add new container popup in Autostore Pick Mission page")]
+        public void ThenIIncludeTheContainerScanValueAsToTheContainerScanFieldInAddNewContainerPopupInAutostorePickMissionPage(string containerScanCode)
+        {
+            Assert.IsTrue(AddNewContainerPopup.Instance.InsertContainerScanCode(containerScanCode),
+                $"Unable to include the container scan value as '{containerScanCode}' to the container scan field in Add new container popup in Autostore Pick Mission page");
+        }
+
+        [Then(@"The container validation popup is displayed in Add new container popup in AutoStore Pick Mission page")]
+        public void ThenTheContainerValidationPopupIsDisplayedInAddNewContainerPopupInAutoStorePickMissionPage()
+        {
+            Assert.IsTrue(AddNewContainerPopup.Instance.IsContainerValidationPopupDisplayed(),
+                "The container validation popup is not displayed in Add new container popup in AutoStore Pick Mission page");
+            var containerScanFieldValue = AddNewContainerPopup.Instance.GetScanCodeFieldValue();
+            var expectedValidationMessage = $"Scanned container ID ({containerScanFieldValue}) is invalid.";
+            Assert.AreEqual(expectedValidationMessage, AddNewContainerPopup.Instance.GetValidationPopupMessage(),
+                "The container validation popup message is wrong in Add new container popup in AutoStore Pick Mission page");
+        }
+
+        [Then(@"I click on OK button in container validation popup in Add new container popup in AutoStore Place in Container page")]
+        public void ThenIClickOnOKButtonInContainerValidationPopupInAddNewContainerPopupInAutoStorePlaceInContainerPage()
+        {
+            Assert.IsTrue(AddNewContainerPopup.Instance.ClickValidationPopupOkButton(),
+                "Unable to click on OK button in container validation popup in Add new container popup in AutoStore Place in Container page");
+        }
+
+        [Then(@"I verify the Add button is Disable in Add new container popup in Autostore Pick Mission page")]
+        public void ThenIVerifyTheAddButtonIsDisableInAddNewContainerPopupInAutostorePickMissionPage()
+        {
+            Assert.IsFalse(AddNewContainerPopup.Instance.IsAddButtonEnable(),
+                "The Add button is not Disable in Add new container popup in Autostore Pick Mission page");
+        }
+
+        [Then(@"I verify the scancode field is not displayed in Add new container popup in Autostore Pick Mission page")]
+        public void ThenIVerifyTheScancodeFieldIsNotDisplayedInAddNewContainerPopupInAutostorePickMissionPage()
+        {
+            Assert.IsTrue(AddNewContainerPopup.Instance.IsScanCodeFieldNotDisplayed(),
+                "The scancode field is displayed in Add new container popup in Autostore Pick Mission page");
+        }
+
+        [Then(@"I verify the scancode field value is displayed as '(.*)' in Add new container popup in Autostore Pick Mission page")]
+        public void ThenIVerifyTheScancodeFieldValueIsDisplayedAsInAddNewContainerPopupInAutostorePickMissionPage(string containerScanCode)
+        {
+            Assert.IsTrue(AddNewContainerPopup.Instance.IsScanCodeFieldDisplayed(),
+                "The scancode field is not displayed in Add new container popup in Autostore Pick Mission page");
+            var actualContainerScanCode = AddNewContainerPopup.Instance.GetScanCodeFieldValue();
+            Assert.AreEqual(containerScanCode, actualContainerScanCode,
+                "The Container scancode is different in Add new container popup in Autostore Pick Mission page");
         }
 
         [Then(@"I verify the scan field is displayed in AutoStore Place in Container page")]
@@ -158,11 +294,73 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick
                 "Unable to include the container scan value to scan value field in AutoStore Place in Container page");
         }
 
+        [Then(@"I include the container scan value as '(.*)' to the container scan field in Autostore Place in Container page")]
+        public void ThenIIncludeTheContainerScanValueAsToTheContainerScanFieldInAutostorePlaceInContainerPage(string containerScanCode)
+        {
+            Assert.IsTrue(PlaceInContainer.Instance.InsertScanValue(containerScanCode),
+                $"Unable to include the container scan value as '{containerScanCode}' to the container scan field in Autostore Place in Container page");
+        }
+
         [When(@"I click on the Confirm button in AutoStore Place in Container page")]
         public void WhenIClickOnTheConfirmButtonInAutoStorePlaceInContainerPage()
         {
             Assert.IsTrue(PlaceInContainer.Instance.ClickConfirmButton(),
                 "Unable to click on the Confirm button in  AutoStore Place in Container page");
+        }
+
+        [Then(@"The taskgroup completed popup is displayed in Autostore Pick Mission page")]
+        public void ThenTheTaskgroupCompletedPopupIsDisplayedInAutostorePickMissionPage()
+        {
+            Assert.IsTrue(TaskgroupCompletedPopup.Instance.IsPopupDisplayed(),
+                "The taskgroup completed popup is not displayed in Autostore Pick Mission page");
+            Assert.AreEqual("The task group has been completed!", TaskgroupCompletedPopup.Instance.GetPopupMessage(),
+                "The taskgroup completed popup message is wrong in Autostore Pick Mission page");
+        }
+
+        [When(@"I click on '(.*)' button on taskgroup completed popup in Autostore Pick Mission page")]
+        public void WhenIClickOnButtonOnTaskgroupCompletedPopupInAutostorePickMissionPage(string buttonToBeClicked)
+        {
+            var isButtonClicked = buttonToBeClicked switch
+            {
+                "Continue" => TaskgroupCompletedPopup.Instance.ClickContinueButton(),
+                "Exit" => TaskgroupCompletedPopup.Instance.ClickExitButton(),
+                _ => false
+            };
+
+            Assert.IsTrue(isButtonClicked,
+                $"Unable to Click on {buttonToBeClicked} button on taskgroup completed popup in Autostore Pick Mission page");
+        }
+
+        [When(@"I click on Exit button in Autostore Pick Mission page")]
+        public void WhenIClickOnExitButtonInAutostorePickMissionPage()
+        {
+            Assert.IsTrue(PickMission.Instance.ClickExitButton(),
+                "Unable to click on Exit button in Autostore Pick Mission page");
+        }
+
+        [Then(@"The Confirm Task Exit popup is displayed in Autostore Pick Mission page")]
+        public void ThenTheConfirmTaskExitPopupIsDisplayedInAutostorePickMissionPage()
+        {
+            Assert.IsTrue(ConfirmTaskExitPopup.Instance.IsPopupDisplayed(),
+                "The Confirm Task Exit popup is not displayed in Autostore Pick Mission page");
+            const string expectedMessage =
+                "If you exit, the current task group will be suspended!\r\n\r\nAre you sure you want to exit?";
+            Assert.AreEqual(expectedMessage, ConfirmTaskExitPopup.Instance.GetPopupMessage(),
+                "Confirm Task Exit popup message is wrong in Autostore Pick Mission page");
+        }
+
+        [When(@"I click on '(.*)' button on Confirm Task Exit popup in Autostore Pick Mission page")]
+        public void WhenIClickOnButtonOnConfirmTaskExitPopupInAutostorePickMissionPage(string buttonToBeClicked)
+        {
+            var isButtonClicked = buttonToBeClicked switch
+            {
+                "Yes" => ConfirmTaskExitPopup.Instance.ClickYesButton(),
+                "No" => ConfirmTaskExitPopup.Instance.ClickNoButton(),
+                _ => false
+            };
+
+            Assert.IsTrue(isButtonClicked,
+                $"Unable to Click on {buttonToBeClicked} button on Confirm Task Exit popup in Autostore Pick Mission page");
         }
 
         private CommonSteps(ScenarioContext scenarioContext)

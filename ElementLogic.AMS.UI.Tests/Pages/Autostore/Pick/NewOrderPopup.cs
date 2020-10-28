@@ -15,10 +15,13 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
 
         public bool IsPopupDisplayed()
         {
-            var isPopupDisplayed = PageObjectHelper.Instance.IsDisplayed(Iframe);
-            //var isPopupMessageCorrect = PageObjectHelper.Instance.GetTextValue(PopUpMessage)
-                //.Contains("You are starting a new order");
+            var isPopupDisplayed = PageObjectHelper.Instance.IsDisplayed(Iframe, true);
             return isPopupDisplayed;
+        }
+
+        public string GetPopupMessage()
+        {
+            return PageObjectHelper.Instance.GetTextValue(PopUpMessage);
         }
 
         public bool ClickOkButton()

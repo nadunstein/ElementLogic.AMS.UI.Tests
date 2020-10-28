@@ -1,0 +1,35 @@
+{
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "AutoStore.Picking.Scanning.ValidateContainer",
+      "ParameterValue": "1"
+    }
+  ],
+
+  "ProductsToBeCreated": [
+    {
+      "ExtProductId": "ASPPSFP01",
+      "ProductName": "ASPickPlaceScanFieldProduct01",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    }
+  ],
+
+  "PickOrdersToBeCreated": [
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASPPSFP01",
+          "ProductName": "ASPickPlaceScanFieldProduct01",
+          "Quantity": 2,
+          "Scancode": "scancode01"
+        }
+      ]
+    }
+  ]
+}

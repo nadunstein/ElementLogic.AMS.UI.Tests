@@ -10,20 +10,15 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.TaskMenu
 
         private const string LoadingPanel = "#ctl00_pnlDataHider .ModalLoadingPanel";
 
-        private const string InspectionTile = "#ctl00_MonitorContentPlaceholder_TaskMenuView_btnInspection";
+        private const string PutawayTaskMenu = "#as-task-menu .row > div:nth-child(1)";
 
-        private const string InventoryTile = "#ctl00_MonitorContentPlaceholder_TaskMenuView_btnInventory";
+        private const string PickTaskMenu = "#as-task-menu .row > div:nth-child(2)";
 
-        private const string PutawayTaskMenu = ".as-task-menu-col-left";
-
-        private const string PickTaskMenu = ".as-task-menu-col-center";
-
-        private const string RefillTile = "#ctl00_MonitorContentPlaceholder_TaskMenuView_RefillButtonContainer";
+        private const string InventoryTaskMenu = "#as-task-menu .row > div:nth-child(3)";
 
         private const string LogoutButton = "#ctl00_MonitorContentPlaceholder_TaskMenuView_Button1";
 
-        private const string PrepTaskgroupTaskTypePrepareCount =
-            "#ctl00_MonitorContentPlaceholder_TaskMenuView_repeaterPickButtons_ctl04_ItemCountLabel";
+        private const string PreparedTaskgroupCountLabel = ".ml-4 .badge";
 
         public static AutostoreTaskMenu Instance => Singleton.Value;
 
@@ -36,12 +31,12 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.TaskMenu
         public bool IsPageDisplayed()
         {
             PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
-            return PageObjectHelper.Instance.IsDisplayed(InspectionTile);
+            return PageObjectHelper.Instance.IsDisplayed(PutawayTaskMenu);
         }
 
         public bool ClickPutawayTaskType(string taskName)
         {
-            var putawayTaskTypes = PageObjectHelper.Instance.Finds("a", PutawayTaskMenu);
+            var putawayTaskTypes = PageObjectHelper.Instance.Finds("a h3", PutawayTaskMenu);
             return (from putawayTaskType in putawayTaskTypes
                 where putawayTaskType.Text.Contains(taskName.Trim())
                 select PageObjectHelper.Instance.Click(putawayTaskType)).FirstOrDefault();
@@ -49,27 +44,20 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.TaskMenu
 
         public bool ClickPickTaskType(string taskName)
         {
-            var pickTaskTypes = PageObjectHelper.Instance.Finds("a", PickTaskMenu);
+            var pickTaskTypes = PageObjectHelper.Instance.Finds("a h3", PickTaskMenu);
             return (from pickTaskType in pickTaskTypes
                 where pickTaskType.Text.Contains(taskName.Trim())
                 select PageObjectHelper.Instance.Click(pickTaskType)).FirstOrDefault();
         }
 
-        public bool ClickInspectionTile()
+        public bool ClickInventoryTaskType(string taskName)
         {
-            return PageObjectHelper.Instance.Click(InspectionTile);
-        }
+            PageObjectHelper.Instance.Wait(3);
 
-        public bool ClickInventoryTile()
-        {
-            return PageObjectHelper.Instance.Click(InventoryTile);
-        }
-
-        public bool ClickRefillTile()
-        {
-            var isScrolledToElement = PageObjectHelper.Instance.ScrollToTheElement(RefillTile);
-            var isClicked =  PageObjectHelper.Instance.Click(RefillTile);
-            return isScrolledToElement && isClicked;
+            var inventoryTaskTypes = PageObjectHelper.Instance.Finds("a h3", InventoryTaskMenu);
+            return (from inventoryTaskType in inventoryTaskTypes
+                    where inventoryTaskType.Text.Contains(taskName.Trim())
+                select PageObjectHelper.Instance.Click(inventoryTaskType)).FirstOrDefault();
         }
 
         public bool ClickLogout()
@@ -77,9 +65,24 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.TaskMenu
             return PageObjectHelper.Instance.Click(LogoutButton);
         }
 
-        public string GetPreparedPickOrderCount()
+        public bool IsPreparedPickTaskgroupCountDisplayed(string taskName)
         {
-            return PageObjectHelper.Instance.GetTextValue(PrepTaskgroupTaskTypePrepareCount);
+            var pickTaskTypes = PageObjectHelper.Instance.Finds("a", PickTaskMenu);
+            return (from pickTaskType in pickTaskTypes
+                where pickTaskType.Text.Contains(taskName)
+                select PageObjectHelper.Instance.Finds(PreparedTaskgroupCountLabel, pickTaskType)
+                into elementsIdentified
+                select elementsIdentified.Count != 0).FirstOrDefault();
+        }
+
+        public string GetPreparedPickTaskgroupCount(string taskName)
+        {
+            var pickTaskTypes = PageObjectHelper.Instance.Finds("a", PickTaskMenu);
+            return (from pickTaskType in pickTaskTypes
+                where pickTaskType.Text.Contains(taskName)
+                select PageObjectHelper.Instance.Finds(PreparedTaskgroupCountLabel, pickTaskType)
+                into elementsIdentified
+                select elementsIdentified[0].Text).FirstOrDefault();
         }
 
         private AutostoreTaskMenu() { }

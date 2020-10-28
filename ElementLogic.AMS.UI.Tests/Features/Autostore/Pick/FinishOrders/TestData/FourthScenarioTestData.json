@@ -1,0 +1,59 @@
+{
+  "ProductsToBeCreated": [
+    {
+      "ExtProductId": "ASPLSP05",
+      "ProductName": "ASPickListSearchProduct05",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    },
+    {
+      "ExtProductId": "ASPLSP06",
+      "ProductName": "ASPickListSearchProduct06",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    },
+    {
+      "ExtProductId": "ASPLSP07",
+      "ProductName": "ASPickListSearchProduct07",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    }
+  ],
+
+  "PickOrdersToBeCreated": [
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASPLSP05",
+          "ProductName": "ASPickListSearchProduct05",
+          "Quantity": 2
+        },
+        {
+          "Action": "A",
+          "ExtOrderlineId": 2,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASPLSP06",
+          "ProductName": "ASPickListSearchProduct06",
+          "Quantity": 2
+        },
+        {
+          "Action": "A",
+          "ExtOrderlineId": 3,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASPLSP07",
+          "ProductName": "ASPickListSearchProduct07",
+          "Quantity": 2
+        }
+      ]
+    }
+  ]
+}

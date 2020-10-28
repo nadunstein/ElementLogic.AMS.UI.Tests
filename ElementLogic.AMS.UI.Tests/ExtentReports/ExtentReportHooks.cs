@@ -4,7 +4,7 @@ using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
 using AventStack.ExtentReports.Reporter.Configuration;
-using ElementLogic.AMS.UI.Tests.Configuration;
+using ElementLogic.AMS.UI.Tests.Integration;
 using OpenQA.Selenium;
 using SeleniumEssential;
 using TechTalk.SpecFlow;
@@ -36,14 +36,16 @@ namespace ElementLogic.AMS.UI.Tests.ExtentReports
         public static void InitializeReport()
         {
             var extentReportPath = Directory.GetParent(WebDriverHelper.Instance.GetProjectPath()).ToString();
-            var reportHtmlName = ConfigFileReader.Instance.ConfigurationKeyValue("ExtentReportSettings:reportHtmlName");
+            var reportHtmlName = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json",
+                "ExtentReportSettings:reportHtmlName");
             var htmlReporter =
                 new ExtentHtmlReporter(Path.Combine(extentReportPath, reportHtmlName));
             htmlReporter.Config.Theme = Theme.Standard;
-            htmlReporter.Config.DocumentTitle =
-                ConfigFileReader.Instance.ConfigurationKeyValue("ExtentReportSettings:DocumentTitle");
-            htmlReporter.Config.ReportName =
-                ConfigFileReader.Instance.ConfigurationKeyValue("ExtentReportSettings:ReportName");
+            htmlReporter.Config.DocumentTitle = JsonFileReader.Instance.GetJsonKeyValue(
+                "Configuration/Environment.json",
+                "ExtentReportSettings:DocumentTitle");
+            htmlReporter.Config.ReportName = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json",
+                "ExtentReportSettings:ReportName");
 
             _extent = new ExtentReport();
             _extent.AttachReporter(htmlReporter);

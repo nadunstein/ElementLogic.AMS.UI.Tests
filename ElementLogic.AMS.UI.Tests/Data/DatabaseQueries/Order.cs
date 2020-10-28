@@ -56,6 +56,24 @@ namespace ElementLogic.AMS.UI.Tests.Data.DatabaseQueries
             return picklistIds;
         }
 
+        public int GetUnFinishedInventoryOrdersCount()
+        {
+            const int orderType = (int)OrderType.Inventory;
+            const int minOrderLineStatus = (int)LineStatus.WithoutLocation;
+            const int maxOrderLineStatus = (int)LineStatus.Completed;
+
+            const string mainSql = @"SELECT COUNT(EXTPICKLISTID) 
+                                       FROM ORDERS 
+                                      WHERE DIRECTION = @orderType
+                                        AND ORDERSTATUSID > @minOrderLineStatus
+										AND ORDERSTATUSID <> @maxOrderLineStatus";
+
+            var inventoryOrderCount = ConnectionManager.Instance.ExecuteReturn(connection =>
+                connection.QueryFirstOrDefault<int>(mainSql,
+                    new { orderType, minOrderLineStatus, maxOrderLineStatus }));
+            return inventoryOrderCount;
+        }
+
         public int GetUnFinishedPickOrderCount(int orderStatus)
         {
             const int orderType = (int)OrderType.Picking;

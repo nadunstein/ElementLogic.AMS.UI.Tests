@@ -7,6 +7,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.PutawaySelection
     {
         private const string PageHeader = "#ctl00_head_HeaderView_lblCurrentOperation";
 
+        private const string LoadingPanel = "#ctl00_LoadingPanel1";
+
         private const string ScanField =
             "#ctl00_MonitorContentPlaceholder_putawayselectionview_flbScan_InputTemplateItem_txtScan";
 
@@ -27,6 +29,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.PutawaySelection
 
         public string GetPageTitle()
         {
+            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
             return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
         }
 

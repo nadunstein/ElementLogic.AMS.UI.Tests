@@ -11,9 +11,9 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Automation.AutostoreEquipm
 
         public static SynchronizeBinContentsPopUp Instance => Singleton.Value;
 
-        public string GetPopUpTitle()
+        public bool IsPopupDisplayed()
         {
-            return PageObjectHelper.Instance.GetTextValue(PopupTitle, true);
+            return PageObjectHelper.Instance.IsDisplayed(PopupTitle, true);
         }
 
         public bool ClickSynchronizeButton()

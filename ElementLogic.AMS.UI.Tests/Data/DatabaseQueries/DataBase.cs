@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
 using Dapper;
-using ElementLogic.AMS.UI.Tests.Configuration;
 using ElementLogic.AMS.UI.Tests.Data.Manager;
+using ElementLogic.AMS.UI.Tests.Integration;
 using SeleniumEssential;
 
 namespace ElementLogic.AMS.UI.Tests.Data.DatabaseQueries
@@ -30,14 +30,12 @@ namespace ElementLogic.AMS.UI.Tests.Data.DatabaseQueries
         {
             var databasePath = Path.Combine(WebDriverHelper.Instance.GetProjectPath(), "Database\\",
                 string.Concat(nameOfTheDatabase, ".bak"));
+            var dataLogFilePath = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json",
+                "DatabaseSettings:DatabaseDataLogFilePath");
             var dataFilePath =
-                Path.Combine(
-                    ConfigFileReader.Instance.ConfigurationKeyValue("DatabaseSettings:DatabaseDataLogFilePath"),
-                    string.Concat(nameOfTheDatabase, ".mdf"));
+                Path.Combine(dataLogFilePath, string.Concat(nameOfTheDatabase, ".mdf"));
             var dataLogePath =
-                Path.Combine(
-                    ConfigFileReader.Instance.ConfigurationKeyValue("DatabaseSettings:DatabaseDataLogFilePath"),
-                    string.Concat(nameOfTheDatabase, "_log.ldf"));
+                Path.Combine(dataLogFilePath, string.Concat(nameOfTheDatabase, "_log.ldf"));
 
             var mainSql = "USE MASTER " +
                                $"RESTORE DATABASE {nameOfTheDatabase} FROM DISK = '{databasePath}' " +

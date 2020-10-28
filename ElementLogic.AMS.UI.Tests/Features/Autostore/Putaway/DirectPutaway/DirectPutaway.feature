@@ -1,4 +1,4 @@
-﻿Feature: AutoStore Direct Putaway
+﻿Feature: Autostore Putaway Direct Putaway
 	As an Admin user, I want to verify the AutoStore Direct Putaway related scenarios
 
 Background: 
@@ -17,7 +17,8 @@ Background:
 	Then I Navigate to Autostore Putaway Selection page
 
 @Regression
-@AS_Putaway_DirectPutaway
+@Scenario:'1'
+@Autostore:Putaway:DirectPutaway
 Scenario: Autostore Direct Putaway to single compartment bins
 	Given I Select the search on as 'Mission ID' in Autostore Putaway Selection page
 	Then I Include Product Id as 'ASDPP01' to the Scan field in Autostore Putaway Selection page

@@ -1,4 +1,5 @@
 ﻿using ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Refill;
+using ElementLogic.AMS.UI.Tests.TestDataPreparationHelper;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -47,7 +48,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Activity.Refill
         [Given(@"I select the same trolley from Trolley drop down in Refill Order List page")]
         public void GivenISelectATrolleyFromTrolleyDropDownInRefillOrderListPage()
         {
-            var nameOfTheTrolley = _scenarioContext["RefillTrolley"].ToString();
+            var nameOfTheTrolley = TestDataFactory.Instance.GetRefillTrolleyForScenario(_scenarioContext);
             Assert.IsTrue(RefillOrderList.Instance.SelectTrolley(nameOfTheTrolley),
                 "Unable to select a trolley from Trolley drop down in Refill Order List page");
         }

@@ -1,0 +1,86 @@
+{
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "AutoStore.Picking.Scanning.ValidateContainer",
+      "ParameterValue": "1"
+    },
+    {
+      "ParameterName": "UseCustomerBatching",
+      "ParameterValue": "1"
+    }
+  ],
+
+  "ProductsToBeCreated": [
+    {
+      "ExtProductId": "ASPPSFP03",
+      "ProductName": "ASPickPlaceScanFieldProduct03",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    },
+    {
+      "ExtProductId": "ASPPSFP04",
+      "ProductName": "ASPickPlaceScanFieldProduct04",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    }
+  ],
+
+  "PickOrdersToBeCreated": [
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "CustId": "EWMS-000001",
+          "CustName": "Rose Marie",
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASPPSFP03",
+          "ProductName": "ASPickPlaceScanFieldProduct03",
+          "Quantity": 2
+        },
+        {
+          "Action": "A",
+          "ExtOrderlineId": 2,
+          "SpeditorId": 73,
+          "CustId": "EWMS-000001",
+          "CustName": "Rose Marie",
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASPPSFP04",
+          "ProductName": "ASPickPlaceScanFieldProduct04",
+          "Quantity": 2
+        }
+      ]
+    },
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "CustId": "EWMS-000002",
+          "CustName": "Louise Roth",
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASPPSFP03",
+          "ProductName": "ASPickPlaceScanFieldProduct03",
+          "Quantity": 2
+        },
+        {
+          "Action": "A",
+          "ExtOrderlineId": 2,
+          "SpeditorId": 73,
+          "CustId": "EWMS-000002",
+          "CustName": "Louise Roth",
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASPPSFP04",
+          "ProductName": "ASPickPlaceScanFieldProduct04",
+          "Quantity": 2
+        }
+      ]
+    }
+  ]
+}

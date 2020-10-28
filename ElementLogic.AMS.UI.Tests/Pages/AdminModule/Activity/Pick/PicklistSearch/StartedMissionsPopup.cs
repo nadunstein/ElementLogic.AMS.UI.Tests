@@ -5,9 +5,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Pick.PicklistSear
 {
     public class StartedMissionsPopup
     {
-        private const string Popup = ".rwTable";
-
-        private const string PopupMessage = ".rwTable #divMessage p";
+        private const string Popup = ".rwTable #divMessage";
 
         private const string YesButton = ".rwTable .btn-confirm";
 
@@ -16,11 +14,6 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Pick.PicklistSear
         public bool IsPopupDisplayed()
         {
             return PageObjectHelper.Instance.IsDisplayed(Popup);
-        }
-
-        public string GetPopupMessage()
-        {
-            return PageObjectHelper.Instance.GetTextValue(PopupMessage);
         }
 
         public bool ClickYesButton()

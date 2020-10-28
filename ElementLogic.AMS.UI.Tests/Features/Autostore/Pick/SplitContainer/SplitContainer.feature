@@ -3,7 +3,8 @@
 
 @Pick
 @Regression
-@AS_Pick_SplitContainer
+@Scenario:'1'
+@Autostore:Pick:SplitContainer
 Scenario: Verify the container can be split for a PickOrder when the taskgroup has a single mission
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I click on 'Normal AS' pick task type in AutoStore Main Menu
@@ -19,4 +20,4 @@ Scenario: Verify the container can be split for a PickOrder when the taskgroup h
 	Then The AutoStore Place in Container page is loaded
 	And I verify the Quantity field value is '2' in Autostore Place in Container page
 	When I click on the Confirm button in AutoStore Place in Container page
-	Then The Autostore task Menu should be loaded
+	Then The Autostore task Menu is displayed

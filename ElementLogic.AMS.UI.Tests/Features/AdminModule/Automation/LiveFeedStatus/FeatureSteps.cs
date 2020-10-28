@@ -27,7 +27,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Automation.LiveFeedStat
         [Then(@"The Synchronize bin contents popup is displayed in Live feed status page")]
         public void ThenTheSynchronizeBinContentsPopupIsDisplayedInLiveFeedStatusPage()
         {
-            Assert.AreEqual("Synchronize bin contents", SynchronizeBinContentsPopUp.Instance.GetPopUpTitle(),
+            Assert.IsTrue(SynchronizeBinContentsPopUp.Instance.IsPopupDisplayed(),
                 "Synchronize bin contents popUp is NOT displayed in Live feed status page");
         }
 

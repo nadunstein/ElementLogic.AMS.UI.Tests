@@ -1,5 +1,5 @@
 ﻿using System;
-using ElementLogic.AMS.UI.Tests.Configuration;
+using ElementLogic.AMS.UI.Tests.Integration;
 using SeleniumEssential;
 
 namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Pick.PicklistSearch
@@ -12,10 +12,13 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Pick.PicklistSear
         private const string PageLoadingPanel = "#ctl00_LoadingPanelMenu";
 
         private const string ResultGridLoadingPanel =
-            "#ctl00_ContentPlaceHolderContent_PickListSearchView1_GridLoadingPanelct100_ContentPlaceHolderContent_PickListSearchView1_orderGrid";
+            "#ctl00_ContentPlaceHolderContent_PickListSearchView1_GridLoadingPanelctl00_ContentPlaceHolderContent_PickListSearchView1_orderGrid";
 
         private const string PicklistIdField =
             "#ctl00_ContentPlaceHolderContent_PickListSearchView1_RadPanelBar1_i0_flbPicklistId_InputTemplateItem_CmbPicklistId_Input";
+
+        private const string PicklistIdDropdownSlide =
+            "#ctl00_ContentPlaceHolderContent_PickListSearchView1_RadPanelBar1_i0_flbPicklistId_InputTemplateItem_CmbPicklistId_DropDown .rcbList";
 
         private const string OrderStatusField =
             "#ctl00_ContentPlaceHolderContent_PickListSearchView1_RadPanelBar1_i0_flbOrderStatus_InputTemplateItem_ddlOrderStatus";
@@ -42,9 +45,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Pick.PicklistSear
 
         public void Navigate()
         {
-            PageObjectHelper.Instance.DeleteBrowserCookies();
             const string picklistSearchPageUrl = "/pages/activity/pick/picklistsearch.aspx";
-            string baseUrl = ConfigFileReader.Instance.ConfigurationKeyValue("Application:Url");
+            string baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
             PageObjectHelper.Instance.Navigate(baseUrl, picklistSearchPageUrl);
         }
 
@@ -60,7 +62,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Pick.PicklistSear
 
         public bool InsertPicklistId(string picklistId)
         {
-            return PageObjectHelper.Instance.InsertField(PicklistIdField, picklistId);
+            return PageObjectHelper.Instance.SelectSearchDropDown(PicklistIdField, PicklistIdDropdownSlide, "li",
+                picklistId);
         }
 
         public bool SelectOrderStatus(int orderStatus)
@@ -82,11 +85,13 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Pick.PicklistSear
 
         public bool ClickSearchButton()
         {
+            PageObjectHelper.Instance.WaitUntilInvisible(PageLoadingPanel);
             return PageObjectHelper.Instance.Click(SearchButton);
         }
 
         public bool SelectAllCheckBox()
         {
+            PageObjectHelper.Instance.WaitUntilInvisible(PageLoadingPanel);
             return PageObjectHelper.Instance.Click(AllCheckBox);
         }
 
@@ -99,6 +104,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Pick.PicklistSear
 
         public bool SelectActionMenuOption(string option)
         {
+            PageObjectHelper.Instance.WaitUntilInvisible(PageLoadingPanel);
             return PageObjectHelper.Instance.SelectDropDown(ActionMenuGearIcon, ActionMenuSlide,
                 "li", option);
         }
@@ -109,14 +115,19 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Pick.PicklistSear
             return PageObjectHelper.Instance.IsDisplayed(NoRecordsToShowLabel);
         }
 
-        public bool IsPickOrderStatusCorrect(string pickOrderStatus)
+        public string GetPickOrderStatus()
         {
+
+            PageObjectHelper.Instance.Wait(1);
+            PageObjectHelper.Instance.WaitUntilInvisible(ResultGridLoadingPanel);
             var tableColumns = PageObjectHelper.Instance.Finds("td", FirstPicklistResultBar);
-            return tableColumns[19].Text.Contains(pickOrderStatus);
+            return tableColumns[19].Text;
         }
 
         public string GetPickOrderRequestTime()
         {
+            PageObjectHelper.Instance.Wait(1);
+            PageObjectHelper.Instance.WaitUntilInvisible(ResultGridLoadingPanel);
             var tableColumns = PageObjectHelper.Instance.Finds("td", FirstPicklistResultBar);
             return tableColumns[12].Text;
         }

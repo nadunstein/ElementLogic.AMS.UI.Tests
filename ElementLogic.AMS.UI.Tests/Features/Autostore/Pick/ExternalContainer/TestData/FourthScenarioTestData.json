@@ -1,0 +1,68 @@
+{
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "Picking.AutoStore.CloseCurrentContainer",
+      "ParameterValue": "1"
+    },
+    {
+      "ParameterName": "MinimumLocationsPerBinForLocationScanningForPicking",
+      "ParameterValue": "0"
+    },
+    {
+      "ParameterName": "AutoStore.Picking.Scanning.ValidateContainer",
+      "ParameterValue": "1"
+    },
+    {
+      "ParameterName": "Picking.AutoPlaceIfSingleContainer",
+      "ParameterValue": "1"
+    },
+    {
+      "ParameterName": "ContainerScanValuePicking",
+      "ParameterValue": "6"
+    }
+  ],
+
+  "ProductsToBeCreated": [
+    {
+      "ExtProductId": "ASPECP09",
+      "ProductName": "ASPickExternalContainerProduct09",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    },
+    {
+      "ExtProductId": "ASPECP10",
+      "ProductName": "ASPickExternalContainerProduct10",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    }
+  ],
+
+  "PickOrdersToBeCreated": [
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASPECP09",
+          "ProductName": "ASPickExternalContainerProduct09",
+          "Quantity": 10,
+          "Boxtype": "Externalbox1"
+        },
+        {
+          "Action": "A",
+          "ExtOrderlineId": 2,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASPECP10",
+          "ProductName": "ASPickExternalContainerProduct10",
+          "Quantity": 10,
+          "Boxtype": "Externalbox1"
+        }
+      ]
+    }
+  ]
+}

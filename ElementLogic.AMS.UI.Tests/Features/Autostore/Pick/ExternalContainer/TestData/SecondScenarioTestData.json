@@ -1,0 +1,81 @@
+{
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "Picking.AutoStore.CloseCurrentContainer",
+      "ParameterValue": "1"
+    },
+    {
+      "ParameterName": "AutoStore.Picking.Scanning.ValidateContainer",
+      "ParameterValue": "1"
+    },
+    {
+      "ParameterName": "Picking.AutoPlaceIfSingleContainer",
+      "ParameterValue": "1"
+    },
+    {
+      "ParameterName": "ContainerScanValuePicking",
+      "ParameterValue": "6"
+    }
+  ],
+
+  "ProductsToBeCreated": [
+    {
+      "ExtProductId": "ASPECP04",
+      "ProductName": "ASPickExternalContainerProduct04",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    },
+    {
+      "ExtProductId": "ASPECP05",
+      "ProductName": "ASPickExternalContainerProduct05",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    },
+    {
+      "ExtProductId": "ASPECP06",
+      "ProductName": "ASPickExternalContainerProduct06",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    }
+  ],
+
+  "PickOrdersToBeCreated": [
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASPECP04",
+          "ProductName": "ASPickExternalContainerProduct04",
+          "Quantity": 2,
+          "Boxtype": "Externalbox1"
+        },
+        {
+          "Action": "A",
+          "ExtOrderlineId": 2,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASPECP05",
+          "ProductName": "ASPickExternalContainerProduct05",
+          "Quantity": 2,
+          "Boxtype": "Externalbox1"
+        },
+        {
+          "Action": "A",
+          "ExtOrderlineId": 3,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASPECP06",
+          "ProductName": "ASPickExternalContainerProduct06",
+          "Quantity": 2,
+          "Boxtype": "Externalbox1"
+        }
+      ]
+    }
+  ]
+}

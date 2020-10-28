@@ -50,7 +50,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
 
         public bool IsScanFieldDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(ScanField);
+            return PageObjectHelper.Instance.IsDisplayed(ScanField, true);
         }
 
         public bool IsScanFieldFocused()
@@ -64,8 +64,14 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
             return PageObjectHelper.Instance.InsertField(ScanField, scanValue);
         }
 
+        public string GetScanFieldValue()
+        {
+            return PageObjectHelper.Instance.GetAttributeValue(ScanField, "value");
+        }
+
         public bool ClickConfirmButton()
         {
+            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
             var isButtonClicked = PageObjectHelper.Instance.Click(ConfirmButton);
             PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
             return isButtonClicked;

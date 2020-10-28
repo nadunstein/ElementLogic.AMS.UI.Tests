@@ -1,5 +1,5 @@
 ﻿using System;
-using ElementLogic.AMS.UI.Tests.Configuration;
+using ElementLogic.AMS.UI.Tests.Integration;
 using SeleniumEssential;
 
 namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Warehouse.Equipment
@@ -28,7 +28,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Warehouse.Equipment
         public void Navigate()
         {
             const string equipmentListPageUrl = "/Pages/Warehouse/EquipmentList.aspx";
-            string baseUrl = ConfigFileReader.Instance.ConfigurationKeyValue("Application:Url");
+            string baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
             PageObjectHelper.Instance.Navigate(baseUrl, equipmentListPageUrl);
         }
 

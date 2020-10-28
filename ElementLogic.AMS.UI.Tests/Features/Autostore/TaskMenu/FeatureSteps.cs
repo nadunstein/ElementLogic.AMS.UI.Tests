@@ -15,12 +15,12 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
     [Binding]
     public class FeatureSteps
     {
-        [Then(@"The Autostore task Menu should be loaded")]
-        public void ThenTheAutostoreTaskMenuShouldBeLoaded()
+        [Then(@"The Autostore task Menu is displayed")]
+        public void ThenTheAutostoreTaskMenuIsDisplayed()
         {
-            ExitFromActivity();
+            ExitFromPickActivity();
             Assert.AreEqual("AutoStore task menu", AutostoreTaskMenu.Instance.GetPageTitle(),
-                "The Autostore task Menu is not loaded");
+                "The Autostore task Menu is not displayed");
         }
 
         [When(@"I click on '(.*)' putaway tile in AutoStore Main Menu")]
@@ -34,13 +34,22 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
         [When(@"I click on '(.*)' pick task type in AutoStore Main Menu")]
         public void WhenIClickOnPickTaskTypeInAutoStoreMainMenu(string pickTaskType)
         {
-            RetryPickWhileSuccess(TryPick, pickTaskType, 5);
+            RetryPickWhileSuccess(TryPick, pickTaskType, 10);
+        }
+
+        [Then(@"I verify the prepared taskgroup count is '(.*)' for '(.*)' pick task type in AutoStore Main Menu")]
+        public void ThenIVerifyThePreparedTaskgroupCountIsForPickTaskTypeInAutoStoreMainMenu(int taskgroupCount, string pickTaskType)
+        {
+            var isPickTaskgroupPreparedCountCorrect =
+                RetryPreparePickWhileSuccess(TryPreparePickActivities, taskgroupCount, pickTaskType, 5);
+            Assert.IsTrue(isPickTaskgroupPreparedCountCorrect,
+                $"The prepared pick taskgroup count is wrong for {pickTaskType} in AutoStore task menu");
         }
 
         [When(@"I Click on Inspection tile in AutoStore Main Menu")]
         public void GivenIClickOnInspectionTileInAutoStoreMainMenu()
         {
-            Assert.IsTrue(AutostoreTaskMenu.Instance.ClickInspectionTile(),
+            Assert.IsTrue(AutostoreTaskMenu.Instance.ClickInventoryTaskType("Inspection"),
                 "Unable to Click on Inspection tile in AutoStore Main Menu");
         }
 
@@ -53,7 +62,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
         [When(@"I Click on Refill tile in Autostore main menu")]
         public void WhenIClickOnRefillTileInAutostoreMainMenu()
         {
-            Assert.IsTrue(AutostoreTaskMenu.Instance.ClickRefillTile(),
+            Assert.IsTrue(AutostoreTaskMenu.Instance.ClickInventoryTaskType("Refill"),
                 "Unable to Click on Refill tile in AutoStore Main Menu");
         }
 
@@ -66,7 +75,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
 
         private static bool TryInventory()
         {
-            Assert.IsTrue(AutostoreTaskMenu.Instance.ClickInventoryTile(),
+            Assert.IsTrue(AutostoreTaskMenu.Instance.ClickInventoryTaskType("Inventory"),
                 "Unable to Click on Inventory tile in AutoStore Main Menu");
             Assert.AreEqual("Inventory", InventoryMission.Instance.GetPageTitle(),
                 "Autostore Inventory mission page is not loaded");
@@ -130,7 +139,48 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
             Assert.Fail("Pick order is not prepared");
         }
 
-        private static void ExitFromActivity()
+        private static bool TryPreparePickActivities(int taskgroupCount, string pickTaskType)
+        {
+            if (AutostoreTaskMenu.Instance.IsPreparedPickTaskgroupCountDisplayed(pickTaskType))
+            {
+                var actualTaskgroupPreparedCountString = AutostoreTaskMenu.Instance.GetPreparedPickTaskgroupCount(pickTaskType);
+                var expectedTaskgroupPreparedCountString = $"{taskgroupCount} / {taskgroupCount}";
+                if (actualTaskgroupPreparedCountString == expectedTaskgroupPreparedCountString)
+                {
+                    return true;
+                }
+
+                SynchronizeTaskGroups.Instance.DoAutostoreTaskGroupSync();
+                LoginPage.Instance.NavigateToAutoStore("01");
+                LoginPage.Instance.IsLoginPageLoaded();
+                LoginPage.Instance.LoginToApplication("Admin");
+                AutostoreTaskMenu.Instance.GetPageTitle();
+                AutostoreTaskMenu.Instance.ClickPickTaskType(pickTaskType);
+                PickNoMoreTasksPopup.Instance.IsPopupDisplayed();
+                PickMission.Instance.ClickExitButton();
+                return false;
+            }
+
+            AutostoreTaskMenu.Instance.ClickPickTaskType(pickTaskType);
+            PickNoMoreTasksPopup.Instance.IsPopupDisplayed();
+            PickMission.Instance.ClickExitButton();
+            return false;
+        }
+
+        private static bool RetryPreparePickWhileSuccess(Func<int, string, bool> retryAction, int taskgroupCount, 
+            string pickTaskType, int noOfAttempts)
+        {
+            for (var i = 0; i < noOfAttempts; i++)
+            {
+                var result = retryAction(taskgroupCount, pickTaskType);
+                if (result)
+                    return true;
+            }
+
+            return false;
+        }
+
+        private static void ExitFromPickActivity()
         {
             for (var i = 0; i < 20; i++)
             {

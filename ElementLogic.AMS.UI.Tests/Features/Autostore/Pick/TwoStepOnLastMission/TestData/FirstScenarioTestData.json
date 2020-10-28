@@ -1,0 +1,50 @@
+{
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "AutoStore.Picking.UseTwoStepOnLastMission",
+      "ParameterValue": "1"
+    }
+  ],
+
+  "ProductsToBeCreated": [
+    {
+      "ExtProductId": "ASPTSLMP01",
+      "ProductName": "ASPickTwoStepsOnLastMissionProduct01",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    },
+    {
+      "ExtProductId": "ASPTSLMP02",
+      "ProductName": "ASPickTwoStepsOnLastMissionProduct02",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    }
+  ],
+
+  "PickOrdersToBeCreated": [
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASPTSLMP01",
+          "ProductName": "ASPickTwoStepsOnLastMissionProduct01",
+          "Quantity": 10
+        },
+        {
+          "Action": "A",
+          "ExtOrderlineId": 2,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASPTSLMP02",
+          "ProductName": "ASPickTwoStepsOnLastMissionProduct02",
+          "Quantity": 10
+        }
+      ]
+    }
+  ]
+}

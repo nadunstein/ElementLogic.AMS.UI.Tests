@@ -74,10 +74,13 @@
       <HintPath>..\packages\ExtentReports.4.0.3\lib\ExtentReports.dll</HintPath>
     </Reference>
     <Reference Include="Gherkin, Version=6.0.0.0, Culture=neutral, PublicKeyToken=86496cfa5b4a5851, processorArchitecture=MSIL">
-      <HintPath>..\packages\Gherkin.6.0.0\lib\net45\Gherkin.dll</HintPath>
+      <HintPath>..\packages\SpecFlow.CustomPlugin.3.1.97\lib\net45\Gherkin.dll</HintPath>
     </Reference>
     <Reference Include="Google.Protobuf, Version=3.7.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Protobuf.3.7.0\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="Humanizer, Version=2.8.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Humanizer.Core.2.8.26\lib\netstandard2.0\Humanizer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -148,17 +151,15 @@
     <Reference Include="RazorEngine, Version=3.10.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
       <HintPath>..\packages\RazorEngine.3.10.0\lib\net45\RazorEngine.dll</HintPath>
     </Reference>
-    <Reference Include="SeleniumEssential">
-      <HintPath>..\..\SeleniumDlls\SeleniumEssential\SeleniumEssential\bin\Debug\SeleniumEssential.dll</HintPath>
-      <Private>True</Private>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </Reference>
     <Reference Include="SpecFlow.Assist.Dynamic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SpecFlow.Assist.Dynamic.1.4.2\lib\net472\SpecFlow.Assist.Dynamic.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.CodeDom, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.CodeDom.4.4.0\lib\net461\System.CodeDom.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -184,6 +185,16 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.FileSystem, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.4.3.0\lib\net46\System.IO.FileSystem.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -206,6 +217,11 @@
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.1\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Extensions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.Extensions.4.3.0\lib\net462\System.Runtime.Extensions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
@@ -246,6 +262,9 @@
     <Reference Include="System.Text.Json, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Text.Json.4.7.2\lib\net461\System.Text.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Threading.Tasks.Dataflow, Version=4.6.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Dataflow.4.9.0\lib\netstandard2.0\System.Threading.Tasks.Dataflow.dll</HintPath>
+    </Reference>
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
@@ -266,8 +285,17 @@
     <Reference Include="TechTalk.SpecFlow, Version=3.1.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
       <HintPath>..\packages\SpecFlow.3.1.97\lib\net45\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
+    <Reference Include="TechTalk.SpecFlow.Generator, Version=3.1.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
+      <HintPath>..\packages\SpecFlow.CustomPlugin.3.1.97\lib\net45\TechTalk.SpecFlow.Generator.dll</HintPath>
+    </Reference>
     <Reference Include="TechTalk.SpecFlow.NUnit.SpecFlowPlugin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
       <HintPath>..\packages\SpecFlow.NUnit.3.1.97\lib\net45\TechTalk.SpecFlow.NUnit.SpecFlowPlugin.dll</HintPath>
+    </Reference>
+    <Reference Include="TechTalk.SpecFlow.Parser, Version=3.1.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
+      <HintPath>..\packages\SpecFlow.CustomPlugin.3.1.97\lib\net45\TechTalk.SpecFlow.Parser.dll</HintPath>
+    </Reference>
+    <Reference Include="TechTalk.SpecFlow.Utils, Version=3.1.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
+      <HintPath>..\packages\SpecFlow.CustomPlugin.3.1.97\lib\net45\TechTalk.SpecFlow.Utils.dll</HintPath>
     </Reference>
     <Reference Include="Utf8Json, Version=1.3.7.0, Culture=neutral, PublicKeyToken=8a73d3ba7e392e27, processorArchitecture=MSIL">
       <HintPath>..\packages\Utf8Json.1.3.7\lib\net47\Utf8Json.dll</HintPath>
@@ -277,7 +305,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\ConfigFileReader.cs" />
     <Compile Include="Data\DatabaseQueries\Container.cs" />
     <Compile Include="Data\DatabaseQueries\Database.cs" />
     <Compile Include="Data\DatabaseQueries\Depth.cs" />
@@ -305,43 +332,23 @@
     <Compile Include="Features\AbstractWarehouse\G_AddReasonCodes\FeatureSteps.cs" />
     <Compile Include="Features\AbstractWarehouse\H_PrepareAutostore\FeatureSteps.cs" />
     <Compile Include="Features\AbstractWarehouse\H_PrepareAutostore\PrepareAutostore.feature.cs" />
+    <Compile Include="Features\AdminModule\Activity\Pick\PicklistSearch\FeatureSteps.cs" />
+    <Compile Include="Features\AdminModule\Activity\UserActivity\FeatureSteps.cs" />
     <Compile Include="Features\Autostore\Inventory\InventoryDeviation\FeatureSteps.cs" />
-    <Compile Include="Features\Autostore\Pick\PickDeviation\FeatureHooks.cs" />
     <Compile Include="Features\Autostore\Pick\PickDeviation\FeatureSteps.cs" />
-    <Compile Include="Features\Autostore\Pick\PickDeviation\TestData\SecondScenarioTestData.cs" />
-    <Compile Include="Features\Autostore\Pick\PickDeviation\TestData\FirstScenarioTestData.cs" />
-    <Compile Include="Features\Autostore\Pick\PickPlaceScanField\FeatureHooks.cs" />
-    <Compile Include="Features\Autostore\Pick\PickPlaceScanField\TestData\FifthScenarioTestData.cs" />
-    <Compile Include="Features\Autostore\Pick\PickPlaceScanField\TestData\ForthScenarioTestData.cs" />
-    <Compile Include="Features\Autostore\Pick\PickPlaceScanField\TestData\ThirdScenarioTestData.cs" />
-    <Compile Include="Features\Autostore\Pick\PickPlaceScanField\TestData\SecondScenarioTestData.cs" />
-    <Compile Include="Features\Autostore\Pick\PickPlaceScanField\TestData\FirstScenarioTestData.cs" />
-    <Compile Include="Features\Autostore\Pick\PickReassign\FeatureHooks.cs" />
     <Compile Include="Features\Autostore\Pick\PickReassign\FeatureSteps.cs" />
-    <Compile Include="Features\Autostore\Pick\PickReassign\TestData\FirstScenarioTestData.cs" />
-    <Compile Include="Features\Autostore\Pick\SecurePicking\FeatureHooks.cs" />
     <Compile Include="Features\Autostore\Pick\SecurePicking\FeatureSteps.cs" />
-    <Compile Include="Features\Autostore\Pick\SecurePicking\TestData\FirstScenarioTestData.cs" />
-    <Compile Include="Features\Autostore\Pick\SplitContainer\FeatureHooks.cs" />
-    <Compile Include="Features\Autostore\Pick\SplitContainer\TestData\FirstScenarioTestData.cs" />
+    <Compile Include="Features\Autostore\Pick\SerialNumberRegistration\FeatureSteps.cs" />
+    <Compile Include="Features\Login\AutostoreMultipleSimultaneousLogin\FeatureSteps.cs" />
+    <Compile Include="Features\SupportTasks\FlushInventoryOrders.cs" />
+    <Compile Include="Integration\JsonFileReader.cs" />
     <Compile Include="Pages\AdminModule\Activity\Pick\PicklistSearch\ConfirmSelectionPopup.cs" />
     <Compile Include="Pages\AdminModule\Activity\Pick\PicklistSearch\PicklistSearch.cs" />
     <Compile Include="Features\AdminModule\Activity\Refill\CommonSteps.cs" />
-    <Compile Include="Features\AdminModule\Activity\Refill\Search\FeatureHooks.cs" />
-    <Compile Include="Features\AdminModule\Activity\Refill\Search\TestData\FourthScenarioTestData.cs" />
-    <Compile Include="Features\AdminModule\Activity\Refill\Search\TestData\FifthScenarioTestData.cs" />
-    <Compile Include="Features\AdminModule\Activity\Refill\Search\TestData\FirstScenarioTestData.cs" />
-    <Compile Include="Features\AdminModule\Activity\Refill\Search\TestData\ThirdScenarioTestData.cs" />
-    <Compile Include="Features\AdminModule\Activity\Refill\Search\TestData\SecondScenarioTestData.cs" />
-    <Compile Include="Features\AdminModule\Activity\Refill\TrolleyTakeOver\FeatureHooks.cs" />
     <Compile Include="Features\AdminModule\Activity\Refill\TrolleyTakeOver\FeatureSteps.cs" />
-    <Compile Include="Features\AdminModule\Activity\Refill\TrolleyTakeOver\TestData\FirstScenarioTestData.cs" />
     <Compile Include="Features\AdminModule\Automation\LiveFeedStatus\FeatureSteps.cs" />
     <Compile Include="Features\AdminModule\CommonStepDefinitions\AdminCommonSteps.cs" />
-    <Compile Include="Features\AdminModule\Inventory\Overview\FeatureHooks.cs" />
     <Compile Include="Features\AdminModule\Inventory\Overview\FeatureSteps.cs" />
-    <Compile Include="Features\AdminModule\Inventory\Overview\TestData\FirstScenarioTestData.cs" />
-    <Compile Include="Features\AdminModule\Inventory\Overview\TestData\SecondScenarioTestData.cs" />
     <Compile Include="Features\AdminModule\Systems\Parameters\FeatureSteps.cs" />
     <Compile Include="Features\AdminModule\Systems\TaskTypes\FeatureSteps.cs" />
     <Compile Include="Features\AdminModule\Systems\User\FeatureSteps.cs" />
@@ -350,46 +357,17 @@
     <Compile Include="Features\AdminModule\Warehouse\Warehouses\FeatureSteps.cs" />
     <Compile Include="Features\AdminModule\Warehouse\Zones\FeatureSteps.cs" />
     <Compile Include="Features\Autostore\Inspection\CommonSteps.cs" />
-    <Compile Include="Features\Autostore\Inspection\GeneralInspection\FeatureHooks.cs" />
-    <Compile Include="Features\Autostore\Inspection\GeneralInspection\TestData\FirstScenarioTestData.cs" />
-    <Compile Include="Features\Autostore\Inspection\InspectionDeviation\FeatureHooks.cs" />
     <Compile Include="Features\Autostore\Inspection\InspectionDeviation\FeatureSteps.cs" />
-    <Compile Include="Features\Autostore\Inspection\InspectionDeviation\TestData\SecondScenarioTestData.cs" />
-    <Compile Include="Features\Autostore\Inspection\InspectionDeviation\TestData\FirstScenarioTestData.cs" />
-    <Compile Include="Features\Autostore\Inspection\RegisterProduct\FeatureHooks.cs" />
     <Compile Include="Features\Autostore\Inspection\RegisterProduct\FeatureSteps.cs" />
-    <Compile Include="Features\Autostore\Inspection\RegisterProduct\TestData\FirstScenarioTestData.cs" />
-    <Compile Include="Features\Autostore\Inventory\GeneralInventory\FeatureHooks.cs" />
-    <Compile Include="Features\Autostore\Inventory\GeneralInventory\FeatureSteps.cs" />
-    <Compile Include="Features\Autostore\Inventory\GeneralInventory\TestData\FirstScenarioTestData.cs" />
+    <Compile Include="Features\Autostore\Inventory\CommonSteps.cs" />
     <Compile Include="Features\Autostore\Pick\CommonSteps.cs" />
-    <Compile Include="Features\Autostore\Pick\MaxQuantityPopup\FeatureHooks.cs" />
     <Compile Include="Features\Autostore\Pick\MaxQuantityPopup\FeatureSteps.cs" />
-    <Compile Include="Features\Autostore\Pick\MaxQuantityPopup\TestData\FirstScenarioTestData.cs" />
-    <Compile Include="Features\Autostore\Pick\TwoStepOnLastMission\FeatureHooks.cs" />
-    <Compile Include="Features\Autostore\Pick\TwoStepOnLastMission\TestData\FirstScenarioTestData.cs" />
     <Compile Include="Features\Autostore\Putaway\CommonSteps.cs" />
-    <Compile Include="Features\Autostore\Putaway\DirectPutaway\FeatureHooks.cs" />
-    <Compile Include="Features\Autostore\Putaway\DirectPutaway\TestData\FirstScenarioTestData.cs" />
-    <Compile Include="Features\Autostore\Putaway\GeneralPutaway\FeatureHooks.cs" />
     <Compile Include="Features\Autostore\Putaway\GeneralPutaway\FeatureSteps.cs" />
-    <Compile Include="Features\Autostore\Putaway\GeneralPutaway\TestData\FirstScenarioTestData.cs" />
-    <Compile Include="Features\Autostore\Putaway\GeneralPutaway\TestData\SecondScenarioTestData.cs" />
-    <Compile Include="Features\Autostore\Putaway\MultiplePortPutaway\FeatureHooks.cs" />
-    <Compile Include="Features\Autostore\Putaway\MultiplePortPutaway\TestData\FirstScenarioTestData.cs" />
-    <Compile Include="Features\Autostore\Putaway\MultipleUserPutaway\FeatureHooks.cs" />
     <Compile Include="Features\Autostore\Putaway\MultipleUserPutaway\FeatureSteps.cs" />
-    <Compile Include="Features\Autostore\Putaway\MultipleUserPutaway\TestData\FirstScenarioTestData.cs" />
     <Compile Include="Features\Autostore\Refill\CommonSteps.cs" />
-    <Compile Include="Features\Autostore\Refill\GeneralRefill\FeatureHooks.cs" />
-    <Compile Include="Features\Autostore\Refill\GeneralRefill\TestData\FirstScenarioTestData.cs" />
-    <Compile Include="Features\Autostore\Refill\RefillDeviation\FeatureHooks.cs" />
     <Compile Include="Features\Autostore\Refill\RefillDeviation\FeatureSteps.cs" />
-    <Compile Include="Features\Autostore\Refill\RefillDeviation\TestData\SecondScenarioTestData.cs" />
-    <Compile Include="Features\Autostore\Refill\RefillDeviation\TestData\FirstScenarioTestData.cs" />
-    <Compile Include="Features\Autostore\Refill\SuspendRefill\FeatureHooks.cs" />
     <Compile Include="Features\Autostore\Refill\SuspendRefill\FeatureSteps.cs" />
-    <Compile Include="Features\Autostore\Refill\SuspendRefill\TestData\FirstScenarioTestData.cs" />
     <Compile Include="Features\Autostore\TaskMenu\FeatureSteps.cs" />
     <Compile Include="Features\Login\FeatureSteps.cs" />
     <Compile Include="Features\SupportTasks\CreateAutostoreProductLocations.cs" />
@@ -403,11 +381,14 @@
     <Compile Include="Pages\AdminModule\Activity\Pick\PicklistSearch\StartedMissionsPopup.cs" />
     <Compile Include="Pages\AdminModule\Activity\Refill\RefillOrderList.cs" />
     <Compile Include="Pages\AdminModule\Activity\Refill\TakeOverTrolleyPopup.cs" />
+    <Compile Include="Pages\AdminModule\Activity\UserActivity\StartedMissionsPopup.cs" />
+    <Compile Include="Pages\AdminModule\Activity\UserActivity\UserActivity.cs" />
     <Compile Include="Pages\AdminModule\Automation\AutostoreEquipmentList\AutoStoreEquipmentList.cs" />
     <Compile Include="Pages\AdminModule\Automation\AutostoreEquipmentList\LiveFeedStatus\LiveFeedStatus.cs" />
     <Compile Include="Pages\AdminModule\Automation\AutostoreEquipmentList\LiveFeedStatus\SynchronizeTaskGroupsPopUp.cs" />
     <Compile Include="Pages\AdminModule\Automation\AutostoreEquipmentList\LiveFeedStatus\SynchronizeBinContentsPopUp.cs" />
     <Compile Include="Pages\AdminModule\HamburgerMenu\HamburgerMenu.cs" />
+    <Compile Include="Pages\AdminModule\Inventory\DeleteConfirmationPopup.cs" />
     <Compile Include="Pages\AdminModule\Inventory\InventoryCountConfirmationPopup.cs" />
     <Compile Include="Pages\AdminModule\Inventory\InventoryDetails.cs" />
     <Compile Include="Pages\AdminModule\Inventory\InventoryOrderList.cs" />
@@ -436,9 +417,14 @@
     <Compile Include="Pages\Autostore\Inventory\NoMoreTasksPopup.cs" />
     <Compile Include="Pages\Autostore\Pick\AddNewContainerPopup.cs" />
     <Compile Include="Pages\Autostore\Pick\ChangedConfirmQuantityPopUp.cs" />
+    <Compile Include="Pages\Autostore\Pick\ConfirmTaskExitPopup.cs" />
+    <Compile Include="Pages\Autostore\Pick\ContainerValidationPopup.cs" />
     <Compile Include="Pages\Autostore\Pick\EmptyLocationPopup.cs" />
     <Compile Include="Pages\Autostore\Pick\ChangeQuantityPopup.cs" />
     <Compile Include="Pages\Autostore\Pick\ConfirmQuantityPopUp.cs" />
+    <Compile Include="Pages\Autostore\Pick\SerialNumberRegistration.cs" />
+    <Compile Include="Pages\Autostore\Pick\SerialNumberValidationPopup.cs" />
+    <Compile Include="Pages\Autostore\Pick\TaskgroupCompletedPopup.cs" />
     <Compile Include="Pages\Autostore\Pick\ZeroQuantityPopUp.cs" />
     <Compile Include="Pages\Autostore\Pick\NewOrderPopup.cs" />
     <Compile Include="Pages\Autostore\Pick\NoMoreTasksPopup.cs" />
@@ -454,21 +440,28 @@
     <Compile Include="Pages\Autostore\Refill\RefillTaskgroupExitPopup.cs" />
     <Compile Include="Pages\Autostore\Refill\RefillTaskgroupSelection.cs" />
     <Compile Include="Pages\Autostore\TaskMenu\AutostoreTaskMenu.cs" />
+    <Compile Include="Pages\Autostore\TaskMenu\DuplicateLoginConfirmationPopup.cs" />
     <Compile Include="Pages\Login\Login.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestDataPreparationHelper\DataFactory\ApiDataFactory.cs" />
-    <Compile Include="TestDataPreparationHelper\DataFactory\HttpClientFactory.cs" />
-    <Compile Include="TestDataPreparationHelper\GoodsReceivalData.cs" />
-    <Compile Include="TestDataPreparationHelper\PickData.cs" />
-    <Compile Include="TestDataPreparationHelper\ProductData.cs" />
+    <Compile Include="TestDataPreparationHelper\ApiDataFactory\ApiDataFactory.cs" />
+    <Compile Include="TestDataPreparationHelper\ApiDataFactory\HttpClientFactory.cs" />
+    <Compile Include="TestDataPreparationHelper\ImportFactory\GoodsReceivalData.cs" />
+    <Compile Include="TestDataPreparationHelper\ImportFactory\ParameterData.cs" />
+    <Compile Include="TestDataPreparationHelper\ImportFactory\PickData.cs" />
+    <Compile Include="TestDataPreparationHelper\ImportFactory\ProductData.cs" />
+    <Compile Include="TestDataPreparationHelper\TestDataFactory.cs" />
     <Compile Include="Types\Dtos\DirectPutawayLine.cs" />
     <Compile Include="Types\Dtos\ProductLocationLine.cs" />
+    <Compile Include="Types\Dtos\ParameterLIne.cs" />
+    <Compile Include="Types\Dtos\UserActivityMissionData.cs" />
     <Compile Include="Types\Enums\LineStatus.cs" />
     <Compile Include="Types\Enums\OrderType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Configuration\Environment.json" />
+    <None Include="Configuration\Environment.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Database\UIAutomationDB.bak" />
     <None Include="ExcelDataAccess\UserCredentials\UserCredentials.xlsx" />
     <None Include="Features\AbstractWarehouse\A_AddWarehouses\AddWarehouses.feature" />
@@ -483,39 +476,195 @@
     <None Include="Features\AbstractWarehouse\G_AddReasonCodes\AddReasonCodes.feature" />
     <None Include="Features\AbstractWarehouse\H_PrepareAutostore\PrepareAutostore.feature" />
     <None Include="Features\AdminModule\Activity\Refill\Search\RefillSearch.feature" />
+    <None Include="Features\AdminModule\Activity\Refill\Search\TestData\FifthScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\AdminModule\Activity\Refill\Search\TestData\FourthScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\AdminModule\Activity\Refill\Search\TestData\ThirdScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\AdminModule\Activity\Refill\Search\TestData\SecondScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\AdminModule\Activity\Refill\Search\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\AdminModule\Activity\Refill\TrolleyTakeOver\RefillTrolleyTakeOver.feature" />
+    <None Include="Features\AdminModule\Activity\Refill\TrolleyTakeOver\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\AdminModule\Inventory\Overview\InventoryOrderList.feature" />
+    <None Include="Features\AdminModule\Inventory\Overview\TestData\SecondScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\AdminModule\Inventory\Overview\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\Autostore\Inspection\GeneralInspection\GeneralInspection.feature" />
+    <None Include="Features\Autostore\Inspection\GeneralInspection\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\Autostore\Inspection\InspectionDeviation\InspectionDeviation.feature" />
+    <None Include="Features\Autostore\Inspection\InspectionDeviation\TestData\SecondScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Inspection\InspectionDeviation\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\Autostore\Inspection\RegisterProduct\InspectionRegisterProduct.feature" />
+    <None Include="Features\Autostore\Inspection\RegisterProduct\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\Autostore\Inventory\GeneralInventory\GeneralInventory.feature" />
+    <None Include="Features\Autostore\Inventory\GeneralInventory\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\ExternalContainer\ExternalContainer.feature" />
+    <None Include="Features\Autostore\Pick\ExternalContainer\TestData\SeventhScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\ExternalContainer\TestData\SixthScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\ExternalContainer\TestData\FourthScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\ExternalContainer\TestData\FifthScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\ExternalContainer\TestData\ThirdScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\ExternalContainer\TestData\SecondScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\ExternalContainer\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\FinishOrders\FinishOrders.feature" />
+    <None Include="Features\Autostore\Pick\FinishOrders\TestData\FourthScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\FinishOrders\TestData\ThirdScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\FinishOrders\TestData\SecondScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\FinishOrders\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\Autostore\Pick\MaxQuantityPopup\MaxQuantityPopup.feature" />
+    <None Include="Features\Autostore\Pick\MaxQuantityPopup\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\Autostore\Pick\PickDeviation\PickDeviation.feature" />
+    <None Include="Features\Autostore\Pick\PickDeviation\TestData\SecondScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\PickDeviation\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\Autostore\Pick\PickPlaceScanField\PickPlaceScanField.feature" />
+    <None Include="Features\Autostore\Pick\PickPlaceScanField\TestData\FifthScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\PickPlaceScanField\TestData\FourthScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\PickPlaceScanField\TestData\ThirdScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\PickPlaceScanField\TestData\SecondScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\PickPlaceScanField\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\Autostore\Pick\PickReassign\PickReassign.feature" />
+    <None Include="Features\Autostore\Pick\PickReassign\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\Autostore\Pick\SecurePicking\SecurePicking.feature" />
+    <None Include="Features\Autostore\Pick\SecurePicking\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\SerialNumberRegistration\SerialNumberRegistration.feature" />
+    <None Include="Features\Autostore\Pick\SerialNumberRegistration\TestData\FourthScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\SerialNumberRegistration\TestData\ThirdScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\SerialNumberRegistration\TestData\SecondScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\SerialNumberRegistration\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\Autostore\Pick\SplitContainer\SplitContainer.feature" />
+    <None Include="Features\Autostore\Pick\SplitContainer\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\TaskGroupsPreparation\TaskGroupsPreparation.feature" />
+    <None Include="Features\Autostore\Pick\TaskGroupsPreparation\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\TwoStepOnLastMission\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\Autostore\Pick\TwoStepOnLastMission\TwoStepOnLastMission.feature" />
     <None Include="Features\Autostore\Putaway\DirectPutaway\DirectPutaway.feature" />
+    <None Include="Features\Autostore\Putaway\DirectPutaway\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\Autostore\Putaway\GeneralPutaway\GeneralPutaway.feature" />
+    <None Include="Features\Autostore\Putaway\GeneralPutaway\TestData\SecondScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Putaway\GeneralPutaway\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\Autostore\Putaway\MultiplePortPutaway\MultiplePortPutaway.feature" />
+    <None Include="Features\Autostore\Putaway\MultiplePortPutaway\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\Autostore\Putaway\MultipleUserPutaway\MultipleUserPutaway.feature" />
+    <None Include="Features\Autostore\Putaway\MultipleUserPutaway\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\Autostore\Refill\GeneralRefill\GeneralRefill.feature" />
+    <None Include="Features\Autostore\Refill\GeneralRefill\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\Autostore\Refill\RefillDeviation\RefillDeviation.feature" />
+    <None Include="Features\Autostore\Refill\RefillDeviation\TestData\SecondScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Refill\RefillDeviation\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\Autostore\Refill\SuspendRefill\SuspendRefill.feature" />
+    <None Include="Features\Autostore\Refill\SuspendRefill\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Login\AutostoreMultipleSimultaneousLogin\AutostoreMultipleSimultaneousLogin.feature" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Drivers\ChromeDriver\chromedriver.exe" />
-    <Content Include="SeleniumEssential.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Features\AdminModule\Activity\Pick\PicklistSearch\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\SeleniumDlls\SeleniumEssential\SeleniumEssential\SeleniumEssential.csproj">
+      <Project>{8f61b1ab-079b-4732-9704-5e1cf4d604c9}</Project>
+      <Name>SeleniumEssential</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\SpecFlow.3.1.97\build\SpecFlow.targets" Condition="Exists('..\packages\SpecFlow.3.1.97\build\SpecFlow.targets')" />

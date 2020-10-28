@@ -1,0 +1,29 @@
+{
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "Inventory.MaxLocationsInTaskgroup",
+      "ParameterValue": "2"
+    }
+  ],
+
+  "ProductsToBeCreated": [
+    {
+      "ExtProductId": "ASINVP02",
+      "ProductName": "AutostoreInventoryProduct02",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    },
+    {
+      "ExtProductId": "ASINVP02",
+      "ProductName": "AutostoreInventoryProduct02",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    },
+    {
+      "ExtProductId": "ASINVP02",
+      "ProductName": "AutostoreInventoryProduct02",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    }
+  ]
+}

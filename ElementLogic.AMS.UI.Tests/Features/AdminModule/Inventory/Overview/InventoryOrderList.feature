@@ -2,7 +2,8 @@
 	As an admin user, I want to verify the scenarios related to Admin Inventory Order List page
 
 @Regression
-@Admin_InventoryOrderList_MaxLocationInTaskgroup_Scenario01
+@Scenario:'1'
+@AdminModule:Inventory:Overview
 Scenario: Verify Inventory taskgroup preparation when Product location count is less than MaxlocationInTaskgroup value
 	Given I login to the AdminModule as 'Admin' user
 	And I navigate to the Inventory order list page
@@ -23,7 +24,8 @@ Scenario: Verify Inventory taskgroup preparation when Product location count is 
 	Then The Inventory order list page is loaded
 
 @Regression
-@Admin_InventoryOrderList_MaxLocationInTaskgroup_Scenario02
+@Scenario:'2'
+@AdminModule:Inventory:Overview
 Scenario:  Verify Inventory taskgroup preparation when Product location count is grater than MaxlocationInTaskgroup value
 	Given I login to the AdminModule as 'Admin' user	
 	And I navigate to the Inventory order list page

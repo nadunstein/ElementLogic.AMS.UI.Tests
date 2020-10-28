@@ -1,5 +1,5 @@
 ﻿using System;
-using ElementLogic.AMS.UI.Tests.Configuration;
+using ElementLogic.AMS.UI.Tests.Integration;
 using SeleniumEssential;
 
 namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.Parameters
@@ -29,7 +29,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.Parameters
         public void Navigate()
         {
             const string parameterListUrl = "/pages/system/searchparameter.aspx";
-            string baseUrl = ConfigFileReader.Instance.ConfigurationKeyValue("Application:Url");
+            string baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
             PageObjectHelper.Instance.Navigate(baseUrl, parameterListUrl);
         }
 

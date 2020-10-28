@@ -1,5 +1,4 @@
-﻿using System;
-using ElementLogic.AMS.UI.Tests.Data.DatabaseQueries;
+﻿using ElementLogic.AMS.UI.Tests.Data.DatabaseQueries;
 using ElementLogic.AMS.UI.Tests.Pages.Autostore.Inspection;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -40,19 +39,15 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Inspection
         [Then(@"The Autostore Inspection mission page is loaded")]
         public void ThenTheAutostoreInspectionMissionPageIsLoaded()
         {
-            Assert.IsTrue(InspectionMission.Instance.IsPageLoaded(),
-                "The Autostore Inspection mission page is not loaded");
             Assert.AreEqual("Inspection", InspectionMission.Instance.GetPageTitle(),
-                "Name of the Autostore Inspection mission page is wrong");
+                "The Autostore Inspection mission page is not loaded");
+            _extProductId = InspectionMission.Instance.GetProductNumberLabelValue();
         }
 
         [Then(@"I include the actual quantity to the Location Quantity field in Autostore Inspection mission page")]
         public void ThenIIncludeTheActualQuantityToTheLocationQuantityFieldInAutostoreInspectionMissionPage()
         {
-            _extProductId = InspectionMission.Instance.GetProductNumberLabelValue();
-            var actualQty =
-                (int) Math.Truncate(
-                    Convert.ToDecimal(ProductLocation.Instance.GetLocationQuantity(_productLocation, _extProductId)));
+            var actualQty = (int) ProductLocation.Instance.GetLocationQuantity(_productLocation, _extProductId);
             Assert.IsTrue(InspectionMission.Instance.IncludeLocationQuantityValue(actualQty),
                 "Unable to include the quantity in Autostore Inspection mission page");
         }
@@ -67,9 +62,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Inspection
         [Then(@"I include a Quantity to the Location Quantity field which is less than the Original Quantity in Autostore Inspection mission page")]
         public void ThenIIncludeAQuantityToTheLocationQuantityFieldWhichIsLessThanTheOriginalQuantityInAutostoreInspectionMissionPage()
         {
-            _changedQuantity =
-                (int) Math.Truncate(
-                    Convert.ToDecimal(ProductLocation.Instance.GetLocationQuantity(_productLocation, _extProductId))) - 1;
+            _changedQuantity = (int) ProductLocation.Instance.GetLocationQuantity(_productLocation, _extProductId) - 1;
             Assert.IsTrue(InspectionMission.Instance.IncludeLocationQuantityValue(_changedQuantity),
                 "Unable to include the quantity in Autostore Inspection mission page");
         }
@@ -77,9 +70,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Inspection
         [Then(@"The Quantity is updated successfully for the product")]
         public void ThenTheQuantityIsUpdatedSuccessfullyForTheProduct()
         {
-            var qtyAfterInspection =
-                (int)Math.Truncate(
-                    Convert.ToDecimal(ProductLocation.Instance.GetLocationQuantity(_productLocation, _extProductId)));
+            var qtyAfterInspection = (int) ProductLocation.Instance.GetLocationQuantity(_productLocation, _extProductId);
             Assert.AreEqual(_changedQuantity, qtyAfterInspection,
                 "the Location Quantity is not changed after Inspection");
         }

@@ -27,11 +27,13 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
 
         private const string ProductScanField = "#ctl00_MonitorContentPlaceholder_PickView_txtPickingScanField";
 
+        private const string ContainerScanField = "#ctl00_MonitorContentPlaceholder_PickView_txtPlacingScanField";
+
         private const string PickConfirmButton = "#ctl00_MonitorContentPlaceholder_PickView_btnConfirm";
 
         private const string NewContainerButton = "#ctl00_MonitorContentPlaceholder_PickView_rtbNewContainer";
 
-        private const string NewContainerListPanel = ".rtbSlide";
+        private const string NewContainerListPanel = ".rtbSlide ul";
 
         private const string OptionsButton = "#ctl00_MonitorContentPlaceholder_PickView_rtbOptions";
 
@@ -51,11 +53,13 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
 
         public string GetPageTitle()
         {
+            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
             return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
         }
 
-        public string GetTaskQueueLabelValue()
+        public string GetTaskQueueValue()
         {
+
             PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
             return PageObjectHelper.Instance.GetTextValue(TaskQueueLabel);
         }
@@ -65,12 +69,12 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
             return PageObjectHelper.Instance.IsDisplayed(PossibleDelayLabel, true);
         }
 
-        public string GetMissionIdLabelValue()
+        public string GetMissionIdValue()
         {
             return PageObjectHelper.Instance.GetAttributeValue(MissionIdLabel, "Value");
         }
 
-        public string GetProductNumberLabelValue()
+        public string GetProductNumber()
         {
             return PageObjectHelper.Instance.GetAttributeValue(ProductNumberLabel, "Value");
         }
@@ -85,7 +89,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
             return PageObjectHelper.Instance.GetAttributeValue(DeliveryLocationValue, "Value");
         }
 
-        public string GetDeliveryLocationLabelName()
+        public string GetDeliveryLocationName()
         {
             return PageObjectHelper.Instance.GetTextValue(DeliveryLocationLabel);
         }
@@ -117,8 +121,27 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
 
         public bool InsertProductScanValue(string scanValue)
         {
+            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
             PageObjectHelper.Instance.ScrollToTheElement(ProductScanField);
-            return PageObjectHelper.Instance.InsertField(ProductScanField, scanValue);
+            var isScanFieldDisplayed = PageObjectHelper.Instance.IsDisplayed(ProductScanField, true);
+            var isValueInserted = PageObjectHelper.Instance.InsertField(ProductScanField, scanValue);
+            return isScanFieldDisplayed && isValueInserted;
+        }
+
+        public bool IsContainerScanFieldDisplayed()
+        {
+            return PageObjectHelper.Instance.IsDisplayed(ContainerScanField, true);
+        }
+
+        public bool IsContainerScanFieldNotDisplayed()
+        {
+            return !PageObjectHelper.Instance.IsDisplayed(ContainerScanField);
+        }
+
+        public bool InsertContainerScanValue(string scanValue)
+        {
+            PageObjectHelper.Instance.ScrollToTheElement(ContainerScanField);
+            return PageObjectHelper.Instance.InsertField(ContainerScanField, scanValue);
         }
 
         public bool SelectContainer(string boxtype)
@@ -139,8 +162,11 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
 
         public bool SelectOption(string option)
         {
-            return PageObjectHelper.Instance.SelectDropDown(OptionsButton, OptionsListPanel,
-                "li", option);
+            var isClicked = PageObjectHelper.Instance.Click(OptionsButton);
+            var isDisplayed = PageObjectHelper.Instance.IsDisplayed(OptionsListPanel);
+            PageObjectHelper.Instance.Wait(1);
+            var isSelected = PageObjectHelper.Instance.SelectDropDown(null, OptionsListPanel, ".rtbItem", option);
+            return isClicked && isDisplayed && isSelected;
         }
 
         public bool ClickConfirmButton()

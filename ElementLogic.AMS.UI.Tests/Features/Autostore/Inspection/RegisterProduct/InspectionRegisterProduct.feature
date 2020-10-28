@@ -7,7 +7,8 @@ Background:
 	Then The Inspection-Create task page is loaded
 
 @Regression
-@AS_Inspection_RegisterProduct
+@Scenario:'1'
+@Autostore:Inspection:RegisterProduct
 Scenario: Register product during Autostore Inspection
 	Given I include an empty location to the location field in Autostore Inspection-Create Task page 
 	When I click on confirm button in Autostore Inspection-Create Task page
@@ -19,4 +20,4 @@ Scenario: Register product during Autostore Inspection
 	When I click the OK button in Autostore Inspection Register Product popup in Autostore Inspection mission page
 	Then The Autostore Inspection mission page is loaded
 	When I click on Confirm button in Autostore Inspection mission page
-	Then The Autostore task Menu should be loaded
+	Then The Autostore task Menu is displayed

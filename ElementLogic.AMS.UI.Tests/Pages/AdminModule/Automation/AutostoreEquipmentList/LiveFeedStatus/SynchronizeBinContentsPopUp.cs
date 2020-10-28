@@ -5,15 +5,15 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Automation.AutostoreEquipm
 {
     public class SynchronizeTaskGroupsPopUp
     {
-        private const string PopupTitle = "#swal2-title";
+        private const string Popup = "#swal2-title";
         
         private const string SynchronizeButton = ".swal2-confirm";
 
         public static SynchronizeTaskGroupsPopUp Instance => Singleton.Value;
 
-        public string GetPopUpTitle()
+        public bool IsPopupDisplayed()
         {
-            return PageObjectHelper.Instance.GetTextValue(PopupTitle, true);
+            return PageObjectHelper.Instance.IsDisplayed(Popup, true);
         }
 
         public bool ClickSynchronizeButton()

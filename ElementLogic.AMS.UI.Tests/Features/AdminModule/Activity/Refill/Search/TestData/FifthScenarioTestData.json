@@ -1,0 +1,27 @@
+{
+  "RefillTrolley": "Refill Trolley 05",
+
+  "ProductsToBeCreated": [
+    {
+      "ExtProductId": "ASRP04",
+      "ProductName": "ASRefillProduct04",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 10
+    }
+  ],
+
+  "PutawayOrdersToBeCreated": [
+    {
+      "PutawayOrderToBeCreated": [
+        {
+          "Action": "A",
+          "PurchaseOrderLineId": 1,
+          "ExtProductId": "ASRP04",
+          "ProductName": "ASRefillProduct04",
+          "Quantity": 1,
+          "Returned": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using ElementLogic.AMS.UI.Tests.Configuration;
+using ElementLogic.AMS.UI.Tests.Integration;
 using SeleniumEssential;
 
 namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Refill
@@ -9,6 +9,9 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Refill
     {
         private const string PageHeader =
             "#ctl00_ContentPlaceHolderContent_RefillOrderGenerateView1_lblHeader";
+
+        private const string LoadingPanel =
+            "#ctl00_ContentPlaceHolderContent_RefillOrderGenerateView1_RefillLoadingPanelctl00_ContentPlaceHolderContent_RadAjaxPanel1";
 
         private const string ScanIdField =
             "#ctl00_ContentPlaceHolderContent_RefillOrderGenerateView1_flbScanId_InputTemplateItem_txtScanId";
@@ -34,15 +37,12 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Refill
         private const string ViewItemsTable =
             "#ctl00_ContentPlaceHolderContent_RefillOrderListView1_RefillOrderGrid_ctl00 > tbody";
 
-        private const string LoadingPanel =
-            "#ctl00_ContentPlaceHolderContent_RefillOrderGenerateView1_RefillLoadingPanel";
-
         public static RefillOrderList Instance => Singleton.Value;
 
         public void Navigate()
         {
             const string refillOrderListPageUrl = "/pages/activity/refill/refillorders.aspx";
-            string baseUrl = ConfigFileReader.Instance.ConfigurationKeyValue("Application:Url");
+            string baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
             PageObjectHelper.Instance.Navigate(baseUrl, refillOrderListPageUrl);
         }
 
@@ -64,11 +64,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Refill
 
         public bool SelectTrolley(string trolleyName)
         {
-            var isInserted = PageObjectHelper.Instance.InsertField(TrolleyDropDown, trolleyName);
-            var isSelected = PageObjectHelper.Instance.SelectDropDown(null, TrolleyDropDownList, "li",
+            return PageObjectHelper.Instance.SelectSearchDropDown(TrolleyDropDown, TrolleyDropDownList, "li",
                 trolleyName);
-
-            return isInserted && isSelected;
         }
 
         public int GetNumberOfItemsOnTrolley()

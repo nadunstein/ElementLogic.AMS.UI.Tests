@@ -1,0 +1,85 @@
+{
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "Picking.AutoStore.CloseCurrentContainer",
+      "ParameterValue": "0"
+    },
+    {
+      "ParameterName": "AutoStore.Picking.Scanning.ValidateContainer",
+      "ParameterValue": "1"
+    },
+    {
+      "ParameterName": "Picking.AutoPlaceIfSingleContainer",
+      "ParameterValue": "1"
+    },
+    {
+      "ParameterName": "AutoStore.Picking.UseTwoStepOnLastMission",
+      "ParameterValue": "1"
+    },
+    {
+      "ParameterName": "ContainerScanValuePicking",
+      "ParameterValue": "6"
+    }
+  ],
+
+  "ProductsToBeCreated": [
+    {
+      "ExtProductId": "ASPECP11",
+      "ProductName": "ASPickExternalContainerProduct11",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    },
+    {
+      "ExtProductId": "ASPECP12",
+      "ProductName": "ASPickExternalContainerProduct12",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    },
+    {
+      "ExtProductId": "ASPECP13",
+      "ProductName": "ASPickExternalContainerProduct13",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    }
+  ],
+
+  "PickOrdersToBeCreated": [
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASPECP11",
+          "ProductName": "ASPickExternalContainerProduct11",
+          "Quantity": 2,
+          "Boxtype": "Externalbox1"
+        },
+        {
+          "Action": "A",
+          "ExtOrderlineId": 2,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASPECP12",
+          "ProductName": "ASPickExternalContainerProduct12",
+          "Quantity": 2,
+          "Boxtype": "Externalbox1"
+        },
+        {
+          "Action": "A",
+          "ExtOrderlineId": 3,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASPECP13",
+          "ProductName": "ASPickExternalContainerProduct13",
+          "Quantity": 2,
+          "Boxtype": "Externalbox1"
+        }
+      ]
+    }
+  ]
+}

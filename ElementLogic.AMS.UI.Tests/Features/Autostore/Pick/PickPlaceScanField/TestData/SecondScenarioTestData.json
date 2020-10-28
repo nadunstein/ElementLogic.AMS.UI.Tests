@@ -1,0 +1,42 @@
+{
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "AutoStore.Picking.Scanning.ValidateContainer",
+      "ParameterValue": "1"
+    },
+    {
+      "ParameterName": "Picking.AutoStore.CloseCurrentContainer",
+      "ParameterValue": "0"
+    },
+    {
+      "ParameterName": "PickingAutoPlaceOnTrolleyAfterPick",
+      "ParameterValue": "0"
+    }
+  ],
+
+  "ProductsToBeCreated": [
+    {
+      "ExtProductId": "ASPPSFP02",
+      "ProductName": "ASPickPlaceScanFieldProduct02",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    }
+  ],
+
+  "PickOrdersToBeCreated": [
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASPPSFP02",
+          "ProductName": "ASPickPlaceScanFieldProduct02",
+          "Quantity": 2
+        }
+      ]
+    }
+  ]
+}

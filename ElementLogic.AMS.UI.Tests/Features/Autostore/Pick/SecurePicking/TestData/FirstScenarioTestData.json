@@ -1,0 +1,43 @@
+{
+  "ProductsToBeCreated": [
+    {
+      "ExtProductId": "ASPSPP01",
+      "ProductName": "ASPickSecurePickingProduct01",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    },
+    {
+      "ExtProductId": "ASPSPP02",
+      "ProductName": "ASPickSecurePickingProduct02",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    }
+  ],
+
+  "PickOrdersToBeCreated": [
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "OrderTypeId": 430,
+          "OrderTypeText": "Internet",
+          "ExtProductId": "ASPSPP01",
+          "ProductName": "ASPickSecurePickingProduct01",
+          "Quantity": 2
+        },
+        {
+          "Action": "A",
+          "ExtOrderlineId": 2,
+          "SpeditorId": 73,
+          "OrderTypeId": 430,
+          "OrderTypeText": "Internet",
+          "ExtProductId": "ASPSPP02",
+          "ProductName": "ASPickSecurePickingProduct02",
+          "Quantity": 2
+        }
+      ]
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 ﻿using System;
-using ElementLogic.AMS.UI.Tests.Configuration;
+using ElementLogic.AMS.UI.Tests.Integration;
 using SeleniumEssential;
 
 namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Warehouse.LocationTypes
@@ -45,7 +45,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Warehouse.LocationTypes
         public void Navigate()
         {
             const string locationTypeListPageUrl = "/Pages/Warehouse/Locationtypes.aspx";
-            string baseUrl = ConfigFileReader.Instance.ConfigurationKeyValue("Application:Url");
+            string baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
             PageObjectHelper.Instance.Navigate(baseUrl, locationTypeListPageUrl);
         }
 

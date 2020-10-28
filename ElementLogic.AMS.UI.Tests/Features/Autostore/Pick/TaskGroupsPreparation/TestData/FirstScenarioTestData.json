@@ -1,0 +1,160 @@
+{
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "AS_SHOW_MSG_AFTER_TASKGROUP_IS_COMPLEATED_IN_PICK",
+      "ParameterValue": "1"
+    }
+  ],
+
+  "ProductsToBeCreated": [
+    {
+      "ExtProductId": "ASPTGP01",
+      "ProductName": "ASPrepareTaskgroupProduct01",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    }
+  ],
+
+  "PickOrdersToBeCreated": [
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "OrderTypeId": 28,
+          "OrderTypeText": "PrepTaskgroup",
+          "ExtProductId": "ASPTGP01",
+          "ProductName": "ASPrepareTaskgroupProduct01",
+          "Quantity": 1
+        }
+      ]
+    },
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "OrderTypeId": 28,
+          "OrderTypeText": "PrepTaskgroup",
+          "ExtProductId": "ASPTGP01",
+          "ProductName": "ASPrepareTaskgroupProduct01",
+          "Quantity": 1
+        }
+      ]
+    },
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "OrderTypeId": 28,
+          "OrderTypeText": "PrepTaskgroup",
+          "ExtProductId": "ASPTGP01",
+          "ProductName": "ASPrepareTaskgroupProduct01",
+          "Quantity": 1
+        }
+      ]
+    },
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "OrderTypeId": 28,
+          "OrderTypeText": "PrepTaskgroup",
+          "ExtProductId": "ASPTGP01",
+          "ProductName": "ASPrepareTaskgroupProduct01",
+          "Quantity": 1
+        }
+      ]
+    },
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "OrderTypeId": 28,
+          "OrderTypeText": "PrepTaskgroup",
+          "ExtProductId": "ASPTGP01",
+          "ProductName": "ASPrepareTaskgroupProduct01",
+          "Quantity": 1
+        }
+      ]
+    },
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "OrderTypeId": 28,
+          "OrderTypeText": "PrepTaskgroup",
+          "ExtProductId": "ASPTGP01",
+          "ProductName": "ASPrepareTaskgroupProduct01",
+          "Quantity": 1
+        }
+      ]
+    },
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "OrderTypeId": 28,
+          "OrderTypeText": "PrepTaskgroup",
+          "ExtProductId": "ASPTGP01",
+          "ProductName": "ASPrepareTaskgroupProduct01",
+          "Quantity": 1
+        }
+      ]
+    },
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "OrderTypeId": 28,
+          "OrderTypeText": "PrepTaskgroup",
+          "ExtProductId": "ASPTGP01",
+          "ProductName": "ASPrepareTaskgroupProduct01",
+          "Quantity": 1
+        }
+      ]
+    },
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "OrderTypeId": 28,
+          "OrderTypeText": "PrepTaskgroup",
+          "ExtProductId": "ASPTGP01",
+          "ProductName": "ASPrepareTaskgroupProduct01",
+          "Quantity": 1
+        }
+      ]
+    },
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "OrderTypeId": 28,
+          "OrderTypeText": "PrepTaskgroup",
+          "ExtProductId": "ASPTGP01",
+          "ProductName": "ASPrepareTaskgroupProduct01",
+          "Quantity": 1
+        }
+      ]
+    }
+  ]
+}

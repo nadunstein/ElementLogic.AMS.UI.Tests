@@ -14,7 +14,9 @@ Background:
 	And I click on the Activate menu item on the Inventory details page
 
 @Regression
-@AS_Inventory_GeneralInventory
+@Inventory
+@Scenario:'1'
+@Autostore:Inventory:GeneralInventory
 Scenario: Perform a General Autostore Inventory
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I Click on Inventory tile in AutoStore Main Menu
@@ -26,4 +28,4 @@ Scenario: Perform a General Autostore Inventory
 	When I click on Confirm button in Autostore inventory mission page
 	Then No more tasks popup is displayed in Autostore inventory mission page
 	When I click on OK button on No more tasks popup in Autostore inventory mission page
-	Then The Autostore task Menu should be loaded
+	Then The Autostore task Menu is displayed

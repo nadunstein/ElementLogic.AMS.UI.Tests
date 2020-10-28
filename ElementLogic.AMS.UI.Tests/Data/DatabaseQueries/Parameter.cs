@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using Dapper;
-using ElementLogic.AMS.UI.Tests.Configuration;
 using ElementLogic.AMS.UI.Tests.Data.Manager;
+using ElementLogic.AMS.UI.Tests.Integration;
 
 namespace ElementLogic.AMS.UI.Tests.Data.DatabaseQueries
 {
     public class Parameter
     {
-        private static readonly string Context = ConfigFileReader.Instance.ConfigurationKeyValue("Application:context");
+        private static readonly string Context = JsonFileReader.Instance.GetJsonKeyValue(
+            "Configuration/Environment.json",
+            "Application:context");
 
         public static Parameter Instance => Singleton.Value;
 

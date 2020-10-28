@@ -15,11 +15,19 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
 
         private const string ContainersListPanel = "#ctl00_ContentPlaceHolder1_ctl00_lstContainers";
 
+        private const string ScanCodeField = "#ctl00_ContentPlaceHolder1_ctl00_txtScanCode";
+
         private const string AddButton = "#ctl00_ContentPlaceHolder1_ctl00_btnAddContainer";
 
         private const string CloseButton = "#ctl00_ContentPlaceHolder1_ctl00_btnClose";
 
         private const string UpdateButton = "#ctl00_ContentPlaceHolder1_ctl00_btnUpdate";
+
+        private const string ContainerValidationPopup = ".rwTable";
+
+        private const string ValidationMessage = "#divMessage";
+
+        private const string ValidationOkButton = ".as-btn-center";
 
         public static AddNewContainerPopup Instance => Singleton.Value;
 
@@ -42,9 +50,49 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
                 "option", boxType);
         }
 
+        public bool IsAddButtonEnable()
+        {
+            return PageObjectHelper.Instance.IsEnabled(AddButton);
+        }
+
+        public bool IsScanCodeFieldDisplayed()
+        {
+            return PageObjectHelper.Instance.IsDisplayed(AddButton, true);
+        }
+
+        public bool IsScanCodeFieldNotDisplayed()
+        {
+            return PageObjectHelper.Instance.WaitUntilInvisible(ScanCodeField);
+        }
+
+        public string GetScanCodeFieldValue()
+        {
+            return PageObjectHelper.Instance.GetAttributeValue(ScanCodeField, "value");
+        }
+
+        public bool InsertContainerScanCode(string scanCode)
+        {
+            return PageObjectHelper.Instance.InsertField(ScanCodeField, scanCode);
+        }
+
         public bool ClickUpdateButton()
         {
             return PageObjectHelper.Instance.Click(UpdateButton);
+        }
+
+        public bool IsContainerValidationPopupDisplayed()
+        {
+            return PageObjectHelper.Instance.IsDisplayed(ContainerValidationPopup, true);
+        }
+
+        public string GetValidationPopupMessage()
+        {
+            return PageObjectHelper.Instance.GetTextValue(ValidationMessage);
+        }
+
+        public bool ClickValidationPopupOkButton()
+        {
+            return PageObjectHelper.Instance.Click(ValidationOkButton);
         }
 
         public bool ClickAddButton()

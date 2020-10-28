@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using ElementLogic.AMS.UI.Tests.Pages.AdminModule.HamburgerMenu;
-using ElementLogic.AMS.UI.Tests.TestDataPreparationHelper;
+using ElementLogic.AMS.UI.Tests.TestDataPreparationHelper.ImportFactory;
 using ElementLogic.Integration.Import.Contracts.Types;
 using NUnit.Framework;
 using TechTalk.SpecFlow;

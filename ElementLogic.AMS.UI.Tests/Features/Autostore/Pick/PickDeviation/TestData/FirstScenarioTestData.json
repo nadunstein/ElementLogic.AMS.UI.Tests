@@ -1,0 +1,39 @@
+{
+  "ProductsToBeCreated": [
+    {
+      "ExtProductId": "ASPDP01",
+      "ProductName": "ASPickDeviationProduct01",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    },
+    {
+      "ExtProductId": "ASPDP01",
+      "ProductName": "ASPickDeviationProduct01",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    },
+    {
+      "ExtProductId": "ASPDP01",
+      "ProductName": "ASPickDeviationProduct01",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    }
+  ],
+
+  "PickOrdersToBeCreated": [
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASPDP01",
+          "ProductName": "ASPickDeviationProduct01",
+          "Quantity": 40
+        }
+      ]
+    }
+  ]
+}

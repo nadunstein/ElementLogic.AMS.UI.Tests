@@ -76,7 +76,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick.MaxQuantityPopup
             Assert.IsTrue(ChangedConfirmQuantityPopUp.Instance.IsPopupDisplayed(),
                 "The Changed confirm quantity popup is not displayed in Autostore Pick Mission page");
             Assert.AreEqual(
-                "The entered quantity is higher than the maximum allowed (10000). Do you want to continue ?",
+                "The entered quantity is higher than the maximum allowed (10000). Do you want to continue?",
                 ChangedConfirmQuantityPopUp.Instance.GetPopupMessage(),
                 "The Changed confirm quantity popup message is wrong in Autostore Pick Mission page");
         }

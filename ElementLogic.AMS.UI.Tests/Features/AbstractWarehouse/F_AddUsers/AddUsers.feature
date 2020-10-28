@@ -9,15 +9,15 @@ And I navigate to User list page
 When I click on Add button in User list page
 Then Add/Edit user page is loaded
 And I enter values to the fields in Add/Edit User page as follows:
-	| FieldName        | Value      |
-	| Username         | NormalUser |
-	| First name       | NormalUser |
-	| Last name        | NormalUser |
-	| Password         | 2040       |
-	| Confirm password | 2040       |
-	| Activate         | true       |
+	| FieldName        | Value   |
+	| Username         | UserOne |
+	| First name       | User    |
+	| Last name        | One     |
+	| Password         | 2040    |
+	| Confirm password | 2040    |
+	| Activate         | true    |
 
 Then I click on Save button in Add/Edit user page
 When I click on Cancel button in Add/Edit user page
 Then User list page is loaded
-And The newly added 'NormalUser' User is listed in the search result grid in User list page
+And The newly added 'UserOne' User is listed in the search result grid in User list page

@@ -1,0 +1,28 @@
+{
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "AutoStore.Putaway.Scanning.ValidateProduct",
+      "ParameterValue": "1"
+    },
+    {
+      "ParameterName": "ProductImageServiceEndpoint",
+      "ParameterValue": "https://testdatabasebackups.blob.core.windows.net/uitests/{0}"
+    }
+  ],
+
+  "PutawayOrdersToBeCreated": [
+    {
+      "PutawayOrderToBeCreated": [
+        {
+          "Action": "A",
+          "PurchaseOrderLineId": 1,
+          "ExtProductId": "ASVIP01",
+          "ProductName": "ASVerifyImageProduct01",
+          "Quantity": 10,
+          "ImageId": "Iphone_Image.jpeg",
+          "Returned": false
+        }
+      ]
+    }
+  ]
+}

@@ -8,7 +8,8 @@ Background:
 	And I select a trolley from Trolley drop down in Refill Order List page
 
 @Regression
-@Admin_Refill_VerifyByProductId
+@Scenario:'1'
+@AdminModule:Activity:Refill:Search
 Scenario: Verify refill item can be searched by Product Id
 	Given I include the 'Product Id' to the scan Id field in Refill Order List page
 	When I click on Confirm button in Refill Order List page
@@ -18,7 +19,8 @@ Scenario: Verify refill item can be searched by Product Id
 	And I check the correct Refill product(s) are displayed in the view item grid in Refill Order List page
 
 @Regression
-@Admin_Refill_VerifyByProducerProductId
+@Scenario:'2'
+@AdminModule:Activity:Refill:Search
 Scenario: Verify refill item can be searched by Producer Product Id
 	Given I include the 'Producer Product Id' to the scan Id field in Refill Order List page
 	When I click on Confirm button in Refill Order List page
@@ -28,7 +30,8 @@ Scenario: Verify refill item can be searched by Producer Product Id
 	And I check the correct Refill product(s) are displayed in the view item grid in Refill Order List page
 
 @Regression
-@Admin_Refill_VerifyByVendorProductId
+@Scenario:'3'
+@AdminModule:Activity:Refill:Search
 Scenario: Verify refill item can be searched by Vendor Product Id
 	Given I include the 'Vendor Product Id' to the scan Id field in Refill Order List page
 	When I click on Confirm button in Refill Order List page
@@ -38,7 +41,8 @@ Scenario: Verify refill item can be searched by Vendor Product Id
 	And I check the correct Refill product(s) are displayed in the view item grid in Refill Order List page
 
 @Regression
-@Admin_Refill_VerifyByEANId
+@Scenario:'4'
+@AdminModule:Activity:Refill:Search
 Scenario: Verify refill item can be searched by EAN Id
 	Given I include the 'EAN Id' to the scan Id field in Refill Order List page
 	When I click on Confirm button in Refill Order List page
@@ -48,7 +52,8 @@ Scenario: Verify refill item can be searched by EAN Id
 	And I check the correct Refill product(s) are displayed in the view item grid in Refill Order List page
 
 @Regression
-@Admin_Refill_VerifyByPurchaseId
+@Scenario:'5'
+@AdminModule:Activity:Refill:Search
 Scenario: Verify refill item can be searched by Purchase Id
 	Given I include the 'Purchase Id' to the scan Id field in Refill Order List page
 	When I click on Confirm button in Refill Order List page

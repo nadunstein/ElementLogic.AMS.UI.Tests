@@ -2,7 +2,8 @@
 	As an admin user, I want to verify the taking over refill trolley related scenarios
 
 @Regression
-@Admin_Refill_TakeOverTrolley
+@Scenario:'1'
+@AdminModule:Activity:Refill:TrolleyTakeOver
 Scenario: Verify the refill trolley can be taken over by another user
 	Given I login to the AdminModule as 'Admin' user
 	And I navigate to Refill Order List page in Admin Module
@@ -18,7 +19,7 @@ Scenario: Verify the refill trolley can be taken over by another user
 	Then I Import and create a GR order with following data
 	| OrderLineId | ProductId | ProductName       | Scancode     | Quantity |
 	| 1           | ASRP15    | ASRefillProduct15 | RefillProd15 | 1        |
-	Given I login to the AdminModule as 'NormalUser' user
+	Given I login to the AdminModule as 'UserOne' user
 	And I navigate to Refill Order List page in Admin Module
 	And I select the same trolley from Trolley drop down in Refill Order List page
 	And The Take over trolley popup is displayed in Refill Order List page

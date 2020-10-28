@@ -2,7 +2,8 @@
 	As an admin user, I want to Verify Autostore pick with TwoStep On Last Mission related Scenarios
 
 @Pick
-@AS_Pick_TwoStepsOnLastMission
+@Scenario:'1'
+@Autostore:Pick:TwoStepOnLastMission
 Scenario: Verify pick place page is loading for the last mission of the pick taskgroup
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I click on 'Normal AS' pick task type in AutoStore Main Menu
@@ -14,4 +15,4 @@ Scenario: Verify pick place page is loading for the last mission of the pick tas
 	When I click on the confirm button in Autostore Pick Mission page
 	Then The AutoStore Place in Container page is loaded
 	When I click on the Confirm button in AutoStore Place in Container page
-	Then The Autostore task Menu should be loaded
+	Then The Autostore task Menu is displayed

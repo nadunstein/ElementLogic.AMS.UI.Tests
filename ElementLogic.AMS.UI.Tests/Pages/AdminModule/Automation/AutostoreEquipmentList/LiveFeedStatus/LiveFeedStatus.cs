@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using ElementLogic.AMS.UI.Tests.Configuration;
+using ElementLogic.AMS.UI.Tests.Integration;
 using SeleniumEssential;
 
 namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Automation.AutostoreEquipmentList.LiveFeedStatus
@@ -25,7 +25,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Automation.AutostoreEquipm
         {
             const string liveFeedStatusPageUrl =
                 "/Pages/Controller/StatusLiveFeed.aspx?portid=0&name=AutoStore%20Grid";
-            string baseUrl = ConfigFileReader.Instance.ConfigurationKeyValue("Application:Url");
+            string baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
             PageObjectHelper.Instance.Navigate(baseUrl, liveFeedStatusPageUrl);
         }
 

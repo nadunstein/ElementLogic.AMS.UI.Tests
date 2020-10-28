@@ -1,0 +1,16 @@
+{
+  "PutawayOrdersToBeCreated": [
+    {
+      "PutawayOrderToBeCreated": [
+        {
+          "Action": "A",
+          "PurchaseOrderLineId": 1,
+          "ExtProductId": "PMPP01",
+          "ProductName": "PutawayMultiplePortProduct01",
+          "Quantity": 15,
+          "Returned": false
+        }
+      ]
+    }
+  ]
+}

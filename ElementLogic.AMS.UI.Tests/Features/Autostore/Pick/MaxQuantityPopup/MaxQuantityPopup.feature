@@ -2,7 +2,8 @@
 	As an admin user, I want to verify Autostore Pick Max Quantity Popup related Scenarios
 
 @Pick
-@AS_Pick_MaxQuantityPopup
+@Scenario:'1'
+@Autostore:Pick:MaxQuantityPopup
 Scenario: Verify the button focus of the input control popup
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I click on 'Normal AS' pick task type in AutoStore Main Menu

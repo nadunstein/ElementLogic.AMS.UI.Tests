@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElementLogic.AMS.UI.Tests", "ElementLogic.AMS.UI.Tests\ElementLogic.AMS.UI.Tests.csproj", "{4467ECEB-CAC3-4434-B62C-B0E440D6ED5D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumEssential", "..\SeleniumDlls\SeleniumEssential\SeleniumEssential\SeleniumEssential.csproj", "{8F61B1AB-079B-4732-9704-5E1CF4D604C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4467ECEB-CAC3-4434-B62C-B0E440D6ED5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4467ECEB-CAC3-4434-B62C-B0E440D6ED5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4467ECEB-CAC3-4434-B62C-B0E440D6ED5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F61B1AB-079B-4732-9704-5E1CF4D604C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F61B1AB-079B-4732-9704-5E1CF4D604C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F61B1AB-079B-4732-9704-5E1CF4D604C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F61B1AB-079B-4732-9704-5E1CF4D604C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,35 @@
+{
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "AutoStore.Picking.UseTwoStepOnLastMission",
+      "ParameterValue": "1"
+    }
+  ],
+
+  "ProductsToBeCreated": [
+    {
+      "ExtProductId": "ASSNRP02",
+      "ProductName": "ASPickSerialNumberRegistrationProduct02",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    }
+  ],
+
+  "PickOrdersToBeCreated": [
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASSNRP02",
+          "ProductName": "ASPickSerialNumberRegistrationProduct02",
+          "Quantity": 2,
+          "AddedInfo": 1
+        }
+      ]
+    }
+  ]
+}

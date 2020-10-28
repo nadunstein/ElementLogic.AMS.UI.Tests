@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.ServiceProcess;
-using ElementLogic.AMS.UI.Tests.Configuration;
 
 namespace ElementLogic.AMS.UI.Tests.Integration
 {
@@ -16,8 +15,9 @@ namespace ElementLogic.AMS.UI.Tests.Integration
                 StartInfo =
                 {
                     FileName = "iisreset.exe",
-                    Arguments = ConfigFileReader.Instance.ConfigurationKeyValue("Application:context")
-                }
+                    Arguments = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", 
+                        "Application:context")
+        }
             };
 
             iisRestart.Start();

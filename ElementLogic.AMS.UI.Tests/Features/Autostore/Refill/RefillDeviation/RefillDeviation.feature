@@ -1,7 +1,7 @@
 ﻿Feature: Autostore Refill Deviation
 	As an admin user, I want to Verify the Autostore Refill Deviation related Scenarios
 
-Background: 
+Background:
 	Given I login to the AdminModule as 'Admin' user
 	And I navigate to Refill Order List page in Admin Module
 	And I select a trolley from Trolley drop down in Refill Order List page
@@ -15,7 +15,8 @@ Background:
 	Then The Refill Order List page is loaded with empty records on the fields
 
 @Regression
-@AS_Refill_Deviation_ExistingLocations
+@Scenario:'1'
+@Autostore:Refill:RefillDeviation
 Scenario: Verify A New Mission is Created upon Refill Deviation On Last Mission using Existing Locations
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I Click on Refill tile in Autostore main menu
@@ -31,7 +32,7 @@ Scenario: Verify A New Mission is Created upon Refill Deviation On Last Mission 
 	When I click on Yes button on Change Quantity Dialog in Autostore Refill mission page
 	Then The Confirm Remaining Refill Dialog is displayed in Autostore Refill mission page
 	When I click on Yes button on Confirm Remaining Refill Dialog in Autostore Refill mission page
-	Then The Autostore task Menu should be loaded
+	Then The Autostore task Menu is displayed
 	Given I login to the AdminModule as 'Admin' user
 	And I navigate to Refill Order List page in Admin Module
 	And I select a trolley from Trolley drop down in Refill Order List page
@@ -52,10 +53,11 @@ Scenario: Verify A New Mission is Created upon Refill Deviation On Last Mission 
 	And I check the Refill Product Quantity is '5' in Autostore Refill mission page
 	And I check the proposed refill bin is NOT an empty bin in Autostore Refill mission page
 	When I click on Confirm button in Autostore Refill mission page
-	Then The Autostore task Menu should be loaded
+	Then The Autostore task Menu is displayed
 
 @Regression
-@AS_Refill_Deviation_EmptyLocations
+@Scenario:'2'
+@Autostore:Refill:RefillDeviation
 Scenario: Perform a Refill Deviation On Last Mission to an Empty Location
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I Click on Refill tile in Autostore main menu
@@ -73,7 +75,7 @@ Scenario: Perform a Refill Deviation On Last Mission to an Empty Location
 	When I click on Yes button on Change Quantity Dialog in Autostore Refill mission page
 	Then The Confirm Remaining Refill Dialog is displayed in Autostore Refill mission page
 	When I click on Yes button on Confirm Remaining Refill Dialog in Autostore Refill mission page
-	Then The Autostore task Menu should be loaded
+	Then The Autostore task Menu is displayed
 	Given I login to the AdminModule as 'Admin' user
 	And I navigate to Refill Order List page in Admin Module
 	And I select a trolley from Trolley drop down in Refill Order List page
@@ -94,4 +96,4 @@ Scenario: Perform a Refill Deviation On Last Mission to an Empty Location
 	And I check the Refill Product Quantity is '5' in Autostore Refill mission page
 	And I check the proposed refill bin is an empty bin in Autostore Refill mission page
 	When I click on Confirm button in Autostore Refill mission page
-	Then The Autostore task Menu should be loaded
+	Then The Autostore task Menu is displayed

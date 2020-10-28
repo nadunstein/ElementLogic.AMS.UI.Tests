@@ -1,7 +1,6 @@
 ﻿using System;
-using ElementLogic.AMS.UI.Tests.Configuration;
+using ElementLogic.AMS.UI.Tests.Integration;
 using ElementLogic.AMS.UI.Tests.Pages.AdminModule.Automation.AutostoreEquipmentList.LiveFeedStatus;
-using NUnit.Framework;
 using SeleniumEssential;
 using LoginPage = ElementLogic.AMS.UI.Tests.Pages.Login.Login;
 
@@ -14,19 +13,16 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
         public void DoAutostoreBinSync()
         {
             var browserMode =
-                bool.Parse(ConfigFileReader.Instance.ConfigurationKeyValue("BrowserSettings:ChromeBrowser:HeadlessMode"));
+                bool.Parse(JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json",
+                    "BrowserSettings:ChromeBrowser:HeadlessMode"));
             WebDriverHelper.Instance.InitializeChromeDriver("Drivers/ChromeDriver", browserMode);
 
             LiveFeedStatus.Instance.Navigate();
             LoginPage.Instance.LoginToApplication("Admin");
-            Assert.AreEqual("Live feed status", LiveFeedStatus.Instance.GetPageTitle(),
-                "The Live feed status page is NOT loaded");
-
+            LiveFeedStatus.Instance.GetPageTitle();
             LiveFeedStatus.Instance.SelectActionDropDownOption("Synchronize bin contents");
-            Assert.AreEqual("Synchronize bin contents", SynchronizeBinContentsPopUp.Instance.GetPopUpTitle(),
-                "Synchronize bin contents popUp is NOT displayed");
+            SynchronizeBinContentsPopUp.Instance.IsPopupDisplayed();
             SynchronizeBinContentsPopUp.Instance.ClickSynchronizeButton();
-
             WebDriverHelper.Instance.QuitDriver();
         }
 

@@ -7,25 +7,22 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
     {
         private const string Iframe = "iframe";
 
-        private const string Popup = ".rwTable";
+        private const string PopUpMessage = "#binQuantityHigherThanMaxValue #ctl00_ContentPlaceHolder1_ctl00_lblBinQuantityHigherThanMaxValue";
 
-        private const string PopUpMessage = ".rwTable #divMessage";
+        private const string YesButton = "#binQuantityHigherThanMaxValue .button-xl-green";
 
-        private const string YesButton = ".rwTable #popupMasterRadConfirmYesButton";
-
-        private const string NoButton = ".rwTable #popupMasterRadConfirmNoButton";
+        private const string NoButton = "#binQuantityHigherThanMaxValue #cancelWithHigherQuantity";
 
         public static ChangedConfirmQuantityPopUp Instance => Singleton.Value;
 
         public bool IsPopupDisplayed()
         {
-            PageObjectHelper.Instance.SwitchToIframeContent(Iframe);
-            return PageObjectHelper.Instance.IsDisplayed(Popup, true);
-            
+            return PageObjectHelper.Instance.IsDisplayed(Iframe, true);
         }
 
         public string GetPopupMessage()
         {
+            PageObjectHelper.Instance.SwitchToIframeContent(Iframe);
             return PageObjectHelper.Instance.GetTextValue(PopUpMessage);
         }
 

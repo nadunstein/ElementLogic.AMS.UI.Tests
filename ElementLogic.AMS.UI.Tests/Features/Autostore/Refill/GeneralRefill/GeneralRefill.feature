@@ -1,4 +1,4 @@
-﻿Feature: Autostore Refill
+﻿Feature: Autostore Refill General
 	As an admin user, I want to Verify the Autostore Refill related Scenarios 			
 
 Background: 
@@ -15,7 +15,8 @@ Background:
 	Then The Refill Order List page is loaded with empty records on the fields
 
 @Regression
-@AS_Refill_GeneralRefill
+@Scenario:'1'
+@Autostore:Refill:GeneralRefill
 Scenario: Perform A Normal Autostore Refill
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I Click on Refill tile in Autostore main menu
@@ -25,4 +26,4 @@ Scenario: Perform A Normal Autostore Refill
 	And I check the refill product Id is correct in Autostore Refill mission page
 	And I check the Refill Product Quantity is correct in Autostore Refill mission page
 	When I click on Confirm button in Autostore Refill mission page
-	Then The Autostore task Menu should be loaded
+	Then The Autostore task Menu is displayed

@@ -1,6 +1,6 @@
 ﻿using System;
-using ElementLogic.AMS.UI.Tests.Configuration;
 using ElementLogic.AMS.UI.Tests.ExcelDataAccess.UserCredentials;
+using ElementLogic.AMS.UI.Tests.Integration;
 using SeleniumEssential;
 
 namespace ElementLogic.AMS.UI.Tests.Pages.Login
@@ -17,7 +17,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Login
 
         public void NavigateToAdminModule()
         {
-            PageObjectHelper.Instance.Navigate(ConfigFileReader.Instance.ConfigurationKeyValue("Application:Url"));
+            PageObjectHelper.Instance.Navigate(
+                JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url"));
         }
 
         public bool IsLoginPageLoaded()
@@ -29,7 +30,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Login
         {
             PageObjectHelper.Instance.DeleteBrowserCookies();
             var autostoreUrl = string.Concat("/as/", portId);
-            string baseUrl = ConfigFileReader.Instance.ConfigurationKeyValue("Application:Url");
+            string baseUrl =
+                JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
             PageObjectHelper.Instance.Navigate(baseUrl, autostoreUrl);
         }
 

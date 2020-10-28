@@ -10,7 +10,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Inspection
         private const string LoadingPanel = "#ctl00_pnlDataHider .ModalLoadingPanel";
 
         private const string ProductNumberLabel =
-            "#ctl00_MonitorContentPlaceholder_PickView_flbProduct_InputTemplateItem_txbProduct";
+            "#ctl00_MonitorContentPlaceholder_InspectionView_flbProdNo_InputTemplateItem_txtProdNo";
 
         private const string InspectionQuantityField = "#ctl00_MonitorContentPlaceholder_InspectionView_txtBinQuantity";
 
@@ -28,14 +28,9 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Inspection
 
         public static InspectionMission Instance => Singleton.Value;
 
-        public bool IsPageLoaded()
-        {
-            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
-            return PageObjectHelper.Instance.IsDisplayed(InspectionQuantityField, true);
-        }
-
         public string GetPageTitle()
         {
+            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
             return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
         }
 

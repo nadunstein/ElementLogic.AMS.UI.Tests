@@ -1,5 +1,5 @@
 ﻿using System;
-using ElementLogic.AMS.UI.Tests.Configuration;
+using ElementLogic.AMS.UI.Tests.Integration;
 using SeleniumEssential;
 
 namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.TaskTypes
@@ -22,7 +22,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.TaskTypes
         public void Navigate()
         {
             const string taskTypesPageUrl = "/Pages/System/ListTaskTypes.aspx";
-            string baseUrl = ConfigFileReader.Instance.ConfigurationKeyValue("Application:Url");
+            string baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
             PageObjectHelper.Instance.Navigate(baseUrl, taskTypesPageUrl);
         }
 

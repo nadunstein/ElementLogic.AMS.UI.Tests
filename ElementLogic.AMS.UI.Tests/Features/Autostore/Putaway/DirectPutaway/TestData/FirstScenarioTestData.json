@@ -1,0 +1,23 @@
+{
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "AllowAutomaticOrderCreation",
+      "ParameterValue": "1"
+    }
+  ],
+
+  "PutawayOrdersToBeCreated": [
+    {
+      "PutawayOrderToBeCreated": [
+        {
+          "Action": "A",
+          "PurchaseOrderLineId": 1,
+          "ExtProductId": "ASDPP01",
+          "ProductName": "AsDirectPutawayProduct01",
+          "Quantity": 10,
+          "Returned": false 
+        }
+      ]
+    }
+  ]
+}

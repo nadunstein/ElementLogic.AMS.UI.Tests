@@ -1,0 +1,36 @@
+{
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "AutoStore.Picking.Scanning.ValidateContainer",
+      "ParameterValue": "1"
+    }
+  ],
+
+  "ProductsToBeCreated": [
+    {
+      "ExtProductId": "ASPPSFP05",
+      "ProductName": "ASPickPlaceScanFieldProduct05",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    }
+  ],
+
+  "PickOrdersToBeCreated": [
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "CustId": "EWMS-000003",
+          "CustName": "Michael Plate",
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASPPSFP05",
+          "ProductName": "ASPickPlaceScanFieldProduct05",
+          "Quantity": 2
+        }
+      ]
+    }
+  ]
+}

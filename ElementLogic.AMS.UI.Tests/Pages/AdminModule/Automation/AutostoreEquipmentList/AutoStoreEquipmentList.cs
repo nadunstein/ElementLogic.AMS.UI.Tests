@@ -1,5 +1,5 @@
 ﻿using System;
-using ElementLogic.AMS.UI.Tests.Configuration;
+using ElementLogic.AMS.UI.Tests.Integration;
 using SeleniumEssential;
 
 namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Automation.AutostoreEquipmentList
@@ -17,7 +17,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Automation.AutostoreEquipm
         public void Navigate()
         {
             const string autostoreEquipmentListPageUrl = "/Pages/Controller/Status.aspx";
-            string baseUrl = ConfigFileReader.Instance.ConfigurationKeyValue("Application:Url"); 
+            string baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url"); ; 
             PageObjectHelper.Instance.Navigate(baseUrl, autostoreEquipmentListPageUrl);
         }
 

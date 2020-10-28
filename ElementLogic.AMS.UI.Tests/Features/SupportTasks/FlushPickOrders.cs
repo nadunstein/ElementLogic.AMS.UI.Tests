@@ -50,7 +50,6 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
         {
             for (var i = 0; i < 20; i++)
             {
-                
                 var startedMissionsPopupDisplayed = StartedMissionsPopup.Instance.IsPopupDisplayed();
                 var noRecordsToShowLabelDisplayed = PicklistSearch.Instance.IsNoRecordsToShowLabelDisplayed();
 

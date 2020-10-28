@@ -1,5 +1,5 @@
 ﻿using System;
-using ElementLogic.AMS.UI.Tests.Configuration;
+using ElementLogic.AMS.UI.Tests.Integration;
 using SeleniumEssential;
 
 namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.User
@@ -19,7 +19,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.User
         public void Navigate()
         {
             const string userListPageUrl = "/Pages/System/SearchAndListUsers.aspx";
-            string baseUrl = ConfigFileReader.Instance.ConfigurationKeyValue("Application:Url");
+            string baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
             PageObjectHelper.Instance.Navigate(baseUrl, userListPageUrl);
         }
 

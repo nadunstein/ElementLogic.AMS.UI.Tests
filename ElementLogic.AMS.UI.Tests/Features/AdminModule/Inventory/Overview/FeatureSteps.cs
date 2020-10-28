@@ -13,8 +13,6 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Inventory.Overview
         public void GivenINavigateToTheInventoryOrderListPage()
         {
             InventoryOrderList.Instance.Navigate();
-            Assert.AreEqual("Inventory order list", InventoryOrderList.Instance.GetPageTitle(),
-                "The Admin Inventory order list page is not loaded");
         }
 
         [Then(@"The Inventory order list page is loaded")]

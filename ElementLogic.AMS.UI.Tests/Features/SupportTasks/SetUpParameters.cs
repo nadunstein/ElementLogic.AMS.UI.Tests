@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using ElementLogic.AMS.UI.Tests.Data.DatabaseQueries;
 using ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.Parameters;
+using ElementLogic.AMS.UI.Tests.Types.Dtos;
 using NUnit.Framework;
 using AdminLogin = ElementLogic.AMS.UI.Tests.Pages.Login.Login;
 
@@ -8,6 +11,8 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
 {
     public class SetUpParameters
     {
+        public IList<ParameterLIne> ParametersToBeReset = new List<ParameterLIne>();
+
         public static SetUpParameters Instance => Singleton.Value;
         public void ChangeTheParameterValue(string parameterCode, string paramValue)
         {
@@ -20,6 +25,8 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
             {
                 return;
             }
+
+            AddParametersToBeChangedToList(parameterCode, actualParamValue);
 
             if (!ParameterList.Instance.IsPageLoaded())
             {
@@ -49,6 +56,31 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
                     : Parameter.Instance.GetParameterData(parameterCode).ParameterValue;
 
             Assert.AreEqual(paramValue, changedParamValue, "The Parameter value is not changed");
+        }
+
+        public IList<ParameterLIne> GetParametersToBeReset()
+        {
+            return ParametersToBeReset;
+        }
+
+        public void FlushParametersToBeReset()
+        {
+            ParametersToBeReset.Clear();
+        }
+
+        private void AddParametersToBeChangedToList(string parameterCode, string paramValue)
+        {
+            if (ParametersToBeReset.Any(parameterList => parameterList.ParameterName.Equals(parameterCode)))
+            {
+                return;
+            }
+
+            var parameterLIne = new ParameterLIne
+            {
+                ParameterName = parameterCode, ParameterValue = paramValue
+            };
+
+            ParametersToBeReset.Add(parameterLIne);
         }
 
         private SetUpParameters() { }

@@ -1,10 +1,11 @@
-﻿Feature: Autostore Multiple User Putaway
+﻿Feature: Autostore Putaway with Multiple Users
 	As an Admin user, I want to verify the AutoStore Putaway order behavior with multiple users
 
 @Regression	
-@AS_Putaway_MultipleUsers
+@Scenario:'1'
+@Autostore:Putaway:MultipleUserPutaway
 Scenario: Verify a putaway order can be continued with two users
-	Given I login to the Autostore port '01' as 'Admin' user
+	Given I login to the Autostore port '04' as 'UserThree' user
 	When I click on 'A 1/1 AutoStore Bin' putaway tile in AutoStore Main Menu
 	Then I Navigate to Autostore Putaway Selection page
     And I Select the search on as 'Order line' in Autostore Putaway Selection page
@@ -23,10 +24,10 @@ Scenario: Verify a putaway order can be continued with two users
     And I click Yes button in Delete Incomplete Tasks popup 
 	Then I Navigate to Autostore Putaway Selection page
 	And I click on Exit button in Autostore Putaway Selection page
-	Then The Autostore task Menu should be loaded
+	Then The Autostore task Menu is displayed
 	When I click on Logout button in Autostore task menu
 	Then The Autostore login page is loaded
-	Given I login to the Autostore port '01' as 'NormalUser' user
+	Given I login to the Autostore port '04' as 'UserFour' user
 	When I click on 'A 1/1 AutoStore Bin' putaway tile in AutoStore Main Menu
 	Then I Navigate to Autostore Putaway Selection page
     And I Select the search on as 'Order line' in Autostore Putaway Selection page
@@ -43,3 +44,7 @@ Scenario: Verify a putaway order can be continued with two users
 	Then The Autostore putaway mission '3' is loaded
 	When I click enter button in Autostore putaway mission page
 	Then I Navigate to Autostore Putaway Selection page
+	And I click on Exit button in Autostore Putaway Selection page
+	Then The Autostore task Menu is displayed
+	When I click on Logout button in Autostore task menu
+	Then The Autostore login page is loaded

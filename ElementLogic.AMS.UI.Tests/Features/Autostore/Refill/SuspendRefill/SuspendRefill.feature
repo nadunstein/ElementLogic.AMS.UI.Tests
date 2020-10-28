@@ -14,9 +14,11 @@ Background:
 	When I click on Activate button in Refill Order List page
 	Then The Refill Order List page is loaded with empty records on the fields
 
-@AS_Refill_SuspendTaskgroup @Regression
+@Regression
+@Scenario:'1'
+@Autostore:Refill:SuspendRefill
 Scenario: Suspend A Refill Taskgroup And Continue With Another User
-	Given I login to the Autostore port '01' as 'Admin' user
+	Given I login to the Autostore port '05' as 'UserFive' user
 	When I Click on Refill tile in Autostore main menu
 	Then I Navigate to refill taskgroup selection page in Autostore
 	When I click on Select button from refill taskgroup selection page in Autostore
@@ -29,14 +31,16 @@ Scenario: Suspend A Refill Taskgroup And Continue With Another User
 	When I Click on Yes button in Confirm Task Exit dialog in Autostore Refill mission page
 	Then I Navigate to refill taskgroup selection page in Autostore
 	When I click on Exit button from refill taskgroup selection page in Autostore
-	Then The Autostore task Menu should be loaded
+	Then The Autostore task Menu is displayed
 	When I click on Logout button in Autostore task menu
 	Then The Autostore login page is loaded
-	Given I login to the Autostore port '01' as 'NormalUser' user
+	Given I login to the Autostore port '06' as 'UserSix' user
 	When I Click on Refill tile in Autostore main menu
 	Then I Navigate to refill taskgroup selection page in Autostore
 	When I click on Select button from refill taskgroup selection page in Autostore
 	Then The Autostore Refill mission '2' is loaded
 	And I check the refill product Id is correct in Autostore Refill mission page
 	When I click on Confirm button in Autostore Refill mission page
-	Then The Autostore task Menu should be loaded
+	Then The Autostore task Menu is displayed
+	When I click on Logout button in Autostore task menu
+	Then The Autostore login page is loaded

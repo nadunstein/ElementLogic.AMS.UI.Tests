@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.Common;
 using System.Data.SqlClient;
-using ElementLogic.AMS.UI.Tests.Configuration;
+using ElementLogic.AMS.UI.Tests.Integration;
 
 namespace ElementLogic.AMS.UI.Tests.Data.Manager
 {
@@ -57,7 +57,8 @@ namespace ElementLogic.AMS.UI.Tests.Data.Manager
 
         private static DbConnection GetCreateDatabaseConnection()
         {
-            var connectionString = ConfigFileReader.Instance.ConfigurationKeyValue("DatabaseSettings:connectionString");
+            var connectionString = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json",
+                "DatabaseSettings:connectionString");
             return CreateConnectionUsingConfigKey(connectionString);
         }
 
@@ -65,17 +66,21 @@ namespace ElementLogic.AMS.UI.Tests.Data.Manager
         {
             var connectionString =
                 new SqlConnectionStringBuilder(
-                    ConfigFileReader.Instance.ConfigurationKeyValue("DatabaseSettings:connectionString"))
+                    JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", 
+                        "DatabaseSettings:connectionString"))
                 {
-                    InitialCatalog = ConfigFileReader.Instance.ConfigurationKeyValue("DatabaseSettings:DatabaseName")
-                }.ConnectionString;
+                    InitialCatalog = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", 
+                        "DatabaseSettings:DatabaseName")
+        }.ConnectionString;
 
             return CreateConnectionUsingConfigKey(connectionString);
         }
 
         private static DbConnection CreateConnectionUsingConfigKey(string connectionString)
         {
-            var providerName = ConfigFileReader.Instance.ConfigurationKeyValue("DatabaseSettings:providerName");
+            var providerName =
+                JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json",
+                    "DatabaseSettings:providerName");
 
             var provider = DbProviderFactories.GetFactory(providerName);
             var connection = provider.CreateConnection();

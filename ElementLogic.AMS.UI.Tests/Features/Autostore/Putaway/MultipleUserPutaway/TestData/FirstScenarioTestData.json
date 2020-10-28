@@ -1,0 +1,16 @@
+{
+  "PutawayOrdersToBeCreated": [
+    {
+      "PutawayOrderToBeCreated": [
+        {
+          "Action": "A",
+          "PurchaseOrderLineId": 1,
+          "ExtProductId": "ASPMUP01",
+          "ProductName": "AutostorePutawayMultipleUserProduct01",
+          "Quantity": 50,
+          "Returned": false
+        }
+      ]
+    }
+  ]
+}
