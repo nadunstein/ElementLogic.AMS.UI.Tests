@@ -25,12 +25,24 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
             return PageObjectHelper.Instance.GetTextValue(PopUpMessage);
         }
 
-        public bool ClickYesButton()
+        public bool ClickPopupButton(string buttonToBeClicked)
+        {
+            var isButtonClicked = buttonToBeClicked switch
+            {
+                "Yes" => ClickYesButton(),
+                "No" => ClickNoButton(),
+                _ => false
+            };
+
+            return isButtonClicked;
+        }
+
+        private static bool ClickYesButton()
         {
             return PageObjectHelper.Instance.Click(YesButton);
         }
 
-        public bool ClickNoButton()
+        private static bool ClickNoButton()
         {
             return PageObjectHelper.Instance.Click(NoButton);
         }

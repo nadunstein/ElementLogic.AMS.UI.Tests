@@ -75,11 +75,6 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
             return PageObjectHelper.Instance.InsertField(ScanCodeField, scanCode);
         }
 
-        public bool ClickUpdateButton()
-        {
-            return PageObjectHelper.Instance.Click(UpdateButton);
-        }
-
         public bool IsContainerValidationPopupDisplayed()
         {
             return PageObjectHelper.Instance.IsDisplayed(ContainerValidationPopup, true);
@@ -95,14 +90,32 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
             return PageObjectHelper.Instance.Click(ValidationOkButton);
         }
 
-        public bool ClickAddButton()
+        public bool ClickPopupButton(string buttonToBeClicked)
+        {
+            var isButtonClicked = buttonToBeClicked switch
+            {
+                "Add" => ClickAddButton(),
+                "Update" => ClickUpdateButton(),
+                "Close" => ClickCloseButton(),
+                _ => false
+            };
+
+            return isButtonClicked;
+        }
+
+        private static bool ClickAddButton()
         {
             var isAddButtonClicked = PageObjectHelper.Instance.Click(AddButton);
             PageObjectHelper.Instance.SwitchToDefaultWebPage();
             return isAddButtonClicked;
         }
 
-        public bool ClickCloseButton()
+        private static bool ClickUpdateButton()
+        {
+            return PageObjectHelper.Instance.Click(UpdateButton);
+        }
+
+        private static bool ClickCloseButton()
         {
             var isCloseButtonClicked = PageObjectHelper.Instance.Click(CloseButton);
             PageObjectHelper.Instance.SwitchToDefaultWebPage();

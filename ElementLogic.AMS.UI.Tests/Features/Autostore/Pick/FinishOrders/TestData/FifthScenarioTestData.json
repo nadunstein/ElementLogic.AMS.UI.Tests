@@ -1,0 +1,73 @@
+{
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "AutoStore.Picking.Scanning.ValidateContainer",
+      "ParameterValue": "1"
+    },
+    {
+      "ParameterName": "AutoStore.Picking.UseTwoStepOnLastMission",
+      "ParameterValue": "1"
+    }
+  ],
+
+  "ProductsToBeCreated": [
+    {
+      "ExtProductId": "ASPLSP08",
+      "ProductName": "ASPickListSearchProduct08",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    },
+    {
+      "ExtProductId": "ASPLSP09",
+      "ProductName": "ASPickListSearchProduct09",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    },
+    {
+      "ExtProductId": "ASPLSP10",
+      "ProductName": "ASPickListSearchProduct10",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    }
+  ],
+
+  "PickOrdersToBeCreated": [
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASPLSP08",
+          "ProductName": "ASPickListSearchProduct08",
+          "Quantity": 2,
+          "Boxtype": "Externalbox1"
+        },
+        {
+          "Action": "A",
+          "ExtOrderlineId": 2,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASPLSP09",
+          "ProductName": "ASPickListSearchProduct09",
+          "Quantity": 2,
+          "Boxtype": "Externalbox1"
+        },
+        {
+          "Action": "A",
+          "ExtOrderlineId": 3,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASPLSP10",
+          "ProductName": "ASPickListSearchProduct10",
+          "Quantity": 2,
+          "Boxtype": "Externalbox1"
+        }
+      ]
+    }
+  ]
+}

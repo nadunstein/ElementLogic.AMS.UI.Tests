@@ -133,18 +133,32 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick
         }
 
         [Then(@"The '(.*)' Validation message is displayed in AutoStore Pick Mission page")]
+        public void ThenTheValidationMessageIsDisplayedInAutostorePickMissionPage(string expectedValidationMessage)
+        {
+            Assert.IsTrue(ContainerValidationPopup.Instance.IsPopupDisplayed(),
+                "The container validation popup is not displayed in AutoStore Pick Mission page");
+            Assert.IsTrue(ContainerValidationPopup.Instance.GetPopupMessage().Contains(expectedValidationMessage),
+                "The container validation popup message is wrong in AutoStore Pick Mission page");
+        }
+
         [Then(@"The '(.*)' Validation message is displayed in Autostore Place in Container page")]
         public void ThenTheValidationMessageIsDisplayedInAutostorePlaceInContainerPage(string expectedValidationMessage)
         {
             Assert.IsTrue(ContainerValidationPopup.Instance.IsPopupDisplayed(),
                 "The container validation popup is not displayed in AutoStore Place in Container page");
             Assert.IsTrue(ContainerValidationPopup.Instance.GetPopupMessage().Contains(expectedValidationMessage),
-                "The container validation popup message is wrong in AutoStore Pick/Place page");
+                "The container validation popup message is wrong in utoStore Place in Container page");
         }
 
         [Then(@"I click on OK button in container validation popup in AutoStore Pick Mission page")]
+        public void ThenIClickOnOKButtonInContainerValidationPopupInAutostorePickMissionPage()
+        {
+            Assert.IsTrue(ContainerValidationPopup.Instance.ClickOkButton(),
+                "Unable to click on OK button in container validation popup in AutoStore Pick Mission page");
+        }
+
         [Then(@"I click on OK button in container validation popup in AutoStore Place in Container page")]
-        public void ThenIClickOnOKButtonInContainerValidationPopup()
+        public void ThenIClickOnOKButtonInContainerValidationPopupInAutostorePlaceInContainerPage()
         {
             Assert.IsTrue(ContainerValidationPopup.Instance.ClickOkButton(),
                 "Unable to click on OK button in container validation popup in AutoStore Place in Container page");
@@ -186,8 +200,14 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick
         }
 
         [Then(@"The Add new container popup is displayed in Autostore Pick Mission page")]
+        public void TheThenAddNewContainerPopupIsDisplayedInAutostorePickMissionPage()
+        {
+            Assert.IsTrue(AddNewContainerPopup.Instance.IsPopupDisplayed(),
+                "The Add new container popup is not displayed in AutoStore Place in Container page");
+        }
+
         [Then(@"The Add new container popup is displayed in AutoStore Place in Container page")]
-        public void TheThenAddNewContainerPopupIsDisplayed()
+        public void TheThenAddNewContainerPopupIsDisplayedInAutostorePlaceInContainerPage()
         {
             Assert.IsTrue(AddNewContainerPopup.Instance.IsPopupDisplayed(),
                 "The Add new container popup is not displayed in AutoStore Place in Container page");
@@ -208,18 +228,16 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick
         }
 
         [When(@"I click on '(.*)' button on Add new container popup in Autostore Pick Mission page")]
-        [When(@"I click on '(.*)' button on Add new container popup in AutoStore Place in Container page")]
-        public void WhenIClickOnButtonOnAddNewContainerPopup(string buttonToBeClicked)
+        public void WhenIClickOnButtonOnAddNewContainerPopupInAutostoreMissionPage(string buttonToBeClicked)
         {
-            var isButtonClicked = buttonToBeClicked switch
-            {
-                "Add" => AddNewContainerPopup.Instance.ClickAddButton(),
-                "Update" => AddNewContainerPopup.Instance.ClickUpdateButton(),
-                "Close" => AddNewContainerPopup.Instance.ClickCloseButton(),
-                _ => false
-            };
+            Assert.IsTrue(AddNewContainerPopup.Instance.ClickPopupButton(buttonToBeClicked),
+                $"Unable to Click on {buttonToBeClicked} button on Add new container popup in Autostore Pick Mission page");
+        }
 
-            Assert.IsTrue(isButtonClicked,
+        [When(@"I click on '(.*)' button on Add new container popup in AutoStore Place in Container page")]
+        public void WhenIClickOnButtonOnAddNewContainerPopupInAutostorePlaceInContainerPage(string buttonToBeClicked)
+        {
+            Assert.IsTrue(AddNewContainerPopup.Instance.ClickPopupButton(buttonToBeClicked),
                 $"Unable to Click on {buttonToBeClicked} button on Add new container popup in AutoStore Place in Container page");
         }
 
@@ -320,15 +338,15 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick
         [When(@"I click on '(.*)' button on taskgroup completed popup in Autostore Pick Mission page")]
         public void WhenIClickOnButtonOnTaskgroupCompletedPopupInAutostorePickMissionPage(string buttonToBeClicked)
         {
-            var isButtonClicked = buttonToBeClicked switch
-            {
-                "Continue" => TaskgroupCompletedPopup.Instance.ClickContinueButton(),
-                "Exit" => TaskgroupCompletedPopup.Instance.ClickExitButton(),
-                _ => false
-            };
-
-            Assert.IsTrue(isButtonClicked,
+            Assert.IsTrue(TaskgroupCompletedPopup.Instance.ClickPopupButton(buttonToBeClicked),
                 $"Unable to Click on {buttonToBeClicked} button on taskgroup completed popup in Autostore Pick Mission page");
+        }
+
+        [When(@"I click on Exit button in Autostore Place in Container page")]
+        public void WhenIClickOnExitButtonInAutoStorePlaceInContainerPage()
+        {
+            Assert.IsTrue(PlaceInContainer.Instance.ClickExitButton(),
+                "Unable to click on Exit button in Autostore Pick Mission page");
         }
 
         [When(@"I click on Exit button in Autostore Pick Mission page")]
@@ -352,15 +370,26 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick
         [When(@"I click on '(.*)' button on Confirm Task Exit popup in Autostore Pick Mission page")]
         public void WhenIClickOnButtonOnConfirmTaskExitPopupInAutostorePickMissionPage(string buttonToBeClicked)
         {
-            var isButtonClicked = buttonToBeClicked switch
-            {
-                "Yes" => ConfirmTaskExitPopup.Instance.ClickYesButton(),
-                "No" => ConfirmTaskExitPopup.Instance.ClickNoButton(),
-                _ => false
-            };
-
-            Assert.IsTrue(isButtonClicked,
+            Assert.IsTrue(ConfirmTaskExitPopup.Instance.ClickPopupButton(buttonToBeClicked),
                 $"Unable to Click on {buttonToBeClicked} button on Confirm Task Exit popup in Autostore Pick Mission page");
+        }
+
+        [Then(@"The Confirm Task Exit popup is displayed in Autostore Place in Container page")]
+        public void ThenTheConfirmTaskExitPopupIsDisplayedInAutoStorePlaceInContainerPage()
+        {
+            Assert.IsTrue(ConfirmTaskExitPopup.Instance.IsPopupDisplayed(),
+                "The Confirm Task Exit popup is not displayed in Autostore Place in Container page");
+            const string expectedMessage =
+                "If you exit, the current task group will be suspended!\r\n\r\nAre you sure you want to exit?";
+            Assert.AreEqual(expectedMessage, ConfirmTaskExitPopup.Instance.GetPopupMessage(),
+                "Confirm Task Exit popup message is wrong in Autostore Place in Container page");
+        }
+
+        [When(@"I click on '(.*)' button on Confirm Task Exit popup in Autostore Place in Container page")]
+        public void WhenIClickOnButtonOnConfirmTaskExitPopupInAutoStorePlaceInContainerPage(string buttonToBeClicked)
+        {
+            Assert.IsTrue(ConfirmTaskExitPopup.Instance.ClickPopupButton(buttonToBeClicked),
+                $"Unable to Click on {buttonToBeClicked} button on Confirm Task Exit popup in Autostore Place in Container page");
         }
 
         private CommonSteps(ScenarioContext scenarioContext)

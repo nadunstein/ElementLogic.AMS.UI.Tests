@@ -16,7 +16,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Pick.PicklistSear
             return PageObjectHelper.Instance.IsDisplayed(Iframe, true);
         }
 
-        public bool ClickYesButton()
+        public bool ClickConfirmButton()
         {
             PageObjectHelper.Instance.SwitchToIframeContent(Iframe);
             var isConfirmButtonClicked = PageObjectHelper.Instance.Click(ConfirmButton);

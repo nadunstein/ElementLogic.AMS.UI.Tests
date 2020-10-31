@@ -26,14 +26,26 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
             return PageObjectHelper.Instance.GetTextValue(PopUpMessage);
         }
 
-        public bool ClickContinueButton()
+        public bool ClickPopupButton(string buttonToBeClicked)
+        {
+            var isButtonClicked = buttonToBeClicked switch
+            {
+                "Continue" => ClickContinueButton(),
+                "Exit" => ClickExitButton(),
+                _ => false
+            };
+
+            return isButtonClicked;
+        }
+
+        private static bool ClickContinueButton()
         {
             var isContinueButtonClicked = PageObjectHelper.Instance.Click(ContinueButton);
             PageObjectHelper.Instance.SwitchToDefaultWebPage();
             return isContinueButtonClicked;
         }
 
-        public bool ClickExitButton()
+        private static bool ClickExitButton()
         {
             var isExitButtonClicked = PageObjectHelper.Instance.Click(ExitButton);
             PageObjectHelper.Instance.SwitchToDefaultWebPage();

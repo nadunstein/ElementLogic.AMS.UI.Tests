@@ -14,8 +14,8 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
             LoginPage.Instance.LoginToApplication("Admin");
             LiveFeedStatus.Instance.GetPageTitle();
             LiveFeedStatus.Instance.SelectActionDropDownOption("Synchronize task groups");
-            SynchronizeTaskGroupsPopUp.Instance.IsPopupDisplayed();
-            SynchronizeTaskGroupsPopUp.Instance.ClickSynchronizeButton();
+            SynchronizeTaskGroupsPopup.Instance.IsPopupDisplayed();
+            SynchronizeTaskGroupsPopup.Instance.ClickSynchronizeButton();
         }
 
         private SynchronizeTaskGroups() { }

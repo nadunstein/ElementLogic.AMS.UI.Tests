@@ -36,7 +36,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
                 if (pickOrderCountForOrderStatus > 1)
                 {
                     ConfirmSelectionPopup.Instance.IsPopupDisplayed();
-                    ConfirmSelectionPopup.Instance.ClickYesButton();
+                    ConfirmSelectionPopup.Instance.ClickConfirmButton();
                 }
 
                 WaitAndConfirmStartedMissionsPopup();

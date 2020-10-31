@@ -52,6 +52,41 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Activity.UserActivity
                 "The user activity is not displayed in the search grid in User Activity page");
         }
 
+        [When(@"I click on '(.*)' option by selecting the gear icon of the activity in User Activity page")]
+        public void WhenIClickOnOptionBySelectingTheGearIconOfTheActivityInUserActivityPage(string optionToBeSelected)
+        {
+            Assert.IsTrue(UserActivityPage.Instance.SelectActivityActionMenuOption(optionToBeSelected),
+                $"Unable to click on '{optionToBeSelected}' option by selecting the gear icon of the activity in User Activity page");
+        }
+
+        [Then(@"The Transfer User popup is displayed in User Activity Page")]
+        public void ThenTheTransferUserPopupIsDisplayedInUserActivityPage()
+        {
+            Assert.IsTrue(TransferUserPopup.Instance.IsPopupDisplayed(),
+                "The Transfer User popup is displayed in User Activity Page");
+        }
+
+        [Then(@"I select transfer user as '(.*)' from Transfer user dropdown in Transfer User popup in User Activity Page")]
+        public void ThenISelectTransferUserAsFromTransferUserDropdownInTransferUserPopupInUserActivityPage(string userToBeSelected)
+        {
+            Assert.IsTrue(TransferUserPopup.Instance.SelectTransferUser(userToBeSelected),
+                $"Unable to select transfer user as '{userToBeSelected}' from Transfer user dropdown in Transfer User popup in User Activity Page");
+        }
+
+        [When(@"I click on '(.*)' button in Transfer User popup in User Activity Page")]
+        public void WhenIClickOnButtonInTransferUserPopupInUserActivityPage(string buttonToBeClicked)
+        {
+            Assert.IsTrue(TransferUserPopup.Instance.ClickPopupButton(buttonToBeClicked),
+                $"Unable to click on '{buttonToBeClicked}' button in Transfer User popup in User Activity Page");
+        }
+
+        [Then(@"I verify the UserCode of the activity is displayed as '(.*)' in User Activity page")]
+        public void ThenIVerifyTheUserCodeOfTheActivityIsDisplayedAsInUserActivityPage(string expectedUserName)
+        {
+            Assert.AreEqual(expectedUserName, UserActivityPage.Instance.GetFirstActivityUserCode(),
+                "The transferred user code for the activity is different in User Activity page");
+        }
+
         [When(@"I click on '(.*)' option by selecting the gear icon of the mission for the user activity in status '(.*)' in User Activity page")]
         public void WhenIClickOnOptionBySelectingTheGearIconOfTheMissionForTheUserActivityInStatusInUserActivityPage(string optionToBeSelected, string missionStatus)
         {
@@ -77,14 +112,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Activity.UserActivity
         [When(@"I click on '(.*)' button on Started Missions popup in User Activity Page")]
         public void WhenIClickOnButtonOnStartedMissionsPopupInUserActivityPage(string buttonToBeClicked)
         {
-            var isButtonClicked = buttonToBeClicked switch
-            {
-                "Yes" => StartedMissionsPopup.Instance.ClickYesButton(),
-                "No" => StartedMissionsPopup.Instance.ClickNoButton(),
-                _ => false
-            };
-
-            Assert.IsTrue(isButtonClicked,
+            Assert.IsTrue(StartedMissionsPopup.Instance.ClickPopupButton(buttonToBeClicked),
                 $"Unable to Click on {buttonToBeClicked} button on Started Missions popup in User Activity Page");
         }
 
@@ -100,7 +128,6 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Activity.UserActivity
                         : missionDataBeforeFinish.Status
                 }).ToList();
 
-
             var actualMissionsData = UserActivityPage.Instance.GetActivityMissionData();
 
             foreach (var expectedMissionData in expectedMissionsData)
@@ -113,7 +140,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Activity.UserActivity
                     }
 
                     Assert.AreEqual(expectedMissionData.Status, actualMissionData.Status,
-                        $"The expected mission is wrong for {actualMissionData.Id} in  User Activity page");
+                        $"The expected mission status after finishing is wrong for {actualMissionData.Id} in  User Activity page");
                     break;
                 }
             }

@@ -29,13 +29,16 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.UserActivity
         private const string FirstUserActivityResultBar =
             "#ctl00_ContentPlaceHolderContent_UserActivityView_userGrid_ctl00__0";
 
+        private const string FirstUserActivityActionMenuGearIcon =
+            "#ctl00_ContentPlaceHolderContent_UserActivityView_userGrid_ctl00_ctl04_ctl01";
+
+        private const string FirstUserActivityActionMenuSlide =
+            "#ctl00_ContentPlaceHolderContent_UserActivityView_userGrid_ctl00_ctl04_ctl01 .rmSlide";
+
         private const string FirstUserActivityMissionGrid =
             "#ctl00_ContentPlaceHolderContent_UserActivityView_userGrid_ctl00_ctl06_missionGrid tbody";
 
         private const string MissionActionMenuSlide = ".rmSlide";
-
-        private const string FirstUserActivityActionMenuGearIcon =
-            "#ctl00_ctl00_ContentPlaceHolderContent_ContentPlaceHolderContent_UserActivityView_userGrid_ctl00_ctl04_ctl01";
 
         public static UserActivity Instance => Singleton.Value;
 
@@ -53,8 +56,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.UserActivity
 
         public bool InsertTaskgroupId(string picklistId)
         {
-            return PageObjectHelper.Instance.SelectSearchDropDown(TaskgroupIdField, TaskgroupIdDropdownSlide, "li",
-                picklistId);
+            return PageObjectHelper.Instance.SelectSearchDropDown(TaskgroupIdField, TaskgroupIdDropdownSlide, 
+                "li", picklistId);
         }
 
         public bool ClickSearchButton()
@@ -66,21 +69,25 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.UserActivity
         public bool IsFirstUserActivityResultBarDisplayed()
         {
             PageObjectHelper.Instance.WaitUntilInvisible(PageLoadingPanel);
-            PageObjectHelper.Instance.WaitUntilInvisible(ResultGridLoadingPanel);
             return PageObjectHelper.Instance.IsDisplayed(FirstUserActivityResultBar, true);
         }
 
         public bool SelectActivityActionMenuOption(string option)
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(PageLoadingPanel);
             return PageObjectHelper.Instance.SelectDropDown(FirstUserActivityActionMenuGearIcon,
-                MissionActionMenuSlide, "li", option);
+                FirstUserActivityActionMenuSlide, "li > a > span", option);
+        }
+
+        public string GetFirstActivityUserCode()
+        {
+            PageObjectHelper.Instance.WaitUntilInvisible(PageLoadingPanel);
+            var activityData = PageObjectHelper.Instance.Finds("td", FirstUserActivityResultBar);
+            return PageObjectHelper.Instance.GetTextValue(activityData[4]);
         }
 
         public string SelectActivityMissionActionMenuOptionAndGetMissionId(string missionStatus, string option)
         {
             PageObjectHelper.Instance.WaitUntilInvisible(ResultGridLoadingPanel);
-
             var missions = PageObjectHelper.Instance.Finds("tr", 
                 FirstUserActivityMissionGrid);
 
@@ -88,7 +95,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.UserActivity
                 select PageObjectHelper.Instance.Finds("td", mission)
                 into missionDetails
                 where missionDetails[10].Text.Contains(missionStatus)
-                select PageObjectHelper.Instance.SelectIWebElementDropDown(missionDetails[12], MissionActionMenuSlide, "li > a > span", option)
+                select PageObjectHelper.Instance.SelectIWebElementDropDown(missionDetails[12], MissionActionMenuSlide, 
+                    "li > a > span", option)
                     ? missionDetails[11].Text
                     : null).FirstOrDefault();
         }
@@ -103,7 +111,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.UserActivity
                 new UserActivityMissionData {Id = missionDetails[11].Text, Status = missionDetails[10].Text}).ToList();
         }
 
-    private UserActivity() { }
+        private UserActivity() { }
 
         private static readonly Lazy<UserActivity>
             Singleton = new Lazy<UserActivity>(() => new UserActivity());

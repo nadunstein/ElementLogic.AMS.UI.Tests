@@ -19,6 +19,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
 
         private const string ConfirmButton = "#ctl00_MonitorContentPlaceholder_PickView_btnConfirm";
 
+        private const string ExitButton = "#ctl00_MonitorContentPlaceholder_PickView_btnExit";
+
         public static PlaceInContainer Instance => Singleton.Value;
 
         public string GetPageTitle()
@@ -75,6 +77,11 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
             var isButtonClicked = PageObjectHelper.Instance.Click(ConfirmButton);
             PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
             return isButtonClicked;
+        }
+
+        public bool ClickExitButton()
+        {
+            return PageObjectHelper.Instance.Click(ExitButton);
         }
 
         private PlaceInContainer() { }

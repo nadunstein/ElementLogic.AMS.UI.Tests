@@ -382,11 +382,12 @@
     <Compile Include="Pages\AdminModule\Activity\Refill\RefillOrderList.cs" />
     <Compile Include="Pages\AdminModule\Activity\Refill\TakeOverTrolleyPopup.cs" />
     <Compile Include="Pages\AdminModule\Activity\UserActivity\StartedMissionsPopup.cs" />
+    <Compile Include="Pages\AdminModule\Activity\UserActivity\TransferUserPopup.cs" />
     <Compile Include="Pages\AdminModule\Activity\UserActivity\UserActivity.cs" />
     <Compile Include="Pages\AdminModule\Automation\AutostoreEquipmentList\AutoStoreEquipmentList.cs" />
     <Compile Include="Pages\AdminModule\Automation\AutostoreEquipmentList\LiveFeedStatus\LiveFeedStatus.cs" />
-    <Compile Include="Pages\AdminModule\Automation\AutostoreEquipmentList\LiveFeedStatus\SynchronizeTaskGroupsPopUp.cs" />
-    <Compile Include="Pages\AdminModule\Automation\AutostoreEquipmentList\LiveFeedStatus\SynchronizeBinContentsPopUp.cs" />
+    <Compile Include="Pages\AdminModule\Automation\AutostoreEquipmentList\LiveFeedStatus\SynchronizeTaskGroupsPopup.cs" />
+    <Compile Include="Pages\AdminModule\Automation\AutostoreEquipmentList\LiveFeedStatus\SynchronizeBinContentsPopup.cs" />
     <Compile Include="Pages\AdminModule\HamburgerMenu\HamburgerMenu.cs" />
     <Compile Include="Pages\AdminModule\Inventory\DeleteConfirmationPopup.cs" />
     <Compile Include="Pages\AdminModule\Inventory\InventoryCountConfirmationPopup.cs" />
@@ -544,6 +545,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Features\Autostore\Pick\FinishOrders\FinishOrders.feature" />
+    <None Include="Features\Autostore\Pick\FinishOrders\TestData\FifthScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\Autostore\Pick\FinishOrders\TestData\FourthScenarioTestData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -612,6 +616,10 @@
     <None Include="Features\Autostore\Pick\TaskGroupsPreparation\TestData\FirstScenarioTestData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Features\Autostore\Pick\TransferUser\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\TransferUser\TransferUser.feature" />
     <None Include="Features\Autostore\Pick\TwoStepOnLastMission\TestData\FirstScenarioTestData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

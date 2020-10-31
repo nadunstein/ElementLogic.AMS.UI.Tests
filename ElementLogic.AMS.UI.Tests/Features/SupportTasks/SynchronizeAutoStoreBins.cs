@@ -21,8 +21,8 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
             LoginPage.Instance.LoginToApplication("Admin");
             LiveFeedStatus.Instance.GetPageTitle();
             LiveFeedStatus.Instance.SelectActionDropDownOption("Synchronize bin contents");
-            SynchronizeBinContentsPopUp.Instance.IsPopupDisplayed();
-            SynchronizeBinContentsPopUp.Instance.ClickSynchronizeButton();
+            SynchronizeBinContentsPopup.Instance.IsPopupDisplayed();
+            SynchronizeBinContentsPopup.Instance.ClickSynchronizeButton();
             WebDriverHelper.Instance.QuitDriver();
         }
 

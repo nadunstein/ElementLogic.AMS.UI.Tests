@@ -1,0 +1,43 @@
+{
+  "ProductsToBeCreated": [
+    {
+      "ExtProductId": "ASTUP01",
+      "ProductName": "ASPickTransferUserProduct01",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    },
+    {
+      "ExtProductId": "ASTUP02",
+      "ProductName": "ASPickTransferUserProduct02",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    }
+  ],
+
+  "PickOrdersToBeCreated": [
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASTUP01",
+          "ProductName": "ASPickTransferUserProduct01",
+          "Quantity": 2
+        },
+        {
+          "Action": "A",
+          "ExtOrderlineId": 2,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASTUP02",
+          "ProductName": "ASPickTransferUserProduct02",
+          "Quantity": 2
+        }
+      ]
+    }
+  ]
+}
