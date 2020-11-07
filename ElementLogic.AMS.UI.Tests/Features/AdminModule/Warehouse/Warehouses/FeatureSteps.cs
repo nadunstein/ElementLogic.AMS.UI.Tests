@@ -12,7 +12,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Warehouse.Warehouses
         public void GivenINavigateToWarehouseListPage()
         {
             WarehouseList.Instance.Navigate();
-            Assert.AreEqual(WarehouseList.Instance.GetPageTitle(), "Warehouse list",
+            Assert.IsTrue(WarehouseList.Instance.IsPageLoaded(),
                 "The Warehouse List page is NOT loaded");
         }
 

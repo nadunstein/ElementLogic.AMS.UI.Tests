@@ -3,7 +3,7 @@
 
 Background:
 	Given I login to the AdminModule as 'Admin' user
-	And I navigate to Refill Order List page in Admin Module
+	And I navigate to Refill Order List page
 	And I select a trolley from Trolley drop down in Refill Order List page
 	And I include the 'ScanCode' to the scan Id field in Refill Order List page
 	When I click on Confirm button in Refill Order List page
@@ -32,9 +32,9 @@ Scenario: Verify A New Mission is Created upon Refill Deviation On Last Mission 
 	When I click on Yes button on Change Quantity Dialog in Autostore Refill mission page
 	Then The Confirm Remaining Refill Dialog is displayed in Autostore Refill mission page
 	When I click on Yes button on Confirm Remaining Refill Dialog in Autostore Refill mission page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded
 	Given I login to the AdminModule as 'Admin' user
-	And I navigate to Refill Order List page in Admin Module
+	And I navigate to Refill Order List page
 	And I select a trolley from Trolley drop down in Refill Order List page
 	And I include the 'ScanCode' to the scan Id field in Refill Order List page
 	When I click on Confirm button in Refill Order List page
@@ -53,7 +53,7 @@ Scenario: Verify A New Mission is Created upon Refill Deviation On Last Mission 
 	And I check the Refill Product Quantity is '5' in Autostore Refill mission page
 	And I check the proposed refill bin is NOT an empty bin in Autostore Refill mission page
 	When I click on Confirm button in Autostore Refill mission page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded
 
 @Regression
 @Scenario:'2'
@@ -75,9 +75,9 @@ Scenario: Perform a Refill Deviation On Last Mission to an Empty Location
 	When I click on Yes button on Change Quantity Dialog in Autostore Refill mission page
 	Then The Confirm Remaining Refill Dialog is displayed in Autostore Refill mission page
 	When I click on Yes button on Confirm Remaining Refill Dialog in Autostore Refill mission page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded
 	Given I login to the AdminModule as 'Admin' user
-	And I navigate to Refill Order List page in Admin Module
+	And I navigate to Refill Order List page
 	And I select a trolley from Trolley drop down in Refill Order List page
 	And I include the 'ScanCode' to the scan Id field in Refill Order List page
 	When I click on Confirm button in Refill Order List page
@@ -96,4 +96,4 @@ Scenario: Perform a Refill Deviation On Last Mission to an Empty Location
 	And I check the Refill Product Quantity is '5' in Autostore Refill mission page
 	And I check the proposed refill bin is an empty bin in Autostore Refill mission page
 	When I click on Confirm button in Autostore Refill mission page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded

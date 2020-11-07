@@ -31,10 +31,10 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
 
         public static SerialNumberRegistration Instance => Singleton.Value;
 
-        public string GetPageTitle()
+        public bool IsPageLoaded()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
-            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Serial number registration", 
+                LoadingPanel);
         }
 
         public string GetScanFieldLabelValue()
@@ -62,20 +62,10 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
             return PageObjectHelper.Instance.InsertField(ScanField, scanValue);
         }
 
-        public string GetScannedSerialNumber()
-        {
-            return PageObjectHelper.Instance.GetAttributeValue(ScanField, "value");
-        }
-
         public bool IsPreviousSerialNumberScanFieldDisplayed()
         {
             PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
-            return PageObjectHelper.Instance.IsDisplayed(PreviousScanField, false, true);
-        }
-
-        public string GetPreviousScannedSerialNumber()
-        {
-            return PageObjectHelper.Instance.GetAttributeValue(PreviousScanField, "value");
+            return PageObjectHelper.Instance.IsDisplayed(PreviousScanField, true, true);
         }
 
         public bool InsertPreviousScanValue(string scanValue)

@@ -18,7 +18,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
 
             InventoryOrderList.Instance.Navigate();
             Pages.Login.Login.Instance.LoginToApplication("Admin");
-            Assert.AreEqual("Inventory order list", InventoryOrderList.Instance.GetPageTitle(),
+            Assert.IsTrue(InventoryOrderList.Instance.IsPageLoaded(),
                 "The Inventory order list page is not loaded to finish unfinished Inventory orders");
             InventoryOrderList.Instance.ClickSearchButton();
             InventoryOrderList.Instance.IsFirstInventoryResultBarDisplayed();

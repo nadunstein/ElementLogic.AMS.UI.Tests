@@ -17,7 +17,7 @@ Scenario: Perform an Inspection with Deviation
 	When I click on Confirm button in Autostore Inspection mission page
 	Then The Change Quantity dialog is displayed in Autostore Inspection mission page
 	When I Click on YES button on Change Quantity dialog in Autostore Inspection mission page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded
 
 @Regression
 @Scenario:'2'
@@ -31,4 +31,4 @@ Scenario: Perform an Inspection with Deviation and Reason Code
 	When I click on Confirm button in Autostore Inspection mission page
 	Then The Change Quantity dialog is displayed in Autostore Inspection mission page
 	When I Click on YES button on Change Quantity dialog in Autostore Inspection mission page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded

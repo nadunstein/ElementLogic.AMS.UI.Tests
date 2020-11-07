@@ -14,10 +14,14 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Refill
 
         public static RefillTaskgroupSelection Instance => Singleton.Value;
 
-        public string GetPageTitle()
+        public bool IsPageLoaded()
         {
-            PageObjectHelper.Instance.Wait(1);
-            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Task group selection");
+        }
+
+        public bool IsPageDisplayed()
+        {
+            return PageObjectHelper.Instance.IsDisplayed(TaskgroupSelectionGrid);
         }
 
         public bool ClickTaskgroupSelectButton(string trolleyName)

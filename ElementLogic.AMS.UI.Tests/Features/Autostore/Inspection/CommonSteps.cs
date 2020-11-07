@@ -17,8 +17,6 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Inspection
         {
             Assert.IsTrue(InspectionCreateTask.Instance.IsPageLoaded(),
                 "The Inspection-Create task page is not loaded");
-            Assert.AreEqual("Inspection - Create task", InspectionCreateTask.Instance.GetPageTitle(),
-                "Name of the Inspection-Create task page is wrong");
         }
 
         [Given(@"I include the location of '(.*)' product to the location field in Autostore Inspection-Create Task page")]
@@ -39,7 +37,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Inspection
         [Then(@"The Autostore Inspection mission page is loaded")]
         public void ThenTheAutostoreInspectionMissionPageIsLoaded()
         {
-            Assert.AreEqual("Inspection", InspectionMission.Instance.GetPageTitle(),
+            Assert.IsTrue(InspectionMission.Instance.IsPageLoaded(),
                 "The Autostore Inspection mission page is not loaded");
             _extProductId = InspectionMission.Instance.GetProductNumberLabelValue();
         }

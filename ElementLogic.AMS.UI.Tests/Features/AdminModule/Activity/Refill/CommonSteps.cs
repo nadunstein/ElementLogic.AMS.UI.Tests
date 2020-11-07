@@ -10,16 +10,18 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Activity.Refill
     {
         private readonly ScenarioContext _scenarioContext;
 
-        [Given(@"I navigate to Refill Order List page in Admin Module")]
-        public void GivenINavigateToRefillOrderListPageInAdminModule()
+        [Given(@"I navigate to Refill Order List page")]
+        public void GivenINavigateToRefillOrderListPage()
         {
             RefillOrderList.Instance.Navigate();
+            Assert.IsTrue(RefillOrderList.Instance.IsPageLoaded(),
+                "The Admin Refill Order List page is not displayed");
         }
 
         [Then(@"The Refill Order List page is loaded with empty records on the fields")]
         public void ThenTheRefillOrderListPageIsLoadedWithEmptyRecordsOnTheFields()
         {
-            Assert.AreEqual("Refill order list", RefillOrderList.Instance.GetPageTitle(),
+            Assert.IsTrue(RefillOrderList.Instance.IsPageLoaded(),
                 "The Admin Refill Order List page is not displayed");
             Assert.AreEqual("Search for trolleys...", RefillOrderList.Instance.GetTrolleyFieldValue(),
                 "Trolley Field value is not empty after activating refill Order");

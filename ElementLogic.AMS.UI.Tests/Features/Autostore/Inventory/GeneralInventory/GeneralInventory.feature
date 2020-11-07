@@ -28,4 +28,4 @@ Scenario: Perform a General Autostore Inventory
 	When I click on Confirm button in Autostore inventory mission page
 	Then No more tasks popup is displayed in Autostore inventory mission page
 	When I click on OK button on No more tasks popup in Autostore inventory mission page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded

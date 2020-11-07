@@ -44,9 +44,9 @@ Scenario: Verify the serial number registration with single step picking
 	Then The Edit Previous Autostore Serial Number Registration page is loaded
 	And I include the serial number scan value as '12346' to serial number scan field in Autostore Serial Number Registration page
 	When I click on the Confirm button in Autostore Serial Number Registration page
-	Then The Edit Previous Autostore Serial Number Registration page is loaded
+	Then The Edit last Autostore Serial Number Registration page is loaded
 	When I click on the Confirm button in Autostore Serial Number Registration page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded
 
 @Pick
 @Regression
@@ -66,11 +66,11 @@ Scenario: Verify the serial number registration with two step picking and one op
 	And I verify the name of the serial number scan field is displayed as 'Scan SERIAL (2 of 2)' in Autostore Serial Number Registration page
 	And I include the serial number scan value as '12349' to serial number scan field in Autostore Serial Number Registration page
 	When I click on the Confirm button in Autostore Serial Number Registration page
-	Then The Edit Previous Autostore Serial Number Registration page is loaded
+	Then The Edit last Autostore Serial Number Registration page is loaded
 	When I click on the Confirm button in Autostore Serial Number Registration page
 	Then The AutoStore Place in Container page is loaded
 	When I click on the Confirm button in AutoStore Place in Container page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded
 
 @Pick
 @Regression
@@ -97,14 +97,14 @@ Scenario: Verify the serial number registration with two step picking and two op
 	And I verify the name of the serial number scan field is displayed as 'Scan SERIAL (2 of 2)' in Autostore Serial Number Registration page
 	And I include the serial number scan value as '12351' to serial number scan field in Autostore Serial Number Registration page
 	When I click on the Confirm button in Autostore Serial Number Registration page
-	Then The Edit Previous Autostore Serial Number Registration page is loaded
+	Then The Edit last Autostore Serial Number Registration page is loaded
 	When I click on the Confirm button in Autostore Serial Number Registration page
 	Then The AutoStore Place in Container page is loaded
 	And I verify the Quantity field value is '1' in Autostore Place in Container page
 	And I verify the scan field is displayed in AutoStore Place in Container page
 	And I include the container scan value to scan value field in AutoStore Place in Container page
 	When I click on the Confirm button in AutoStore Place in Container page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded
 
 @Pick
 @Regression
@@ -123,8 +123,8 @@ Scenario: Verify the serial number registration without product scanning
 	And I verify the name of the serial number scan field is displayed as 'Scan SERIAL (2 of 2)' in Autostore Serial Number Registration page
 	And I include the serial number scan value as '12353' to serial number scan field in Autostore Serial Number Registration page
 	When I click on the Confirm button in Autostore Serial Number Registration page
-	Then The Edit Previous Autostore Serial Number Registration page is loaded
+	Then The Edit last Autostore Serial Number Registration page is loaded
 	When I click on the Confirm button in Autostore Serial Number Registration page
 	Then The AutoStore Place in Container page is loaded
 	When I click on the Confirm button in AutoStore Place in Container page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded

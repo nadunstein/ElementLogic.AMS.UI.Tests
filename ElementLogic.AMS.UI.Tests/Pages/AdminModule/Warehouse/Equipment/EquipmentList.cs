@@ -32,9 +32,9 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Warehouse.Equipment
             PageObjectHelper.Instance.Navigate(baseUrl, equipmentListPageUrl);
         }
 
-        public string GetPageTitle()
+        public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Equipment list");
         }
 
         public bool IsResultTableDisplayed()

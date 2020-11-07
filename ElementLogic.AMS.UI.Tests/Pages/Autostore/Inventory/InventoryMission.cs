@@ -24,9 +24,9 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Inventory
 
         public static InventoryMission Instance => Singleton.Value;
 
-        public string GetPageTitle()
+        public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Inventory");
         }
 
         public bool IsInventoryMissionLoaded()

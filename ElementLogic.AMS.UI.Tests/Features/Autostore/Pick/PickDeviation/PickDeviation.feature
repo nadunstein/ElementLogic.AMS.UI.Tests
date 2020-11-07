@@ -26,7 +26,7 @@ Scenario: Verify the pick deviation on the last mission adds new mission to the 
 	And The possible delay notification is displayed in Autostore Pick Mission page
 	And I include the product scan value to scan field in Autostore Pick Mission page
 	When I click on the confirm button in Autostore Pick Mission page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded
 
 @Pick
 @Regression
@@ -55,4 +55,4 @@ Scenario: Verify the pick deviation on the last mission with a zero pick adds ne
 	When I click on the confirm button in Autostore Pick Mission page
 	Then The Zero Quantity confirmation popup is displayed in Autostore Pick Mission page
 	When I click on 'Yes' button on Zero Quantity confirmation popup in Autostore Pick Mission page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded

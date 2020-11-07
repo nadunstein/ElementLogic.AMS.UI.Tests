@@ -20,7 +20,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
 
             PicklistSearch.Instance.Navigate();
             Pages.Login.Login.Instance.LoginToApplication("Admin");
-            Assert.AreEqual("Pick list search", PicklistSearch.Instance.GetPageTitle(),
+            Assert.IsTrue(PicklistSearch.Instance.IsPageLoaded(),
                 "The Pick list search page is not loaded to finish unfinished pick orders");
 
             var unfinishedPickOrderStatus = Order.Instance.GetFirstUnFinishedPickOrderStatus();
@@ -41,7 +41,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
 
                 WaitAndConfirmStartedMissionsPopup();
                 PicklistSearch.Instance.RefreshWebPage();
-                Assert.AreEqual("Pick list search", PicklistSearch.Instance.GetPageTitle());
+                PicklistSearch.Instance.IsPageLoaded();
                 unfinishedPickOrderStatus = Order.Instance.GetFirstUnFinishedPickOrderStatus();
             } 
         }

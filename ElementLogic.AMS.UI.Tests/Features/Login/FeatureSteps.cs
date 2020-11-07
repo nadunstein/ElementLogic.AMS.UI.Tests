@@ -14,7 +14,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Login
         [Then(@"The Autostore login page is loaded")]
         public void ThenTheLoginPageIsLoaded()
         {
-            Assert.IsTrue(LoginPage.Instance.IsLoginPageLoaded(), "The Autostore login page is not loaded");
+            Assert.IsTrue(LoginPage.Instance.IsPageLoaded(), "The Autostore login page is not loaded");
         }
 
         [Given(@"I login to the AdminModule as '(.*)' user")]
@@ -32,7 +32,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Login
         }
 
         [Given(@"I login to the Autostore port '(.*)' as '(.*)' user")]
-        public void GivenILoginToTheAutostorePortAsUser(string  portNumber, string nameOfTheUser)
+        public void GivenILoginToTheAutostorePortAsUser(string portNumber, string nameOfTheUser)
         {
             LoginPage.Instance.NavigateToAutoStore(portNumber);
             LoginPage.Instance.LoginToApplication(nameOfTheUser);

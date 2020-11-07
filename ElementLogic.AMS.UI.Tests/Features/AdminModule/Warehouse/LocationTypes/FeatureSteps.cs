@@ -21,7 +21,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Warehouse.LocationTypes
             }
 
             LocationTypeList.Instance.Navigate();
-            Assert.AreEqual("Location type list", LocationTypeList.Instance.GetPageTitle(),
+            Assert.IsTrue(LocationTypeList.Instance.IsPageLoaded(),
                 "The Location Type List page is NOT loaded");
         }
 

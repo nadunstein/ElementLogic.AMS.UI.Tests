@@ -15,7 +15,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick
         [Then(@"The Autostore pick mission '(.*)' is loaded")]
         public void ThenTheAutostorePickMissionIsLoaded(int missionNumber)
         {
-            Assert.AreEqual("Picking", PickMission.Instance.GetPageTitle(),
+            Assert.IsTrue(PickMission.Instance.IsPageLoaded(),
                 $"Autostore Pick mission {missionNumber} page is not loaded");
             Assert.IsTrue(PickMission.Instance.GetTaskQueueValue().Contains($"Task {missionNumber} of"),
                 $"The Autostore Pick mission {missionNumber} is not loaded");
@@ -167,13 +167,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick
         [Then(@"The AutoStore Place in Container page is loaded")]
         public void ThenTheAutoStorePlaceInContainerPageIsLoaded()
         {
-            var pageHeaderName = PlaceInContainer.Instance.GetPageTitle();
-            if (pageHeaderName != "Place in Container")
-            {
-                pageHeaderName = PlaceInContainer.Instance.GetPageTitle();
-            }
-
-            Assert.AreEqual("Place in Container", pageHeaderName,
+            Assert.IsTrue(PlaceInContainer.Instance.IsPageLoaded(),
                 "The AutoStore Place in Container page is not loaded");
         }
 

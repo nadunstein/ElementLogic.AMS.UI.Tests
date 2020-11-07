@@ -22,8 +22,8 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Systems.TaskTypes
             }
 
             AdminTaskTypes.Instance.Navigate();
-            Assert.AreEqual("Task types", AdminTaskTypes.Instance.GetPageTitle(),
-                "The Admin Task Types page is NOT loaded");
+            Assert.IsTrue(AdminTaskTypes.Instance.IsPageLoaded(),
+                "The Admin Task Types page is not loaded");
         }
 
         [Then(@"The Task Type\(s\) are listed in the search result grid in Task Types page")]
@@ -43,7 +43,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Systems.TaskTypes
         [Then(@"The Edit task page is loaded")]
         public void ThenTheEditTaskPageIsLoaded()
         {
-            Assert.AreEqual("Edit task", EditTask.Instance.GetPageTitle(), "The Admin Edit task page is NOT loaded");
+            Assert.IsTrue(EditTask.Instance.IsPageLoaded(), "The Admin Edit task page is NOT loaded");
         }
 
         [Then(@"I enter values to the fields in adding row on the search result grid in Edit task page as follows:")]
@@ -111,7 +111,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Systems.TaskTypes
         [Then(@"The Task types page is loaded")]
         public void ThenTheTaskTypesPageIsLoaded()
         {
-            Assert.AreEqual("Task types", AdminTaskTypes.Instance.GetPageTitle(),
+            Assert.IsTrue(AdminTaskTypes.Instance.IsPageLoaded(),
                 "The Admin Task Types page is NOT loaded");
         }
 

@@ -21,9 +21,9 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Login
                 JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url"));
         }
 
-        public bool IsLoginPageLoaded()
+        public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsDisplayed(UserNameField, true);
+            return PageObjectHelper.Instance.IsDisplayed(UserNameField, true, true);
         }
 
         public void NavigateToAutoStore(string portId)
@@ -37,7 +37,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Login
 
         public void LoginToApplication(string username)
         {
-            if (!PageObjectHelper.Instance.IsDisplayed(UserNameField))
+            if (!PageObjectHelper.Instance.IsDisplayed(UserNameField, false, true))
             {
                 return;
             }

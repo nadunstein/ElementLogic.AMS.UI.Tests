@@ -19,9 +19,9 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Warehouse.Equipment
 
         public static EditShelf Instance => Singleton.Value;
 
-        public string GetPageTitle()
+        public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Shelf");
         }
 
         public bool InsertShelfNumber(int value)

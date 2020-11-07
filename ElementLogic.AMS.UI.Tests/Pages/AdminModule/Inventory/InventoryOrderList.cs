@@ -38,9 +38,9 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Inventory
             PageObjectHelper.Instance.Navigate(baseUrl, generateInventoryDetailsPageUrl);
         }
 
-        public string GetPageTitle()
+        public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Inventory order list");
         }
 
         public bool ClickAddButton()

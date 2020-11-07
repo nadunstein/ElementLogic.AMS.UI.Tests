@@ -13,7 +13,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Inventory
         [Then(@"The Autostore inventory mission '(.*)' is loaded")]
         public void ThenTheAutostoreInventoryMissionIsLoaded(int missionNumber)
         {
-            Assert.AreEqual("Inventory", InventoryMission.Instance.GetPageTitle(),
+            Assert.IsTrue(InventoryMission.Instance.IsPageLoaded(),
                 $"Autostore Inventory mission {missionNumber} page is not loaded");
             Assert.IsTrue(InventoryMission.Instance.GetTaskQueueLabelValue().Contains($"Task {missionNumber} of"),
                 $"The Autostore Inventory mission {missionNumber} is not loaded");

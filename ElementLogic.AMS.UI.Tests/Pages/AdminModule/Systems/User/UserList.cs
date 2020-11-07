@@ -23,9 +23,9 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.User
             PageObjectHelper.Instance.Navigate(baseUrl, userListPageUrl);
         }
 
-        public string GetPageTitle()
+        public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "User list");
         }
 
         public bool ClickAddButton()

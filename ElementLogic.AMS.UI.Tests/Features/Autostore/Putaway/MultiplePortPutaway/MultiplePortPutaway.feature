@@ -35,6 +35,6 @@ Scenario: (B) Continue scenario "Putaway partial quantity from an orderline" fro
 	When I click enter button in Autostore putaway mission page
 	Then I Navigate to Autostore Putaway Selection page
 	And I click on Exit button in Autostore Putaway Selection page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded
 	When I click on Logout button in Autostore task menu
 	Then The Autostore login page is loaded

@@ -51,15 +51,13 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
 
         public static PickMission Instance => Singleton.Value;
 
-        public string GetPageTitle()
+        public bool IsPageLoaded()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
-            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Picking", LoadingPanel);
         }
 
         public string GetTaskQueueValue()
         {
-
             PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
             return PageObjectHelper.Instance.GetTextValue(TaskQueueLabel);
         }
@@ -76,11 +74,13 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
 
         public string GetProductNumber()
         {
+            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
             return PageObjectHelper.Instance.GetAttributeValue(ProductNumberLabel, "Value");
         }
 
         public string GetPickLocation()
         {
+            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
             return PageObjectHelper.Instance.GetTextValue(AutoStoreLocationLabel);
         }
 
@@ -123,9 +123,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
         {
             PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
             PageObjectHelper.Instance.ScrollToTheElement(ProductScanField);
-            var isScanFieldDisplayed = PageObjectHelper.Instance.IsDisplayed(ProductScanField, true);
-            var isValueInserted = PageObjectHelper.Instance.InsertField(ProductScanField, scanValue);
-            return isScanFieldDisplayed && isValueInserted;
+            return PageObjectHelper.Instance.InsertField(ProductScanField, scanValue);
         }
 
         public bool IsContainerScanFieldDisplayed()

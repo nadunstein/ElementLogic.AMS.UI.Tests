@@ -26,6 +26,11 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Warehouse.Zones
             PageObjectHelper.Instance.Navigate(baseUrl, warehouseZoneListPageUrl);
         }
 
+        public bool IsPageLoaded()
+        {
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Warehouse zone list");
+        }
+
         public string GetPageTitle()
         {
             return PageObjectHelper.Instance.GetTextValue(PageHeader, true);

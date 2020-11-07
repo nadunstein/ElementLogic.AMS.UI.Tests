@@ -34,9 +34,9 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.User
 
         public static AddEditUser Instance => Singleton.Value;
 
-        public string GetPageTitle()
+        public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.GetTextValue(PageHeader);
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Add/Edit user");
         }
 
         public bool InsertUsername(string value)
@@ -76,7 +76,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.User
 
         public bool ClickCancelButton()
         {
-            return PageObjectHelper.Instance.Click(CancelButton);
+            return PageObjectHelper.Instance.Click(CancelButton, true);
         }
 
         private AddEditUser() { }

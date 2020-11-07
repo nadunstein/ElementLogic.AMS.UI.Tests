@@ -28,13 +28,10 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
 
             AddParametersToBeChangedToList(parameterCode, actualParamValue);
 
-            if (!ParameterList.Instance.IsPageLoaded())
-            {
-                ParameterList.Instance.Navigate();
-                AdminLogin.Instance.LoginToApplication("Admin");
-                Assert.AreEqual("Parameter list", ParameterList.Instance.GetPageTitle(),
-                    "The Admin parameter List page is not loaded");
-            }
+            ParameterList.Instance.Navigate();
+            AdminLogin.Instance.LoginToApplication("Admin");
+            Assert.IsTrue(ParameterList.Instance.IsPageLoaded(),
+                "The Admin parameter List page is not loaded");
 
             ParameterList.Instance.InsertParameterCode(parameterCode);
             ParameterList.Instance.ClickSearchButton();

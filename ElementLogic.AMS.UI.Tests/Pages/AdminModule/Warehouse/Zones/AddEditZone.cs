@@ -34,9 +34,9 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Warehouse.Zones
 
         public static AddEditZone Instance => Singleton.Value;
 
-        public string GetPageTitle()
+        public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Add/Edit zone");
         }
 
         public bool InsertCode(string value)

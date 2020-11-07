@@ -26,6 +26,11 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.TaskTypes
             PageObjectHelper.Instance.Navigate(baseUrl, taskTypesPageUrl);
         }
 
+        public bool IsPageLoaded()
+        {
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Task types");
+        }
+
         public string GetPageTitle()
         {
             return PageObjectHelper.Instance.GetTextValue(PageHeader, true);

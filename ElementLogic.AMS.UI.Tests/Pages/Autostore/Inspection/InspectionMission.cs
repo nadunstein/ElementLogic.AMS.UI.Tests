@@ -28,10 +28,9 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Inspection
 
         public static InspectionMission Instance => Singleton.Value;
 
-        public string GetPageTitle()
+        public bool IsPageLoaded()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
-            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Inspection", LoadingPanel);
         }
 
         public string GetProductNumberLabelValue()

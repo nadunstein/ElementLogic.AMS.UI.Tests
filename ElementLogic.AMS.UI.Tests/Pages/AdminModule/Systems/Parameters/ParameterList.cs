@@ -21,9 +21,6 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.Parameters
         private const string EditButton =
             "#ctl00_ContentPlaceHolderContent_SearchParamView1_grdParams_ctl00_ctl04_Image1";
 
-        private const string GridParameterValue =
-            "#ctl00_ContentPlaceHolderContent_SearchParamView1_grdParams_ctl00_ctl04_lblValue";
-
         public static ParameterList Instance => Singleton.Value;
 
         public void Navigate()
@@ -33,19 +30,9 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.Parameters
             PageObjectHelper.Instance.Navigate(baseUrl, parameterListUrl);
         }
 
-        public string GetPageTitle()
-        {
-            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
-        }
-
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsDisplayed(PageHeader);
-        }
-
-        public string GetGridParameterValue()
-        {
-            return PageObjectHelper.Instance.GetAttributeValue(GridParameterValue, "innerHTML");
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Parameter list");
         }
 
         public bool InsertParameterCode(string code)

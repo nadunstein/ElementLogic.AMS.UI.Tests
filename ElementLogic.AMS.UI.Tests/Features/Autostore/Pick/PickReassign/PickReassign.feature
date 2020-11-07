@@ -28,7 +28,7 @@ Scenario: Verify reassign pick missions when quantity is reduced during Inventor
 	When I click on 'Yes' button on Confirm Quantity popup in Autostore inventory page
 	Then No more tasks popup is displayed in Autostore inventory mission page
 	When I click on OK button on No more tasks popup in Autostore inventory mission page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded
 	When I click on 'Normal AS' pick task type in AutoStore Main Menu
 	Then The Autostore pick mission '1' is loaded
 	And I verify the Quantity field value is '5' in Autostore Pick Mission page
@@ -42,4 +42,4 @@ Scenario: Verify reassign pick missions when quantity is reduced during Inventor
 	When I click on the confirm button in Autostore Pick Mission page
 	Then The Zero Quantity confirmation popup is displayed in Autostore Pick Mission page
 	When I click on 'Yes' button on Zero Quantity confirmation popup in Autostore Pick Mission page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded

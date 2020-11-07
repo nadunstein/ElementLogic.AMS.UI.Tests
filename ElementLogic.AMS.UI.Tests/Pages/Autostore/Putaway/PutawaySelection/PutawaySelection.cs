@@ -24,13 +24,13 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.PutawaySelection
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsDisplayed(ScanField,false, true);
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Putaway selection",
+                LoadingPanel);
         }
 
-        public string GetPageTitle()
+        public bool IsPageDisplayed()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
-            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
+            return PageObjectHelper.Instance.IsDisplayed(ScanField,false, true);
         }
 
         public bool SelectSearchOnDropdownValue(string dropDownValue)
@@ -57,7 +57,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.PutawaySelection
 
         public void ClickEnterButtonOnScanField()
         {
-            PageObjectHelper.Instance.ClickEnter(ScanField);
+            PageObjectHelper.Instance.ClickEnterButton(ScanField);
         }
 
         private PutawaySelection() { }

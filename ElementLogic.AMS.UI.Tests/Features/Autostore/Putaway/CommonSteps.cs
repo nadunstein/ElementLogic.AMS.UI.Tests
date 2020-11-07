@@ -14,8 +14,8 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Putaway
         [Then(@"I Navigate to Autostore Putaway Selection page")]
         public void ThenINavigateToAutostorePutawaySelectionPage()
         {
-            Assert.AreEqual("Putaway selection", PutawaySelection.Instance.GetPageTitle(),
-                "The putaway selection page is not displayed");
+            Assert.IsTrue(PutawaySelection.Instance.IsPageLoaded(),
+                "The putaway selection page is not Loaded");
         }
 
         [Given(@"I Select the search on as '(.*)' in Autostore Putaway Selection page")]
@@ -121,7 +121,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Putaway
         [Then(@"The Autostore putaway mission '(.*)' is loaded")]
         public void ThenTheAutostorePutawayMissionIsLoaded(int missionNumber)
         {
-            Assert.AreEqual("Putaway", PutawayMission.Instance.GetPageTitle(),
+            Assert.IsTrue(PutawayMission.Instance.IsPageLoaded(),
                 $"Autostore Putaway mission {missionNumber} page is not loaded");
             Assert.IsTrue(PutawayMission.Instance.GetTaskQueueLabelValue(). Contains($"Task {missionNumber} of"),
                 $"The Autostore Putaway mission {missionNumber} is not loaded");

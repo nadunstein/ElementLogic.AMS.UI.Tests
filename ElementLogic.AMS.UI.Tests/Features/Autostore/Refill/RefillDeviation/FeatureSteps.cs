@@ -7,8 +7,6 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Refill.RefillDeviation
     [Binding]
     public class FeatureSteps
     {
-        private readonly ScenarioContext _scenarioContext;
-
         [Then(@"I change the refill quantity as '(.*)' in Autostore Refill mission page")]
         public void ThenIChangeTheRefillQuantityAsInAutostoreRefillMissionPage(string reducedQuantity)
         {
@@ -47,11 +45,6 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Refill.RefillDeviation
         {
             Assert.IsTrue(ConfirmRemainingRefillPopup.Instance.ClickYesButton(),
                 "Unable to click on Yes button on Confirm Remaining Refill Dialog in Autostore Refill mission page");
-        }
-
-        private FeatureSteps(ScenarioContext scenarioContext)
-        {
-            _scenarioContext = scenarioContext;
         }
     }
 }

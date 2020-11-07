@@ -9,8 +9,6 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
 
         private const string LoadingPanel = "#ctl00_pnlDataHider .ModalLoadingPanel";
 
-        private const string TaskQueueLabel = "#ctl00_head_HeaderView_LblTaskQueue";
-
         private const string BoxField = "#ctl00_MonitorContentPlaceholder_PickView_txtBoxInfo";
 
         private const string QuantityField = "#ctl00_MonitorContentPlaceholder_PickView_txtQuantity";
@@ -23,20 +21,14 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
 
         public static PlaceInContainer Instance => Singleton.Value;
 
-        public string GetPageTitle()
+        public bool IsPageLoaded()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
-            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
-        }
-
-        public string GetTaskQueueLabelValue()
-        {
-            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
-            return PageObjectHelper.Instance.GetTextValue(TaskQueueLabel);
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Place in Container", LoadingPanel);
         }
 
         public string GetBoxNumber()
         {
+            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
             return PageObjectHelper.Instance.GetAttributeValue(BoxField, "Value");
         }
 
@@ -62,13 +54,9 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
 
         public bool InsertScanValue(string scanValue)
         {
+            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
             PageObjectHelper.Instance.ScrollToTheElement(ScanField);
             return PageObjectHelper.Instance.InsertField(ScanField, scanValue);
-        }
-
-        public string GetScanFieldValue()
-        {
-            return PageObjectHelper.Instance.GetAttributeValue(ScanField, "value");
         }
 
         public bool ClickConfirmButton()

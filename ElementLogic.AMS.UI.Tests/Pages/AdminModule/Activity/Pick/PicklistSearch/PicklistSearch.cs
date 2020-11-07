@@ -55,9 +55,9 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Pick.PicklistSear
             PageObjectHelper.Instance.RefreshWebPage();
         }
 
-        public string GetPageTitle()
+        public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Pick list search");
         }
 
         public bool InsertPicklistId(string picklistId)

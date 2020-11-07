@@ -21,7 +21,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Warehouse.Zones
             }
 
             WarehouseZoneList.Instance.Navigate();
-            Assert.AreEqual("Warehouse zone list", WarehouseZoneList.Instance.GetPageTitle(),
+            Assert.IsTrue(WarehouseZoneList.Instance.IsPageLoaded(),
                 "The Warehouse Zone List page is NOT loaded");
         }
 
@@ -42,7 +42,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Warehouse.Zones
         [Then(@"The Add/Edit Zone page is loaded")]
         public void ThenTheAddEditZonePageIsLoaded()
         {
-            Assert.AreEqual("Add/Edit zone", AddEditZone.Instance.GetPageTitle(),
+            Assert.IsTrue(AddEditZone.Instance.IsPageLoaded(),
                 "The Add/Edit Zone page is NOT loaded");
         }
 
@@ -108,7 +108,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Warehouse.Zones
         [Then(@"The Warehouse Zone List page is loaded")]
         public void ThenTheWarehouseZoneListPageIsLoaded()
         {
-            Assert.AreEqual("Warehouse zone list", WarehouseZoneList.Instance.GetPageTitle(),
+            Assert.IsTrue(WarehouseZoneList.Instance.IsPageLoaded(),
                 "The Warehouse Zone List page is NOT loaded");
         }
 

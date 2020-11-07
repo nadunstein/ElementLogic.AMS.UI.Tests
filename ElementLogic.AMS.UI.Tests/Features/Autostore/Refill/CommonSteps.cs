@@ -13,7 +13,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Refill
         [Then(@"I Navigate to refill taskgroup selection page in Autostore")]
         public void ThenINavigateToRefillTaskgroupSelectionPageInAutostore()
         {
-            Assert.AreEqual("Task group selection", RefillTaskgroupSelection.Instance.GetPageTitle(),
+            Assert.IsTrue(RefillTaskgroupSelection.Instance.IsPageLoaded(),
                 "The refill taskgroup selection page is not loaded");
         }
 
@@ -28,7 +28,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Refill
         [Then(@"The Autostore Refill mission '(.*)' is loaded")]
         public void ThenTheAutostoreRefillMissionIsLoaded(int missionNumber)
         {
-            Assert.AreEqual("Refill", RefillMission.Instance.GetPageTitle(),
+            Assert.IsTrue(RefillMission.Instance.IsPageLoaded(),
                 "The Autostore Refill page is not loaded");
             var taskQueueLabelValue = RefillMission.Instance.GetTaskQueueLabelValue();
             Assert.IsTrue(taskQueueLabelValue.Contains($"Task {missionNumber} of"),
@@ -85,12 +85,6 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Refill
         {
             Assert.IsTrue(RefillMission.Instance.ClickConfirmButton(),
                 "Unable to click on Confirm button in Autostore Refill mission page");
-
-            if (RefillTaskgroupSelection.Instance.GetPageTitle().Equals("Task group selection"))
-            {
-                Assert.IsTrue(RefillTaskgroupSelection.Instance.ClickExitButton(),
-                    "Unable to click Exit button in refill taskgroup selection page");
-            }
         }
 
         private CommonSteps(ScenarioContext scenarioContext)

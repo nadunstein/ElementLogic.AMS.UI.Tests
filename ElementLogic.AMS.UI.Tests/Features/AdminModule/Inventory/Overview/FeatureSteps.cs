@@ -13,12 +13,14 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Inventory.Overview
         public void GivenINavigateToTheInventoryOrderListPage()
         {
             InventoryOrderList.Instance.Navigate();
+            Assert.IsTrue(InventoryOrderList.Instance.IsPageLoaded(),
+                "The Admin Inventory order list page is not loaded");
         }
 
         [Then(@"The Inventory order list page is loaded")]
         public void ThenTheInventoryOrderListPageIsLoaded()
         {
-            Assert.AreEqual("Inventory order list", InventoryOrderList.Instance.GetPageTitle(),
+            Assert.IsTrue(InventoryOrderList.Instance.IsPageLoaded(),
                 "The Admin Inventory order list page is not loaded");
         }
 
@@ -32,7 +34,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Inventory.Overview
         [Then(@"The Inventory details page is loaded")]
         public void ThenTheInventoryDetailsPageIsLoaded()
         {
-            Assert.AreEqual("Inventory details", InventoryDetails.Instance.GetPageTitle(),
+            Assert.IsTrue(InventoryDetails.Instance.IsPageLoaded(),
                 "The Admin Inventory details page is not loaded");
         }
 

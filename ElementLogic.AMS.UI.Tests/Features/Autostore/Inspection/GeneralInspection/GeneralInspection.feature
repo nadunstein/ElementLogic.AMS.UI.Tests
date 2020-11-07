@@ -15,4 +15,4 @@ Scenario: Perform a General Inspection
 	Then The Autostore Inspection mission page is loaded
 	And I include the actual quantity to the Location Quantity field in Autostore Inspection mission page
 	When I click on Confirm button in Autostore Inspection mission page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded

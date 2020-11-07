@@ -305,6 +305,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\DatabaseQueries\AddedInfoRules.cs" />
     <Compile Include="Data\DatabaseQueries\Container.cs" />
     <Compile Include="Data\DatabaseQueries\Database.cs" />
     <Compile Include="Data\DatabaseQueries\Depth.cs" />
@@ -314,31 +315,25 @@
     <Compile Include="Data\DatabaseQueries\Print.cs" />
     <Compile Include="Data\DatabaseQueries\Product.cs" />
     <Compile Include="Data\DatabaseQueries\ProductLocation.cs" />
+    <Compile Include="Data\DatabaseQueries\BoxType.cs" />
     <Compile Include="Data\DatabaseQueries\ReasonCode.cs" />
     <Compile Include="Data\Manager\ConnectionManager.cs" />
     <Compile Include="ExcelDataAccess\Manager\AccessManager.cs" />
     <Compile Include="ExcelDataAccess\UserCredentials\AccessUserCredentials.cs" />
     <Compile Include="ExtentReports\ExtentReportHooks.cs" />
-    <Compile Include="Features\AbstractWarehouse\A_AddWarehouses\AddWarehouses.feature.cs" />
-    <Compile Include="Features\AbstractWarehouse\B_AddWarehouseZones\AddWarehouseZones.feature.cs" />
-    <Compile Include="Features\AbstractWarehouse\C_AddLocationTypes\AddLocationTypes.feature.cs" />
-    <Compile Include="Features\AbstractWarehouse\D_AddTaskTypes\AddTaskTypes.feature.cs" />
-    <Compile Include="Features\AbstractWarehouse\E_AddEquipments\A_AutostoreGrid\AutostoreGrid.feature.cs" />
-    <Compile Include="Features\AbstractWarehouse\E_AddEquipments\B_AutostorePorts\AutostorePorts.feature.cs" />
-    <Compile Include="Features\AbstractWarehouse\E_AddEquipments\C_AutostoreTaskTrolleys\AutostoreTaskTrolleys.feature.cs" />
-    <Compile Include="Features\AbstractWarehouse\E_AddEquipments\D_AutostoreRefillTrolleys\AutostoreRefillTrolleys.feature.cs" />
-    <Compile Include="Features\AbstractWarehouse\F_AddUsers\AddUsers.feature.cs" />
-    <Compile Include="Features\AbstractWarehouse\G_AddReasonCodes\AddReasonCodes.feature.cs" />
-    <Compile Include="Features\AbstractWarehouse\G_AddReasonCodes\FeatureSteps.cs" />
-    <Compile Include="Features\AbstractWarehouse\H_PrepareAutostore\FeatureSteps.cs" />
-    <Compile Include="Features\AbstractWarehouse\H_PrepareAutostore\PrepareAutostore.feature.cs" />
+    <Compile Include="Features\AbstractWarehouse\H_AddReasonCodes\FeatureSteps.cs" />
+    <Compile Include="Features\AbstractWarehouse\I_AddBoxTypes\FeatureSteps.cs" />
+    <Compile Include="Features\AbstractWarehouse\J_AddAddedInfoRules\FeatureSteps.cs" />
+    <Compile Include="Features\AbstractWarehouse\K_PrepareAutostore\FeatureSteps.cs" />
     <Compile Include="Features\AdminModule\Activity\Pick\PicklistSearch\FeatureSteps.cs" />
     <Compile Include="Features\AdminModule\Activity\UserActivity\FeatureSteps.cs" />
+    <Compile Include="Features\AdminModule\Systems\OrderTypes\FeatureSteps.cs" />
     <Compile Include="Features\Autostore\Inventory\InventoryDeviation\FeatureSteps.cs" />
     <Compile Include="Features\Autostore\Pick\PickDeviation\FeatureSteps.cs" />
     <Compile Include="Features\Autostore\Pick\PickReassign\FeatureSteps.cs" />
     <Compile Include="Features\Autostore\Pick\SecurePicking\FeatureSteps.cs" />
     <Compile Include="Features\Autostore\Pick\SerialNumberRegistration\FeatureSteps.cs" />
+    <Compile Include="Features\Browser\FeatureSteps.cs" />
     <Compile Include="Features\Login\AutostoreMultipleSimultaneousLogin\FeatureSteps.cs" />
     <Compile Include="Features\SupportTasks\FlushInventoryOrders.cs" />
     <Compile Include="Integration\JsonFileReader.cs" />
@@ -384,7 +379,7 @@
     <Compile Include="Pages\AdminModule\Activity\UserActivity\StartedMissionsPopup.cs" />
     <Compile Include="Pages\AdminModule\Activity\UserActivity\TransferUserPopup.cs" />
     <Compile Include="Pages\AdminModule\Activity\UserActivity\UserActivity.cs" />
-    <Compile Include="Pages\AdminModule\Automation\AutostoreEquipmentList\AutoStoreEquipmentList.cs" />
+    <Compile Include="Pages\AdminModule\Automation\AutostoreEquipmentList\AutostoreEquipmentList.cs" />
     <Compile Include="Pages\AdminModule\Automation\AutostoreEquipmentList\LiveFeedStatus\LiveFeedStatus.cs" />
     <Compile Include="Pages\AdminModule\Automation\AutostoreEquipmentList\LiveFeedStatus\SynchronizeTaskGroupsPopup.cs" />
     <Compile Include="Pages\AdminModule\Automation\AutostoreEquipmentList\LiveFeedStatus\SynchronizeBinContentsPopup.cs" />
@@ -393,6 +388,7 @@
     <Compile Include="Pages\AdminModule\Inventory\InventoryCountConfirmationPopup.cs" />
     <Compile Include="Pages\AdminModule\Inventory\InventoryDetails.cs" />
     <Compile Include="Pages\AdminModule\Inventory\InventoryOrderList.cs" />
+    <Compile Include="Pages\AdminModule\Systems\OrderTypes\OrderTypes.cs" />
     <Compile Include="Pages\AdminModule\Systems\Parameters\ParameterEditPopup.cs" />
     <Compile Include="Pages\AdminModule\Systems\Parameters\ParameterList.cs" />
     <Compile Include="Pages\AdminModule\Systems\TaskTypes\EditTask.cs" />
@@ -442,6 +438,7 @@
     <Compile Include="Pages\Autostore\Refill\RefillTaskgroupSelection.cs" />
     <Compile Include="Pages\Autostore\TaskMenu\AutostoreTaskMenu.cs" />
     <Compile Include="Pages\Autostore\TaskMenu\DuplicateLoginConfirmationPopup.cs" />
+    <Compile Include="Pages\Browser\Browser.cs" />
     <Compile Include="Pages\Login\Login.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestDataPreparationHelper\ApiDataFactory\ApiDataFactory.cs" />
@@ -469,13 +466,16 @@
     <None Include="Features\AbstractWarehouse\B_AddWarehouseZones\AddWarehouseZones.feature" />
     <None Include="Features\AbstractWarehouse\C_AddLocationTypes\AddLocationTypes.feature" />
     <None Include="Features\AbstractWarehouse\D_AddTaskTypes\AddTaskTypes.feature" />
-    <None Include="Features\AbstractWarehouse\E_AddEquipments\A_AutostoreGrid\AutostoreGrid.feature" />
-    <None Include="Features\AbstractWarehouse\E_AddEquipments\B_AutostorePorts\AutostorePorts.feature" />
-    <None Include="Features\AbstractWarehouse\E_AddEquipments\C_AutostoreTaskTrolleys\AutostoreTaskTrolleys.feature" />
-    <None Include="Features\AbstractWarehouse\E_AddEquipments\D_AutostoreRefillTrolleys\AutostoreRefillTrolleys.feature" />
-    <None Include="Features\AbstractWarehouse\F_AddUsers\AddUsers.feature" />
-    <None Include="Features\AbstractWarehouse\G_AddReasonCodes\AddReasonCodes.feature" />
-    <None Include="Features\AbstractWarehouse\H_PrepareAutostore\PrepareAutostore.feature" />
+    <None Include="Features\AbstractWarehouse\E_AddOrderTypes\AddOrderTypes.feature" />
+    <None Include="Features\AbstractWarehouse\F_AddEquipments\A_AutostoreGrid\AutostoreGrid.feature" />
+    <None Include="Features\AbstractWarehouse\F_AddEquipments\B_AutostorePorts\AutostorePorts.feature" />
+    <None Include="Features\AbstractWarehouse\F_AddEquipments\C_AutostoreTaskTrolleys\AutostoreTaskTrolleys.feature" />
+    <None Include="Features\AbstractWarehouse\F_AddEquipments\D_AutostoreRefillTrolleys\AutostoreRefillTrolleys.feature" />
+    <None Include="Features\AbstractWarehouse\G_AddUsers\AddUsers.feature" />
+    <None Include="Features\AbstractWarehouse\H_AddReasonCodes\AddReasonCodes.feature" />
+    <None Include="Features\AbstractWarehouse\I_AddBoxTypes\AddBoxTypes.feature" />
+    <None Include="Features\AbstractWarehouse\J_AddAddedInfoRules\AddAddedInfoRules.feature" />
+    <None Include="Features\AbstractWarehouse\K_PrepareAutostore\PrepareAutostore.feature" />
     <None Include="Features\AdminModule\Activity\Refill\Search\RefillSearch.feature" />
     <None Include="Features\AdminModule\Activity\Refill\Search\TestData\FifthScenarioTestData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -558,6 +558,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Features\Autostore\Pick\FinishOrders\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\LiveFeedStatus\LiveFeedStatus.feature" />
+    <None Include="Features\Autostore\Pick\LiveFeedStatus\TestData\FirstScenarioTestData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Features\Autostore\Pick\MaxQuantityPopup\MaxQuantityPopup.feature" />
@@ -664,13 +668,12 @@
   <ItemGroup>
     <Content Include="Drivers\ChromeDriver\chromedriver.exe" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\SeleniumDlls\SeleniumEssential\SeleniumEssential\SeleniumEssential.csproj">
-      <Project>{8f61b1ab-079b-4732-9704-5e1cf4d604c9}</Project>
+    <ProjectReference Include="..\SeleniumEssential\SeleniumEssential.csproj">
+      <Project>{3823acca-450b-4ad4-b89a-5a17b308711c}</Project>
       <Name>SeleniumEssential</Name>
     </ProjectReference>
   </ItemGroup>

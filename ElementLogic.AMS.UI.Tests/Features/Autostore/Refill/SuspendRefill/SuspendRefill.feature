@@ -3,7 +3,7 @@
 
 Background: 
 	Given I login to the AdminModule as 'Admin' user
-	And I navigate to Refill Order List page in Admin Module
+	And I navigate to Refill Order List page
 	And I select a trolley from Trolley drop down in Refill Order List page
 	And I include the 'ScanCode' to the scan Id field in Refill Order List page
 	When I click on Confirm button in Refill Order List page
@@ -31,7 +31,7 @@ Scenario: Suspend A Refill Taskgroup And Continue With Another User
 	When I Click on Yes button in Confirm Task Exit dialog in Autostore Refill mission page
 	Then I Navigate to refill taskgroup selection page in Autostore
 	When I click on Exit button from refill taskgroup selection page in Autostore
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded
 	When I click on Logout button in Autostore task menu
 	Then The Autostore login page is loaded
 	Given I login to the Autostore port '06' as 'UserSix' user
@@ -41,6 +41,6 @@ Scenario: Suspend A Refill Taskgroup And Continue With Another User
 	Then The Autostore Refill mission '2' is loaded
 	And I check the refill product Id is correct in Autostore Refill mission page
 	When I click on Confirm button in Autostore Refill mission page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded
 	When I click on Logout button in Autostore task menu
 	Then The Autostore login page is loaded

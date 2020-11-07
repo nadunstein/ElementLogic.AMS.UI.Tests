@@ -15,4 +15,4 @@ Scenario: Verify pick place page is loading for the last mission of the pick tas
 	When I click on the confirm button in Autostore Pick Mission page
 	Then The AutoStore Place in Container page is loaded
 	When I click on the Confirm button in AutoStore Place in Container page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded

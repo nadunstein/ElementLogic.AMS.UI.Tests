@@ -35,9 +35,9 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Warehouse.Warehouses
             PageObjectHelper.Instance.Navigate(baseUrl, warehouseListPageUrl);
         }
 
-        public string GetPageTitle()
+        public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Warehouse list");
         }
 
         public bool ClickAddButton()

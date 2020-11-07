@@ -49,9 +49,9 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Warehouse.LocationTypes
             PageObjectHelper.Instance.Navigate(baseUrl, locationTypeListPageUrl);
         }
 
-        public string GetPageTitle()
+        public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Location type list");
         }
 
         public bool IsFirstSearchResultRowDisplayed()

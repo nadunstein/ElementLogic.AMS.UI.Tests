@@ -46,6 +46,11 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Refill
             PageObjectHelper.Instance.Navigate(baseUrl, refillOrderListPageUrl);
         }
 
+        public bool IsPageLoaded()
+        {
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Refill order list");
+        }
+
         public string GetPageTitle()
         {
             return PageObjectHelper.Instance.GetTextValue(PageHeader, true);

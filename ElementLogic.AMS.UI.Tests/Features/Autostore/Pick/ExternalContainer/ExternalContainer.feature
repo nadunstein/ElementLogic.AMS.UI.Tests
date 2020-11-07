@@ -13,7 +13,7 @@ Scenario: Verify single step picking with one open external container
 	And I include the container scan value as 'Empty' to the container scan field in Autostore Pick Mission page
 	When I click on the confirm button in Autostore Pick Mission page
 	Then The 'Scan value is empty' Validation message is displayed in Autostore Place in Container page
-	And I click on OK button in container validation popup in AutoStore Pick Mission page	
+	And I click on OK button in container validation popup in AutoStore Pick Mission page
 	And I include the container scan value as 'CO-1234567' to the container scan field in Autostore Pick Mission page
 	When I click on the confirm button in Autostore Pick Mission page
 	Then The 'The scanned container ID ('CO-1234567') is not valid for the pick list' Validation message is displayed in Autostore Place in Container page
@@ -29,7 +29,7 @@ Scenario: Verify single step picking with one open external container
 	Then The Autostore pick mission '3' is loaded
 	And I verify the container scan field is not displayed in Autostore Pick Mission page
 	When I click on the confirm button in Autostore Pick Mission page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded
 
 @Pick
 @Regression
@@ -60,7 +60,7 @@ Scenario: Verify two step picking with one open external container
 	And I verify the scan field is displayed in AutoStore Place in Container page
 	And I include the container scan value as 'CO-2345' to the container scan field in Autostore Place in Container page
 	When I click on the Confirm button in AutoStore Place in Container page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded
 
 @Pick
 @Regression
@@ -104,7 +104,7 @@ Scenario: Verify the behavior of Add new container popup with External and Inter
 	And I verify the container scan field is displayed in Autostore Pick Mission page
 	And I include the container scan value as 'CO-2345' to the container scan field in Autostore Pick Mission page
 	When I click on the confirm button in Autostore Pick Mission page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded
 
 @Pick
 @Regression
@@ -137,7 +137,7 @@ Scenario: Verify pick place previous mission with External containers
 	Then The Autostore pick mission '2' is loaded
 	And I verify the container scan field is not displayed in Autostore Pick Mission page
 	When I click on the confirm button in Autostore Pick Mission page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded
 
 @Pick
 @Regression
@@ -168,7 +168,7 @@ Scenario: Verify two step picking with two open external containers
 	And I verify the scan field is displayed in AutoStore Place in Container page
 	And I include the container scan value as 'CO-1234' to the container scan field in Autostore Place in Container page
 	When I click on the Confirm button in AutoStore Place in Container page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded
 
 @Pick
 @Regression
@@ -190,7 +190,7 @@ Scenario: Verify customer batch picking with External containers
 	Then The Autostore pick mission '3' is loaded
 	And I verify the container scan field is not displayed in Autostore Pick Mission page
 	When I click on the confirm button in Autostore Pick Mission page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded
 
 @Pick
 @Regression
@@ -215,4 +215,4 @@ Scenario: Verify product batch picking with External containers
 	And I verify the container scan field is displayed in Autostore Pick Mission page
 	And I include the container scan value as 'CO-1236' to the container scan field in Autostore Pick Mission page
 	When I click on the confirm button in Autostore Pick Mission page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded

@@ -26,14 +26,13 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Refill
 
         public static RefillMission Instance => Singleton.Value;
 
-        public string GetPageTitle()
+        public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Refill", LoadingPanel);
         }
 
         public string GetTaskQueueLabelValue()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
             return PageObjectHelper.Instance.GetTextValue(TaskQueueLabel);
         }
 

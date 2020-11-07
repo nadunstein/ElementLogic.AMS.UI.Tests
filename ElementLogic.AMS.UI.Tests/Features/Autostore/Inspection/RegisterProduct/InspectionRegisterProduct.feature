@@ -20,4 +20,4 @@ Scenario: Register product during Autostore Inspection
 	When I click the OK button in Autostore Inspection Register Product popup in Autostore Inspection mission page
 	Then The Autostore Inspection mission page is loaded
 	When I click on Confirm button in Autostore Inspection mission page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded

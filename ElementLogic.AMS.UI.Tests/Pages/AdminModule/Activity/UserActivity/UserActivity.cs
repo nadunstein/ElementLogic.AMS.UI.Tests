@@ -23,6 +23,15 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.UserActivity
         private const string TaskgroupIdDropdownSlide =
             "#ctl00_ContentPlaceHolderContent_UserActivityView_RadPanelBar1_i0_flbTaskGroupId_InputTemplateItem_CmbTaskGroupId_DropDown .rcbList";
 
+        private const string PicklistIdField =
+            "#ctl00_ContentPlaceHolderContent_UserActivityView_RadPanelBar1_i0_flbPicklistId_InputTemplateItem_CmbPicklistId_Input";
+
+        private const string PicklistIdDropdownSlide =
+            "#ctl00_ContentPlaceHolderContent_UserActivityView_RadPanelBar1_i0_flbPicklistId_InputTemplateItem_CmbPicklistId_DropDown .rcbList";
+
+        private const string StatusDropdown =
+            "#ctl00_ContentPlaceHolderContent_UserActivityView_RadPanelBar1_i0_flbStatus_InputTemplateItem_ddlStatus";
+
         private const string SearchButton =
             "#ctl00_ContentPlaceHolderContent_UserActivityView_RadPanelBar1_i0_btnSearch";
 
@@ -49,15 +58,27 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.UserActivity
             PageObjectHelper.Instance.Navigate(baseUrl, picklistSearchPageUrl);
         }
 
-        public string GetPageTitle()
+        public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "User activity search");
         }
 
-        public bool InsertTaskgroupId(string picklistId)
+        public bool InsertTaskgroupId(string taskgroupId)
         {
             return PageObjectHelper.Instance.SelectSearchDropDown(TaskgroupIdField, TaskgroupIdDropdownSlide, 
+                "li", taskgroupId);
+        }
+
+        public bool InsertPicklistId(string picklistId)
+        {
+            return PageObjectHelper.Instance.SelectSearchDropDown(PicklistIdField, PicklistIdDropdownSlide,
                 "li", picklistId);
+        }
+
+        public bool SelectStatus(string statusToBeSelected)
+        {
+            PageObjectHelper.Instance.WaitUntilInvisible(PageLoadingPanel);
+            return PageObjectHelper.Instance.SelectDropDown(StatusDropdown, statusToBeSelected);
         }
 
         public bool ClickSearchButton()

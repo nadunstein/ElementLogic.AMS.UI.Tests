@@ -24,7 +24,7 @@ Scenario: Verify a putaway order can be continued with two users
     And I click Yes button in Delete Incomplete Tasks popup 
 	Then I Navigate to Autostore Putaway Selection page
 	And I click on Exit button in Autostore Putaway Selection page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded
 	When I click on Logout button in Autostore task menu
 	Then The Autostore login page is loaded
 	Given I login to the Autostore port '04' as 'UserFour' user
@@ -45,6 +45,6 @@ Scenario: Verify a putaway order can be continued with two users
 	When I click enter button in Autostore putaway mission page
 	Then I Navigate to Autostore Putaway Selection page
 	And I click on Exit button in Autostore Putaway Selection page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded
 	When I click on Logout button in Autostore task menu
 	Then The Autostore login page is loaded

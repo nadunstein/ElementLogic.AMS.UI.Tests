@@ -20,4 +20,4 @@ Scenario: Verify the container can be split for a PickOrder when the taskgroup h
 	Then The AutoStore Place in Container page is loaded
 	And I verify the Quantity field value is '2' in Autostore Place in Container page
 	When I click on the Confirm button in AutoStore Place in Container page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded

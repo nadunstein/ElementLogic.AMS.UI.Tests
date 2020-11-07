@@ -4,7 +4,7 @@
 
 Background:
 	Given I login to the AdminModule as 'Admin' user
-	And I navigate to Refill Order List page in Admin Module
+	And I navigate to Refill Order List page
 	And I select a trolley from Trolley drop down in Refill Order List page
 
 @Regression

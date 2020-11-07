@@ -15,12 +15,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Inspection
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsDisplayed(LocationField, true);
-        }
-
-        public string GetPageTitle()
-        {
-            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Inspection - Create task");
         }
 
         public bool IncludeLocationValue(string location)

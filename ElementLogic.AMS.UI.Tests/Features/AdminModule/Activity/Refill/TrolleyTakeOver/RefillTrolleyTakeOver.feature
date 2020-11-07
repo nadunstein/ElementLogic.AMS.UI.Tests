@@ -6,7 +6,7 @@
 @AdminModule:Activity:Refill:TrolleyTakeOver
 Scenario: Verify the refill trolley can be taken over by another user
 	Given I login to the AdminModule as 'Admin' user
-	And I navigate to Refill Order List page in Admin Module
+	And I navigate to Refill Order List page
 	And I select a trolley from Trolley drop down in Refill Order List page
 	And I include the 'ScanCode' to the scan Id field in Refill Order List page
 	When I click on Confirm button in Refill Order List page
@@ -20,7 +20,7 @@ Scenario: Verify the refill trolley can be taken over by another user
 	| OrderLineId | ProductId | ProductName       | Scancode     | Quantity |
 	| 1           | ASRP15    | ASRefillProduct15 | RefillProd15 | 1        |
 	Given I login to the AdminModule as 'UserOne' user
-	And I navigate to Refill Order List page in Admin Module
+	And I navigate to Refill Order List page
 	And I select the same trolley from Trolley drop down in Refill Order List page
 	And The Take over trolley popup is displayed in Refill Order List page
 	When I click on YES button on Take over trolley popup in Refill Order List page

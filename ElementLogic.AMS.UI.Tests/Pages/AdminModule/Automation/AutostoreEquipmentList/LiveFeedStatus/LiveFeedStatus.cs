@@ -9,7 +9,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Automation.AutostoreEquipm
     {
         private const string PageHeader = "#live-feed .container-fluid h3";
         
-        private const string LiveFeedTable = "#live-feed table";
+        private const string LiveFeedTable = "#live-feed table tbody";
         
         private const string LiveFeedActions = "tbody tr";
         
@@ -29,19 +29,14 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Automation.AutostoreEquipm
             PageObjectHelper.Instance.Navigate(baseUrl, liveFeedStatusPageUrl);
         }
 
-        public string GetPageTitle()
+        public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Live feed status");
         }
 
         public bool IsLiveFeedActionListed(string liveFeedAction)
         {
-            var actions = PageObjectHelper.Instance.Finds(
-                LiveFeedActions, LiveFeedTable);
-
-            return actions
-                .Select(action => PageObjectHelper.Instance.Finds("td", action))
-                .Any(actionColumns => actionColumns[1].Text.Contains(liveFeedAction));
+            return PageObjectHelper.Instance.TableDataExists(LiveFeedTable, 2, liveFeedAction);
         }
 
         public bool ClickShowHideResponsesButton()
@@ -53,29 +48,15 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Automation.AutostoreEquipm
         {
             var actions = PageObjectHelper.Instance.Finds(
                 LiveFeedActions, LiveFeedTable);
-
-            foreach (var action in actions)
-            {
-                var actionColumns = PageObjectHelper.Instance.Finds("td", action);
-                if (!actionColumns[1].Text.Contains(liveFeedAction))
-                {
-                    continue;
-                }
-
-                try
-                {
-                    return PageObjectHelper.Instance.Finds("td", action)[3].Displayed;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
-            }
-
-            return false;
+            return (from action in actions
+                let actionColumns = PageObjectHelper.Instance.Finds("td", action)
+                where actionColumns[1].Text.Contains(liveFeedAction)
+                select PageObjectHelper.Instance.Finds("td", action)
+                into tableRowData
+                select PageObjectHelper.Instance.IsDisplayed(tableRowData[3])).FirstOrDefault();
         }
 
-        public string GetLiveFeedXml(string xmlType, string liveFeedAction)
+        public string GetLiveMessage(string liveFeedActionMessageType, string liveFeedAction)
         {
             var actions = PageObjectHelper.Instance.Finds(
                 LiveFeedActions, LiveFeedTable);
@@ -84,7 +65,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Automation.AutostoreEquipm
                 select PageObjectHelper.Instance.Finds("td", action)
                 into actionColumns
                 where actionColumns[1].Text.Contains(liveFeedAction)
-                select xmlType switch
+                select liveFeedActionMessageType switch
                 {
                     "Request" => actionColumns[2].Text,
                     "Response" => actionColumns[3].Text,

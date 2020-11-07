@@ -4,64 +4,37 @@ using SeleniumEssential;
 
 namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Automation.AutostoreEquipmentList
 {
-    public class AutoStoreEquipmentList
+    public class AutostoreEquipmentList
     {
         private const string PageHeader =
-            "#ctl00_ctl00_ContentPlaceHolderContent_ContentPlaceHolderContent_StatusView1_lblHeader";
+            "#ctl00_ContentPlaceHolderContent_StatusView1_lblHeader";
 
         private const string EquipmentListTable =
-            "#ctl00_ctl00_ContentPlaceHolderContent_ContentPlaceHolderContent_StatusView1_resultGrid_ctl00";
+            "#ctl00_ContentPlaceHolderContent_StatusView1_resultGrid_ctl00 tbody";
 
-        public static AutoStoreEquipmentList Instance => Singleton.Value;
+        public static AutostoreEquipmentList Instance => Singleton.Value;
 
         public void Navigate()
         {
             const string autostoreEquipmentListPageUrl = "/Pages/Controller/Status.aspx";
-            string baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url"); ; 
+            string baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
             PageObjectHelper.Instance.Navigate(baseUrl, autostoreEquipmentListPageUrl);
         }
 
-        public string GetPageTitle()
+        public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "AutoStore equipment list");
         }
 
-        public bool ClickAutostoreEquipmentLink(string autostoreEquipment)
+        public bool SelectAutostoreEquipment(string equipmentName)
         {
-            var attempts = 0;
-            while (attempts < 20)
-            {
-                try
-                {
-                    var equipments = PageObjectHelper.Instance.Finds("[class*=Row]",
-                        EquipmentListTable);
-                    foreach (var equipment in equipments)
-                    {
-                        var equipmentDetails = PageObjectHelper.Instance.Finds("td", equipment);
-                        var equipmentNameElement = PageObjectHelper.Instance.Finds("a", equipmentDetails[1]);
-                        if (!equipmentNameElement[1].Text.Contains(autostoreEquipment))
-                        {
-                            continue;
-                        }
-
-                        return PageObjectHelper.Instance.Click(equipmentNameElement[1]);
-                    }
-                }
-                catch (Exception)
-                {
-                    // ignored
-                }
-
-                PageObjectHelper.Instance.Wait(0.5);
-                attempts++;
-            }
-
-            return false;
+            return PageObjectHelper.Instance.SearchAndClickTableCellItem(EquipmentListTable, 2,
+                equipmentName, 2, "a");
         }
 
-        private AutoStoreEquipmentList() { }
+        private AutostoreEquipmentList() { }
 
-        private static readonly Lazy<AutoStoreEquipmentList> Singleton =
-            new Lazy<AutoStoreEquipmentList>(() => new AutoStoreEquipmentList());
+        private static readonly Lazy<AutostoreEquipmentList> Singleton =
+            new Lazy<AutostoreEquipmentList>(() => new AutostoreEquipmentList());
     }
 }

@@ -41,6 +41,12 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.PutawaySelection
 
         public bool InsertMaxLocationQuantity(string quantity)
         {
+            var isFieldFocused = PageObjectHelper.Instance.IsFocused(MaxLocationQuantityField);
+            if (!isFieldFocused)
+            {
+                PageObjectHelper.Instance.ClickTabButton(PutawayQuantityField);    
+            }
+
             return PageObjectHelper.Instance.InsertField(MaxLocationQuantityField, quantity);
         }
 

@@ -20,13 +20,23 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Activity.UserActivity
         public void GivenINavigateToUserActivityPage()
         {
             UserActivityPage.Instance.Navigate();
+            Assert.IsTrue(UserActivityPage.Instance.IsPageLoaded(),
+                "The User Activity page is not loaded");
         }
 
-        [Then(@"The User Activity page is loaded")]
-        public void ThenTheUserActivityPageIsLoaded()
+        [Then(@"I include picklist id to the Pick list ID field in User Activity page")]
+        public void ThenIIncludePicklistIdToThePickListIdFieldInUserActivityPage()
         {
-            Assert.AreEqual("User activity search", UserActivityPage.Instance.GetPageTitle(),
-                "The User Activity page is not loaded");
+            var picklistId = _scenarioContext["PicklistId"].ToString();
+            Assert.IsTrue(UserActivityPage.Instance.InsertPicklistId(picklistId),
+                "Unable to include picklist id to the Pick list ID field in User Activity page");
+        }
+
+        [Then(@"I Select status as '(.*)' from Status dropdown in User Activity page")]
+        public void ThenISelectStatusAsFromStatusDropdownInUserActivityPage(string statusToBeSelected)
+        {
+            Assert.IsTrue(UserActivityPage.Instance.SelectStatus(statusToBeSelected),
+                $"Unable to select status as '{statusToBeSelected}' from Status dropdown in User Activity page");
         }
 
         [Then(@"I include Taskgroup id to the Task group ID field in User Activity page")]

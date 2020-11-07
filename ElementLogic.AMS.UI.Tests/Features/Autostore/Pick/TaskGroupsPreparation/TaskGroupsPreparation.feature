@@ -21,9 +21,9 @@ Scenario: Verify Autostore taskgroup preparation when prepared taskgroup count g
 	When I click on the confirm button in Autostore Pick Mission page
 	Then The taskgroup completed popup is displayed in Autostore Pick Mission page
 	When I click on 'Exit' button on taskgroup completed popup in Autostore Pick Mission page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded
 	When I click on 'PrepTaskgroup' pick task type in AutoStore Main Menu
 	Then The Autostore pick mission '1' is loaded
 	When I click on Exit button in Autostore Pick Mission page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded
 	Then I verify the prepared taskgroup count is '5' for 'PrepTaskgroup' pick task type in AutoStore Main Menu

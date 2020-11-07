@@ -51,9 +51,9 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Inventory
 
         public static InventoryDetails Instance => Singleton.Value;
 
-        public string GetPageTitle()
+        public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Inventory details");
         }
 
         public bool ClickRemoveButton()
@@ -112,7 +112,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Inventory
 
         public string GetMaximumLinesPerFieldValue()
         {
-            return PageObjectHelper.Instance.GetAttributeValue(MaximumLinesPerTaskgroupField, "Value");
+            return PageObjectHelper.Instance.GetAttributeValue(MaximumLinesPerTaskgroupField, "value");
         }
 
         public bool SelectActionMenuOption(string option)

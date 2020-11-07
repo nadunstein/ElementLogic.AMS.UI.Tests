@@ -21,7 +21,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Warehouse.Equipment
             }
 
             EquipmentList.Instance.Navigate();
-            Assert.AreEqual("Equipment list", EquipmentList.Instance.GetPageTitle(),
+            Assert.IsTrue(EquipmentList.Instance.IsPageLoaded(),
                 "The Equipment List page is NOT loaded");
         }
 
@@ -42,7 +42,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Warehouse.Equipment
         [Then(@"The Add/Edit equipment page is loaded")]
         public void ThenTheAddEditEquipmentPageIsLoaded()
         {
-            Assert.AreEqual("Add/Edit equipment", AddEditEquipment.Instance.GetPageTitle(),
+            Assert.IsTrue(AddEditEquipment.Instance.IsPageLoaded(),
                 "The Add/Edit equipment page is NOT loaded");
         }
 
@@ -95,7 +95,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Warehouse.Equipment
                         Assert.True(EquipmentInfoPopUp.Instance.IsPopUpDisplayed(),
                             "The Activation Info popup is not displayed");
                         EquipmentInfoPopUp.Instance.ClickYesButton();
-                        Assert.AreEqual("Add/Edit equipment", AddEditEquipment.Instance.GetPageTitle(),
+                        Assert.IsTrue(AddEditEquipment.Instance.IsPageLoaded(),
                             "The Add/Edit equipment page is NOT loaded");
                         break;
 
@@ -206,7 +206,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Warehouse.Equipment
         [Then(@"The Equipment list page is loaded")]
         public void ThenTheEquipmentListPageIsLoaded()
         {
-            Assert.AreEqual("Equipment list", EquipmentList.Instance.GetPageTitle(),
+            Assert.IsTrue(EquipmentList.Instance.IsPageLoaded(),
                 "The Equipment List page is NOT loaded");
         }
 
@@ -240,7 +240,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Warehouse.Equipment
         [Then(@"The Edit shelf page is loaded")]
         public void ThenTheEditShelfPageIsLoaded()
         {
-            Assert.AreEqual("Shelf", EditShelf.Instance.GetPageTitle(),
+            Assert.IsTrue(EditShelf.Instance.IsPageLoaded(),
                 "The Edit shelf page is NOT loaded");
         }
 

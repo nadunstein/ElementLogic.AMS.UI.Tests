@@ -13,12 +13,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Activity.Pick.PicklistS
         public void GivenINavigateToPicklistSearchPageInAdminModule()
         {
             PicklistSearchPage.Instance.Navigate();
-        }
-
-        [Then(@"The Picklist Search page is loaded")]
-        public void ThenThePicklistSearchPageIsLoaded()
-        {
-            Assert.AreEqual("Pick list search", PicklistSearchPage.Instance.GetPageTitle(),
+            Assert.IsTrue(PicklistSearchPage.Instance.IsPageLoaded(),
                 "The Picklist Search page is not loaded");
         }
 

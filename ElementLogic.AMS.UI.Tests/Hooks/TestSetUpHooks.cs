@@ -77,11 +77,14 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
         [AfterScenario(Order = 2)]
         public void ResetSystemParametersAfterTestRun()
         {
-            var parametersToBeChanged = SetUpParameters.Instance.GetParametersToBeReset();
-            foreach (var parameterToBeChanged in parametersToBeChanged)
+            if (!_scenarioContext.ScenarioInfo.Tags.Contains("WarehouseImplementationTest"))
             {
-                SetUpParameters.Instance.ChangeTheParameterValue(parameterToBeChanged.ParameterName,
-                    parameterToBeChanged.ParameterValue);
+                var parametersToBeChanged = SetUpParameters.Instance.GetParametersToBeReset();
+                foreach (var parameterToBeChanged in parametersToBeChanged)
+                {
+                    SetUpParameters.Instance.ChangeTheParameterValue(parameterToBeChanged.ParameterName,
+                        parameterToBeChanged.ParameterValue);
+                }
             }
 
             SetUpParameters.Instance.FlushParametersToBeReset();

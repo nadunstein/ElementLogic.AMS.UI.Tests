@@ -2,7 +2,7 @@
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
-namespace ElementLogic.AMS.UI.Tests.Features.AbstractWarehouse.G_AddReasonCodes
+namespace ElementLogic.AMS.UI.Tests.Features.AbstractWarehouse.H_AddReasonCodes
 {
     [Binding]
     public class FeatureSteps

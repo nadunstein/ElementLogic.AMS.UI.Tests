@@ -27,9 +27,9 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.Mission
 
         public static PutawayMission Instance => Singleton.Value;
 
-        public string GetPageTitle()
+        public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
+            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Putaway");
         }
 
         public bool ClickExitButton()
@@ -97,7 +97,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.Mission
 
         public void ClickEnterButtonOnQuantityField()
         {
-            PageObjectHelper.Instance.ClickEnter(QuantityField);
+            PageObjectHelper.Instance.ClickEnterButton(QuantityField);
         }
 
         private PutawayMission() { }

@@ -3,7 +3,7 @@
 
 Background: 
 	Given I login to the AdminModule as 'Admin' user
-	And I navigate to Refill Order List page in Admin Module
+	And I navigate to Refill Order List page
 	And I select a trolley from Trolley drop down in Refill Order List page
 	And I include the 'ScanCode' to the scan Id field in Refill Order List page
 	When I click on Confirm button in Refill Order List page
@@ -26,4 +26,4 @@ Scenario: Perform A Normal Autostore Refill
 	And I check the refill product Id is correct in Autostore Refill mission page
 	And I check the Refill Product Quantity is correct in Autostore Refill mission page
 	When I click on Confirm button in Autostore Refill mission page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded

@@ -3,6 +3,7 @@ using System.Threading;
 using ElementLogic.AMS.UI.Tests.Features.SupportTasks;
 using ElementLogic.AMS.UI.Tests.Pages.Autostore.Inventory;
 using ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick;
+using ElementLogic.AMS.UI.Tests.Pages.Autostore.Refill;
 using ElementLogic.AMS.UI.Tests.Pages.Autostore.TaskMenu;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -15,11 +16,11 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
     [Binding]
     public class FeatureSteps
     {
-        [Then(@"The Autostore task Menu is displayed")]
-        public void ThenTheAutostoreTaskMenuIsDisplayed()
+        [Then(@"The Autostore task Menu is loaded")]
+        public void ThenTheAutostoreTaskMenuIsLoaded()
         {
             ExitFromPickActivity();
-            Assert.AreEqual("AutoStore task menu", AutostoreTaskMenu.Instance.GetPageTitle(),
+            Assert.IsTrue(AutostoreTaskMenu.Instance.IsPageLoaded(),
                 "The Autostore task Menu is not displayed");
         }
 
@@ -41,7 +42,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
         public void ThenIVerifyThePreparedTaskgroupCountIsForPickTaskTypeInAutoStoreMainMenu(int taskgroupCount, string pickTaskType)
         {
             var isPickTaskgroupPreparedCountCorrect =
-                RetryPreparePickWhileSuccess(TryPreparePickActivities, taskgroupCount, pickTaskType, 5);
+                RetryPreparePickWhileSuccess(TryPreparePickActivities, taskgroupCount, pickTaskType, 10);
             Assert.IsTrue(isPickTaskgroupPreparedCountCorrect,
                 $"The prepared pick taskgroup count is wrong for {pickTaskType} in AutoStore task menu");
         }
@@ -77,7 +78,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
         {
             Assert.IsTrue(AutostoreTaskMenu.Instance.ClickInventoryTaskType("Inventory"),
                 "Unable to Click on Inventory tile in AutoStore Main Menu");
-            Assert.AreEqual("Inventory", InventoryMission.Instance.GetPageTitle(),
+            Assert.IsTrue(InventoryMission.Instance.IsPageLoaded(),
                 "Autostore Inventory mission page is not loaded");
             if (InventoryMission.Instance.IsInventoryMissionLoaded())
             {
@@ -86,7 +87,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
 
             InventoryNoMoreTasksPopup.Instance.IsPopupDisplayed();
             InventoryNoMoreTasksPopup.Instance.ClickOkButton();
-            AutostoreTaskMenu.Instance.GetPageTitle();
+            AutostoreTaskMenu.Instance.IsPageLoaded();
             return false;
         }
 
@@ -112,9 +113,9 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
                 {
                     SynchronizeTaskGroups.Instance.DoAutostoreTaskGroupSync();
                     LoginPage.Instance.NavigateToAutoStore("01");
-                    LoginPage.Instance.IsLoginPageLoaded();
+                    LoginPage.Instance.IsPageLoaded();
                     LoginPage.Instance.LoginToApplication("Admin");
-                    Assert.AreEqual("AutoStore task menu", AutostoreTaskMenu.Instance.GetPageTitle(),
+                    Assert.IsTrue(AutostoreTaskMenu.Instance.IsPageLoaded(),
                         "The Autostore task Menu is not loaded");
                     return false;
                 }
@@ -152,9 +153,9 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
 
                 SynchronizeTaskGroups.Instance.DoAutostoreTaskGroupSync();
                 LoginPage.Instance.NavigateToAutoStore("01");
-                LoginPage.Instance.IsLoginPageLoaded();
+                LoginPage.Instance.IsPageLoaded();
                 LoginPage.Instance.LoginToApplication("Admin");
-                AutostoreTaskMenu.Instance.GetPageTitle();
+                AutostoreTaskMenu.Instance.IsPageLoaded();
                 AutostoreTaskMenu.Instance.ClickPickTaskType(pickTaskType);
                 PickNoMoreTasksPopup.Instance.IsPopupDisplayed();
                 PickMission.Instance.ClickExitButton();
@@ -186,12 +187,21 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
             {
                 var noMoreTasksPopupDisplayed = PickNoMoreTasksPopup.Instance.IsPopupLoaded();
                 var autoStoreTaskMenuDisplayed = AutostoreTaskMenu.Instance.IsPageDisplayed();
+                var refillTaskgroupSelectionPageDisplayed = RefillTaskgroupSelection.Instance.IsPageDisplayed();
 
                 if (noMoreTasksPopupDisplayed)
                 {
                     Assert.IsTrue(PickNoMoreTasksPopup.Instance.ClickOkButton(),
                         "Unable to click OK button on No more pick task popup after the pick activity");
-                    Assert.AreEqual("AutoStore task menu", AutostoreTaskMenu.Instance.GetPageTitle(),
+                    Assert.IsTrue(AutostoreTaskMenu.Instance.IsPageLoaded(),
+                        "The Autostore task Menu is not loaded");
+                    break;
+                }
+
+                if (refillTaskgroupSelectionPageDisplayed)
+                {
+                    Assert.IsTrue(RefillTaskgroupSelection.Instance.ClickExitButton());
+                    Assert.IsTrue(AutostoreTaskMenu.Instance.IsPageLoaded(),
                         "The Autostore task Menu is not loaded");
                     break;
                 }

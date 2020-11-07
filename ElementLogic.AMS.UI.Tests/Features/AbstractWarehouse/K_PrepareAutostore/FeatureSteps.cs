@@ -1,7 +1,7 @@
 ﻿using ElementLogic.AMS.UI.Tests.Integration;
 using TechTalk.SpecFlow;
 
-namespace ElementLogic.AMS.UI.Tests.Features.AbstractWarehouse.H_PrepareAutostore
+namespace ElementLogic.AMS.UI.Tests.Features.AbstractWarehouse.K_PrepareAutostore
 {
     [Binding]
     public class FeatureSteps

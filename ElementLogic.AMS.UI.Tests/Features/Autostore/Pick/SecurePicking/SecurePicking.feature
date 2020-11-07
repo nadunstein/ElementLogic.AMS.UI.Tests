@@ -20,4 +20,4 @@ Scenario: Verify the confirm quantity field is displayed in pick mission page
 	And I include the pick quantity to confirm quantity field in Autostore Pick Mission page
 	And I include the product scan value to scan field in Autostore Pick Mission page
 	When I click on the confirm button in Autostore Pick Mission page
-	Then The Autostore task Menu is displayed
+	Then The Autostore task Menu is loaded

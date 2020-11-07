@@ -1,5 +1,6 @@
 ﻿using ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.User;
 using NUnit.Framework;
+using System.Linq;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -8,11 +9,19 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Systems.User
     [Binding]
     public class FeatureSteps
     {
+        private static ScenarioContext _scenarioContext;
+
         [Given(@"I navigate to User list page")]
         public void GivenINavigateToUserListPage()
         {
+            if (_scenarioContext.ScenarioInfo.Tags.Contains("RunTestsInline") &&
+                bool.Parse(_scenarioContext["RunTestsInline"].ToString()))
+            {
+                return;
+            }
+
             UserList.Instance.Navigate();
-            Assert.AreEqual("User list", UserList.Instance.GetPageTitle(),
+            Assert.IsTrue(UserList.Instance.IsPageLoaded(),
                 "The User List page is NOT loaded");
         }
 
@@ -25,7 +34,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Systems.User
         [Then(@"Add/Edit user page is loaded")]
         public void ThenAddEditUserPageIsLoaded()
         {
-            Assert.AreEqual("Add/Edit user", AddEditUser.Instance.GetPageTitle(),
+            Assert.IsTrue(AddEditUser.Instance.IsPageLoaded(),
                 "The Add/Edit user page is NOT loaded");
         }
 
@@ -89,7 +98,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Systems.User
         [Then(@"User list page is loaded")]
         public void ThenUserListPageIsLoaded()
         {
-            Assert.AreEqual("User list", UserList.Instance.GetPageTitle(),
+            Assert.IsTrue(UserList.Instance.IsPageLoaded(),
                 "The User List page is NOT loaded");
         }
 
@@ -100,6 +109,11 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Systems.User
                 "The user result table is not displayed in User list page");
             Assert.True(UserList.Instance.IsNewUserAdded(user),
                 $"The newly added '{user}' user is NOT listed in the search result grid in User list page");
+        }
+
+        private FeatureSteps(ScenarioContext scenarioContext)
+        {
+            _scenarioContext = scenarioContext;
         }
     }
 }
