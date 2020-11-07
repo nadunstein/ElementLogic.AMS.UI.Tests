@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.ServiceProcess;
+using ElementLogic.AMS.UI.Tests.PowerShellScripts.Runner;
 
 namespace ElementLogic.AMS.UI.Tests.Integration
 {
@@ -10,37 +11,41 @@ namespace ElementLogic.AMS.UI.Tests.Integration
 
         public void DoIisReset()
         {
-            var iisRestart = new Process
-            {
-                StartInfo =
-                {
-                    FileName = "iisreset.exe",
-                    Arguments = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", 
-                        "Application:context")
-        }
-            };
+            //var iisRestart = new Process
+            //{
+            //    StartInfo =
+            //    {
+            //        FileName = "iisreset.exe",
+            //        Arguments = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", 
+            //            "Application:context")
+            //    }
+            //};
 
-            iisRestart.Start();
-            iisRestart.WaitForExit();
+            //iisRestart.Start();
+            //iisRestart.WaitForExit();
 
-            var sc = new ServiceController("World Wide Web Publishing Service");
-            if (!sc.Status.Equals(ServiceControllerStatus.Stopped) && 
-                !sc.Status.Equals(ServiceControllerStatus.StopPending))
-            {
-                return;
-            }
+            //var sc = new ServiceController("World Wide Web Publishing Service");
+            //if (!sc.Status.Equals(ServiceControllerStatus.Stopped) && 
+            //    !sc.Status.Equals(ServiceControllerStatus.StopPending))
+            //{
+            //    return;
+            //}
 
-            sc.Start();
+            //sc.Start();
+
+            PowerShellRunner.Instance.ExecutePowerShellScript("IISReset.ps1");
         }
 
         public void RestartAutostoreEmulatorService()
         {
-            var autostoreEmulatorService = new ServiceController("ASInterfaceEmulator");
+            //var autostoreEmulatorService = new ServiceController("ASInterfaceEmulator");
 
-            autostoreEmulatorService.Stop();
-            autostoreEmulatorService.WaitForStatus(ServiceControllerStatus.Stopped);
-            autostoreEmulatorService.Start();
-            autostoreEmulatorService.WaitForStatus(ServiceControllerStatus.Running);
+            //autostoreEmulatorService.Stop();
+            //autostoreEmulatorService.WaitForStatus(ServiceControllerStatus.Stopped);
+            //autostoreEmulatorService.Start();
+            //autostoreEmulatorService.WaitForStatus(ServiceControllerStatus.Running);
+
+            PowerShellRunner.Instance.ExecutePowerShellScript("RestartASInterfaceEmulator.ps1");
         }
 
         private WindowsServices() { }
