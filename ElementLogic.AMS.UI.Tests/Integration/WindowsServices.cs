@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.ServiceProcess;
-using ElementLogic.AMS.UI.Tests.PowerShellScripts.Runner;
 
 namespace ElementLogic.AMS.UI.Tests.Integration
 {

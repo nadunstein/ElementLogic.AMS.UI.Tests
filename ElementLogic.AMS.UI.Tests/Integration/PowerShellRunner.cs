@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Management.Automation.Runspaces;
+using System.Threading;
 using SeleniumEssential;
 
-namespace ElementLogic.AMS.UI.Tests.PowerShellScripts.Runner
+namespace ElementLogic.AMS.UI.Tests.Integration
 {
     public class PowerShellRunner
     {
@@ -20,6 +21,7 @@ namespace ElementLogic.AMS.UI.Tests.PowerShellScripts.Runner
             var myCommand = new Command(ProjectPath + "/PowerShellScripts/" + powerShellFileName);
             pipeline.Commands.Add(myCommand);
             pipeline.Invoke();
+            Thread.Sleep(TimeSpan.FromSeconds(10));
         }
 
         private PowerShellRunner() { }

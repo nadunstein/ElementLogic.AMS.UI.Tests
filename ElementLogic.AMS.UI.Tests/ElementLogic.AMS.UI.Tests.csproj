@@ -443,7 +443,7 @@
     <Compile Include="Pages\Autostore\TaskMenu\DuplicateLoginConfirmationPopup.cs" />
     <Compile Include="Pages\Browser\Browser.cs" />
     <Compile Include="Pages\Login\Login.cs" />
-    <Compile Include="PowerShellScripts\Runner\PowerShellRunner.cs" />
+    <Compile Include="Integration\PowerShellRunner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestDataPreparationHelper\ApiDataFactory\ApiDataFactory.cs" />
     <Compile Include="TestDataPreparationHelper\ApiDataFactory\HttpClientFactory.cs" />
