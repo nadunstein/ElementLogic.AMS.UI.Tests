@@ -54,6 +54,7 @@ Scenario: Verify two step picking with one open external container
 	When I click on the confirm button in Autostore Pick Mission page
 	Then The Autostore pick mission '3' is loaded
 	And I add 'Externalbox1' container by clicking on New Container button in Autostore Pick Mission page
+	And The successfully added a new container notification is displayed in Autostore Pick Mission page
 	And I include the product scan value to scan field in Autostore Pick Mission page	
 	When I click on the confirm button in Autostore Pick Mission page
 	Then The AutoStore Place in Container page is loaded
@@ -155,6 +156,7 @@ Scenario: Verify two step picking with two open external containers
 	When I click on the Confirm button in AutoStore Place in Container page
 	Then The Autostore pick mission '2' is loaded
 	And I add 'Externalbox1' container by clicking on New Container button in Autostore Pick Mission page
+	And The successfully added a new container notification is displayed in Autostore Pick Mission page
 	And I include the product scan value to scan field in Autostore Pick Mission page
 	When I click on the confirm button in Autostore Pick Mission page
 	Then The AutoStore Place in Container page is loaded
@@ -184,6 +186,7 @@ Scenario: Verify customer batch picking with External containers
 	Then The Autostore pick mission '2' is loaded
 	And I verify the container scan field is not displayed in Autostore Pick Mission page
 	And I add 'Externalbox1' container by clicking on New Container button in Autostore Pick Mission page
+	And The successfully added a new container notification is displayed in Autostore Pick Mission page
 	And I verify the container scan field is displayed in Autostore Pick Mission page
 	And I include the container scan value as 'CO-2345' to the container scan field in Autostore Pick Mission page
 	When I click on the confirm button in Autostore Pick Mission page
