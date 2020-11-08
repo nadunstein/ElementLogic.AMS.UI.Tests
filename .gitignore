@@ -261,7 +261,7 @@ __pycache__/
 *.pyc
 
 #ConfigFiles
-
+Environment.json
 ConnectionStrings.config
 /index.html
 /dashboard.html
