@@ -58,6 +58,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Automation.AutostoreEquipm
 
         public string GetLiveMessage(string liveFeedActionMessageType, string liveFeedAction)
         {
+            PageObjectHelper.Instance.Wait(3);
             var actions = PageObjectHelper.Instance.Finds(
                 LiveFeedActions, LiveFeedTable);
 

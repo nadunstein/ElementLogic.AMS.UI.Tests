@@ -24,49 +24,6 @@ namespace SeleniumEssential
             ForcedWait(timeoutInSeconds);
         }
 
-        public ReadOnlyCollection<IWebElement> Finds(string elementFinder, string parentElementString = null)
-        {
-            var attempts = 0;
-            while (attempts < 20)
-            {
-                try
-                {
-                    return string.IsNullOrEmpty(parentElementString)
-                        ? Driver.FindElements(By.CssSelector(elementFinder))
-                        : GetIWebElement(parentElementString).FindElements(By.CssSelector(elementFinder));
-                }
-                catch (Exception)
-                {
-                    ForcedWait(0.5);
-                }
-
-                attempts++;
-            }
-
-            return null;
-        }
-
-        public ReadOnlyCollection<IWebElement> Finds(string elementFinder, object parentElement)
-        {
-            var iWebElementObject = (IWebElement) parentElement;
-            var attempts = 0;
-            while (attempts < 20)
-            {
-                try
-                {
-                    return iWebElementObject.FindElements(By.CssSelector(elementFinder));
-                }
-                catch (Exception)
-                {
-                    ForcedWait(0.5);
-                }
-
-                attempts++;
-            }
-
-            return null;
-        }
-
         public bool IsDisplayed(string element, bool waitUntilElementIsLoaded = false, bool waitForPageLoad = false)
         {
             if (waitForPageLoad)
@@ -149,19 +106,15 @@ namespace SeleniumEssential
 
         public bool Click(string element, bool waitForPageLoad = false)
         {
-            if (waitForPageLoad)
-            {
-                WaitForPageLoad(50);
-            }
-
+            var isElementDisplayed = IsDisplayed(element, true, waitForPageLoad);
             var attempts = 0;
-            var isElementDisplayed = false;
-            while (attempts < 20)
+            var isElementClicked = false;
+            while (attempts < 10 && isElementDisplayed)
             {
                 try
                 {
                     GetIWebElement(element).Click();
-                    isElementDisplayed = true;
+                    isElementClicked = true;
                     break;
                 }
                 catch (Exception)
@@ -171,20 +124,21 @@ namespace SeleniumEssential
                 }
             }
 
-            return isElementDisplayed;
+            return isElementClicked;
         }
 
         public bool Click(object element)
         {
             var iWebElementObject = (IWebElement) element;
+            var isElementDisplayed = IsDisplayed(iWebElementObject, true);
             var attempts = 0;
-            var isElementDisplayed = false;
-            while (attempts < 5)
+            var isElementClicked = false;
+            while (attempts < 10 && isElementDisplayed)
             {
                 try
                 {
                     iWebElementObject.Click();
-                    isElementDisplayed = true;
+                    isElementClicked = true;
                     break;
                 }
                 catch (Exception)
@@ -194,7 +148,7 @@ namespace SeleniumEssential
                 }
             }
 
-            return isElementDisplayed;
+            return isElementClicked;
         }
 
         public void ClickEnterButton(string element)
@@ -259,9 +213,10 @@ namespace SeleniumEssential
 
         public bool InsertField(string element, string insertValue)
         {
+            var isElementDisplayed = IsDisplayed(element, true);
             var attempts = 0;
             var isInserted = false;
-            while (attempts < 20)
+            while (attempts < 10 && isElementDisplayed)
             {
                 try
                 {
@@ -289,9 +244,10 @@ namespace SeleniumEssential
 
         public bool SelectDropDown(string dropdown, string selectOption)
         {
+            var isElementDisplayed = IsDisplayed(dropdown, true);
             var attempts = 0;
             var isDropDownValueSelected = false;
-            while (attempts < 20)
+            while (attempts < 20 && isElementDisplayed)
             {
                 try
                 {
@@ -430,13 +386,9 @@ namespace SeleniumEssential
 
         public string GetTextValue(string element, bool isPageTitle = false)
         {
-            if (isPageTitle)
-            {
-                WaitForPageLoad(50);
-            }
-
+            var isElementDisplayed = IsDisplayed(element, true, isPageTitle);
             var attempts = 0;
-            while (attempts < 20)
+            while (attempts < 10 && isElementDisplayed)
             {
                 string value;
                 try
@@ -463,8 +415,9 @@ namespace SeleniumEssential
         public string GetTextValue(object element)
         {
             var iWebElementObject = (IWebElement) element;
+            var isElementDisplayed = IsDisplayed(iWebElementObject, true);
             var attempts = 0;
-            while (attempts < 5)
+            while (attempts < 5 && isElementDisplayed)
             {
                 string value;
                 try
@@ -490,8 +443,9 @@ namespace SeleniumEssential
 
         public string GetAttributeValue(string element, string attribute)
         {
+            var isElementDisplayed = IsDisplayed(element, true);
             var attempts = 0;
-            while (attempts < 20)
+            while (attempts < 10 && isElementDisplayed)
             {
                 string value;
                 try
@@ -513,6 +467,49 @@ namespace SeleniumEssential
             }
 
             return string.Empty;
+        }
+
+        public ReadOnlyCollection<IWebElement> Finds(string elementFinder, string parentElementString = null)
+        {
+            var attempts = 0;
+            while (attempts < 20)
+            {
+                try
+                {
+                    return string.IsNullOrEmpty(parentElementString)
+                        ? Driver.FindElements(By.CssSelector(elementFinder))
+                        : GetIWebElement(parentElementString).FindElements(By.CssSelector(elementFinder));
+                }
+                catch (Exception)
+                {
+                    ForcedWait(0.5);
+                }
+
+                attempts++;
+            }
+
+            return null;
+        }
+
+        public ReadOnlyCollection<IWebElement> Finds(string elementFinder, object parentElement)
+        {
+            var iWebElementObject = (IWebElement)parentElement;
+            var attempts = 0;
+            while (attempts < 20)
+            {
+                try
+                {
+                    return iWebElementObject.FindElements(By.CssSelector(elementFinder));
+                }
+                catch (Exception)
+                {
+                    ForcedWait(0.5);
+                }
+
+                attempts++;
+            }
+
+            return null;
         }
 
         public IList<string> GetTableColumnDataSet(string table, int columnIndex)

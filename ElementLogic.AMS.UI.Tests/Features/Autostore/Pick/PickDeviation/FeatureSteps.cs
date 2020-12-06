@@ -18,7 +18,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick.PickDeviation
         public void ThenThePickChangeQuantityPopupIsDisplayedInAutostorePickMissionPage()
         {
             Assert.IsTrue(ChangeQuantityPopup.Instance.IsPopupDisplayed(),
-                "The pick Change Quantity dialog is not displayed in Autostore Pick Mission page");
+                    "The pick Change Quantity dialog is not displayed in Autostore Pick Mission page");
             Assert.AreEqual("Are you sure you want to change the quantity?",
                 ChangeQuantityPopup.Instance.GetPopupMessage(),
                 "The message of the pick Change Quantity popup is wrong");

@@ -103,15 +103,18 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick.SerialNumberRegistra
         {
             Assert.IsTrue(SerialNumberRegistrationPage.Instance.IsPageLoaded(),
                 "The Edit last Autostore Serial Number Registration page is not loaded");
-            Assert.IsTrue(SerialNumberRegistrationPage.Instance.IsPreviousSerialNumberScanFieldDisplayed(),
-                "The Previous Serial Number scan field is not displayed in Autostore Serial Number Registration page");
-            Assert.IsFalse(SerialNumberRegistrationPage.Instance.IsScanFieldDisplayed(),
-                "The serial number scan field is displayed in last Autostore Serial Number Registration page");
-            Assert.IsTrue(SerialNumberRegistrationPage.Instance.IsLastSerialNumberConfirmLabelDisplayed(),
-                "The last serial number confirm label is not displayed in Autostore Serial Number Registration page");
-            Assert.AreEqual("Confirm that the last serial number is correct",
-                SerialNumberRegistrationPage.Instance.GetLastSerialNumberConfirmLabelTextValue(),
-                "The last serial number confirm label text is wrong in Autostore Serial Number Registration page");
+            Assert.Multiple(() =>
+            {
+                Assert.IsTrue(SerialNumberRegistrationPage.Instance.IsPreviousSerialNumberScanFieldDisplayed(),
+                    "The Previous Serial Number scan field is not displayed in Autostore Serial Number Registration page");
+                Assert.IsTrue(SerialNumberRegistrationPage.Instance.IsScanFieldNotDisplayed(),
+                    "The serial number scan field is displayed in last Autostore Serial Number Registration page");
+                Assert.IsTrue(SerialNumberRegistrationPage.Instance.IsLastSerialNumberConfirmLabelDisplayed(),
+                    "The last serial number confirm label is not displayed in Autostore Serial Number Registration page");
+                Assert.AreEqual("Confirm that the last serial number is correct",
+                    SerialNumberRegistrationPage.Instance.GetLastSerialNumberConfirmLabelTextValue(),
+                    "The last serial number confirm label text is wrong in Autostore Serial Number Registration page");
+            });
         }
     }
 }

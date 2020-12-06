@@ -52,7 +52,8 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick.MaxQuantityPopup
         {
             Assert.IsTrue(ConfirmQuantityPopUp.Instance.IsPopupDisplayed(),
                 "The Confirm Quantity popup is not displayed in Autostore Pick Mission page");
-            Assert.AreEqual("Confirm remaining quantity in the location", ConfirmQuantityPopUp.Instance.GetPopupMessage(),
+            Assert.AreEqual("Confirm remaining quantity in the location",
+                ConfirmQuantityPopUp.Instance.GetPopupMessage(),
                 "The Confirm Quantity popup message is wrong in Autostore Pick Mission page");
         }
 

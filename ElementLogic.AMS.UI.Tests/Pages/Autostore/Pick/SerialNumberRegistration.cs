@@ -52,9 +52,9 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
             return PageObjectHelper.Instance.IsDisplayed(AutostoreBinLayout);
         }
 
-        public bool IsScanFieldDisplayed()
+        public bool IsScanFieldNotDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(ScanField);
+            return PageObjectHelper.Instance.WaitUntilInvisible(ScanField);
         }
 
         public bool InsertScanValue(string scanValue)
@@ -65,7 +65,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
         public bool IsPreviousSerialNumberScanFieldDisplayed()
         {
             PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
-            return PageObjectHelper.Instance.IsDisplayed(PreviousScanField, true, true);
+            return PageObjectHelper.Instance.IsDisplayed(PreviousScanField, true);
         }
 
         public bool InsertPreviousScanValue(string scanValue)
@@ -90,7 +90,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
 
         public bool IsLastSerialNumberConfirmLabelDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(LastSerialNumberConfirmLabel);
+            return PageObjectHelper.Instance.IsDisplayed(LastSerialNumberConfirmLabel, true);
         }
 
         public string GetLastSerialNumberConfirmLabelTextValue()

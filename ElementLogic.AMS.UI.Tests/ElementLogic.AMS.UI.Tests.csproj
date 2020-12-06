@@ -309,7 +309,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\DatabaseQueries\AddedInfoRules.cs" />
-    <Compile Include="Data\DatabaseQueries\Container.cs" />
     <Compile Include="Data\DatabaseQueries\Database.cs" />
     <Compile Include="Data\DatabaseQueries\Depth.cs" />
     <Compile Include="Data\DatabaseQueries\Mission.cs" />
@@ -464,7 +463,9 @@
     <None Include="Configuration\Environment.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Database\UIAutomationDB.bak" />
+    <None Include="Database\UIAutomationDB.bak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="ExcelDataAccess\UserCredentials\UserCredentials.xlsx" />
     <None Include="Features\AbstractWarehouse\A_AddWarehouses\AddWarehouses.feature" />
     <None Include="Features\AbstractWarehouse\B_AddWarehouseZones\AddWarehouseZones.feature" />

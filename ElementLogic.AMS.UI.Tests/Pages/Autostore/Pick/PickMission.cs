@@ -161,7 +161,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
         public bool SelectOption(string option)
         {
             var isClicked = PageObjectHelper.Instance.Click(OptionsButton);
-            var isDisplayed = PageObjectHelper.Instance.IsDisplayed(OptionsListPanel);
+            var isDisplayed = PageObjectHelper.Instance.IsDisplayed(OptionsListPanel, true);
             PageObjectHelper.Instance.Wait(1);
             var isSelected = PageObjectHelper.Instance.SelectDropDown(null, OptionsListPanel, ".rtbItem", option);
             return isClicked && isDisplayed && isSelected;

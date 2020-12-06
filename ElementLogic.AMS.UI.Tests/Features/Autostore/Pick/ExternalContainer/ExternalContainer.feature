@@ -73,7 +73,6 @@ Scenario: Verify the behavior of Add new container popup with External and Inter
 	Then The Autostore pick mission '1' is loaded
 	When I click on 'New container' option item in Autostore Pick Mission page
 	Then The Add new container popup is displayed in Autostore Pick Mission page
-	And I verify the Add button is Disable in Add new container popup in Autostore Pick Mission page
 	And I select the boxtype as 'Externalbox1' from container selection list in Add new container popup in Autostore Pick Mission page
 	And I verify the scancode field is not displayed in Add new container popup in Autostore Pick Mission page
 	When I click on 'Close' button on Add new container popup in Autostore Pick Mission page
