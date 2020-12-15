@@ -9,6 +9,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.Parameters
         private const string PageHeader =
             "#ctl00_ContentPlaceHolderContent_SearchParamView1_RadPanelBar1 .rpText";
 
+        private const string LoadingPanel = "#ctl00_LoadingPanelMenu";
+
         private const string Code =
             "#ctl00_ContentPlaceHolderContent_SearchParamView1_RadPanelBar1_i0_txtCode";
 
@@ -26,33 +28,49 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.Parameters
         public void Navigate()
         {
             const string parameterListUrl = "/pages/system/searchparameter.aspx";
-            string baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
-            PageObjectHelper.Instance.Navigate(baseUrl, parameterListUrl);
+            var baseUrl = JsonFileReader.Instance
+                .GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
+            var pageUrl = baseUrl + parameterListUrl;
+            FluentElement.Instance
+                .Navigate(pageUrl);
         }
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Parameter list");
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Parameter list");
         }
 
         public bool InsertParameterCode(string code)
         {
-            return PageObjectHelper.Instance.InsertField(Code, code);
+            return FluentElement.Instance
+                .WaitForElement(Code)
+                .Insert(code);
         }
 
         public bool ClickSearchButton()
         {
-            return PageObjectHelper.Instance.Click(SearchButton);
+            return FluentElement.Instance
+                .WaitForElement(SearchButton)
+                .Click();
         }
 
         public bool IsFirstResultRowDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(FirstResultRow, true);
+            return FluentElement.Instance
+                .WaitUntilInvisible(LoadingPanel)
+                .WaitForElement(FirstResultRow)
+                .IsVisible();
         }
 
         public bool ClickEditButton()
         {
-            return PageObjectHelper.Instance.Click(EditButton);
+            return FluentElement.Instance
+                .WaitForElement(EditButton)
+                .Click();
         }
 
         private ParameterList() { }

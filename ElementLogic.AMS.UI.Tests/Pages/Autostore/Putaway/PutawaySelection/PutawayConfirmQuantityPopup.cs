@@ -21,43 +21,60 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.PutawaySelection
 
         public bool IsPopupDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(Popup, true);
+            return FluentElement.Instance
+                .WaitForElement(Popup)
+                .IsVisible();
         }
 
         public bool IsPutawayQuantityFieldDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(PutawayQuantityField);
+            return FluentElement.Instance
+                .IsVisible(PutawayQuantityField);
         }
 
         public bool IsPutawayQuantityFieldFocused()
         {
-            return PageObjectHelper.Instance.IsFocused(PutawayQuantityField);
+            return FluentElement.Instance
+                .WaitForElement(PutawayQuantityField)
+                .IsFocused();
         }
 
         public double GetPutawayQuantity()
         {
-            return double.Parse(PageObjectHelper.Instance.GetAttributeValue(PutawayQuantityField, "Value"));
+            return double.Parse(FluentElement.Instance
+                .WaitForElement(PutawayQuantityField)
+                .GetAttribute("Value"));
         }
 
         public bool InsertMaxLocationQuantity(string quantity)
         {
-            var isFieldFocused = PageObjectHelper.Instance.IsFocused(MaxLocationQuantityField);
+            var isFieldFocused = FluentElement.Instance
+                .WaitForElement(MaxLocationQuantityField)
+                .IsFocused();
             if (!isFieldFocused)
             {
-                PageObjectHelper.Instance.ClickTabButton(PutawayQuantityField);    
+                FluentElement.Instance
+                    .WaitForElement(PutawayQuantityField)
+                    .ClickTabButton();    
             }
 
-            return PageObjectHelper.Instance.InsertField(MaxLocationQuantityField, quantity);
+            return FluentElement.Instance
+                .WaitForElement(MaxLocationQuantityField)
+                .Insert(quantity);
         }
 
         public bool InsertPutawayQuantity(string quantity)
         {
-            return PageObjectHelper.Instance.InsertField(PutawayQuantityField, quantity);
+            return FluentElement.Instance
+                .WaitForElement(PutawayQuantityField)
+                .Insert(quantity);
         }
 
         public bool ClickConfirmButton()
         {
-            return PageObjectHelper.Instance.Click(ConfirmButton);
+            return FluentElement.Instance
+                .WaitForElement(ConfirmButton)
+                .Click();
         }
 
         private PutawayConfirmQuantityPopup() { }

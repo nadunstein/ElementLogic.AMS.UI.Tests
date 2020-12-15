@@ -54,56 +54,75 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.UserActivity
         public void Navigate()
         {
             const string picklistSearchPageUrl = "/pages/activity/useractivity/useractivitysearch.aspx";
-            string baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
-            PageObjectHelper.Instance.Navigate(baseUrl, picklistSearchPageUrl);
+            var baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
+            var pageUrl = baseUrl + picklistSearchPageUrl;
+            FluentElement.Instance
+                .Navigate(pageUrl);
         }
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "User activity search");
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("User activity search");
         }
 
         public bool InsertTaskgroupId(string taskgroupId)
         {
-            return PageObjectHelper.Instance.SelectSearchDropDown(TaskgroupIdField, TaskgroupIdDropdownSlide, 
-                "li", taskgroupId);
+            return FluentElement.Instance
+                .WaitForElement(TaskgroupIdField)
+                .SelectSearchDropDown(TaskgroupIdDropdownSlide, "li", taskgroupId);
         }
 
         public bool InsertPicklistId(string picklistId)
         {
-            return PageObjectHelper.Instance.SelectSearchDropDown(PicklistIdField, PicklistIdDropdownSlide,
-                "li", picklistId);
+            return FluentElement.Instance
+                .WaitForElement(PicklistIdField)
+                .SelectSearchDropDown(PicklistIdDropdownSlide, "li", picklistId);
         }
 
         public bool SelectStatus(string statusToBeSelected)
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(PageLoadingPanel);
-            return PageObjectHelper.Instance.SelectDropDown(StatusDropdown, statusToBeSelected);
+            return FluentElement.Instance
+                .WaitUntilInvisible(PageLoadingPanel)
+                .WaitForElement(StatusDropdown)
+                .SelectDropDown(statusToBeSelected);
         }
 
         public bool ClickSearchButton()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(PageLoadingPanel);
-            return PageObjectHelper.Instance.Click(SearchButton);
+            return FluentElement.Instance
+                .WaitUntilInvisible(PageLoadingPanel)
+                .WaitForElement(SearchButton)
+                .Click();
         }
 
         public bool IsFirstUserActivityResultBarDisplayed()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(PageLoadingPanel);
-            return PageObjectHelper.Instance.IsDisplayed(FirstUserActivityResultBar, true);
+            return FluentElement.Instance
+                .WaitUntilInvisible(PageLoadingPanel)
+                .WaitForElement(FirstUserActivityResultBar)
+                .IsVisible();
         }
 
         public bool SelectActivityActionMenuOption(string option)
         {
-            return PageObjectHelper.Instance.SelectDropDown(FirstUserActivityActionMenuGearIcon,
-                FirstUserActivityActionMenuSlide, "li > a > span", option);
+            return FluentElement.Instance
+                .WaitForElement(FirstUserActivityActionMenuGearIcon)
+                .SelectDropDown(FirstUserActivityActionMenuSlide, 
+                    "li > a > span", option);
         }
 
         public string GetFirstActivityUserCode()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(PageLoadingPanel);
-            var activityData = PageObjectHelper.Instance.Finds("td", FirstUserActivityResultBar);
-            return PageObjectHelper.Instance.GetTextValue(activityData[4]);
+            return FluentElement.Instance
+                .WaitUntilInvisible(PageLoadingPanel)
+                .WaitForElement(FirstUserActivityResultBar)
+                .FindElements("td")
+                .SearchElementByIndex(5)
+                .GetText();
         }
 
         public string SelectActivityMissionActionMenuOptionAndGetMissionId(string missionStatus, string option)

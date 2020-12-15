@@ -23,41 +23,57 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Warehouse.Equipment
 
         public bool IsPopupDisplayed()
         {
-            var popupDisplayed = PageObjectHelper.Instance.IsDisplayed(Iframe, true);
-            PageObjectHelper.Instance.SwitchToIframeContent(Iframe);
-            return popupDisplayed;
+            return FluentElement.Instance
+                .WaitForElement(Iframe)
+                .IsVisible();
         }
 
         public bool InsertShelves(string value)
         {
-            return PageObjectHelper.Instance.InsertField(ShelvesField, value);
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(ShelvesField)
+                .Insert(value);
         }
 
         public bool SelectType(string value)
         {
-            return PageObjectHelper.Instance.SelectDropDown(TypeField, value);
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(TypeField)
+                .SelectDropDown(value);
         }
 
         public bool SelectLocationSize(string value)
         {
-            return PageObjectHelper.Instance.SelectDropDown(LocationSizeField, value);
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(LocationSizeField)
+                .SelectDropDown(value);
         }
 
         public bool InsertPositions(string value)
         {
-            return PageObjectHelper.Instance.InsertField(PositionsField, value);
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(PositionsField)
+                .Insert(value);
         }
 
         public bool InsertDepths(string value)
         {
-            return PageObjectHelper.Instance.InsertField(DepthsField, value);
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(DepthsField)
+                .Insert(value);
         }
 
         public bool ClickMakeShelvesButton()
         {
-            var isMakeShelvesButtonClicked = PageObjectHelper.Instance.Click(MakeShelvesButton);
-            PageObjectHelper.Instance.SwitchToDefaultWebPage();
-            return isMakeShelvesButtonClicked;
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(MakeShelvesButton)
+                .Click();
         }
 
         private ShelfGeneratorPopUp() { }

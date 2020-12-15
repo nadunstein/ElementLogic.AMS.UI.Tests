@@ -15,17 +15,23 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Refill
 
         public bool IsPopupDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(Popup, true);
+            return FluentElement.Instance
+                .WaitForElement(Popup)
+                .IsVisible();
         }
 
         public string GetPopupMessage()
         {
-            return PageObjectHelper.Instance.GetTextValue(PopupMessage);
+            return FluentElement.Instance
+                .WaitForElement(PopupMessage)
+                .GetText();
         }
 
         public bool ClickYesButton()
         {
-            return PageObjectHelper.Instance.Click(YesButton);
+            return FluentElement.Instance
+                .WaitForElement(YesButton)
+                .Click();
         }
 
         private ConfirmRemainingRefillPopup() { }

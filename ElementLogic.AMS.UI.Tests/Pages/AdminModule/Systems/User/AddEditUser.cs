@@ -36,47 +36,68 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.User
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Add/Edit user");
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Add/Edit user");
         }
 
         public bool InsertUsername(string value)
         {
-            return PageObjectHelper.Instance.InsertField(UsernameField, value);
+            return FluentElement.Instance
+                .WaitForElement(UsernameField)
+                .Insert(value);
         }
 
         public bool InsertFirstName(string value)
         {
-            return PageObjectHelper.Instance.InsertField(FirstNameField, value);
+            return FluentElement.Instance
+                .WaitForElement(FirstNameField)
+                .Insert(value);
         }
 
         public bool InsertLastName(string value)
         {
-            return PageObjectHelper.Instance.InsertField(LastNameField, value);
+            return FluentElement.Instance
+                .WaitForElement(LastNameField)
+                .Insert(value);
         }
 
         public bool InsertPassword(string value)
         {
-            return PageObjectHelper.Instance.InsertField(PasswordField, value);
+            return FluentElement.Instance
+                .WaitForElement(PasswordField)
+                .Insert(value);
         }
 
         public bool InsertConfirmPassword(string value)
         {
-            return PageObjectHelper.Instance.InsertField(ConfirmPasswordField, value);
+            return FluentElement.Instance
+                .WaitForElement(ConfirmPasswordField)
+                .Insert(value);
         }
 
         public bool SelectActivateCheckBox()
         {
-            return PageObjectHelper.Instance.Click(ActivateCheckBox);
+            return FluentElement.Instance
+                .WaitForElement(ActivateCheckBox)
+                .Click();
         }
 
         public bool ClickSaveButton()
         {
-            return PageObjectHelper.Instance.Click(SaveButton);
+            return FluentElement.Instance
+                .WaitForElement(SaveButton)
+                .Click();
         }
 
         public bool ClickCancelButton()
         {
-            return PageObjectHelper.Instance.Click(CancelButton, true);
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitForElement(CancelButton)
+                .Click();
         }
 
         private AddEditUser() { }

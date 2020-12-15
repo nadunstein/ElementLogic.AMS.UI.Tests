@@ -13,15 +13,17 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Pick.PicklistSear
 
         public bool IsPopupDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(Iframe, true);
+            return FluentElement.Instance
+                .WaitForElement(Iframe)
+                .IsVisible();
         }
 
         public bool ClickConfirmButton()
         {
-            PageObjectHelper.Instance.SwitchToIframeContent(Iframe);
-            var isConfirmButtonClicked = PageObjectHelper.Instance.Click(ConfirmButton);
-            PageObjectHelper.Instance.SwitchToDefaultWebPage();
-            return isConfirmButtonClicked;
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(ConfirmButton)
+                .Click();
         }
 
         private ConfirmSelectionPopup() { }

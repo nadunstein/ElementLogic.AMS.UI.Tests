@@ -13,12 +13,15 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Pick.PicklistSear
 
         public bool IsPopupDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(Popup);
+            return FluentElement.Instance
+                .IsVisible(Popup);
         }
 
         public bool ClickYesButton()
         {
-            return PageObjectHelper.Instance.Click(YesButton);
+            return FluentElement.Instance
+                .WaitForElement(YesButton)
+                .Click();
         }
 
         private StartedMissionsPopup() { }

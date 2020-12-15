@@ -33,93 +33,127 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
 
         public bool IsPopupDisplayed()
         {
-            var isPopupDisplayed = PageObjectHelper.Instance.IsDisplayed(Popup, true);
-            PageObjectHelper.Instance.SwitchToIframeContent(Iframe);
-            return isPopupDisplayed;
+            return FluentElement.Instance
+                .WaitForElement(Popup)
+                .IsVisible();
         }
 
         public bool SelectBoxType(string boxType)
         {
-            return PageObjectHelper.Instance.SelectDropDown(BoxTypeDropDown, BoxTypeDropDownList, 
-                "li", boxType);
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(BoxTypeDropDown)
+                .SelectDropDown(BoxTypeDropDownList, 
+                    "li", boxType);
         }
 
         public bool SelectContainerFromTheList(string boxType)
         {
-            return PageObjectHelper.Instance.SelectDropDown(null, ContainersListPanel, 
-                "option", boxType);
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(ContainersListPanel)
+                .FindElements("option")
+                .SearchElementByText(boxType)
+                .Click();
         }
 
         public bool IsAddButtonEnable()
         {
-            return PageObjectHelper.Instance.IsEnabled(AddButton);
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(AddButton)
+                .IsEnable();
         }
 
         public bool IsScanCodeFieldDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(AddButton, true);
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(AddButton)
+                .IsVisible();
         }
 
         public bool IsScanCodeFieldNotDisplayed()
         {
-            return PageObjectHelper.Instance.WaitUntilInvisible(ScanCodeField);
+            return !FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitUntilInvisible(ScanCodeField)
+                .IsVisible(ScanCodeField);
         }
 
         public string GetScanCodeFieldValue()
         {
-            return PageObjectHelper.Instance.GetAttributeValue(ScanCodeField, "value");
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(ScanCodeField)
+                .GetAttribute("value");
         }
 
         public bool InsertContainerScanCode(string scanCode)
         {
-            return PageObjectHelper.Instance.InsertField(ScanCodeField, scanCode);
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(ScanCodeField)
+                .Insert(scanCode);
         }
 
         public bool IsContainerValidationPopupDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(ContainerValidationPopup, true);
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(ContainerValidationPopup)
+                .IsVisible();
         }
 
         public string GetValidationPopupMessage()
         {
-            return PageObjectHelper.Instance.GetTextValue(ValidationMessage);
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(ValidationMessage)
+                .GetText();
         }
 
         public bool ClickValidationPopupOkButton()
         {
-            return PageObjectHelper.Instance.Click(ValidationOkButton);
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(ValidationOkButton)
+                .Click();
         }
 
         public bool ClickPopupButton(string buttonToBeClicked)
         {
-            var isButtonClicked = buttonToBeClicked switch
+            return buttonToBeClicked switch
             {
                 "Add" => ClickAddButton(),
                 "Update" => ClickUpdateButton(),
                 "Close" => ClickCloseButton(),
                 _ => false
             };
-
-            return isButtonClicked;
         }
 
         private static bool ClickAddButton()
         {
-            var isAddButtonClicked = PageObjectHelper.Instance.Click(AddButton);
-            PageObjectHelper.Instance.SwitchToDefaultWebPage();
-            return isAddButtonClicked;
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(AddButton)
+                .Click();
         }
 
         private static bool ClickUpdateButton()
         {
-            return PageObjectHelper.Instance.Click(UpdateButton);
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(UpdateButton)
+                .Click();
         }
 
         private static bool ClickCloseButton()
         {
-            var isCloseButtonClicked = PageObjectHelper.Instance.Click(CloseButton);
-            PageObjectHelper.Instance.SwitchToDefaultWebPage();
-            return isCloseButtonClicked;
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(CloseButton)
+                .Click();
         }
 
         private AddNewContainerPopup() { }

@@ -24,9 +24,9 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick
             var splitLocationId = PickMission.Instance.GetPickLocation().Split(new char[] { '-' });
             _scenarioContext["bin_id"] = splitLocationId[1];
             _scenarioContext["ExtProductId"] = PickMission.Instance.GetProductNumber();
-            _scenarioContext["TotalQuantity"] =
-                (_scenarioContext.ContainsKey("TotalQuantity") ? (int)_scenarioContext["TotalQuantity"] : 0)
-                + PickMission.Instance.GetPickQuantityFieldValue();
+            _scenarioContext["TotalQuantity"] = (_scenarioContext.ContainsKey("TotalQuantity")
+                ? (int) _scenarioContext["TotalQuantity"]
+                : 0) + PickMission.Instance.GetPickQuantityFieldValue();
         }
 
         [Then(@"The new order popup is displayed in Autostore Pick Mission page")]

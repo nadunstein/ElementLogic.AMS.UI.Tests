@@ -15,10 +15,16 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.HamburgerMenu
 
         public bool SelectLogOutOption()
         {
-            var clickHamburgerIcon = PageObjectHelper.Instance.Click(HamburgerIcon);
-            var isOptionMenuDisplayed = PageObjectHelper.Instance.IsDisplayed(OptionMenu, true);
-            PageObjectHelper.Instance.Wait(1);
-            var clickOption = PageObjectHelper.Instance.Click(LogOutOption);
+            var clickHamburgerIcon = FluentElement.Instance
+                .WaitForElement(HamburgerIcon)
+                .Click();
+            var isOptionMenuDisplayed = FluentElement.Instance
+                .WaitForElement(OptionMenu)
+                .IsVisible();
+            var clickOption = FluentElement.Instance
+                .Wait(1)
+                .WaitForElement(LogOutOption)
+                .Click();
             return clickHamburgerIcon && isOptionMenuDisplayed && clickOption;
         }
 

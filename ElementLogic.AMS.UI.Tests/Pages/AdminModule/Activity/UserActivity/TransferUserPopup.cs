@@ -18,36 +18,43 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.UserActivity
 
         public bool IsPopupDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(Iframe, true);
+            return FluentElement.Instance
+                .WaitForElement(Iframe)
+                .IsVisible();
         }
 
         public bool SelectTransferUser(string userName)
         {
-            PageObjectHelper.Instance.SwitchToIframeContent(Iframe);
-            return PageObjectHelper.Instance.SelectDropDown(TransferUserDropdown, userName);
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(TransferUserDropdown)
+                .SelectDropDown(userName);
         }
 
         public bool ClickPopupButton(string buttonToBeClicked)
         {
-            var isButtonClicked = buttonToBeClicked switch
+            return buttonToBeClicked switch
             {
                 "Confirm" => ClickConfirmButton(),
                 "Cancel" => ClickCancelButton(),
                 _ => false
             };
-
-            PageObjectHelper.Instance.SwitchToDefaultWebPage();
-            return isButtonClicked;
         }
 
         private static bool ClickConfirmButton()
         {
-            return PageObjectHelper.Instance.Click(ConfirmButton);
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(ConfirmButton)
+                .Click();
         }
 
         private static bool ClickCancelButton()
         {
-            return PageObjectHelper.Instance.Click(CancelButton);
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(CancelButton)
+                .Click();
         }
 
         private TransferUserPopup() { }

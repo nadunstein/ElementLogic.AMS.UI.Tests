@@ -20,7 +20,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Inspection
             "#ctl00_MonitorContentPlaceholder_InspectionView_cboReasons_DropDown .rcbList";
 
         private const string OptionsButton =
-            "#ctl00_ctl00_MonitorContentPlaceholder_InspectionView_rtbOptionsPanel";
+            "#ctl00_MonitorContentPlaceholder_InspectionView_rtbOptions";
 
         private const string OptionsList = ".rtbSlide";
 
@@ -30,39 +30,60 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Inspection
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Inspection", LoadingPanel);
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitUntilInvisible(LoadingPanel)
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Inspection");
         }
 
         public string GetProductNumberLabelValue()
         {
-            return PageObjectHelper.Instance.GetAttributeValue(ProductNumberLabel, "Value");
+            return FluentElement.Instance
+                .WaitForElement(ProductNumberLabel)
+                .GetAttribute("Value");
         }
 
         public bool IncludeLocationQuantityValue(int quantity)
         {
-            return PageObjectHelper.Instance.InsertField(InspectionQuantityField, quantity.ToString());
+            var quantityString = quantity.ToString();
+            return FluentElement.Instance
+                .WaitForElement(InspectionQuantityField)
+                .Insert(quantityString);
         }
 
         public bool SelectReasonCode(string value)
         {
-            if (PageObjectHelper.Instance.GetAttributeValue(ReasonCodeDropdown, "value").Equals(value))
+            if (FluentElement.Instance
+                .WaitForElement(ReasonCodeDropdown)
+                .GetAttribute("value")
+                .Equals(value))
             {
                 return true;
             }
 
-            return PageObjectHelper.Instance.SelectDropDown(ReasonCodeDropdown, 
-                ReasonCodeDropdownPanel, "li", value);
+            return FluentElement.Instance
+                .WaitForElement(ReasonCodeDropdown)
+                .SelectDropDown(ReasonCodeDropdownPanel, 
+                    "li", value);
         }
 
         public bool SelectOption(string value)
         {
-            return PageObjectHelper.Instance.SelectDropDown(OptionsButton, 
-                OptionsList, ".rtbText", value);
+            return FluentElement.Instance
+                .WaitForElement(OptionsButton)
+                .SelectDropDown(OptionsList, 
+                    ".rtbText", value);
         }
 
         public bool ClickConfirmButton()
         {
-            return PageObjectHelper.Instance.Click(ConfirmButton, true);
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitUntilInvisible(LoadingPanel)
+                .WaitForElement(ConfirmButton)
+                .Click();
         }
 
         private InspectionMission() { }

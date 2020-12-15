@@ -22,28 +22,34 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.TaskTypes
         public void Navigate()
         {
             const string taskTypesPageUrl = "/Pages/System/ListTaskTypes.aspx";
-            string baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
-            PageObjectHelper.Instance.Navigate(baseUrl, taskTypesPageUrl);
+            var baseUrl =
+                JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
+            var pageUrl = baseUrl + taskTypesPageUrl;
+            FluentElement.Instance
+                .Navigate(pageUrl);
         }
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Task types");
-        }
-
-        public string GetPageTitle()
-        {
-            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Task types");
         }
 
         public bool ClickAddButton()
         {
-            return PageObjectHelper.Instance.Click(AddButton);
+            return FluentElement.Instance
+                .WaitForElement(AddButton)
+                .Click();
         }
 
         public bool IsFirstSearchResultRowDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(FirstSearchResultRow, true);
+            return FluentElement.Instance
+                .WaitForElement(FirstSearchResultRow)
+                .IsVisible();
         }
 
         public bool IsNewTaskTypeAdded(string taskType)

@@ -16,23 +16,31 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Refill
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Task group selection");
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Task group selection");
         }
 
         public bool IsPageDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(TaskgroupSelectionGrid);
+            return FluentElement.Instance
+                .IsVisible(TaskgroupSelectionGrid);
         }
 
         public bool ClickTaskgroupSelectButton(string trolleyName)
         {
-            return PageObjectHelper.Instance.SearchAndClickTableCellItem(TaskgroupSelectionGrid, 3, 
-                trolleyName, 1, ".as-button-md-green");
+            return FluentElement.Instance
+                .SearchAndClickTableCellItem(TaskgroupSelectionGrid, 3, 
+                    trolleyName, 1, ".as-button-md-green");
         }
 
         public bool ClickExitButton()
         {
-            return PageObjectHelper.Instance.Click(ExitButton);
+            return FluentElement.Instance
+                .WaitForElement(ExitButton)
+                .Click();
         }
 
         private RefillTaskgroupSelection() { }

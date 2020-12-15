@@ -28,53 +28,75 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Refill
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Refill", LoadingPanel);
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitUntilInvisible(LoadingPanel)
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Refill");
         }
 
         public string GetTaskQueueLabelValue()
         {
-            return PageObjectHelper.Instance.GetTextValue(TaskQueueLabel);
+            return FluentElement.Instance
+                .WaitForElement(TaskQueueLabel)
+                .GetText();
         }
 
         public string GetLocationNameLabelValue()
         {
-            return PageObjectHelper.Instance.GetTextValue(LocationNameLabel);
+            return FluentElement.Instance
+                .WaitForElement(LocationNameLabel)
+                .GetText();
         }
 
         public string GetRefillProductId()
         {
-            return PageObjectHelper.Instance.GetAttributeValue(ProductIdLabel, "value");
+            return FluentElement.Instance
+                .WaitForElement(ProductIdLabel)
+                .GetAttribute("value");
         }
 
         public int GetRefillQuantityFieldValue()
         {
-            var refillQuantity = PageObjectHelper.Instance.GetAttributeValue(QuantityField, "value");
+            var refillQuantity = FluentElement.Instance
+                .WaitForElement(QuantityField)
+                .GetAttribute("value");
             return Convert.ToInt32(refillQuantity);
         }
 
         public bool ChangeValueOfQuantityField(string quantity)
         {
-            return PageObjectHelper.Instance.InsertField(QuantityField, quantity);
+            return FluentElement.Instance
+                .WaitForElement(QuantityField)
+                .Insert(quantity);
         }
 
         public bool IsRefillEmptyBinLabelDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(EmptyBinLabel);
+            return FluentElement.Instance
+                .IsVisible(EmptyBinLabel);
         }
 
         public string GetRefillEmptyBinLabelValue()
         {
-            return PageObjectHelper.Instance.GetTextValue(EmptyBinLabel);
+            return FluentElement.Instance
+                .WaitForElement(EmptyBinLabel)
+                .GetText();
         }
 
         public bool ClickConfirmButton()
         {
-            return PageObjectHelper.Instance.Click(ConfirmButton);
+            return FluentElement.Instance
+                .WaitForElement(ConfirmButton)
+                .Click();
         }
 
         public bool ClickExitButton()
         {
-            return PageObjectHelper.Instance.Click(ExitButton);
+            return FluentElement.Instance
+                .WaitForElement(ExitButton)
+                .Click();
         }
 
         private RefillMission() { }

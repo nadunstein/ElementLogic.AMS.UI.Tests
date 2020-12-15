@@ -23,53 +23,76 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Place in Container", LoadingPanel);
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitUntilInvisible(LoadingPanel)
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Place in Container");
         }
 
         public string GetBoxNumber()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
-            return PageObjectHelper.Instance.GetAttributeValue(BoxField, "Value");
+            return FluentElement.Instance
+                .WaitUntilInvisible(LoadingPanel)
+                .WaitForElement(BoxField)
+                .GetAttribute("Value");
         }
 
         public int GetQuantityFieldValue()
         {
-            return int.Parse(PageObjectHelper.Instance.GetAttributeValue(QuantityField, "Value"));
+            return int.Parse(FluentElement.Instance
+                .WaitForElement(QuantityField)
+                .GetAttribute("Value"));
         }
 
         public bool InsertQuantity(int quantity)
         {
-            return PageObjectHelper.Instance.InsertField(QuantityField, quantity.ToString());
+            var quantityString = quantity.ToString();
+            return FluentElement.Instance
+                .WaitForElement(QuantityField)
+                .Insert(quantityString);
         }
 
         public bool IsScanFieldDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(ScanField, true);
+            return FluentElement.Instance
+                .WaitForElement(ScanField)
+                .IsVisible();
         }
 
         public bool IsScanFieldFocused()
         {
-            return PageObjectHelper.Instance.IsFocused(ScanField);
+            return FluentElement.Instance
+                .WaitForElement(ScanField)
+                .IsFocused();
         }
 
         public bool InsertScanValue(string scanValue)
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
-            PageObjectHelper.Instance.ScrollToTheElement(ScanField);
-            return PageObjectHelper.Instance.InsertField(ScanField, scanValue);
+            return FluentElement.Instance
+                .WaitUntilInvisible(LoadingPanel)
+                .WaitForElement(ScanField)
+                .ScrollToTheElement()
+                .Insert(scanValue);
         }
 
         public bool ClickConfirmButton()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
-            var isButtonClicked = PageObjectHelper.Instance.Click(ConfirmButton);
-            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
+            var isButtonClicked = FluentElement.Instance
+                .WaitUntilInvisible(LoadingPanel)
+                .WaitForElement(ConfirmButton)
+                .Click();
+            FluentElement.Instance
+                .WaitUntilInvisible(LoadingPanel);
             return isButtonClicked;
         }
 
         public bool ClickExitButton()
         {
-            return PageObjectHelper.Instance.Click(ExitButton);
+            return FluentElement.Instance
+                .WaitForElement(ExitButton)
+                .Click();
         }
 
         private PlaceInContainer() { }

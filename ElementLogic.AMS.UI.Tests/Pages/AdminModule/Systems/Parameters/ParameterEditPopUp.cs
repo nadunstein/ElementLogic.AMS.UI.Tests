@@ -25,34 +25,45 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.Parameters
 
         public bool IsPopupDisplayed()
         {
-            var isPopupDisplayed =  PageObjectHelper.Instance.IsDisplayed(Iframe, true);
-            PageObjectHelper.Instance.SwitchToIframeContent(Iframe);
-            return isPopupDisplayed;
+            return FluentElement.Instance
+                .WaitForElement(Iframe)
+                .IsVisible();
         }
 
         public bool InsertTextFieldValue(string value)
         {
-            return PageObjectHelper.Instance.InsertField(ValueTextField, value);
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(ValueTextField)
+                .Insert(value);
         }
 
         public bool ChangeParameterValue(string parameterValue)
         {
-            if (PageObjectHelper.Instance.IsDisplayed(ValueCheckBox))
+            if (FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .IsVisible(ValueCheckBox))
             {
                 return SelectTheCheckBox();
             }
             
-            if (PageObjectHelper.Instance.IsDisplayed(ValueDropDown))
+            if (FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .IsVisible(ValueDropDown))
             {
                 return SetDropdownValue(parameterValue);
             }
             
-            if (PageObjectHelper.Instance.IsDisplayed(ValueTextArea))
+            if (FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .IsVisible(ValueTextArea))
             {
                 return EnterTextAreaValue(parameterValue);
             }
             
-            if (PageObjectHelper.Instance.IsDisplayed(ValueTextField))
+            if (FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .IsVisible(ValueTextField))
             {
                 return InsertTextFieldValue(parameterValue);
             }
@@ -62,24 +73,34 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.Parameters
 
         public bool ClickSaveButton()
         {
-            var isSaveButtonClicked = PageObjectHelper.Instance.Click(SaveButton);
-            PageObjectHelper.Instance.SwitchToDefaultWebPage();
-            return isSaveButtonClicked;
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(SaveButton)
+                .Click();
         }
 
         private static bool SetDropdownValue(string value)
         {
-            return PageObjectHelper.Instance.SelectDropDown(ValueDropDown, value);
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(ValueDropDown)
+                .SelectDropDown(value);
         }
 
         private static bool EnterTextAreaValue(string value)
         {
-            return PageObjectHelper.Instance.InsertField(ValueTextArea, value);
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(ValueTextArea)
+                .Insert(value);
         }
 
         private static bool SelectTheCheckBox()
         {
-            return PageObjectHelper.Instance.Click(ValueCheckBox);
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(ValueCheckBox)
+                .Click();
         }
 
         private ParameterEditPopup() { }

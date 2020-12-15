@@ -31,43 +31,60 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Warehouse.Warehouses
         public void Navigate()
         {
             const string warehouseListPageUrl = "/Pages/Warehouse/WarehousePage.aspx";
-            string baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
-            PageObjectHelper.Instance.Navigate(baseUrl, warehouseListPageUrl);
+            var baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
+            var pageUrl = baseUrl + warehouseListPageUrl;
+            FluentElement.Instance.Navigate(pageUrl);
         }
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Warehouse list");
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Warehouse list");
         }
 
         public bool ClickAddButton()
         {
-            return PageObjectHelper.Instance.Click(AddButton);
+            return FluentElement.Instance
+                .WaitForElement(AddButton)
+                .Click();
         }
 
         public bool IsAddEditRowDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(AddEditRow, true);
+            return FluentElement.Instance
+                .WaitForElement(AddEditRow)
+                .IsVisible();
         }
 
         public bool InsertCode(string code)
         {
-            return PageObjectHelper.Instance.InsertField(CodeField, code);
+            return FluentElement.Instance
+                .WaitForElement(CodeField)
+                .Insert(code);
         }
 
         public bool InsertDescription(string description)
         {
-            return PageObjectHelper.Instance.InsertField(DescriptionField, description);
+            return FluentElement.Instance
+                .WaitForElement(DescriptionField)
+                .Insert(description);
         }
 
         public bool ClickSaveButton()
         {
-            return PageObjectHelper.Instance.Click(SaveButton);
+            return FluentElement.Instance
+                .WaitForElement(SaveButton)
+                .Click();
         }
 
         public bool IsFirstSearchResultRowDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(FirstSearchResultRow, true);
+            return FluentElement.Instance
+                .WaitForElement(FirstSearchResultRow)
+                .IsVisible();
         }
 
         private WarehouseList() { }

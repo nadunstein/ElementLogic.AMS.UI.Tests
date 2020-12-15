@@ -17,25 +17,33 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
 
         public bool IsPopupDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(Iframe, true);
+            return FluentElement.Instance
+                .WaitForElement(Iframe)
+                .IsVisible();
         }
 
         public string GetPopupMessage()
         {
-            PageObjectHelper.Instance.SwitchToIframeContent(Iframe);
-            return PageObjectHelper.Instance.GetTextValue(PopUpMessage);
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(PopUpMessage)
+                .GetText();
         }
 
         public bool InsertQuantity(string quantity)
         {
-            return PageObjectHelper.Instance.InsertField(QuantityField, quantity);
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(QuantityField)
+                .Insert(quantity);
         }
 
         public bool ClickConfirmButton()
         {
-            var isConfirmButtonClicked = PageObjectHelper.Instance.Click(ConfirmButton);
-            PageObjectHelper.Instance.SwitchToDefaultWebPage();
-            return isConfirmButtonClicked;
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(ConfirmButton)
+                .Click();
         }
 
         private ConfirmQuantityPopUp() { }

@@ -28,43 +28,59 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Warehouse.Equipment
         public void Navigate()
         {
             const string equipmentListPageUrl = "/Pages/Warehouse/EquipmentList.aspx";
-            string baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
-            PageObjectHelper.Instance.Navigate(baseUrl, equipmentListPageUrl);
+            var baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
+            var pageUrl = baseUrl + equipmentListPageUrl;
+            FluentElement.Instance.Navigate(pageUrl);
         }
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Equipment list");
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Equipment list");
         }
 
         public bool IsResultTableDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(ResultTable, true);
+            return FluentElement.Instance
+                .WaitForElement(ResultTable)
+                .IsVisible();
         }
 
         public bool InsertName(string value)
         {
-            return PageObjectHelper.Instance.InsertField(NameField, value);
+            return FluentElement.Instance
+                .WaitForElement(NameField)
+                .Insert(value);
         }
 
         public bool ClickSearchButton()
         {
-            return PageObjectHelper.Instance.Click(SearchButton);
+            return FluentElement.Instance
+                .WaitForElement(SearchButton)
+                .Click();
         }
 
         public bool ClickAddButton()
         {
-            return PageObjectHelper.Instance.Click(AddButton);
+            return FluentElement.Instance
+                .WaitForElement(AddButton)
+                .Click();
         }
 
         public bool IsNewEquipmentAdded(string equipment)
         {
-            return PageObjectHelper.Instance.TableDataExists(ResultTable, 3, equipment);
+            return PageObjectHelper.Instance
+                .TableDataExists(ResultTable, 3, equipment);
         }
 
         public bool ClickEquipmentViewButton()
         {
-            return PageObjectHelper.Instance.Click(EquipmentViewButton);
+            return FluentElement.Instance
+                .WaitForElement(EquipmentViewButton)
+                .Click();
         }
 
         private EquipmentList() { }

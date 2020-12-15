@@ -7,6 +7,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Refill
     {
         private const string Popup = ".rwTable";
 
+        private const string LoadingPanel = "#ctl00_pnlDataHider .ModalLoadingPanel";
+
         private const string PopupMessage = "#divMessage .as-popup-title";
 
         private const string YesButton = "#asMasterRadConfirmYesButton";
@@ -15,17 +17,26 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Refill
 
         public bool IsPopupDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(Popup, true);
+            return FluentElement.Instance
+                .WaitForElement(Popup)
+                .IsVisible();
         }
 
         public string GetPopupMessage()
         {
-            return PageObjectHelper.Instance.GetTextValue(PopupMessage);
+            return FluentElement.Instance
+                .WaitForElement(PopupMessage)
+                .GetText();
         }
 
         public bool ClickYesButton()
         {
-            return PageObjectHelper.Instance.Click(YesButton);
+            var isClicked = FluentElement.Instance
+                .WaitForElement(YesButton)
+                .Click();
+            FluentElement.Instance
+                .WaitUntilInvisible(LoadingPanel);
+            return isClicked;
         }
 
         private RefillTaskgroupExitPopup() { }

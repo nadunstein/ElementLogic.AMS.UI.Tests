@@ -24,40 +24,56 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.PutawaySelection
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Putaway selection",
-                LoadingPanel);
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitUntilInvisible(LoadingPanel)
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Putaway selection");
         }
 
         public bool IsPageDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(ScanField,false, true);
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .IsVisible(ScanField);
         }
 
         public bool SelectSearchOnDropdownValue(string dropDownValue)
         {
-            var dropdownDefaultValue = PageObjectHelper.Instance.GetAttributeValue(SearchOnDropdown, "value");
+            var dropdownDefaultValue = FluentElement.Instance
+                .WaitForElement(SearchOnDropdown)
+                .GetAttribute("value");
             if (dropdownDefaultValue.Equals(dropDownValue))
             {
                 return true;
             }
 
-            return PageObjectHelper.Instance.SelectDropDown(SearchOnDropdown, 
-                SearchOnDropdownList, "li", dropDownValue);
+            return FluentElement.Instance
+                .WaitForElement(SearchOnDropdown)
+                .SelectDropDown(SearchOnDropdownList, 
+                    "li", dropDownValue);
         }
 
         public bool InsertScanFieldValue(string scanValue)
         {
-            return PageObjectHelper.Instance.InsertField(ScanField, scanValue);
+            return FluentElement.Instance
+                .WaitForElement(ScanField)
+                .Insert(scanValue);
         }
 
         public bool ClickExitButton()
         {
-            return PageObjectHelper.Instance.Click(ExitButton);
+            return FluentElement.Instance
+                .WaitForElement(ExitButton)
+                .Click();
         }
 
         public void ClickEnterButtonOnScanField()
         {
-            PageObjectHelper.Instance.ClickEnterButton(ScanField);
+            FluentElement.Instance
+                .WaitForElement(ScanField)
+                .ClickEnterButton();
         }
 
         private PutawaySelection() { }

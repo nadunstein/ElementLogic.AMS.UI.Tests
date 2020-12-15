@@ -17,18 +17,25 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Automation.AutostoreEquipm
         public void Navigate()
         {
             const string autostoreEquipmentListPageUrl = "/Pages/Controller/Status.aspx";
-            string baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
-            PageObjectHelper.Instance.Navigate(baseUrl, autostoreEquipmentListPageUrl);
+            var baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
+            var pageUrl = baseUrl + autostoreEquipmentListPageUrl;
+            FluentElement.Instance
+                .Navigate(pageUrl);
         }
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "AutoStore equipment list");
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("AutoStore equipment list");
         }
 
         public bool SelectAutostoreEquipment(string equipmentName)
         {
-            return PageObjectHelper.Instance.SearchAndClickTableCellItem(EquipmentListTable, 2,
+            return FluentElement.Instance
+                .SearchAndClickTableCellItem(EquipmentListTable, 2,
                 equipmentName, 2, "a");
         }
 

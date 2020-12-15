@@ -17,39 +17,43 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
 
         public bool IsPopupDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(Iframe, true);
+            return FluentElement.Instance
+                .WaitForElement(Iframe)
+                .IsVisible();
         }
 
         public string GetPopupMessage()
         {
-            PageObjectHelper.Instance.SwitchToIframeContent(Iframe);
-            return PageObjectHelper.Instance.GetTextValue(PopUpMessage);
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(PopUpMessage)
+                .GetText();
         }
 
         public bool ClickPopupButton(string buttonToBeClicked)
         {
-            var isButtonClicked = buttonToBeClicked switch
+            return buttonToBeClicked switch
             {
                 "Continue" => ClickContinueButton(),
                 "Exit" => ClickExitButton(),
                 _ => false
             };
-
-            return isButtonClicked;
         }
 
         private static bool ClickContinueButton()
         {
-            var isContinueButtonClicked = PageObjectHelper.Instance.Click(ContinueButton);
-            PageObjectHelper.Instance.SwitchToDefaultWebPage();
-            return isContinueButtonClicked;
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(ContinueButton)
+                .Click();
         }
 
         private static bool ClickExitButton()
         {
-            var isExitButtonClicked = PageObjectHelper.Instance.Click(ExitButton);
-            PageObjectHelper.Instance.SwitchToDefaultWebPage();
-            return isExitButtonClicked;
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(ExitButton)
+                .Click();
         }
 
         private TaskgroupCompletedPopup() { }

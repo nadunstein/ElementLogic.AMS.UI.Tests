@@ -17,10 +17,9 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
             {
                 LoginPage.Instance.NavigateToAutoStore("01");
                 LoginPage.Instance.LoginToApplication("Admin");
-
+                AutostoreTaskMenu.Instance.IsPageLoaded();
                 AutostoreTaskMenu.Instance.ClickPutawayTaskType(putawayTaskName);
-                Assert.IsTrue(PutawaySelection.Instance.IsPageLoaded(),
-                    "The putaway selection page is not displayed");
+                PutawaySelection.Instance.IsPageLoaded();
             }
 
             Assert.IsTrue(PutawaySelection.Instance.SelectSearchOnDropdownValue("Order line"),
@@ -37,7 +36,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
                 "Unable to click on Confirm button on Putaway confirm quantity popup on putaway selection page in TEST DATA PREPARATION");
             Assert.IsTrue(PutawayMission.Instance.IsPageLoaded(),
                 "Autostore Putaway mission page is not loaded in TEST DATA PREPARATION");
-            PutawayMission.Instance.ClickEnterButtonOnQuantityField();
+            PutawayMission.Instance.ClickConfirmButton();
             Assert.IsTrue(PutawaySelection.Instance.IsPageLoaded(),
                 "The putaway selection page is not loaded in TEST DATA PREPARATION");
         }

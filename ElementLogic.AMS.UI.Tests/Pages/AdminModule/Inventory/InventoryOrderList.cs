@@ -34,39 +34,55 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Inventory
         public void Navigate()
         {
             const string generateInventoryDetailsPageUrl = "/Pages/Activity/Inventory/InventoryOrderList.aspx";
-            string baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
-            PageObjectHelper.Instance.Navigate(baseUrl, generateInventoryDetailsPageUrl);
+            var baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
+            var pageUrl = baseUrl + generateInventoryDetailsPageUrl;
+            FluentElement.Instance
+                .Navigate(pageUrl);
         }
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Inventory order list");
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Inventory order list");
         }
 
         public bool ClickAddButton()
         {
-            return PageObjectHelper.Instance.Click(AddButton);
+            return FluentElement.Instance
+                .WaitForElement(AddButton)
+                .Click();
         }
 
         public bool ClickSearchButton()
         {
-            return PageObjectHelper.Instance.Click(SearchButton);
+            return FluentElement.Instance
+                .WaitForElement(SearchButton)
+                .Click();
         }
 
         public bool IsFirstInventoryResultBarDisplayed()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(PageLoadingPanel);
-            return PageObjectHelper.Instance.IsDisplayed(FirstInventoryResultBar, true);
+            return FluentElement.Instance
+                .WaitUntilInvisible(PageLoadingPanel)
+                .WaitForElement(FirstInventoryResultBar)
+                .IsVisible();
         }
 
         public bool SelectAllCheckBox()
         {
-            return PageObjectHelper.Instance.Click(AllCheckBox);
+            return FluentElement.Instance
+                .WaitForElement(AllCheckBox)
+                .Click();
         }
 
         public bool SelectActionMenuOption(string option)
         {
-            return PageObjectHelper.Instance.SelectDropDown(ActionMenuGearIcon, ActionMenuSlide,
+            return FluentElement.Instance
+                .WaitForElement(ActionMenuGearIcon)
+                .SelectDropDown( ActionMenuSlide,
                 "li", option);
         }
 

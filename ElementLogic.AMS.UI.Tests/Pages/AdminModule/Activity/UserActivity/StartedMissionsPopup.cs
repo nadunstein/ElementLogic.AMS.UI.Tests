@@ -17,12 +17,16 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.UserActivity
 
         public bool IsPopupDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(Popup, true);
+            return FluentElement.Instance
+                .WaitForElement(Popup)
+                .IsVisible();
         }
 
         public string GetPopupMessage()
         {
-            return PageObjectHelper.Instance.GetTextValue(PopupMessage);
+            return FluentElement.Instance
+                .WaitForElement(PopupMessage)
+                .GetText();
         }
 
         public bool ClickPopupButton(string buttonToBeClicked)
@@ -39,12 +43,16 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.UserActivity
 
         private static bool ClickYesButton()
         {
-            return PageObjectHelper.Instance.Click(YesButton);
+            return FluentElement.Instance
+                .WaitForElement(YesButton)
+                .Click();
         }
 
         private static bool ClickNoButton()
         {
-            return PageObjectHelper.Instance.Click(NoButton);
+            return FluentElement.Instance
+                .WaitForElement(NoButton)
+                .Click();
         }
 
         private StartedMissionsPopup() { }

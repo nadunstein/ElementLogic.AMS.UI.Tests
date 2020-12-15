@@ -11,25 +11,30 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
 
         public static NoMoreTasksPopup Instance => Singleton.Value;
 
-        public bool IsPopupDisplayed()
-        {
-            var isPopupDisplayed = PageObjectHelper.Instance.IsDisplayed(Popup, true);
-            return isPopupDisplayed;
-        }
-
         public bool IsPopupLoaded()
         {
-            return PageObjectHelper.Instance.IsDisplayed(Popup);
+            return FluentElement.Instance
+                .WaitForElement(Popup)
+                .IsVisible();
+        }
+
+        public bool IsPopupDisplayed()
+        {
+            return FluentElement.Instance
+                .IsVisible(Popup);
         }
 
         public bool IsOkButtonDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(OkButton);
+            return FluentElement.Instance
+                .IsVisible(OkButton);
         }
 
         public bool ClickOkButton()
         {
-            return PageObjectHelper.Instance.Click(OkButton);
+            return FluentElement.Instance
+                .WaitForElement(OkButton)
+                .Click();
         }
 
         private NoMoreTasksPopup() { }

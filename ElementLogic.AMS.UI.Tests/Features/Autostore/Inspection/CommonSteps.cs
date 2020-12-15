@@ -9,7 +9,6 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Inspection
     public class CommonSteps
     {
         private string _productLocation;
-        private string _extProductId;
         private int _changedQuantity;
 
         [Then(@"The Inspection-Create task page is loaded")]
@@ -39,13 +38,13 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Inspection
         {
             Assert.IsTrue(InspectionMission.Instance.IsPageLoaded(),
                 "The Autostore Inspection mission page is not loaded");
-            _extProductId = InspectionMission.Instance.GetProductNumberLabelValue();
         }
 
         [Then(@"I include the actual quantity to the Location Quantity field in Autostore Inspection mission page")]
         public void ThenIIncludeTheActualQuantityToTheLocationQuantityFieldInAutostoreInspectionMissionPage()
         {
-            var actualQty = (int) ProductLocation.Instance.GetLocationQuantity(_productLocation, _extProductId);
+            var productId = InspectionMission.Instance.GetProductNumberLabelValue();
+            var actualQty = (int) ProductLocation.Instance.GetLocationQuantity(_productLocation, productId);
             Assert.IsTrue(InspectionMission.Instance.IncludeLocationQuantityValue(actualQty),
                 "Unable to include the quantity in Autostore Inspection mission page");
         }
@@ -60,7 +59,8 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Inspection
         [Then(@"I include a Quantity to the Location Quantity field which is less than the Original Quantity in Autostore Inspection mission page")]
         public void ThenIIncludeAQuantityToTheLocationQuantityFieldWhichIsLessThanTheOriginalQuantityInAutostoreInspectionMissionPage()
         {
-            _changedQuantity = (int) ProductLocation.Instance.GetLocationQuantity(_productLocation, _extProductId) - 1;
+            var productId = InspectionMission.Instance.GetProductNumberLabelValue();
+            _changedQuantity = (int) ProductLocation.Instance.GetLocationQuantity(_productLocation, productId) - 1;
             Assert.IsTrue(InspectionMission.Instance.IncludeLocationQuantityValue(_changedQuantity),
                 "Unable to include the quantity in Autostore Inspection mission page");
         }
@@ -68,7 +68,8 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Inspection
         [Then(@"The Quantity is updated successfully for the product")]
         public void ThenTheQuantityIsUpdatedSuccessfullyForTheProduct()
         {
-            var qtyAfterInspection = (int) ProductLocation.Instance.GetLocationQuantity(_productLocation, _extProductId);
+            var productId = InspectionMission.Instance.GetProductNumberLabelValue();
+            var qtyAfterInspection = (int) ProductLocation.Instance.GetLocationQuantity(_productLocation, productId);
             Assert.AreEqual(_changedQuantity, qtyAfterInspection,
                 "the Location Quantity is not changed after Inspection");
         }

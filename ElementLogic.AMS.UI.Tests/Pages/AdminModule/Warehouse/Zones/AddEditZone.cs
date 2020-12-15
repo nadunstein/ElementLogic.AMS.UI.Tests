@@ -36,47 +36,67 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Warehouse.Zones
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Add/Edit zone");
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Add/Edit zone");
         }
 
         public bool InsertCode(string value)
         {
-            return PageObjectHelper.Instance.InsertField(CodeField, value);
+            return FluentElement.Instance
+                .WaitForElement(CodeField)
+                .Insert(value);
         }
 
         public bool InsertDescription(string value)
         {
-            return PageObjectHelper.Instance.InsertField(DescriptionField, value);
+            return FluentElement.Instance
+                .WaitForElement(DescriptionField)
+                .Insert(value);
         }
 
         public bool InsertLocationTemplate(string value)
         {
-            return PageObjectHelper.Instance.InsertField(LocationTemplateField, value);
+            return FluentElement.Instance
+                .WaitForElement(LocationTemplateField)
+                .Insert(value);
         }
 
         public bool SelectZoneTyp(string value)
         {
-            return PageObjectHelper.Instance.SelectDropDown(ZoneTypeDropDown, value);
+            return FluentElement.Instance
+                .WaitForElement(ZoneTypeDropDown)
+                .SelectDropDown(value);
         }
 
         public bool SelectWarehouse(string value)
         {
-            return PageObjectHelper.Instance.SelectDropDown(WarehouseDropDown, value);
+            return FluentElement.Instance
+                .WaitForElement(WarehouseDropDown)
+                .SelectDropDown(value);
         }
 
         public bool ClickSaveButton()
         {
-            return PageObjectHelper.Instance.Click(SaveButton);
+            return FluentElement.Instance
+                .WaitForElement(SaveButton)
+                .Click();
         }
 
         public bool SelectFifoCheckBox()
         {
-            return PageObjectHelper.Instance.Click(FifoCheckBox);
+            return FluentElement.Instance
+                .WaitForElement(FifoCheckBox)
+                .Click();
         }
 
         public bool ClickCancelButton()
         {
-            return PageObjectHelper.Instance.Click(CancelButton);
+            return FluentElement.Instance
+                .WaitForElement(CancelButton)
+                .Click();
         }
 
         private AddEditZone() { }

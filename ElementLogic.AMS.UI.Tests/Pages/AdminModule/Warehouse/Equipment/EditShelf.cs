@@ -21,22 +21,33 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Warehouse.Equipment
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Shelf");
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Shelf");
         }
 
         public bool InsertShelfNumber(int value)
         {
-            return PageObjectHelper.Instance.InsertField(ShelfNumberField, value.ToString());
+            var valueString = value.ToString();
+            return FluentElement.Instance
+                .WaitForElement(ShelfNumberField)
+                .Insert(valueString);
         }
 
         public bool ClickSaveButton()
         {
-            return PageObjectHelper.Instance.Click(SaveButton);
+            return FluentElement.Instance
+                .WaitForElement(SaveButton)
+                .Click();
         }
 
         public bool ClickCancelButton()
         {
-            return PageObjectHelper.Instance.Click(CancelButton);
+            return FluentElement.Instance
+                .WaitForElement(CancelButton)
+                .Click();
         }
 
         private EditShelf() { }

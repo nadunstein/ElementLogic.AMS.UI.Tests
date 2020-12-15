@@ -7,8 +7,6 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
     {
         private const string Popup = ".rwTable";
 
-        private const string LoadingPanel = ".TelerikModalOverlay";
-
         private const string PopUpMessage = ".rwTable .as-popup-title";
 
         private const string YesButton = ".rwTable #asMasterRadConfirmYesButton";
@@ -19,23 +17,30 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
 
         public bool IsPopupDisplayed()
         {
-            PageObjectHelper.Instance.IsDisplayed(LoadingPanel, true);
-            return PageObjectHelper.Instance.IsDisplayed(Popup, true);
+            return FluentElement.Instance
+                .WaitForElement(Popup)
+                .IsVisible();
         }
 
         public string GetPopupMessage()
         {
-            return PageObjectHelper.Instance.GetTextValue(PopUpMessage);
+            return FluentElement.Instance
+                .WaitForElement(PopUpMessage)
+                .GetText();
         }
 
         public bool ClickYesButton()
         {
-            return PageObjectHelper.Instance.Click(YesButton);
+            return FluentElement.Instance
+                .WaitForElement(YesButton)
+                .Click();
         }
 
         public bool ClickNoButton()
         {
-            return PageObjectHelper.Instance.Click(NoButton);
+            return FluentElement.Instance
+                .WaitForElement(NoButton)
+                .Click();
         }
 
         private EmptyLocationPopup() { }

@@ -13,12 +13,16 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Inspection
 
         public bool IsPopupDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(Popup, true);
+            return FluentElement.Instance
+                .WaitForElement(Popup)
+                .IsVisible();
         }
 
         public bool ClickYesButton()
         {
-            return PageObjectHelper.Instance.Click(YesButton);
+            return FluentElement.Instance
+                .WaitForElement(YesButton)
+                .Click();
         }
 
         private ChangeQuantityPopup() { }

@@ -31,43 +31,60 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.OrderTypes
         public void Navigate()
         {
             const string orderTypesPageUrl = "/Pages/System/ListOrderTypes.aspx";
-            string baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
-            PageObjectHelper.Instance.Navigate(baseUrl, orderTypesPageUrl);
+            var baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
+            var pageUrl = baseUrl + orderTypesPageUrl;
+            FluentElement.Instance
+                .Navigate(pageUrl);
         }
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Order types");
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Order types");
         }
 
         public bool ClickAddButton()
         {
-            return PageObjectHelper.Instance.Click(AddButton);
+            return FluentElement.Instance
+                .WaitForElement(AddButton)
+                .Click();
         }
 
         public bool IsAddRowDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(AddRow, true);
+            return FluentElement.Instance
+                .WaitForElement(AddRow)
+                .IsVisible();
         }
 
         public bool InsertOrderTypeId(string orderTypeId)
         {
-            return PageObjectHelper.Instance.InsertField(OrderTypeIdField,orderTypeId);
+            return FluentElement.Instance
+                .WaitForElement(OrderTypeIdField)
+                .Insert(orderTypeId);
         }
 
         public bool InsertOrderTypeText(string orderType)
         {
-            return PageObjectHelper.Instance.InsertField(OrderTypeTextField, orderType);
+            return FluentElement.Instance
+                .WaitForElement(OrderTypeTextField)
+                .Insert(orderType);
         }
 
         public bool ClickSaveButton()
         {
-            return PageObjectHelper.Instance.Click(SaveButton);
+            return FluentElement.Instance
+                .WaitForElement(SaveButton)
+                .Click();
         }
 
         public bool IsNewOrderTypeAdded(string orderType)
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(AddRow);
+             FluentElement.Instance
+                .WaitUntilInvisible(AddRow);
             return PageObjectHelper.Instance.TableDataExists(ResultTable, 3, orderType);
         }
 

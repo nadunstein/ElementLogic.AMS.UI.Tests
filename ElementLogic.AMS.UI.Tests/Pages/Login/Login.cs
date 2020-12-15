@@ -17,27 +17,38 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Login
 
         public void NavigateToAdminModule()
         {
-            PageObjectHelper.Instance.Navigate(
-                JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url"));
-        }
-
-        public bool IsPageLoaded()
-        {
-            return PageObjectHelper.Instance.IsDisplayed(UserNameField, true, true);
+            var adminBaseUrl =
+                JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
+            FluentElement.Instance
+                .Navigate(adminBaseUrl)
+                .WaitForPageLoad();
         }
 
         public void NavigateToAutoStore(string portId)
         {
-            PageObjectHelper.Instance.DeleteBrowserCookies();
-            var autostoreUrl = string.Concat("/as/", portId);
-            string baseUrl =
+            FluentElement.Instance.DeleteBrowserCookies();
+            var baseUrl =
                 JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
-            PageObjectHelper.Instance.Navigate(baseUrl, autostoreUrl);
+            var autostoreUrl = string.Concat("/as/", portId);
+            var pageUrl = baseUrl + autostoreUrl;
+            FluentElement.Instance
+                .Navigate(pageUrl)
+                .WaitForPageLoad();
+        }
+
+        public bool IsPageLoaded()
+        {
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitForElement(UserNameField)
+                .IsVisible();
         }
 
         public void LoginToApplication(string username)
         {
-            if (!PageObjectHelper.Instance.IsDisplayed(UserNameField, false, true))
+            if (!FluentElement.Instance
+                .WaitForPageLoad()
+                .IsVisible(UserNameField))
             {
                 return;
             }
@@ -50,17 +61,23 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Login
 
         public bool InsertUsername(string username)
         {
-            return PageObjectHelper.Instance.InsertField(UserNameField, username);
+            return FluentElement.Instance
+                .WaitForElement(UserNameField)
+                .Insert(username);
         }
 
         public bool InsertPassword(string password)
         {
-            return PageObjectHelper.Instance.InsertField(PasswordField, password);
+            return FluentElement.Instance
+                .WaitForElement(PasswordField)
+                .Insert(password);
         }
 
         public bool ClickAdminLoginButton()
         {
-            return PageObjectHelper.Instance.Click(AdminAsLoginButton);
+            return FluentElement.Instance
+                .WaitForElement(AdminAsLoginButton)
+                .Click();
         }
 
         private Login() { }

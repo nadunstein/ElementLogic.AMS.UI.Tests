@@ -21,6 +21,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.Mission
 
         private const string ScanField = "#ctl00_MonitorContentPlaceholder_PutawayView1_txtScan";
 
+        private const string ConfirmButton = "#ctl00_MonitorContentPlaceholder_PutawayView1_BtnConfirm1";
+
         private const string ExitButton = "#ctl00_MonitorContentPlaceholder_PutawayView1_BtnExit";
 
         private const string ProductImage = "#ctl00_MonitorContentPlaceholder_PutawayView1_productImage";
@@ -29,75 +31,102 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.Mission
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Putaway");
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Putaway");
         }
 
         public bool ClickExitButton()
         {
-            return PageObjectHelper.Instance.Click(ExitButton);
+            return FluentElement.Instance
+                .WaitForElement(ExitButton)
+                .Click();
         }
 
         public string GetTaskQueueLabelValue()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
-            return PageObjectHelper.Instance.GetTextValue(TaskQueueLabel);
+            return FluentElement.Instance
+                .WaitUntilInvisible(LoadingPanel)
+                .WaitForElement(TaskQueueLabel)
+                .GetText();
         }
 
         public string GetExtProductIdFieldValue()
         {
-            return PageObjectHelper.Instance.GetAttributeValue(ExtProductIdField, "Value");
+            return FluentElement.Instance
+                .WaitForElement(ExtProductIdField)
+                .GetAttribute("Value");
         }
 
         public string GetLocationNameLabelValue()
         {
-            return PageObjectHelper.Instance.GetTextValue(LocationNameLabel);
+            return FluentElement.Instance
+                .WaitForElement(LocationNameLabel)
+                .GetText();
         }
 
         public bool IsQuantityFieldDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(QuantityField);
+            return FluentElement.Instance
+                .IsVisible(QuantityField);
         }
 
         public bool IsQuantityFieldFocused()
         {
-            return PageObjectHelper.Instance.IsFocused(QuantityField);
+            return FluentElement.Instance
+                .WaitForElement(QuantityField)
+                .IsFocused();
         }
 
         public int GetQuantityFieldValue()
         {
-            var putawayQuantity = PageObjectHelper.Instance.GetAttributeValue(QuantityField, "Value");
+            var putawayQuantity = FluentElement.Instance
+                .WaitForElement(QuantityField)
+                .GetAttribute("Value");
             return Convert.ToInt32(putawayQuantity);
         }
 
         public bool IsScanFieldDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(ScanField);
+            return FluentElement.Instance
+                .IsVisible(ScanField);
         }
 
         public bool IsScanFieldFocused()
         {
-            return PageObjectHelper.Instance.IsFocused(ScanField);
+            return FluentElement.Instance
+                .WaitForElement(ScanField)
+                .IsFocused();
         }
 
         public bool IsProductImageDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(ProductImage);
+            return FluentElement.Instance
+                .IsVisible(ProductImage);
         }
 
         public string GetProductImageUrl()
         {
-            var imageSrcUrlValue = PageObjectHelper.Instance.GetAttributeValue(ProductImage, "src");
+            var imageSrcUrlValue = FluentElement.Instance
+                .WaitForElement(ProductImage)
+                .GetAttribute("src");
             return imageSrcUrlValue;
         }
 
         public bool IncludeScanValue(string scanValue)
         {
-            return PageObjectHelper.Instance.InsertField(ScanField, scanValue);
+            return FluentElement.Instance
+                .WaitForElement(ScanField)
+                .Insert(scanValue);
         }
 
-        public void ClickEnterButtonOnQuantityField()
+        public bool ClickConfirmButton()
         {
-            PageObjectHelper.Instance.ClickEnterButton(QuantityField);
+            return FluentElement.Instance
+                .WaitForElement(ConfirmButton)
+                .Click();
         }
 
         private PutawayMission() { }

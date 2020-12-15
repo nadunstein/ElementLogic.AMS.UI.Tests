@@ -15,17 +15,25 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Inspection
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Inspection - Create task");
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Inspection - Create task");
         }
 
         public bool IncludeLocationValue(string location)
         {
-            return PageObjectHelper.Instance.InsertField(LocationField, location);
+            return FluentElement.Instance
+                .WaitForElement(LocationField)
+                .Insert(location);
         }
 
         public bool ClickConfirmButton()
         {
-            return PageObjectHelper.Instance.Click(ConfirmButton);
+            return FluentElement.Instance
+                .WaitForElement(ConfirmButton)
+                .Click();
         }
 
         private InspectionCreateTask() { }

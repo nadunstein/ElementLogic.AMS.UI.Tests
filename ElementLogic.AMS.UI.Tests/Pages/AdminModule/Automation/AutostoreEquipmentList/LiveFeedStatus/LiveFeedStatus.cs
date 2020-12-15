@@ -25,23 +25,32 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Automation.AutostoreEquipm
         {
             const string liveFeedStatusPageUrl =
                 "/Pages/Controller/StatusLiveFeed.aspx?portid=0&name=AutoStore%20Grid";
-            string baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
-            PageObjectHelper.Instance.Navigate(baseUrl, liveFeedStatusPageUrl);
+            var baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
+            var pageUrl = baseUrl + liveFeedStatusPageUrl;
+            FluentElement.Instance
+                .Navigate(pageUrl);
         }
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Live feed status");
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Live feed status");
         }
 
         public bool IsLiveFeedActionListed(string liveFeedAction)
         {
-            return PageObjectHelper.Instance.TableDataExists(LiveFeedTable, 2, liveFeedAction);
+            return PageObjectHelper.Instance
+                .TableDataExists(LiveFeedTable, 2, liveFeedAction);
         }
 
         public bool ClickShowHideResponsesButton()
         {
-            return PageObjectHelper.Instance.Click(ShowHideResponsesButton);
+            return FluentElement.Instance
+                .WaitForElement(ShowHideResponsesButton)
+                .Click();
         }
 
         public bool IsLiveFeedResponseDisplayed(string liveFeedAction)
@@ -76,8 +85,10 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Automation.AutostoreEquipm
 
         public bool SelectActionDropDownOption(string option)
         {
-            return PageObjectHelper.Instance.SelectDropDown(ActionDropDownIcon, 
-                ActionDropDownMenu, ".dropdown-item", option);
+            return FluentElement.Instance
+                .WaitForElement(ActionDropDownIcon)
+                .SelectDropDown(ActionDropDownMenu, 
+                    ".dropdown-item", option);
         }
 
         private LiveFeedStatus() { }

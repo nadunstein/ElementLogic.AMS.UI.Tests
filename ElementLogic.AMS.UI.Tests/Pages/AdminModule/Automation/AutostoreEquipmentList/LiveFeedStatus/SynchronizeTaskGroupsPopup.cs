@@ -13,12 +13,16 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Automation.AutostoreEquipm
 
         public bool IsPopupDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(PopupTitle, true);
+            return FluentElement.Instance
+                .WaitForElement(PopupTitle)
+                .IsVisible();
         }
 
         public bool ClickSynchronizeButton()
         {
-            return PageObjectHelper.Instance.Click(SynchronizeButton);
+            return FluentElement.Instance
+                .WaitForElement(SynchronizeButton)
+                .Click();
         }
 
         private SynchronizeBinContentsPopup() { }

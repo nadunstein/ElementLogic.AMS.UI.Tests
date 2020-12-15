@@ -107,7 +107,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
         {
             Assert.IsTrue(AutostoreTaskMenu.Instance.ClickPickTaskType(pickTaskType),
                 "Unable to Click on Pick task type in AutoStore Main Menu");
-            if (PickNoMoreTasksPopup.Instance.IsPopupDisplayed())
+            if (PickNoMoreTasksPopup.Instance.IsPopupLoaded())
             {
                 if (PickNoMoreTasksPopup.Instance.IsOkButtonDisplayed())
                 {
@@ -157,13 +157,13 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
                 LoginPage.Instance.LoginToApplication("Admin");
                 AutostoreTaskMenu.Instance.IsPageLoaded();
                 AutostoreTaskMenu.Instance.ClickPickTaskType(pickTaskType);
-                PickNoMoreTasksPopup.Instance.IsPopupDisplayed();
+                PickNoMoreTasksPopup.Instance.IsPopupLoaded();
                 PickMission.Instance.ClickExitButton();
                 return false;
             }
 
             AutostoreTaskMenu.Instance.ClickPickTaskType(pickTaskType);
-            PickNoMoreTasksPopup.Instance.IsPopupDisplayed();
+            PickNoMoreTasksPopup.Instance.IsPopupLoaded();
             PickMission.Instance.ClickExitButton();
             return false;
         }
@@ -185,7 +185,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
         {
             for (var i = 0; i < 20; i++)
             {
-                var noMoreTasksPopupDisplayed = PickNoMoreTasksPopup.Instance.IsPopupLoaded();
+                var noMoreTasksPopupDisplayed = PickNoMoreTasksPopup.Instance.IsPopupDisplayed();
                 var autoStoreTaskMenuDisplayed = AutostoreTaskMenu.Instance.IsPageDisplayed();
                 var refillTaskgroupSelectionPageDisplayed = RefillTaskgroupSelection.Instance.IsPageDisplayed();
 

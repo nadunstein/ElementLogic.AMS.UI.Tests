@@ -7,29 +7,23 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
     {
         private const string Iframe = ".rwTable > tbody > .rwContentRow > .rwWindowContent > iframe";
 
-        private const string PopUpMessage = "#divMessage .as-txt-center";
-
         private const string OkButton = "#ctl00_ContentPlaceHolder1_ctl00_btnExit";
 
         public static NewOrderPopup Instance => Singleton.Value;
 
         public bool IsPopupDisplayed()
         {
-            var isPopupDisplayed = PageObjectHelper.Instance.IsDisplayed(Iframe, true);
-            return isPopupDisplayed;
-        }
-
-        public string GetPopupMessage()
-        {
-            return PageObjectHelper.Instance.GetTextValue(PopUpMessage);
+            return FluentElement.Instance
+                .WaitForElement(Iframe)
+                .IsVisible();
         }
 
         public bool ClickOkButton()
         {
-            PageObjectHelper.Instance.SwitchToIframeContent(Iframe);
-            var isOkButtonClicked = PageObjectHelper.Instance.Click(OkButton);
-            PageObjectHelper.Instance.SwitchToDefaultWebPage();
-            return isOkButtonClicked;
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(OkButton)
+                .Click();
         }
 
         private NewOrderPopup() { }

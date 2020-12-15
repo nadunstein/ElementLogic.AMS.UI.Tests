@@ -13,12 +13,16 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Warehouse.Equipment
 
         public bool IsPopUpDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(PopUp, true);
+            return FluentElement.Instance
+                .WaitForElement(PopUp)
+                .IsVisible();
         }
 
         public bool ClickYesButton()
         {
-            return PageObjectHelper.Instance.Click(YesButton);
+            return FluentElement.Instance
+                .WaitForElement(YesButton)
+                .Click();
         }
 
         private EquipmentInfoPopUp() { }

@@ -362,7 +362,7 @@ namespace SeleniumEssential
                         var options = Finds(dropdownOptionsIdentifier, searchDropdownList);
                         if (options.Count.Equals(1) && GetTextValue(options[0]).Contains(searchOption))
                         {
-                            options[0].Click();
+                            Click(options[0]);
                             return true;
                         }
                     }
@@ -493,7 +493,7 @@ namespace SeleniumEssential
 
         public ReadOnlyCollection<IWebElement> Finds(string elementFinder, object parentElement)
         {
-            var iWebElementObject = (IWebElement)parentElement;
+            var iWebElementObject = (IWebElement) parentElement;
             var attempts = 0;
             while (attempts < 20)
             {

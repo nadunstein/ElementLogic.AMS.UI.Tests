@@ -45,63 +45,90 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.TaskTypes
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Edit task");
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Edit task");
         }
 
         public bool InsertCode(string value)
         {
-            return PageObjectHelper.Instance.InsertField(CodeField, value);
+            return FluentElement.Instance
+                .WaitForElement(CodeField)
+                .Insert(value);
         }
 
         public bool InsertName(string value)
         {
-            return PageObjectHelper.Instance.InsertField(NameField, value);
+            return FluentElement.Instance
+                .WaitForElement(NameField)
+                .Insert(value);
         }
 
         public bool InsertPriority(string value)
         {
-            return PageObjectHelper.Instance.InsertField(PriorityField, value);
+            return FluentElement.Instance
+                .WaitForElement(PriorityField)
+                .Insert(value);
         }
 
         public bool InsertMinQueueLength(string value)
         {
-            return PageObjectHelper.Instance.InsertField(MinQueueLengthField, value);
+            return FluentElement.Instance
+                .WaitForElement(MinQueueLengthField)
+                .Insert(value);
         }
 
         public bool InsertMaxQueueLength(string value)
         {
-            return PageObjectHelper.Instance.InsertField(MaxQueueLengthField, value);
+            return FluentElement.Instance
+                .WaitForElement(MaxQueueLengthField)
+                .Insert(value);
         }
 
         public bool InsertSql(string value)
         {
-            return PageObjectHelper.Instance.InsertField(SqlField, value);
+            return FluentElement.Instance
+                .WaitForElement(SqlField)
+                .Insert(value);
         }
 
         public bool InsertSequence(string value)
         {
-            return PageObjectHelper.Instance.InsertField(SequenceField, value);
+            return FluentElement.Instance
+                .WaitForElement(SequenceField)
+                .Insert(value);
         }
 
         public bool InsertShipment(string value)
         {
-            return PageObjectHelper.Instance.InsertField(ShipmentField, value);
+            return FluentElement.Instance
+                .WaitForElement(ShipmentField)
+                .Insert(value);
         }
 
         public bool SelectActivityType(string value)
         {
-            if (PageObjectHelper.Instance.GetAttributeValue(ActivityTypeDropDown, "value").Equals(value))
+            if (FluentElement.Instance
+                .WaitForElement(ActivityTypeDropDown)
+                .GetAttribute("value")
+                .Equals(value))
             {
                 return true;
             }
 
-            return PageObjectHelper.Instance.SelectDropDown(ActivityTypeDropDown, 
-                ActivityTypeDropDownList, "li", value);
+            return FluentElement.Instance
+                .WaitForElement(ActivityTypeDropDown)
+                .SelectDropDown(ActivityTypeDropDownList, 
+                    "li", value);
         }
 
         public bool ClickSaveButton()
         {
-            return PageObjectHelper.Instance.Click(SaveButton);
+            return FluentElement.Instance
+                .WaitForElement(SaveButton)
+                .Click();
         }
 
         private EditTask() { }

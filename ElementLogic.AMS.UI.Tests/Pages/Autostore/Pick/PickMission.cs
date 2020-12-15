@@ -53,128 +53,172 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Picking", LoadingPanel);
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitUntilInvisible(LoadingPanel)
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Picking");
         }
 
         public string GetTaskQueueValue()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
-            return PageObjectHelper.Instance.GetTextValue(TaskQueueLabel);
+            return FluentElement.Instance
+                .WaitUntilInvisible(LoadingPanel)
+                .WaitForElement(TaskQueueLabel)
+                .GetText();
         }
 
         public bool IsPossibleDelayLabelDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(PossibleDelayLabel, true);
+            return FluentElement.Instance
+                .WaitForElement(PossibleDelayLabel)
+                .IsVisible();
         }
 
         public string GetMissionIdValue()
         {
-            return PageObjectHelper.Instance.GetAttributeValue(MissionIdLabel, "Value");
+            return FluentElement.Instance
+                .WaitForElement(MissionIdLabel)
+                .GetAttribute("Value");
         }
 
         public string GetProductNumber()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
-            return PageObjectHelper.Instance.GetAttributeValue(ProductNumberLabel, "Value");
+            return FluentElement.Instance
+                .WaitUntilInvisible(LoadingPanel)
+                .WaitForElement(ProductNumberLabel)
+                .GetAttribute("Value");
         }
 
         public string GetPickLocation()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
-            return PageObjectHelper.Instance.GetTextValue(AutoStoreLocationLabel);
+            return FluentElement.Instance
+                .WaitUntilInvisible(LoadingPanel)
+                .WaitForElement(AutoStoreLocationLabel)
+                .GetText();
         }
 
         public string GetDeliveryLocationValue()
         {
-            return PageObjectHelper.Instance.GetAttributeValue(DeliveryLocationValue, "Value");
+            return FluentElement.Instance
+                .WaitForElement(DeliveryLocationValue)
+                .GetAttribute("Value");
         }
 
         public string GetDeliveryLocationName()
         {
-            return PageObjectHelper.Instance.GetTextValue(DeliveryLocationLabel);
+            return FluentElement.Instance
+                .WaitForElement(DeliveryLocationLabel)
+                .GetText();
         }
 
         public int GetPickQuantityFieldValue()
         {
-            return int.Parse(PageObjectHelper.Instance.GetAttributeValue(PickQuantityField, "Value"));
+            return int.Parse(FluentElement.Instance
+                .WaitForElement(PickQuantityField)
+                .GetAttribute("Value"));
         }
 
         public bool InsertQuantity(string quantity)
         {
-            return PageObjectHelper.Instance.InsertField(PickQuantityField, quantity);
+            return FluentElement.Instance
+                .WaitForElement(PickQuantityField)
+                .Insert(quantity);
         }
 
         public bool IsConfirmQuantityFieldDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(ConfirmQuantityField);
+            return FluentElement.Instance
+                .IsVisible(ConfirmQuantityField);
         }
 
         public bool IsConfirmQuantityFieldFocused()
         {
-            return PageObjectHelper.Instance.IsFocused(ConfirmQuantityField);
+            return FluentElement.Instance
+                .WaitForElement(ConfirmQuantityField)
+                .IsFocused();
         }
 
         public bool InsertConfirmQuantity(string quantity)
         {
-            return PageObjectHelper.Instance.InsertField(ConfirmQuantityField, quantity);
+            return FluentElement.Instance
+                .WaitForElement(ConfirmQuantityField)
+                .Insert(quantity);
         }
 
         public bool InsertProductScanValue(string scanValue)
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
-            PageObjectHelper.Instance.ScrollToTheElement(ProductScanField);
-            return PageObjectHelper.Instance.InsertField(ProductScanField, scanValue);
+            return FluentElement.Instance
+                .WaitUntilInvisible(LoadingPanel)
+                .WaitForElement(ProductScanField)
+                .ScrollToTheElement()
+                .Insert(scanValue);
         }
 
         public bool IsContainerScanFieldDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(ContainerScanField, true);
+            return FluentElement.Instance
+                .WaitForElement(ContainerScanField)
+                .IsVisible();
         }
 
         public bool IsContainerScanFieldNotDisplayed()
         {
-            return !PageObjectHelper.Instance.IsDisplayed(ContainerScanField);
+            return !FluentElement.Instance
+                .IsVisible(ContainerScanField);
         }
 
         public bool InsertContainerScanValue(string scanValue)
         {
-            PageObjectHelper.Instance.ScrollToTheElement(ContainerScanField);
-            return PageObjectHelper.Instance.InsertField(ContainerScanField, scanValue);
+            return FluentElement.Instance
+                .WaitForElement(ContainerScanField)
+                .ScrollToTheElement()
+                .Insert(scanValue);
         }
 
         public bool SelectContainer(string boxtype)
         {
-            return PageObjectHelper.Instance.SelectDropDown(NewContainerButton, NewContainerListPanel,
-                "li", boxtype);
+            return FluentElement.Instance
+                .WaitForElement(NewContainerButton)
+                .SelectDropDown(NewContainerListPanel, 
+                    "li", boxtype);
         }
 
         public bool IsAddNewContainerNotificationDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(AddNewContainerNotificationText, true);
+            return FluentElement.Instance
+                .WaitForElement(AddNewContainerNotificationText)
+                .IsVisible();
         }
 
         public string GetAddNewContainerNotificationTextValue()
         {
-            return PageObjectHelper.Instance.GetTextValue(AddNewContainerNotificationText);
+            return FluentElement.Instance
+                .WaitForElement(AddNewContainerNotificationText)
+                .GetText();
         }
 
         public bool SelectOption(string option)
         {
-            var isClicked = PageObjectHelper.Instance.Click(OptionsButton);
-            var isDisplayed = PageObjectHelper.Instance.IsDisplayed(OptionsListPanel, true);
-            PageObjectHelper.Instance.Wait(1);
-            var isSelected = PageObjectHelper.Instance.SelectDropDown(null, OptionsListPanel, ".rtbItem", option);
-            return isClicked && isDisplayed && isSelected;
+            return FluentElement.Instance
+                .WaitForElement(OptionsButton)
+                .SelectDropDown(OptionsListPanel, 
+                    ".rtbItem", option);
         }
 
         public bool ClickConfirmButton()
         {
-            return PageObjectHelper.Instance.Click(PickConfirmButton);
+            return FluentElement.Instance
+                .WaitForElement(PickConfirmButton)
+                .Click();
         }
 
         public bool ClickExitButton()
         {
-            return PageObjectHelper.Instance.Click(ExitButton);
+            return FluentElement.Instance
+                .WaitForElement(ExitButton)
+                .Click();
         }
 
         private PickMission() { }

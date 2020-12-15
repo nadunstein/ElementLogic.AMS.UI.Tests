@@ -18,11 +18,11 @@ Scenario: Verify normal autostore putaway with multiple missions
 	Then The Autostore putaway mission '1' is loaded
 	And The putaway order information is loaded in the Autostore putaway mission page
 	And I check the focus is on quantity field in Autostore putaway mission page
-	When I click enter button in Autostore putaway mission page
+	When I click on Confirm button in Autostore putaway mission page
 	Then The Autostore putaway mission '2' is loaded
 	And The putaway order information is loaded in the Autostore putaway mission page
 	And I check the focus is on quantity field in Autostore putaway mission page
-	When I click enter button in Autostore putaway mission page
+	When I click on Confirm button in Autostore putaway mission page
 	Then I Navigate to Autostore Putaway Selection page
 
 @Regression
@@ -44,5 +44,5 @@ Scenario: Verify user can view the product image by performing Putaway with mult
 	And I verify the putaway product image is displayed in Autostore putaway mission page
 	And I check the focus is on scan field in Autostore putaway mission page
 	And I include the scan value to Scan value field in Autostore putaway mission page
-	When I click enter button in Autostore putaway mission page
+	When I click on Confirm button in Autostore putaway mission page
 	Then I Navigate to Autostore Putaway Selection page

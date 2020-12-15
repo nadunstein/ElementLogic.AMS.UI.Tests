@@ -142,10 +142,11 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Putaway
                 "The Focus is not on the Quantity field in Autostore putaway mission page");
         }
 
-        [When(@"I click enter button in Autostore putaway mission page")]
-        public void WhenIClickEnterButtonInAutostorePutawayMissionPage()
+        [When(@"I click on Confirm button in Autostore putaway mission page")]
+        public void WhenIClickOnConfirmButtonInAutostorePutawayMissionPage()
         {
-            PutawayMission.Instance.ClickEnterButtonOnQuantityField();
+            Assert.IsTrue(PutawayMission.Instance.ClickConfirmButton(),
+                "Unable to click on Confirm button in Autostore putaway mission page");
         }
 
         private CommonSteps(ScenarioContext scenarioContext)

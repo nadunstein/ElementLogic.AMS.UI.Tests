@@ -66,97 +66,137 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Warehouse.Equipment
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Add/Edit equipment");
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Add/Edit equipment");
         }
 
         public bool InsertCode(string value)
         {
-            return PageObjectHelper.Instance.InsertField(CodeField, value);
+            return FluentElement.Instance
+                .WaitForElement(CodeField)
+                .Insert(value);
         }
 
         public bool InsertName(string value)
         {
-            return PageObjectHelper.Instance.InsertField(NameField, value);
+            return FluentElement.Instance
+                .WaitForElement(NameField)
+                .Insert(value);
         }
 
         public bool SelectWarehouseZone(string value)
         {
-            return PageObjectHelper.Instance.SelectDropDown(WarehouseZoneField, value);
+            return FluentElement.Instance
+                .WaitForElement(WarehouseZoneField)
+                .SelectDropDown(value);
         }
 
         public bool SelectGroup(string value)
         {
-            return PageObjectHelper.Instance.SelectDropDown(GroupField, value);
+            return FluentElement.Instance
+                .WaitForElement(GroupField)
+                .SelectDropDown(value);
         }
 
         public bool SelectType(string value)
         {
-            return PageObjectHelper.Instance.SelectDropDown(TypeField, value);
+            return FluentElement.Instance
+                .WaitForElement(TypeField)
+                .SelectDropDown(value);
         }
 
         public bool SelectDriver(string value)
         {
-            return PageObjectHelper.Instance.SelectDropDown(DriverField, value);
+            return FluentElement.Instance
+                .WaitForElement(DriverField)
+                .SelectDropDown(value);
         }
 
         public bool SelectUsePickContainersCheckBox()
         {
-            return PageObjectHelper.Instance.Click(UsePickContainersCheckBox);
+            return FluentElement.Instance
+                .WaitForElement(UsePickContainersCheckBox)
+                .Click();
         }
 
         public bool SelectActiveCheckBox()
         {
-            return PageObjectHelper.Instance.Click(ActiveCheckBox);
+            return FluentElement.Instance
+                .WaitForElement(ActiveCheckBox)
+                .Click();
         }
 
         public bool SelectManualCheckBox()
         {
-            return PageObjectHelper.Instance.Click(ManualCheckBox);
+            return FluentElement.Instance
+                .WaitForElement(ManualCheckBox)
+                .Click();
         }
 
         public bool InsertWidth(string value)
         {
-            return PageObjectHelper.Instance.InsertField(WidthField, value);
+            return FluentElement.Instance
+                .WaitForElement(WidthField)
+                .Insert(value);
         }
 
         public bool InsertDepth(string value)
         {
-            return PageObjectHelper.Instance.InsertField(DepthField, value);
+            return FluentElement.Instance
+                .WaitForElement(DepthField)
+                .Insert(value);
         }
 
         public bool InsertHeight(string value)
         {
-            return PageObjectHelper.Instance.InsertField(HeightField, value);
+            return FluentElement.Instance
+                .WaitForElement(HeightField)
+                .Insert(value);
         }
 
         public bool SelectAutoAssignCheckBox()
         {
-            return PageObjectHelper.Instance.Click(AutoAssignCheckBox);
+            return FluentElement.Instance
+                .WaitForElement(AutoAssignCheckBox)
+                .Click();
         }
 
         public bool SelectTaskType(string value)
         {
-            return PageObjectHelper.Instance.SelectDropDown(TaskTypeField, value);
+            return FluentElement.Instance
+                .WaitForElement(TaskTypeField)
+                .SelectDropDown(value);
         }
 
         public bool ClickSaveButton()
         {
-            return PageObjectHelper.Instance.Click(SaveButton);
+            return FluentElement.Instance
+                .WaitForElement(SaveButton)
+                .Click();
         }
 
         public bool ClickCancelButton()
         {
-            return PageObjectHelper.Instance.Click(CancelButton);
+            return FluentElement.Instance
+                .WaitForElement(CancelButton)
+                .Click();
         }
 
         public bool ClickShelfGeneratorButton()
         {
-            return PageObjectHelper.Instance.Click(ShelfGeneratorButton);
+            return FluentElement.Instance
+                .WaitForElement(ShelfGeneratorButton)
+                .Click();
         }
 
         public bool ClickShelfEditButton()
         {
-            return PageObjectHelper.Instance.Click(ShelfEditButton);
+            return FluentElement.Instance
+                .WaitForElement(ShelfEditButton)
+                .Click();
         }
 
         private AddEditEquipment() { }

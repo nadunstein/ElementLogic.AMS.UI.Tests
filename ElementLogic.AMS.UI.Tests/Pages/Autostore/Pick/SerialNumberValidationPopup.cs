@@ -15,17 +15,23 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
 
         public bool IsPopupDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(Popup, true);
+            return FluentElement.Instance
+                .WaitForElement(Popup)
+                .IsVisible();
         }
 
         public string GetPopupMessage()
         {
-            return PageObjectHelper.Instance.GetTextValue(PopUpMessage);
+            return FluentElement.Instance
+                .WaitForElement(PopUpMessage)
+                .GetText();
         }
 
         public bool ClickOkButton()
         {
-            return PageObjectHelper.Instance.Click(OkButton);
+            return FluentElement.Instance
+                .WaitForElement(OkButton)
+                .Click();
         }
 
         private SerialNumberValidationPopup() { }

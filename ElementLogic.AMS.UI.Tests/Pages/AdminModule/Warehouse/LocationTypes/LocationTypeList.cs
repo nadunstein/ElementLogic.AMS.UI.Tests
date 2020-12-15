@@ -45,48 +45,68 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Warehouse.LocationTypes
         public void Navigate()
         {
             const string locationTypeListPageUrl = "/Pages/Warehouse/Locationtypes.aspx";
-            string baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
-            PageObjectHelper.Instance.Navigate(baseUrl, locationTypeListPageUrl);
+            var baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
+            var pageUrl = baseUrl + locationTypeListPageUrl;
+            FluentElement.Instance
+                .Navigate(pageUrl);
         }
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Location type list");
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Location type list");
         }
 
         public bool IsFirstSearchResultRowDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(FirstSearchResultRow, true);
+            return FluentElement.Instance
+                .WaitForElement(FirstSearchResultRow)
+                .IsVisible();
         }
 
         public bool ClickAddButton()
         {
-            return PageObjectHelper.Instance.Click(AddButton);
+            return FluentElement.Instance
+                .WaitForElement(AddButton)
+                .Click();
         }
 
         public bool IsAddEditRowDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(AddEditRow, true);
+            return FluentElement.Instance
+                .WaitForElement(AddEditRow)
+                .IsVisible();
         }
 
         public bool InsertName(string value)
         {
-            return PageObjectHelper.Instance.InsertField(NameField, value);
+            return FluentElement.Instance
+                .WaitForElement(NameField)
+                .Insert(value);
         }
 
         public bool InsertWidth(string value)
         {
-            return PageObjectHelper.Instance.InsertField(WidthField, value);
+            return FluentElement.Instance
+                .WaitForElement(WidthField)
+                .Insert(value);
         }
 
         public bool InsertDepth(string value)
         {
-            return PageObjectHelper.Instance.InsertField(DepthField, value);
+            return FluentElement.Instance
+                .WaitForElement(DepthField)
+                .Insert(value);
         }
 
         public bool InsertHeight(string value)
         {
-           return PageObjectHelper.Instance.InsertField(HeightField, value);
+           return FluentElement.Instance
+               .WaitForElement(HeightField)
+               .Insert(value);
         }
 
         public bool InsertCategory(string value)

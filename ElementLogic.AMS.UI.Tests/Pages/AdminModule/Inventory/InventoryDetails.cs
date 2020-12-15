@@ -53,77 +53,100 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Inventory
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Inventory details");
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Inventory details");
         }
 
         public bool ClickRemoveButton()
         {
-            return PageObjectHelper.Instance.Click(RemoveButton);
+            return FluentElement.Instance
+                .WaitForElement(RemoveButton)
+                .Click();
         }
 
         public bool ClickAddButton()
         {
-            return PageObjectHelper.Instance.Click(AddButton);
+            return FluentElement.Instance
+                .WaitForElement(AddButton)
+                .Click();
         }
 
         public bool InsertProduct(string productId)
         {
-            return PageObjectHelper.Instance.SelectSearchDropDown(FromProductDropdown, 
-                FromProductDropdownSlide, "li",productId);
+            return FluentElement.Instance
+                .WaitForElement(FromProductDropdown)
+                .SelectSearchDropDown(FromProductDropdownSlide, "li",productId);
         }
 
         public bool InsertLocation(string locationId)
         {
-            return PageObjectHelper.Instance.SelectSearchDropDown(FromLocationDropdown, 
-                FromLocationDropdownSlide, "li", locationId);
+            return FluentElement.Instance
+                .WaitForElement(FromLocationDropdown)
+                .SelectSearchDropDown(FromLocationDropdownSlide, "li", locationId);
         }
 
         public bool IsFirstInventoryRecordRowDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(FirstInventoryRecordRow, true);
+            return FluentElement.Instance
+                .WaitForElement(FirstInventoryRecordRow)
+                .IsVisible();
         }
 
         public int GetTaskgroupCount()
         {
-            var taskGroups = PageObjectHelper.Instance.Finds("li", 
-                TaskgroupListGrid);
-            return taskGroups.Count;
+            return FluentElement.Instance
+                .WaitForElement(TaskgroupListGrid)
+                .FindElements("li")
+                .GetCount();
         }
 
         public bool IsInventoryMissionListGridDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(InventoryMissionListGrid, true);
+            return FluentElement.Instance
+                .WaitForElement(InventoryMissionListGrid)
+                .IsVisible();
         }
 
         public int GetFirstTaskGroupMissionCount()
         {
-            var taskgroupMissions = PageObjectHelper.Instance.Finds("tr",
-                InventoryMissionListGrid);
-            return taskgroupMissions.Count;
+            return FluentElement.Instance
+                .WaitForElement(InventoryMissionListGrid)
+                .FindElements( "tr")
+                .GetCount();
         }
 
         public string GetTaskGroupId()
         {
-            var inventoryDetails = PageObjectHelper.Instance.Finds("td",
-                FirstInventoryRecordRow);
-            var taskgroupId = inventoryDetails[3].Text;
-            return taskgroupId;
+            return FluentElement.Instance
+                .WaitForElement(FirstInventoryRecordRow)
+                .FindElements("td")
+                .SearchElementByIndex(4)
+                .GetText();
         }
 
         public string GetMaximumLinesPerFieldValue()
         {
-            return PageObjectHelper.Instance.GetAttributeValue(MaximumLinesPerTaskgroupField, "value");
+            return FluentElement.Instance
+                .WaitForElement(MaximumLinesPerTaskgroupField)
+                .GetAttribute("value");
         }
 
         public bool SelectActionMenuOption(string option)
         {
-            return PageObjectHelper.Instance.SelectDropDown(ActionMenuGearIcon, ActionMenuSlide, 
+            return FluentElement.Instance
+                .WaitForElement(ActionMenuGearIcon)
+                .SelectDropDown(ActionMenuSlide, 
                 "li", option);
         }
 
         public bool ClickTaskgroupExpander()
         {
-            return PageObjectHelper.Instance.Click(TaskgroupExpander);
+            return FluentElement.Instance
+                .WaitForElement(TaskgroupExpander)
+                .Click();
         }
 
         public bool IsInventoryTaskActivated(string taskgroupId)
@@ -135,7 +158,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Inventory
             do
             {
                 inventoryOrderStatusId = Mission.Instance.GetMissionStatusFromTaskgroupId(taskgroupId);
-                PageObjectHelper.Instance.Wait(1);
+                FluentElement.Instance.Wait(1);
                 timeOut++;
             } while (!statusToWait.Contains(inventoryOrderStatusId) && timeOut < 100);
 

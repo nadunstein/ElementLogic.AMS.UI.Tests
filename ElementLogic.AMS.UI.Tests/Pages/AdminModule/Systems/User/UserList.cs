@@ -19,28 +19,39 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.User
         public void Navigate()
         {
             const string userListPageUrl = "/Pages/System/SearchAndListUsers.aspx";
-            string baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
-            PageObjectHelper.Instance.Navigate(baseUrl, userListPageUrl);
+            var baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
+            var pageUrl = baseUrl + userListPageUrl;
+            FluentElement.Instance
+                .Navigate(pageUrl);
         }
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "User list");
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("User list");
         }
 
         public bool ClickAddButton()
         {
-            return PageObjectHelper.Instance.Click(AddButton);
+            return FluentElement.Instance
+                .WaitForElement(AddButton)
+                .Click();
         }
 
         public bool IsResultTableDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(ResultTable, true);
+            return FluentElement.Instance
+                .WaitForElement(ResultTable)
+                .IsVisible();
         }
 
         public bool IsNewUserAdded(string user)
         {
-            return PageObjectHelper.Instance.TableDataExists(ResultTable, 3, user);
+            return PageObjectHelper.Instance
+                .TableDataExists(ResultTable, 3, user);
         }
 
         private UserList() { }

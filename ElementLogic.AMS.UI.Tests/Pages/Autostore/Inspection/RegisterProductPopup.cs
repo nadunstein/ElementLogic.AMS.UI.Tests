@@ -19,30 +19,35 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Inspection
 
         public bool IsPopupDisplayed()
         {
-            var popupDisplayed = PageObjectHelper.Instance.IsDisplayed(Iframe, true);
-            PageObjectHelper.Instance.SwitchToIframeContent(Iframe);
-            return popupDisplayed;
+            return FluentElement.Instance
+                .WaitForElement(Iframe)
+                .IsVisible();
         }
 
         public bool SelectProduct(string extProductId)
         {
-            var isInserted = PageObjectHelper.Instance.InsertField(ProductField, extProductId);
-            var isSelected = PageObjectHelper.Instance.SelectDropDown(null, ProductDropDownList, 
-                "li", extProductId);
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(ProductField)
+                .SelectSearchDropDown(ProductDropDownList, "li", extProductId);
 
-            return isInserted && isSelected;
         }
 
         public bool InsertQuantity(int quantity)
         {
-            return PageObjectHelper.Instance.InsertField(QuantityField, quantity.ToString());
+            var quantityString = quantity.ToString();
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(QuantityField)
+                .Insert(quantityString);
         }
 
         public bool ClickOkButton()
         {
-            var isOkButtonClicked = PageObjectHelper.Instance.Click(OkButton);
-            PageObjectHelper.Instance.SwitchToDefaultWebPage();
-            return isOkButtonClicked;
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(OkButton)
+                .Click();
         }
 
         private RegisterProductPopup() { }

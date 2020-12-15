@@ -26,50 +26,70 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Inventory
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Inventory");
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Inventory");
         }
 
         public bool IsInventoryMissionLoaded()
         {
-            PageObjectHelper.Instance.RefreshWebPage();
-            PageObjectHelper.Instance.Wait(2);
-            return PageObjectHelper.Instance.IsDisplayed(TaskQueueLabel);
+            return FluentElement.Instance
+                .RefreshWebPage()
+                .Wait(2)
+                .IsVisible(TaskQueueLabel);
         }
 
         public string GetTaskQueueLabelValue()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
-            return PageObjectHelper.Instance.GetTextValue(TaskQueueLabel);
+            return FluentElement.Instance
+                .WaitUntilInvisible(LoadingPanel)
+                .WaitForElement(TaskQueueLabel)
+                .GetText();
         }
 
         public string GetProductNumberLabelValue()
         {
-            return PageObjectHelper.Instance.GetAttributeValue(ProductNumberLabel, "value");
+            return FluentElement.Instance
+                .WaitForElement(ProductNumberLabel)
+                .GetAttribute("value");
         }
 
         public string GetAutoStoreLocationLabelValue()
         {
-            return PageObjectHelper.Instance.GetTextValue(AutoStoreLocationLabel);
+            return FluentElement.Instance
+                .WaitForElement(AutoStoreLocationLabel)
+                .GetText();
         }
 
         public string GetReasonFieldValue()
         {
-            return PageObjectHelper.Instance.GetAttributeValue(ReasonField, "value");
+            return FluentElement.Instance
+                .WaitForElement(ReasonField)
+                .GetAttribute("value");
         }
 
         public string GetQuantityFieldValue()
         {
-            return PageObjectHelper.Instance.GetAttributeValue(QuantityField, "value");
+            return FluentElement.Instance
+                .WaitForElement(QuantityField)
+                .GetAttribute("value");
         }
 
         public bool InsertQuantity(int quantity)
         {
-            return PageObjectHelper.Instance.InsertField(QuantityField, quantity.ToString());
+            var quantityString = quantity.ToString();
+            return FluentElement.Instance
+                .WaitForElement(QuantityField)
+                .Insert(quantityString);
         }
 
         public bool ClickConfirmButton()
         {
-            return PageObjectHelper.Instance.Click(ConfirmButton);
+            return FluentElement.Instance
+                .WaitForElement(ConfirmButton)
+                .Click();
         }
 
         private InventoryMission() { }

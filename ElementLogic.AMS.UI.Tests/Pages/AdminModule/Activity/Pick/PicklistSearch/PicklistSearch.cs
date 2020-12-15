@@ -46,24 +46,32 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Pick.PicklistSear
         public void Navigate()
         {
             const string picklistSearchPageUrl = "/pages/activity/pick/picklistsearch.aspx";
-            string baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
-            PageObjectHelper.Instance.Navigate(baseUrl, picklistSearchPageUrl);
+            var baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
+            var pageUrl = baseUrl + picklistSearchPageUrl;
+            FluentElement.Instance
+                .Navigate(pageUrl);
         }
 
         public void RefreshWebPage()
-        { 
-            PageObjectHelper.Instance.RefreshWebPage();
+        {
+            FluentElement.Instance
+                .RefreshWebPage();
         }
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Pick list search");
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Pick list search");
         }
 
         public bool InsertPicklistId(string picklistId)
         {
-            return PageObjectHelper.Instance.SelectSearchDropDown(PicklistIdField, PicklistIdDropdownSlide, "li",
-                picklistId);
+            return FluentElement.Instance
+                .WaitForElement(PicklistIdField)
+                .SelectSearchDropDown(PicklistIdDropdownSlide, "li", picklistId);
         }
 
         public bool SelectOrderStatus(int orderStatus)
@@ -80,56 +88,72 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Pick.PicklistSear
                 _ => null
             };
 
-            return PageObjectHelper.Instance.SelectDropDown(OrderStatusField, dropdownValue);
+            return FluentElement.Instance
+                .WaitForElement(OrderStatusField)
+                .SelectDropDown(dropdownValue);
         }
 
         public bool ClickSearchButton()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(PageLoadingPanel);
-            return PageObjectHelper.Instance.Click(SearchButton);
+            return FluentElement.Instance
+                .WaitUntilInvisible(PageLoadingPanel)
+                .WaitForElement(SearchButton)
+                .Click();
         }
 
         public bool SelectAllCheckBox()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(PageLoadingPanel);
-            return PageObjectHelper.Instance.Click(AllCheckBox);
+            return FluentElement.Instance
+                .WaitUntilInvisible(PageLoadingPanel)
+                .WaitForElement(AllCheckBox)
+                .Click();
         }
 
         public bool IsFirstPicklistResultBarDisplayed()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(PageLoadingPanel);
-            PageObjectHelper.Instance.WaitUntilInvisible(ResultGridLoadingPanel);
-            return PageObjectHelper.Instance.IsDisplayed(FirstPicklistResultBar, true);
+            return FluentElement.Instance
+                .WaitUntilInvisible(PageLoadingPanel)
+                .WaitUntilInvisible(ResultGridLoadingPanel)
+                .WaitForElement(FirstPicklistResultBar)
+                .IsVisible();
         }
 
         public bool SelectActionMenuOption(string option)
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(PageLoadingPanel);
-            return PageObjectHelper.Instance.SelectDropDown(ActionMenuGearIcon, ActionMenuSlide,
-                "li", option);
+            return FluentElement.Instance
+                .WaitUntilInvisible(PageLoadingPanel)
+                .WaitForElement(ActionMenuGearIcon)
+                .SelectDropDown(ActionMenuSlide,
+                    "li", option);
         }
 
         public bool IsNoRecordsToShowLabelDisplayed()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(ResultGridLoadingPanel);
-            return PageObjectHelper.Instance.IsDisplayed(NoRecordsToShowLabel);
+            return FluentElement.Instance
+                .WaitUntilInvisible(ResultGridLoadingPanel)
+                .IsVisible(NoRecordsToShowLabel);
         }
 
         public string GetPickOrderStatus()
         {
-
-            PageObjectHelper.Instance.Wait(1);
-            PageObjectHelper.Instance.WaitUntilInvisible(ResultGridLoadingPanel);
-            var tableColumns = PageObjectHelper.Instance.Finds("td", FirstPicklistResultBar);
-            return tableColumns[19].Text;
+            return FluentElement.Instance
+                .Wait(1)
+                .WaitUntilInvisible(ResultGridLoadingPanel)
+                .WaitForElement(FirstPicklistResultBar)
+                .FindElements("td")
+                .SearchElementByIndex(20)
+                .GetText();
         }
 
         public string GetPickOrderRequestTime()
         {
-            PageObjectHelper.Instance.Wait(1);
-            PageObjectHelper.Instance.WaitUntilInvisible(ResultGridLoadingPanel);
-            var tableColumns = PageObjectHelper.Instance.Finds("td", FirstPicklistResultBar);
-            return tableColumns[12].Text;
+            return FluentElement.Instance
+                .Wait(1)
+                .WaitUntilInvisible(ResultGridLoadingPanel)
+                .WaitForElement(FirstPicklistResultBar)
+                .FindElements("td")
+                .SearchElementByIndex(13)
+                .GetText();
         }
 
         private PicklistSearch() { }

@@ -33,74 +33,102 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Serial number registration", 
-                LoadingPanel);
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitUntilInvisible(LoadingPanel)
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Serial number registration");
         }
 
         public string GetScanFieldLabelValue()
         {
-            return PageObjectHelper.Instance.GetTextValue(ScanFieldLabel);
+            return FluentElement.Instance
+                .WaitForElement(ScanFieldLabel)
+                .GetText();
         }
 
         public bool IsQuantityFieldDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(QuantityField);
+            return FluentElement.Instance
+                .IsVisible(QuantityField);
         }
 
         public bool IsAutostoreBinLayoutDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(AutostoreBinLayout);
+            return FluentElement.Instance
+                .IsVisible(AutostoreBinLayout);
         }
 
         public bool IsScanFieldNotDisplayed()
         {
-            return PageObjectHelper.Instance.WaitUntilInvisible(ScanField);
+            return !FluentElement.Instance
+                .WaitUntilInvisible(ScanField)
+                .IsVisible(ScanField);
         }
 
         public bool InsertScanValue(string scanValue)
         {
-            return PageObjectHelper.Instance.InsertField(ScanField, scanValue);
+            return FluentElement.Instance
+                .WaitForElement(ScanField)
+                .Insert(scanValue);
         }
 
         public bool IsPreviousSerialNumberScanFieldDisplayed()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
-            return PageObjectHelper.Instance.IsDisplayed(PreviousScanField, true);
+            return FluentElement.Instance
+                .WaitUntilInvisible(LoadingPanel)
+                .WaitForElement(PreviousScanField)
+                .IsVisible();
         }
 
         public bool InsertPreviousScanValue(string scanValue)
         {
-            return PageObjectHelper.Instance.InsertField(PreviousScanField, scanValue);
+            return FluentElement.Instance
+                .WaitForElement(PreviousScanField)
+                .Insert(scanValue);
         }
 
         public bool ClickUpdateButton()
         {
-            return PageObjectHelper.Instance.Click(UpdateButton);
+            return FluentElement.Instance
+                .WaitForElement(UpdateButton)
+                .Click();
         }
 
         public bool IstUpdateSuccessNotificationDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(UpdateSuccessNotification, true);
+            return FluentElement.Instance
+                .WaitForElement(UpdateSuccessNotification)
+                .IsVisible();
         }
 
         public string GetUpdateSuccessNotificationMessage()
         {
-            return PageObjectHelper.Instance.GetTextValue(UpdateSuccessNotificationMessage);
+            return FluentElement.Instance
+                .WaitForElement(UpdateSuccessNotificationMessage)
+                .GetText();
         }
 
         public bool IsLastSerialNumberConfirmLabelDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(LastSerialNumberConfirmLabel, true);
+            return FluentElement.Instance
+                .WaitForElement(LastSerialNumberConfirmLabel)
+                .IsVisible();
         }
 
         public string GetLastSerialNumberConfirmLabelTextValue()
         {
-            return PageObjectHelper.Instance.GetTextValue(LastSerialNumberConfirmLabel);
+            return FluentElement.Instance
+                .WaitForElement(LastSerialNumberConfirmLabel)
+                .GetText();
         }
 
         public bool ClickConfirmButton()
         {
-            return PageObjectHelper.Instance.Click(ConfirmButton);
+            return FluentElement.Instance
+                .WaitForElement(ConfirmButton)
+                .Click();
         }
 
         private SerialNumberRegistration() { }

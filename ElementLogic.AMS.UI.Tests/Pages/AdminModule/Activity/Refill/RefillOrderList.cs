@@ -42,68 +42,85 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Refill
         public void Navigate()
         {
             const string refillOrderListPageUrl = "/pages/activity/refill/refillorders.aspx";
-            string baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
-            PageObjectHelper.Instance.Navigate(baseUrl, refillOrderListPageUrl);
+            var baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
+            var pageUrl = baseUrl + refillOrderListPageUrl;
+            FluentElement.Instance
+                .Navigate(pageUrl);
         }
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Refill order list");
-        }
-
-        public string GetPageTitle()
-        {
-            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Refill order list");
         }
 
         public string GetTrolleyFieldValue()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
-            return PageObjectHelper.Instance.GetAttributeValue(TrolleyDropDown, "value");
+            return FluentElement.Instance
+                .WaitUntilInvisible(LoadingPanel)
+                .WaitForElement(TrolleyDropDown)
+                .GetAttribute("value");
         }
 
         public bool EnterScanId(string scanValue)
         {
-            return PageObjectHelper.Instance.InsertField(ScanIdField, scanValue);
+            return FluentElement.Instance
+                .WaitForElement(ScanIdField)
+                .Insert(scanValue);
         }
 
         public bool SelectTrolley(string trolleyName)
         {
-            return PageObjectHelper.Instance.SelectSearchDropDown(TrolleyDropDown, TrolleyDropDownList, "li",
-                trolleyName);
+            return FluentElement.Instance
+                .WaitForElement(TrolleyDropDown)
+                .SelectSearchDropDown(TrolleyDropDownList, "li", trolleyName);
         }
 
         public int GetNumberOfItemsOnTrolley()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
-            return int.Parse(PageObjectHelper.Instance.GetAttributeValue(NoOfItemsOnTrolleyField, "value"));
+            return int.Parse(FluentElement.Instance
+                .WaitUntilInvisible(LoadingPanel)
+                .WaitForElement(NoOfItemsOnTrolleyField)
+                .GetAttribute("value"));
         }
 
         public bool ClickActivateButton()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
-            return PageObjectHelper.Instance.Click(ActivateButton);
+            return FluentElement.Instance
+                .WaitUntilInvisible(LoadingPanel)
+                .WaitForElement(ActivateButton)
+                .Click();
         }
 
         public bool ClickViewItemsButton()
         {
-            return PageObjectHelper.Instance.Click(ViewItemsButton);
+            return FluentElement.Instance
+                .WaitForElement(ViewItemsButton)
+                .Click();
         }
 
         public bool IsViewItemTableDisplayed()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(LoadingPanel);
-            return PageObjectHelper.Instance.IsDisplayed(ViewItemsTable, true);
+            return FluentElement.Instance
+                .WaitUntilInvisible(LoadingPanel)
+                .WaitForElement(ViewItemsTable)
+                .IsVisible();
         }
 
         public IList<string> GetViewItemProductList()
         {
-            return PageObjectHelper.Instance.GetTableColumnDataSet(ViewItemsTable, 5);
+            return FluentElement.Instance
+                .GetTableColumnDataSet(ViewItemsTable, 5);
         }
 
         public bool ClickConfirmButton()
         {
-            return PageObjectHelper.Instance.Click(ConfirmButton);
+            return FluentElement.Instance
+                .WaitForElement(ConfirmButton)
+                .Click();
         }
 
         private RefillOrderList() { }

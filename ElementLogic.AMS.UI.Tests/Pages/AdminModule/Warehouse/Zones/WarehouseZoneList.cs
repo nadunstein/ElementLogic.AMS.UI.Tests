@@ -22,33 +22,38 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Warehouse.Zones
         public void Navigate()
         {
             const string warehouseZoneListPageUrl = "/Pages/Warehouse/WarehouseZoneList.aspx";
-            string baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
-            PageObjectHelper.Instance.Navigate(baseUrl, warehouseZoneListPageUrl);
+            var baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
+            var pageUrl = baseUrl + warehouseZoneListPageUrl;
+            FluentElement.Instance.Navigate(pageUrl);
         }
 
         public bool IsPageLoaded()
         {
-            return PageObjectHelper.Instance.IsPageLoaded(PageHeader, "Warehouse zone list");
-        }
-
-        public string GetPageTitle()
-        {
-            return PageObjectHelper.Instance.GetTextValue(PageHeader, true);
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitForElement(PageHeader)
+                .Text()
+                .Equals("Warehouse zone list");
         }
 
         public bool IsFirstSearchResultRowDisplayed()
         {
-            return PageObjectHelper.Instance.IsDisplayed(FirstSearchResultRow, true);
+            return FluentElement.Instance
+                .WaitForElement(FirstSearchResultRow)
+                .IsVisible();
         }
 
         public bool ClickAddButton()
         {
-            return PageObjectHelper.Instance.Click(AddButton);
+            return FluentElement.Instance
+                .WaitForElement(AddButton)
+                .Click();
         }
 
         public bool IsNewZoneAdded(string zone)
         {
-            return PageObjectHelper.Instance.TableDataExists(ResultTable, 2, zone);
+            return PageObjectHelper.Instance
+                .TableDataExists(ResultTable, 2, zone);
         }
 
         private WarehouseZoneList() { }
