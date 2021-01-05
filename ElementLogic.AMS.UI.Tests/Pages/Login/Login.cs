@@ -18,7 +18,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Login
         public void NavigateToAdminModule()
         {
             var adminBaseUrl =
-                JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
+                JsonFileReader.Instance
+                    .GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
             FluentElement.Instance
                 .Navigate(adminBaseUrl)
                 .WaitForPageLoad();
@@ -28,7 +29,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Login
         {
             FluentElement.Instance.DeleteBrowserCookies();
             var baseUrl =
-                JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
+                JsonFileReader.Instance
+                    .GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
             var autostoreUrl = string.Concat("/as/", portId);
             var pageUrl = baseUrl + autostoreUrl;
             FluentElement.Instance
@@ -42,21 +44,6 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Login
                 .WaitForPageLoad()
                 .WaitForElement(UserNameField)
                 .IsVisible();
-        }
-
-        public void LoginToApplication(string username)
-        {
-            if (!FluentElement.Instance
-                .WaitForPageLoad()
-                .IsVisible(UserNameField))
-            {
-                return;
-            }
-
-            var userData = AccessUserCredentials.Instance.GetUserCredentials(username);
-            InsertUsername(userData.Username);
-            InsertPassword(userData.Password);
-            ClickAdminLoginButton();
         }
 
         public bool InsertUsername(string username)
@@ -78,6 +65,22 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Login
             return FluentElement.Instance
                 .WaitForElement(AdminAsLoginButton)
                 .Click();
+        }
+
+        public void LoginToApplication(string username)
+        {
+            if (!FluentElement.Instance
+                .WaitForPageLoad()
+                .IsVisible(UserNameField))
+            {
+                return;
+            }
+
+            var userData = AccessUserCredentials.Instance
+                .GetUserCredentials(username);
+            InsertUsername(userData.Username);
+            InsertPassword(userData.Password);
+            ClickAdminLoginButton();
         }
 
         private Login() { }

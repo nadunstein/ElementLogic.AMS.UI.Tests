@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using SeleniumEssential;
 
 namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.Mission
@@ -14,18 +15,18 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.Mission
         private const string QuantityField =
             "#ctl00_MonitorContentPlaceholder_PutawayView1_FlbQty_InputTemplateItem_TxbQty";
 
-        private const string LocationNameLabel = "#ctl00_MonitorContentPlaceholder_PutawayView1_lblBin";
-
         private const string ExtProductIdField =
             "#ctl00_MonitorContentPlaceholder_PutawayView1_FlbPrdNo_InputTemplateItem_TxbPrdNo";
 
         private const string ScanField = "#ctl00_MonitorContentPlaceholder_PutawayView1_txtScan";
 
+        private const string AutostoreBinId = "#ctl00_MonitorContentPlaceholder_PutawayView1_lblBin";
+
+        private const string ProductImage = "#ctl00_MonitorContentPlaceholder_PutawayView1_productImage";
+
         private const string ConfirmButton = "#ctl00_MonitorContentPlaceholder_PutawayView1_BtnConfirm1";
 
         private const string ExitButton = "#ctl00_MonitorContentPlaceholder_PutawayView1_BtnExit";
-
-        private const string ProductImage = "#ctl00_MonitorContentPlaceholder_PutawayView1_productImage";
 
         public static PutawayMission Instance => Singleton.Value;
 
@@ -60,13 +61,6 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.Mission
                 .GetAttribute("Value");
         }
 
-        public string GetLocationNameLabelValue()
-        {
-            return FluentElement.Instance
-                .WaitForElement(LocationNameLabel)
-                .GetText();
-        }
-
         public bool IsQuantityFieldDisplayed()
         {
             return FluentElement.Instance
@@ -80,12 +74,19 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.Mission
                 .IsFocused();
         }
 
-        public int GetQuantityFieldValue()
+        public double GetQuantityFieldValue()
         {
-            var putawayQuantity = FluentElement.Instance
+            return double.Parse(FluentElement.Instance
                 .WaitForElement(QuantityField)
-                .GetAttribute("Value");
-            return Convert.ToInt32(putawayQuantity);
+                .GetAttribute("Value"));
+        }
+
+        public bool InsertQuantityFieldValue(double quantity)
+        {
+            var quantityString = quantity.ToString(CultureInfo.InvariantCulture);
+            return FluentElement.Instance
+                .WaitForElement(QuantityField)
+                .Insert(quantityString);
         }
 
         public bool IsScanFieldDisplayed()
@@ -101,6 +102,13 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.Mission
                 .IsFocused();
         }
 
+        public string GetAutostoreBinId()
+        {
+            return FluentElement.Instance
+                .WaitForElement(AutostoreBinId)
+                .GetText();
+        }
+
         public bool IsProductImageDisplayed()
         {
             return FluentElement.Instance
@@ -109,10 +117,9 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.Mission
 
         public string GetProductImageUrl()
         {
-            var imageSrcUrlValue = FluentElement.Instance
+            return FluentElement.Instance
                 .WaitForElement(ProductImage)
                 .GetAttribute("src");
-            return imageSrcUrlValue;
         }
 
         public bool IncludeScanValue(string scanValue)

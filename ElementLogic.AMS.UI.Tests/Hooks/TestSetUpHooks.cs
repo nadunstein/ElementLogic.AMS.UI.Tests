@@ -22,7 +22,7 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
                     "DatabaseSettings:DatabaseName");
             Database.Instance.DeleteDatabase(databaseName);
 
-            if (!bool.Parse(JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", 
+            if (!bool.Parse(JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json",
                 "DatabaseSettings:UseEmptyDatabase")))
             {
                 Database.Instance.RestoreDatabase(databaseName);

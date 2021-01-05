@@ -54,7 +54,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.UserActivity
         public void Navigate()
         {
             const string picklistSearchPageUrl = "/pages/activity/useractivity/useractivitysearch.aspx";
-            var baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
+            var baseUrl = JsonFileReader.Instance
+                .GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
             var pageUrl = baseUrl + picklistSearchPageUrl;
             FluentElement.Instance
                 .Navigate(pageUrl);
@@ -111,7 +112,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.UserActivity
         {
             return FluentElement.Instance
                 .WaitForElement(FirstUserActivityActionMenuGearIcon)
-                .SelectDropDown(FirstUserActivityActionMenuSlide, 
+                .SelectDropDown(FirstUserActivityActionMenuSlide,
                     "li > a > span", option);
         }
 
@@ -121,13 +122,14 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.UserActivity
                 .WaitUntilInvisible(PageLoadingPanel)
                 .WaitForElement(FirstUserActivityResultBar)
                 .FindElements("td")
-                .SearchElementByIndex(5)
+                .GetRowElement(5)
                 .GetText();
         }
 
         public string SelectActivityMissionActionMenuOptionAndGetMissionId(string missionStatus, string option)
         {
             PageObjectHelper.Instance.WaitUntilInvisible(ResultGridLoadingPanel);
+
             var missions = PageObjectHelper.Instance.Finds("tr", 
                 FirstUserActivityMissionGrid);
 
@@ -135,7 +137,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.UserActivity
                 select PageObjectHelper.Instance.Finds("td", mission)
                 into missionDetails
                 where missionDetails[10].Text.Contains(missionStatus)
-                select PageObjectHelper.Instance.SelectIWebElementDropDown(missionDetails[12], MissionActionMenuSlide, 
+                select PageObjectHelper.Instance
+                    .SelectIWebElementDropDown(missionDetails[12], MissionActionMenuSlide, 
                     "li > a > span", option)
                     ? missionDetails[11].Text
                     : null).FirstOrDefault();
@@ -143,12 +146,20 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.UserActivity
 
         public IList<UserActivityMissionData> GetActivityMissionData()
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(PageLoadingPanel);
-            PageObjectHelper.Instance.WaitUntilInvisible(ResultGridLoadingPanel);
-            var missions = PageObjectHelper.Instance.Finds("tr", FirstUserActivityMissionGrid);
+            PageObjectHelper.Instance
+                .WaitUntilInvisible(PageLoadingPanel);
+            PageObjectHelper.Instance
+                .WaitUntilInvisible(ResultGridLoadingPanel);
+            var missions = PageObjectHelper.Instance
+                .Finds("tr", FirstUserActivityMissionGrid);
 
-            return missions.Select(mission => PageObjectHelper.Instance.Finds("td", mission)).Select(missionDetails =>
-                new UserActivityMissionData {Id = missionDetails[11].Text, Status = missionDetails[10].Text}).ToList();
+            return missions.Select(mission => PageObjectHelper.Instance
+                .Finds("td", mission)).Select(missionDetails =>
+                new UserActivityMissionData
+                {
+                    Id = missionDetails[11].Text, 
+                    Status = missionDetails[10].Text
+                }).ToList();
         }
 
         private UserActivity() { }

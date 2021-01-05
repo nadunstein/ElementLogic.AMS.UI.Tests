@@ -94,7 +94,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Automation.LiveFeedStat
             {
                 var expectedString = GetExpectedLiveFeedActionMessageTagValue(liveFeedActionMessageType, xmlRecord);
                 Assert.IsTrue(
-                    AutoStoreLiveFeedStatus.Instance.GetLiveMessage(liveFeedActionMessageType, liveFeedAction)
+                    AutoStoreLiveFeedStatus.Instance.GetLiveFeedMessage(liveFeedActionMessageType, liveFeedAction)
                         .Contains(expectedString),
                     $"The '{liveFeedAction}' '{liveFeedActionMessageType}' is not generated with the '{expectedString}' value in LiveFeed status page");
             }

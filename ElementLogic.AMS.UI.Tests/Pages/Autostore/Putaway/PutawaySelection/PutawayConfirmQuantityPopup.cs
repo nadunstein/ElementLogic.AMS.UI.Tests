@@ -46,6 +46,13 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.PutawaySelection
                 .GetAttribute("Value"));
         }
 
+        public double GetMaximumLocationQuantity()
+        {
+            return double.Parse(FluentElement.Instance
+                .WaitForElement(MaxLocationQuantityField)
+                .GetAttribute("Value"));
+        }
+
         public bool InsertMaxLocationQuantity(string quantity)
         {
             var isFieldFocused = FluentElement.Instance

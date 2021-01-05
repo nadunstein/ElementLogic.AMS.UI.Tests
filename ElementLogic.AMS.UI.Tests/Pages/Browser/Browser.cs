@@ -9,19 +9,24 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Browser
 
         public bool OpenNewChromeBrowserTab()
         {
-            return PageObjectHelper.Instance.OpenNewBrowserTab();
+            return FluentElement.Instance
+                .OpenNewBrowserTab();
         }
 
         public bool SwitchToNewChromeBrowserTab()
         {
-            var openedBrowserTabCount = PageObjectHelper.Instance.GetOpenedBrowserTabCount();
-            return PageObjectHelper.Instance.SwitchToBrowserTab(openedBrowserTabCount);
+            var openedBrowserTabCount = FluentElement.Instance
+                .GetOpenedBrowserTabCount();
+            return FluentElement.Instance
+                .SwitchToBrowserTab(openedBrowserTabCount);
         }
 
         public bool SwitchToPreviousChromeBrowserTab()
         {
-            var openedBrowserTabCount = PageObjectHelper.Instance.GetOpenedBrowserTabCount();
-            return PageObjectHelper.Instance.SwitchToBrowserTab(openedBrowserTabCount - 1);
+            var openedBrowserTabCount = FluentElement.Instance
+                .GetOpenedBrowserTabCount();
+            return FluentElement.Instance
+                .SwitchToBrowserTab(openedBrowserTabCount - 1);
         }
 
         private Browser() { }

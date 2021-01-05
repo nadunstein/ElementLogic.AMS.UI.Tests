@@ -335,6 +335,7 @@
     <Compile Include="Features\Autostore\Pick\PickReassign\FeatureSteps.cs" />
     <Compile Include="Features\Autostore\Pick\SecurePicking\FeatureSteps.cs" />
     <Compile Include="Features\Autostore\Pick\SerialNumberRegistration\FeatureSteps.cs" />
+    <Compile Include="Features\Autostore\Putaway\PutawayDeviation\FeatureSteps.cs" />
     <Compile Include="Features\Browser\FeatureSteps.cs" />
     <Compile Include="Features\Login\AutostoreMultipleSimultaneousLogin\FeatureSteps.cs" />
     <Compile Include="Features\SupportTasks\FlushInventoryOrders.cs" />
@@ -429,7 +430,10 @@
     <Compile Include="Pages\Autostore\Pick\NoMoreTasksPopup.cs" />
     <Compile Include="Pages\Autostore\Pick\PlaceInContainer.cs" />
     <Compile Include="Pages\Autostore\Pick\PickMission.cs" />
+    <Compile Include="Pages\Autostore\Putaway\Mission\ChangeQuantityPopup.cs" />
+    <Compile Include="Pages\Autostore\Putaway\Mission\ConfirmNewPutawayCreationPopup.cs" />
     <Compile Include="Pages\Autostore\Putaway\Mission\DeleteIncompleteTasksPopup.cs" />
+    <Compile Include="Pages\Autostore\Putaway\Mission\MaximumBinQuantityPopup.cs" />
     <Compile Include="Pages\Autostore\Putaway\Mission\PutawayMission.cs" />
     <Compile Include="Pages\Autostore\Putaway\PutawaySelection\PutawayConfirmQuantityPopup.cs" />
     <Compile Include="Pages\Autostore\Putaway\PutawaySelection\PutawaySelection.cs" />
@@ -466,7 +470,9 @@
     <None Include="Database\UIAutomationDB.bak">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="ExcelDataAccess\UserCredentials\UserCredentials.xlsx" />
+    <None Include="ExcelDataAccess\UserCredentials\UserCredentials.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\AbstractWarehouse\A_AddWarehouses\AddWarehouses.feature" />
     <None Include="Features\AbstractWarehouse\B_AddWarehouseZones\AddWarehouseZones.feature" />
     <None Include="Features\AbstractWarehouse\C_AddLocationTypes\AddLocationTypes.feature" />
@@ -638,6 +644,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Features\Autostore\Putaway\GeneralPutaway\GeneralPutaway.feature" />
+    <None Include="Features\Autostore\Putaway\PutawayDeviation\TestData\ThirdScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Putaway\PutawayDeviation\TestData\SecondScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Putaway\PutawayDeviation\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Putaway\GeneralPutaway\TestData\ThirdScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\Autostore\Putaway\GeneralPutaway\TestData\SecondScenarioTestData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -652,6 +670,7 @@
     <None Include="Features\Autostore\Putaway\MultipleUserPutaway\TestData\FirstScenarioTestData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Features\Autostore\Putaway\PutawayDeviation\PutawayDeviation.feature" />
     <None Include="Features\Autostore\Refill\GeneralRefill\GeneralRefill.feature" />
     <None Include="Features\Autostore\Refill\GeneralRefill\TestData\FirstScenarioTestData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -677,7 +696,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Drivers\ChromeDriver\chromedriver.exe" />
+    <Content Include="Drivers\ChromeDriver\chromedriver.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

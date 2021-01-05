@@ -31,7 +31,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.OrderTypes
         public void Navigate()
         {
             const string orderTypesPageUrl = "/Pages/System/ListOrderTypes.aspx";
-            var baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
+            var baseUrl = JsonFileReader.Instance
+                .GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
             var pageUrl = baseUrl + orderTypesPageUrl;
             FluentElement.Instance
                 .Navigate(pageUrl);
@@ -83,9 +84,12 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.OrderTypes
 
         public bool IsNewOrderTypeAdded(string orderType)
         {
-             FluentElement.Instance
-                .WaitUntilInvisible(AddRow);
-            return PageObjectHelper.Instance.TableDataExists(ResultTable, 3, orderType);
+             return FluentElement.Instance
+                .WaitUntilInvisible(AddRow)
+                .WaitForElement(ResultTable)
+                .GetTableElements()
+                .FindRowElements(3, orderType)
+                .IsExists();
         }
 
         private OrderTypes() { }

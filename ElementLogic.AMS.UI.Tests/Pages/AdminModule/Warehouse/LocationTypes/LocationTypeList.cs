@@ -30,10 +30,10 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Warehouse.LocationTypes
         
         private const string CategoryField =
             "#ctl00_ContentPlaceHolderContent_LocationtypesView1_radgridLocationType_ctl00_ctl02_ctl03_ddlCategory";
-        
+
         private const string TypeField =
             "#ctl00_ContentPlaceHolderContent_LocationtypesView1_radgridLocationType_ctl00_ctl02_ctl03_ddlLocationType";
-        
+
         private const string SaveButton =
             "#ctl00_ContentPlaceHolderContent_LocationtypesView1_radgridLocationType_ctl00_ctl02_ctl03_PerformInsertButton";
         
@@ -45,7 +45,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Warehouse.LocationTypes
         public void Navigate()
         {
             const string locationTypeListPageUrl = "/Pages/Warehouse/Locationtypes.aspx";
-            var baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
+            var baseUrl = JsonFileReader.Instance
+                .GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
             var pageUrl = baseUrl + locationTypeListPageUrl;
             FluentElement.Instance
                 .Navigate(pageUrl);
@@ -111,22 +112,32 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Warehouse.LocationTypes
 
         public bool InsertCategory(string value)
         {
-            return PageObjectHelper.Instance.SelectDropDown(CategoryField, value);
+            return FluentElement.Instance
+                .WaitForElement(CategoryField)
+                .SelectDropDown(value);
         }
 
         public bool InsertType(string value)
         {
-            return PageObjectHelper.Instance.SelectDropDown(TypeField, value);
+            return FluentElement.Instance
+                .WaitForElement(TypeField)
+                .SelectDropDown(value);
         }
 
         public bool ClickSaveButton()
         {
-            return PageObjectHelper.Instance.Click(SaveButton);
+            return FluentElement.Instance
+                .WaitForElement(SaveButton)
+                .Click();
         }
 
         public bool IsNewLocationTypeAdded(string locationType)
         {
-            return PageObjectHelper.Instance.TableDataExists(ResultTable, 3, locationType);
+            return FluentElement.Instance
+                .WaitForElement(ResultTable)
+                .GetTableElements()
+                .FindRowElements(3, locationType)
+                .IsExists();
         }
 
         private LocationTypeList() { }

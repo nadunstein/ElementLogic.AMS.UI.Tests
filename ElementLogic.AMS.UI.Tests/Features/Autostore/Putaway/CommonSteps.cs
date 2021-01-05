@@ -1,4 +1,7 @@
-﻿using ElementLogic.AMS.UI.Tests.Data.DatabaseQueries;
+﻿using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using ElementLogic.AMS.UI.Tests.Data.DatabaseQueries;
 using ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.Mission;
 using ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.PutawaySelection;
 using NUnit.Framework;
@@ -9,6 +12,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Putaway
     [Binding]
     public class CommonSteps
     {
+        private readonly IList<string> _taskgroupMissionBinLocationList = new List<string>();
         private readonly ScenarioContext _scenarioContext;
 
         [Then(@"I Navigate to Autostore Putaway Selection page")]
@@ -43,7 +47,6 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Putaway
                 "Unable to Include the Trolley Depth to the Scan field in Autostore Putaway Selection page");
         }
 
-
         [Then(@"I Include the putaway order ID to the Scan field in Autostore Putaway Selection page")]
         public void ThenIIncludeThePutawayOrderIdToTheScanFieldInAutostorePutawaySelectionPage()
         {
@@ -63,7 +66,22 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Putaway
         [When(@"I click Enter button in Autostore Putaway Selection page")]
         public void WhenIClickEnterButtonInAutostorePutawaySelectionPage()
         {
-            PutawaySelection.Instance.ClickEnterButtonOnScanField();
+            Assert.IsTrue(PutawaySelection.Instance.ClickEnterButtonOnScanField(),
+                "Unable to click Enter button in Autostore Putaway Selection page");
+        }
+
+        [Then(@"The '(.*)' putaway orders are listed for product in Autostore Putaway Selection page")]
+        public void ThenThePutawayOrdersAreListedForProductInAutostorePutawaySelectionPage(int expectedOrderCount)
+        {
+            Assert.AreEqual(expectedOrderCount, PutawaySelection.Instance.GetTaskgroupCount(),
+                "The listed putaway order count is wrong in Autostore Putaway Selection page");
+        }
+
+        [When(@"I click on first Select button of the product '(.*)' from order list in Autostore Putaway Selection page")]
+        public void WhenIClickOnFirstSelectButtonOfTheProductFromOrderListInAutostorePutawaySelectionPage(string productId)
+        {
+            Assert.IsTrue(PutawaySelection.Instance.ClickFirstTaskgroupSelectButton(productId),
+                $"Unable to click on first Select button of the product '{productId}' from order list in Autostore Putaway Selection page");
         }
 
         [Then(@"The putaway quantity confirm popup is displayed")]
@@ -83,31 +101,41 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Putaway
         }
 
         [Then(@"The quantity field value should be '(.*)' in Autostore putaway quantity confirm popup")]
-        public void ThenTheQuantityFieldValueShouldBeInAutostorePutawayQuantityConfirmPopup(double putawayQuantity)
+        public void ThenTheQuantityFieldValueShouldBeInAutostorePutawayQuantityConfirmPopup(double expectedPutawayQuantity)
         {
-            Assert.AreEqual(putawayQuantity, PutawayConfirmQuantityPopup.Instance.GetPutawayQuantity(),
-                "The putaway quantity is not correct");
+            var actualPutawayQuantity = PutawayConfirmQuantityPopup.Instance.GetPutawayQuantity();
+            Assert.AreEqual(expectedPutawayQuantity, actualPutawayQuantity,
+                "The quantity field value is wrong in Autostore putaway quantity confirm popup");
+        }
+
+        [Then(@"I verify max location quantity value is '(.*)' in Autostore putaway quantity confirm popup")]
+        public void ThenIVerifyMaxLocationQuantityValueIsInAutostorePutawayQuantityConfirmPopup(double expectedMaxLocationQuantity)
+        {
+            var actualMaxLocationQuantity = PutawayConfirmQuantityPopup.Instance.GetMaximumLocationQuantity();
+            Assert.AreEqual(expectedMaxLocationQuantity, actualMaxLocationQuantity,
+                "The ax location quantity value is wrong in Autostore putaway quantity confirm popup");
+        }
+
+        [When(@"I click on Confirm button in Autostore putaway quantity confirm popup")]
+        public void WhenIClickOnConfirmButtonInAutostorePutawayQuantityConfirmPopup()
+        {
+            Assert.IsTrue(PutawayConfirmQuantityPopup.Instance.ClickConfirmButton(),
+                "Unable to click on Confirm button in Autostore putaway quantity confirm popup");
         }
 
         [Then(@"I enter putaway quantity value as '(.*)' in Autostore putaway quantity confirm popup")]
-        public void ThenIEnterPutawayQuantityValueAsInAutostorePutawayQuantityConfirmPopup(int quantity)
+        public void ThenIEnterPutawayQuantityValueAsInAutostorePutawayQuantityConfirmPopup(double quantity)
         {
-            Assert.IsTrue(PutawayConfirmQuantityPopup.Instance.InsertPutawayQuantity(quantity.ToString()),
+            Assert.IsTrue(PutawayConfirmQuantityPopup.Instance.InsertPutawayQuantity(quantity.ToString(CultureInfo.InvariantCulture)),
                 "Unable to Insert putaway quantity value in Autostore putaway quantity confirm popup");
         }
 
         [Then(@"I Include max location quantity value as '(.*)' in Autostore putaway quantity confirm popup")]
-        public void ThenIIncludeMaxLocationQuantityValueAsInAutostorePutawayQuantityConfirmPopup(int maxLocationQuantity)
+        public void ThenIIncludeMaxLocationQuantityValueAsInAutostorePutawayQuantityConfirmPopup(double maxLocationQuantity)
         {
             Assert.IsTrue(
-                PutawayConfirmQuantityPopup.Instance.InsertMaxLocationQuantity(maxLocationQuantity.ToString()),
+                PutawayConfirmQuantityPopup.Instance.InsertMaxLocationQuantity(maxLocationQuantity.ToString(CultureInfo.InvariantCulture)),
                 "Unable to Include max location quantity value in Autostore putaway quantity confirm popup");
-        }
-
-        [When(@"I click on enter button after include max location quantity in Autostore putaway quantity confirm popup")]
-        public void WhenIClickOnEnterButtonAfterIncludeMaxLocationQuantityInAutostorePutawayQuantityConfirmPopup()
-        {
-            PutawayConfirmQuantityPopup.Instance.ClickConfirmButton();
         }
 
         [Then(@"The putaway order information is loaded in the Autostore putaway mission page")]
@@ -125,12 +153,17 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Putaway
                 $"Autostore Putaway mission {missionNumber} page is not loaded");
             Assert.IsTrue(PutawayMission.Instance.GetTaskQueueLabelValue(). Contains($"Task {missionNumber} of"),
                 $"The Autostore Putaway mission {missionNumber} is not loaded");
-            _scenarioContext["ExtLocationId"] = PutawayMission.Instance.GetLocationNameLabelValue();
+
+            if (_taskgroupMissionBinLocationList.Count != missionNumber)
+            {
+                _taskgroupMissionBinLocationList.Add(PutawayMission.Instance.GetAutostoreBinId());
+            }
+           
             _scenarioContext["ActualQuantity"] = PutawayMission.Instance.GetQuantityFieldValue();
             _scenarioContext["TotalQuantity"] =
                 _scenarioContext.ContainsKey("TotalQuantity")
-                    ? (int)_scenarioContext["TotalQuantity"]
-                    : 0 + (int)_scenarioContext["ActualQuantity"];
+                    ? (double)_scenarioContext["TotalQuantity"]
+                    : 0 + (double)_scenarioContext["ActualQuantity"];
         }
 
         [Then(@"I check the focus is on quantity field in Autostore putaway mission page")]
@@ -140,6 +173,53 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Putaway
                 "The Autostore putaway mission quantity field is not displayed");
             Assert.True(PutawayMission.Instance.IsQuantityFieldFocused(),
                 "The Focus is not on the Quantity field in Autostore putaway mission page");
+        }
+
+        [Then(@"I verify the Quantity field value is '(.*)' in Autostore Putaway Mission page")]
+        public void ThenIVerifyTheQuantityFieldValueIsInAutostorePutawayMissionPage(double expectedPutawayQuantity)
+        {
+            var actualPutawayQuantity = PutawayMission.Instance.GetQuantityFieldValue();
+            Assert.AreEqual(expectedPutawayQuantity, actualPutawayQuantity,
+                "The Quantity field value is wrong in Autostore Putaway Mission page");
+        }
+
+        [Then(@"I verify a new autostore bin is proposed for the putaway mission in Autostore Putaway Mission page")]
+        public void ThenIVerifyANewAutostoreBinIsProposedForThePutawayMissionInAutostorePutawayMissionPage()
+        {
+            var currentAutostoreBinId = PutawayMission.Instance.GetAutostoreBinId();
+            var count = _taskgroupMissionBinLocationList.Count(taskgroupMissionBin =>
+                taskgroupMissionBin == currentAutostoreBinId);
+            Assert.IsTrue(count == 1,
+                "The proposed autostore bin for the putaway mission is not a new bin in Autostore Putaway Mission page");
+        }
+
+        [Then(@"I change the quantity of the Quantity field as '(.*)' in Autostore putaway Mission page")]
+        public void ThenIChangeTheQuantityOfTheQuantityFieldAsInAutostorePutawayMissionPage(double putawayQuantity)
+        {
+            Assert.IsTrue(PutawayMission.Instance.InsertQuantityFieldValue(putawayQuantity),
+                $"Unable to change the quantity of the Quantity field as '{putawayQuantity}' in Autostore putaway Mission page");
+        }
+
+        [Then(@"I verify the scan field is displayed in AutoStore putaway mission page")]
+        public void ThenIVerifyTheScanFieldIsDisplayedInAutoStorePutawayMissionPage()
+        {
+            Assert.IsTrue(PutawayMission.Instance.IsScanFieldDisplayed(),
+                "The Scan Field is not displayed in Autostore putaway mission page");
+        }
+
+        [Then(@"I verify the focus is on scan field in Autostore putaway mission page")]
+        public void ThenIVerifyTheFocusIsOnScanFieldInAutostorePutawayMissionPage()
+        {
+            Assert.True(PutawayMission.Instance.IsScanFieldFocused(),
+                "The Focus is NOT on the Scan field in Autostore putaway mission page");
+        }
+
+        [Then(@"I include the product scan value to scan field in Autostore putaway mission page")]
+        public void ThenIIncludeTheProductScanValueToScanFieldInAutostorePutawayMissionPage()
+        {
+            var extProductId = _scenarioContext["ExtProductId"].ToString();
+            Assert.IsTrue(PutawayMission.Instance.IncludeScanValue(extProductId),
+                "Unable to include the scan value to Scan value field in Autostore putaway mission page");
         }
 
         [When(@"I click on Confirm button in Autostore putaway mission page")]

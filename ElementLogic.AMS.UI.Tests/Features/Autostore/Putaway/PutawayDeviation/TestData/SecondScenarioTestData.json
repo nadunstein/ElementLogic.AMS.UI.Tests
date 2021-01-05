@@ -1,0 +1,36 @@
+{
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "SYS_ALWAYS_ASK_MAXBINQTY",
+      "ParameterValue": "0"
+    }
+  ],
+
+  "PutawayOrdersToBeCreated": [
+    {
+      "PutawayOrderToBeCreated": [
+        {
+          "Action": "A",
+          "PurchaseOrderLineId": 1,
+          "ExtProductId": "ASPMBP01",
+          "ProductName": "ASPutawayMaxBinProduct01",
+          "Quantity": 20,
+          "Returned": false
+        }
+      ]
+    },
+
+    {
+      "PutawayOrderToBeCreated": [
+        {
+          "Action": "A",
+          "PurchaseOrderLineId": 1,
+          "ExtProductId": "ASPMBP01",
+          "ProductName": "ASPutawayMaxBinProduct01",
+          "Quantity": 20,
+          "Returned": false
+        }
+      ]
+    }
+  ]
+}

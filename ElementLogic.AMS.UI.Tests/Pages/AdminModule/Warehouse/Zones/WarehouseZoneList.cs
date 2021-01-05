@@ -22,7 +22,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Warehouse.Zones
         public void Navigate()
         {
             const string warehouseZoneListPageUrl = "/Pages/Warehouse/WarehouseZoneList.aspx";
-            var baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
+            var baseUrl = JsonFileReader.Instance
+                .GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
             var pageUrl = baseUrl + warehouseZoneListPageUrl;
             FluentElement.Instance.Navigate(pageUrl);
         }
@@ -52,8 +53,11 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Warehouse.Zones
 
         public bool IsNewZoneAdded(string zone)
         {
-            return PageObjectHelper.Instance
-                .TableDataExists(ResultTable, 2, zone);
+            return FluentElement.Instance
+                .WaitForElement(ResultTable)
+                .GetTableElements()
+                .FindRowElements(2, zone)
+                .IsExists();
         }
 
         private WarehouseZoneList() { }

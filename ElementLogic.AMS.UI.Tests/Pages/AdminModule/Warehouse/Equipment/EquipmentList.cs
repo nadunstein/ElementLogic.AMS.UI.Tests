@@ -72,8 +72,11 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Warehouse.Equipment
 
         public bool IsNewEquipmentAdded(string equipment)
         {
-            return PageObjectHelper.Instance
-                .TableDataExists(ResultTable, 3, equipment);
+            return FluentElement.Instance
+                .WaitForElement(ResultTable)
+                .GetTableElements()
+                .FindRowElements(3, equipment)
+                .IsExists();
         }
 
         public bool ClickEquipmentViewButton()

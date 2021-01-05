@@ -15,6 +15,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.TaskMenu
 
         private const string InventoryTaskMenu = "#as-task-menu .row > div:nth-child(3)";
 
+        private const string InventoryTaskMenuFinder = "#as-task-menu .row > div:nth-child(3) > a:nth-child(4)";
+
         private const string LogoutButton = "#ctl00_MonitorContentPlaceholder_TaskMenuView_Button1";
 
         private const string PreparedTaskgroupCountLabel = ".ml-4 .badge";
@@ -60,10 +62,11 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.TaskMenu
         public bool ClickInventoryTaskType(string taskName)
         {
             return FluentElement.Instance
+                .WaitForElement(InventoryTaskMenuFinder)
                 .WaitForElement(InventoryTaskMenu)
-                .Wait(1)
                 .FindElements("a h3")
                 .SearchElementByText(taskName)
+                .Wait(1)
                 .Click();
         }
 

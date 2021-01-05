@@ -28,7 +28,7 @@ namespace ElementLogic.AMS.UI.Tests.Data.DatabaseQueries
 
         public void RestoreDatabase(string nameOfTheDatabase)
         {
-            var databasePath = Path.Combine(WebDriverHelper.Instance.GetProjectPath(), "Database\\",
+            var databasePath = Path.Combine(WebDriverHelper.Instance.GetProjectAssemblyPath(), "Database\\",
                 string.Concat(nameOfTheDatabase, ".bak"));
             var dataLogFilePath = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json",
                 "DatabaseSettings:DatabaseDataLogFilePath");

@@ -32,8 +32,12 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Refill
         public bool ClickTaskgroupSelectButton(string trolleyName)
         {
             return FluentElement.Instance
-                .SearchAndClickTableCellItem(TaskgroupSelectionGrid, 3, 
-                    trolleyName, 1, ".as-button-md-green");
+                .WaitForElement(TaskgroupSelectionGrid)
+                .GetTableElements()
+                .FindRowElements(3, trolleyName)
+                .GetRowElement(1)
+                .FindElement(".as-button-md-green")
+                .Click();
         }
 
         public bool ClickExitButton()

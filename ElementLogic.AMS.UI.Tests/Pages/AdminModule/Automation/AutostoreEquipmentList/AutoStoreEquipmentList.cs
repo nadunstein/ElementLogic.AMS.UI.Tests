@@ -17,7 +17,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Automation.AutostoreEquipm
         public void Navigate()
         {
             const string autostoreEquipmentListPageUrl = "/Pages/Controller/Status.aspx";
-            var baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
+            var baseUrl = JsonFileReader.Instance
+                .GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
             var pageUrl = baseUrl + autostoreEquipmentListPageUrl;
             FluentElement.Instance
                 .Navigate(pageUrl);
@@ -35,8 +36,12 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Automation.AutostoreEquipm
         public bool SelectAutostoreEquipment(string equipmentName)
         {
             return FluentElement.Instance
-                .SearchAndClickTableCellItem(EquipmentListTable, 2,
-                equipmentName, 2, "a");
+                .WaitForElement(EquipmentListTable)
+                .GetTableElements()
+                .FindRowElements(2, equipmentName)
+                .GetRowElement(2)
+                .FindElement("a")
+                .Click();
         }
 
         private AutostoreEquipmentList() { }

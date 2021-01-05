@@ -1,0 +1,16 @@
+{
+  "PutawayOrdersToBeCreated": [
+    {
+      "PutawayOrderToBeCreated": [
+        {
+          "Action": "A",
+          "PurchaseOrderLineId": 1,
+          "ExtProductId": "ASPDP02",
+          "ProductName": "ASPutawayDeviationProduct02",
+          "Quantity": 20,
+          "Returned": false
+        }
+      ]
+    }
+  ]
+}

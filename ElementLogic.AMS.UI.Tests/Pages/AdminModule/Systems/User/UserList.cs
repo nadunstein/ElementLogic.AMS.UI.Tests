@@ -50,8 +50,11 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.User
 
         public bool IsNewUserAdded(string user)
         {
-            return PageObjectHelper.Instance
-                .TableDataExists(ResultTable, 3, user);
+            return FluentElement.Instance
+                .WaitForElement(ResultTable)
+                .GetTableElements()
+                .FindRowElements(3, user)
+                .IsExists();
         }
 
         private UserList() { }

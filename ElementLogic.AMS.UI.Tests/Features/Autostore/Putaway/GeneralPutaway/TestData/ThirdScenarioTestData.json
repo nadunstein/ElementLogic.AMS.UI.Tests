@@ -1,0 +1,29 @@
+{
+  "PutawayOrdersToBeCreated": [
+    {
+      "PutawayOrderToBeCreated": [
+        {
+          "Action": "A",
+          "PurchaseOrderLineId": 1,
+          "ExtProductId": "ASMOPP01",
+          "ProductName": "AutostoreMultipleOrderPutawayProduct01",
+          "Quantity": 5,
+          "Returned": false
+        }
+      ]
+    },
+
+    {
+      "PutawayOrderToBeCreated": [
+        {
+          "Action": "A",
+          "PurchaseOrderLineId": 1,
+          "ExtProductId": "ASMOPP01",
+          "ProductName": "AutostoreMultipleOrderPutawayProduct01",
+          "Quantity": 3,
+          "Returned": false
+        }
+      ]
+    }
+  ]
+}

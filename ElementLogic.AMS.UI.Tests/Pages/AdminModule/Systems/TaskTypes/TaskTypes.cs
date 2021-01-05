@@ -54,7 +54,11 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.TaskTypes
 
         public bool IsNewTaskTypeAdded(string taskType)
         {
-            return PageObjectHelper.Instance.TableDataExists(ResultTable, 3, taskType);
+            return FluentElement.Instance
+                .WaitForElement(ResultTable)
+                .GetTableElements()
+                .FindRowElements(3, taskType)
+                .IsExists();
         }
 
         private TaskTypes() { }

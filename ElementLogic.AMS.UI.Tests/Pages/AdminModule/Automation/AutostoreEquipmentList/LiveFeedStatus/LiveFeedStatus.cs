@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using ElementLogic.AMS.UI.Tests.Integration;
 using SeleniumEssential;
 
@@ -10,8 +9,6 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Automation.AutostoreEquipm
         private const string PageHeader = "#live-feed .container-fluid h3";
         
         private const string LiveFeedTable = "#live-feed table tbody";
-        
-        private const string LiveFeedActions = "tbody tr";
         
         private const string ShowHideResponsesButton = "#live-feed .btn-primary";
         
@@ -25,7 +22,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Automation.AutostoreEquipm
         {
             const string liveFeedStatusPageUrl =
                 "/Pages/Controller/StatusLiveFeed.aspx?portid=0&name=AutoStore%20Grid";
-            var baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
+            var baseUrl = JsonFileReader.Instance
+                .GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
             var pageUrl = baseUrl + liveFeedStatusPageUrl;
             FluentElement.Instance
                 .Navigate(pageUrl);
@@ -42,8 +40,11 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Automation.AutostoreEquipm
 
         public bool IsLiveFeedActionListed(string liveFeedAction)
         {
-            return PageObjectHelper.Instance
-                .TableDataExists(LiveFeedTable, 2, liveFeedAction);
+            return FluentElement.Instance
+                .WaitForElement(LiveFeedTable)
+                .GetTableElements()
+                .FindRowElements(2, liveFeedAction)
+                .IsExists();
         }
 
         public bool ClickShowHideResponsesButton()
@@ -55,32 +56,24 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Automation.AutostoreEquipm
 
         public bool IsLiveFeedResponseDisplayed(string liveFeedAction)
         {
-            var actions = PageObjectHelper.Instance.Finds(
-                LiveFeedActions, LiveFeedTable);
-            return (from action in actions
-                let actionColumns = PageObjectHelper.Instance.Finds("td", action)
-                where actionColumns[1].Text.Contains(liveFeedAction)
-                select PageObjectHelper.Instance.Finds("td", action)
-                into tableRowData
-                select PageObjectHelper.Instance.IsDisplayed(tableRowData[3])).FirstOrDefault();
+            return !FluentElement.Instance
+                .WaitForElement(LiveFeedTable)
+                .GetTableElements()
+                .FindRowElements(2, liveFeedAction)
+                .GetRowElement(4)
+                .GetText()
+                .Equals(null);
         }
 
-        public string GetLiveMessage(string liveFeedActionMessageType, string liveFeedAction)
+        public string GetLiveFeedMessage(string liveFeedActionMessageType, string liveFeedAction)
         {
-            PageObjectHelper.Instance.Wait(3);
-            var actions = PageObjectHelper.Instance.Finds(
-                LiveFeedActions, LiveFeedTable);
-
-            return (from action in actions
-                select PageObjectHelper.Instance.Finds("td", action)
-                into actionColumns
-                where actionColumns[1].Text.Contains(liveFeedAction)
-                select liveFeedActionMessageType switch
-                {
-                    "Request" => actionColumns[2].Text,
-                    "Response" => actionColumns[3].Text,
-                    _ => null
-                }).FirstOrDefault();
+            var liveFeedActionColumnIndex = liveFeedActionMessageType == "Request" ? 3 : 4;
+            return FluentElement.Instance
+                 .WaitForElement(LiveFeedTable)
+                 .GetTableElements()
+                 .FindRowElements(2, liveFeedAction)
+                 .GetRowElement(liveFeedActionColumnIndex)
+                 .GetText();
         }
 
         public bool SelectActionDropDownOption(string option)

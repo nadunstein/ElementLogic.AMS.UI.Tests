@@ -18,6 +18,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.PutawaySelection
         private const string SearchOnDropdownList =
             "#ctl00_MonitorContentPlaceholder_putawayselectionview_cboPutawaySearch_DropDown .rcbList";
 
+        private const string OrdersListTable = ".rgMasterTable tbody";
+
         private const string ExitButton = "#ctl00_MonitorContentPlaceholder_putawayselectionview_btnExit";
 
         public static PutawaySelection Instance => Singleton.Value;
@@ -62,18 +64,38 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.PutawaySelection
                 .Insert(scanValue);
         }
 
+        public int GetTaskgroupCount()
+        {
+            return FluentElement.Instance
+                .WaitUntilInvisible(LoadingPanel)
+                .WaitForElement(OrdersListTable)
+                .GetTableElements()
+                .GetRowCount();
+        }
+
+        public bool ClickFirstTaskgroupSelectButton(string productId)
+        {
+            return FluentElement.Instance
+                .WaitForElement(OrdersListTable)
+                .GetTableElements()
+                .FindRowElements(3, productId)
+                .GetRowElement(2)
+                .FindElement(".as-button-md-green")
+                .Click();
+        }
+
+        public bool ClickEnterButtonOnScanField()
+        {
+            return FluentElement.Instance
+                .WaitForElement(ScanField)
+                .ClickEnterButton();
+        }
+
         public bool ClickExitButton()
         {
             return FluentElement.Instance
                 .WaitForElement(ExitButton)
                 .Click();
-        }
-
-        public void ClickEnterButtonOnScanField()
-        {
-            FluentElement.Instance
-                .WaitForElement(ScanField)
-                .ClickEnterButton();
         }
 
         private PutawaySelection() { }

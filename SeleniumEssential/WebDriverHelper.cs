@@ -42,7 +42,7 @@ namespace SeleniumEssential
             options.AddArguments("--no-sandbox");
             options.AddArguments("--verbose");
 
-            var chromeDriverFullPath = Path.Combine(GetProjectPath(), chromeDriverPath);
+            var chromeDriverFullPath = Path.Combine(GetProjectAssemblyPath(), chromeDriverPath);
             Driver = new ChromeDriver(chromeDriverFullPath, options, TimeSpan.FromMinutes(5));
             Driver.Manage().Window.Maximize();
             return Driver;

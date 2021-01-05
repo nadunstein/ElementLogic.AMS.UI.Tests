@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using ElementLogic.AMS.UI.Tests.Integration;
 using SeleniumEssential;
 
@@ -110,10 +109,21 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Refill
                 .IsVisible();
         }
 
-        public IList<string> GetViewItemProductList()
+        public int GetViewItemTableRowCount()
         {
             return FluentElement.Instance
-                .GetTableColumnDataSet(ViewItemsTable, 5);
+                .WaitForElement(ViewItemsTable)
+                .GetTableElements()
+                .GetRowCount();
+        }
+
+        public bool IsProductExistsInViewItemTable(string expectedProductId)
+        {
+            return FluentElement.Instance
+                .WaitForElement(ViewItemsTable)
+                .GetTableElements()
+                .FindRowElements(5, expectedProductId)
+                .IsExists();
         }
 
         public bool ClickConfirmButton()

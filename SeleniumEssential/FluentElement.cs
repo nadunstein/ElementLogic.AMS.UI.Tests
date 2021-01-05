@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
+using System.Data;
 using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Extensions;
@@ -14,6 +13,8 @@ namespace SeleniumEssential
         private ReadOnlyCollection<IWebElement> _commonElementList;
         private string _commonElement;
         private IWebElement _commonIWebElement;
+        private DataTable _commonDataTable;
+        private DataRow _commonDataRowList;
         private string _commonElementText;
         private bool _switchedToFrame;
 
@@ -123,7 +124,7 @@ namespace SeleniumEssential
             return click;
         }
 
-        public void ClickEnterButton()
+        public bool ClickEnterButton()
         {
             var attempts = 0;
             while (attempts < 20)
@@ -132,7 +133,7 @@ namespace SeleniumEssential
                 {
                     var iWebElement = GetIWebElement(_commonElement);
                     iWebElement.SendKeys(Keys.Enter);
-                    break;
+                    return true;
                 }
                 catch (Exception)
                 {
@@ -141,6 +142,8 @@ namespace SeleniumEssential
 
                 attempts++;
             }
+
+            return false;
         }
 
         public void ClickTabButton()
@@ -366,7 +369,22 @@ namespace SeleniumEssential
 
         public FluentElement FindElements(string elementListFinder)
         {
-            _commonElementList = GetList(_commonElement, elementListFinder);
+            ReadOnlyCollection<IWebElement> elementList = null;
+            var attempts = 0;
+            while (attempts < 20)
+            { 
+                elementList = GetList(_commonElement, elementListFinder);
+                if (elementList.Count == 0)
+                {
+                    Wait(0.5);
+                    attempts++;
+                    continue;
+                }
+
+                break;
+            }
+
+            _commonElementList = elementList;
             return this;
         }
 
@@ -405,80 +423,130 @@ namespace SeleniumEssential
                 _commonIWebElement = _commonIWebElement.FindElement(elementBy);
             }
             catch (Exception)
-            {
+            { 
                 _commonIWebElement = null;
             }
             
             return this;
         }
 
-        public bool SearchAndClickTableCellItem(string table, int searchColumnIndex, string expectedSearchValue,
-            int clickColumnIndex, string clickElementFinder)
+        public FluentElement GetTableElements()
         {
-            var result = false;
-            var attempts = 0;
-            while (attempts < 100)
+            var elementTable = new DataTable();
+            elementTable.Clear();
+            var numberOfTableColumns = GetList(_commonElement, "tr:nth-child(1) td").Count;
+            for (var columnNumber = 1; columnNumber <= numberOfTableColumns; columnNumber++)
             {
-                try
-                {
-                    var tableRows = GetList(table,"tr");
-                    foreach (var tableRow in tableRows)
-                    {
-                        var tableData = GetList(tableRow,"td");
-
-                        if (!tableData[searchColumnIndex - 1].Text.Contains(expectedSearchValue))
-                        {
-                            continue;
-                        }
-
-                        var selectButton = tableData[clickColumnIndex - 1].FindElement(By.CssSelector(clickElementFinder));
-                        selectButton?.Click();
-                        result = true;
-                        break;
-                    }
-                }
-                catch (Exception)
-                {
-                    // ignored
-                }
-
-                if (result)
-                {
-                    break;
-                }
-
-                ForcedWait(0.1);
-                attempts++;
+                elementTable.Columns.Add(columnNumber.ToString(), typeof(IWebElement));
             }
 
-            return result;
+            try
+            {
+                var tableRows = GetList(_commonElement, "tr");
+                foreach (var tableRow in tableRows)
+                {
+                    var tableColumns = GetList(tableRow, "td");
+                    var dataRow = elementTable.NewRow();
+                    var count = 0;
+                    foreach (var tableColumn in tableColumns)
+                    {
+                        dataRow[count] = tableColumn;
+                        count++;
+                    }
+
+                    elementTable.Rows.Add(dataRow);
+                }
+            }
+            catch (Exception)
+            {
+                //ignore
+            }
+
+            _commonDataTable = elementTable;
+            return this;
         }
 
-        public IList<string> GetTableColumnDataSet(string table, int columnIndex)
+        public int GetRowCount()
+        {
+            return _commonDataTable.Rows.Count;
+        }
+
+        public bool IsExists()
+        {
+            return _commonDataRowList != null;
+        }
+
+        public FluentElement FindRowElements(int searchColumnIndex, string expectedSearchValue)
         {
             var attempts = 0;
-            while (attempts < 100)
+            while (attempts < 20)
             {
+                DataTable datRowTable = null;
                 try
                 {
-                    var tableRecords = GetList(table,"tr");
-                    return tableRecords.Select(tableRecord => GetList(tableRecord,"td"))
-                        .Select(tableData => tableData[columnIndex - 1].Text).ToList();
+                    datRowTable = _commonDataTable.AsEnumerable()
+                        .Where(r => r.Field<IWebElement>(searchColumnIndex - 1).Text
+                            .Contains(expectedSearchValue)).CopyToDataTable();
                 }
-
                 catch (Exception)
                 {
-                    ForcedWait(0.1);
-                    attempts++;
+                    //ignore
                 }
+
+                if (datRowTable == null || datRowTable.Rows[0].Table.Rows.Count == 0)
+                {
+                    Wait(0.5);
+                    GetTableElements();
+                    attempts++;
+                    continue;
+                }
+
+                _commonDataRowList = datRowTable.Rows[0];
+                break;
             }
 
-            return null;
+            return this;
+        }
+
+        public FluentElement GetRowElement(int searchColumnIndex)
+        {
+            _commonIWebElement = (IWebElement)_commonDataRowList.ItemArray[searchColumnIndex - 1];
+            return this;
         }
 
         public void DeleteBrowserCookies()
         {
             Driver.Manage().Cookies.DeleteAllCookies();
+        }
+
+        public bool OpenNewBrowserTab()
+        {
+            var currentOpenedTabs = Driver.WindowHandles.Count;
+            var js = (IJavaScriptExecutor)Driver;
+            js.ExecuteScript("window.open();");
+            var numberOfOpenedTabs = Driver.WindowHandles.Count - currentOpenedTabs;
+            return numberOfOpenedTabs == 1;
+        }
+
+        public bool SwitchToBrowserTab(int tabIndexToBeSwitched)
+        {
+            try
+            {
+                var tabToBeSwitched = Driver.WindowHandles[tabIndexToBeSwitched - 1];
+                Driver.SwitchTo().Window(tabToBeSwitched);
+                return true;
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
+
+            return false;
+        }
+
+        public int GetOpenedBrowserTabCount()
+        {
+            return Driver.WindowHandles.Count;
         }
 
         public static FluentElement Instance => Singleton.Value;

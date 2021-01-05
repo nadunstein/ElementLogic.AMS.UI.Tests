@@ -22,12 +22,12 @@ namespace ElementLogic.AMS.UI.Tests.ExcelDataAccess.UserCredentials
 
         private static IEnumerable<UserData> AccessUserDetails()
         {
-            var projectPath = WebDriverHelper.Instance.GetProjectPath();
+            var projectPath = WebDriverHelper.Instance.GetProjectAssemblyPath();
             var fullExcelFilePath = Path.Combine(projectPath, $"ExcelDataAccess/UserCredentials/{FileName}");
 
             var dataTable = AccessManager.Instance.ImportExcelData(fullExcelFilePath);
             var userList = (from DataRow dataRow in dataTable.Rows
-                select new UserData()
+                select new UserData
                 {
                     Key = dataRow["Key"].ToString(),
                     Username = dataRow["Username"].ToString(),

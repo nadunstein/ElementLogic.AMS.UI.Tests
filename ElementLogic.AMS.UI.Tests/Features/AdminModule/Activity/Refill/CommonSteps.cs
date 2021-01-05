@@ -84,7 +84,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Activity.Refill
                 "The Refill item Grid is not displayed in Refill order list page");
 
             var expectedRefillProductCount = RefillOrderList.Instance.GetNumberOfItemsOnTrolley();
-            var actualRefillProductCount = RefillOrderList.Instance.GetViewItemProductList().Count;
+            var actualRefillProductCount = RefillOrderList.Instance.GetViewItemTableRowCount();
             Assert.AreEqual(expectedRefillProductCount, actualRefillProductCount,
                 "The listed Refill item count is incorrect under the grid in Refill Order List page");
         }
@@ -93,7 +93,6 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Activity.Refill
         public void ThenICheckTheCorrectRefillProductSAreDisplayedInTheViewItemGridInRefillOrderListPage()
         {
             var actualRefillCount = RefillOrderList.Instance.GetNumberOfItemsOnTrolley();
-            var actualProducts = RefillOrderList.Instance.GetViewItemProductList();
             string expectedProductId;
 
             if (actualRefillCount.Equals(1))
@@ -101,8 +100,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Activity.Refill
                 expectedProductId = _scenarioContext.ContainsKey("ExtProductId01")
                     ? _scenarioContext["ExtProductId01"].ToString()
                     : _scenarioContext["ExtProductId"].ToString();
-
-                Assert.AreEqual(expectedProductId, actualProducts[0],
+                Assert.IsTrue(RefillOrderList.Instance.IsProductExistsInViewItemTable(expectedProductId),
                     "The correct Refill product(s) are not displayed in the view item grid in Refill Order List page");
                 return;
             }
@@ -110,7 +108,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Activity.Refill
             for (var i = 1; i <= actualRefillCount; i++)
             {
                 expectedProductId = _scenarioContext[$"ExtProductId0{i}"].ToString();
-                Assert.AreEqual(expectedProductId, actualProducts[i-1],
+                Assert.IsTrue(RefillOrderList.Instance.IsProductExistsInViewItemTable(expectedProductId),
                     "The correct Refill product(s) are not displayed in the view item grid in Refill Order List page");
             }
         }
