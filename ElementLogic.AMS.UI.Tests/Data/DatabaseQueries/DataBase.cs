@@ -28,8 +28,19 @@ namespace ElementLogic.AMS.UI.Tests.Data.DatabaseQueries
 
         public void RestoreDatabase(string nameOfTheDatabase)
         {
-            var databasePath = Path.Combine(WebDriverHelper.Instance.GetProjectAssemblyPath(), "Database\\",
-                string.Concat(nameOfTheDatabase, ".bak"));
+            var copyDatabaseFileTo = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "DatabaseSettings:CopyDatabaseFileTo");
+            if (!string.IsNullOrEmpty(copyDatabaseFileTo))
+            {
+                var originalLocation = Path.Combine(WebDriverHelper.Instance.GetProjectAssemblyPath(), "Database\\", string.Concat(nameOfTheDatabase, ".bak"));
+                var newLocation = Path.Combine(copyDatabaseFileTo, string.Concat(nameOfTheDatabase, ".bak"));
+                File.Copy(originalLocation, newLocation, true);
+            }
+            
+            var databasePath = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "DatabaseSettings:DatabasePath");
+            databasePath = string.IsNullOrEmpty(databasePath) 
+                ? Path.Combine(WebDriverHelper.Instance.GetProjectAssemblyPath(), "Database\\", string.Concat(nameOfTheDatabase, ".bak"))
+                : string.Concat(databasePath, nameOfTheDatabase, ".bak");
+
             var dataLogFilePath = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json",
                 "DatabaseSettings:DatabaseDataLogFilePath");
             var dataFilePath =
