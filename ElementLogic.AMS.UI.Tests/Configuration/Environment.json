@@ -1,8 +1,8 @@
 {
   "Application": {
     "Url": "http://localhost",
-    "AutostoreUrl": "http://localhost:8080/AsInterfaceHttp/AutoStoreHttpInterface.aspx",
-    "context": "andnor-tp-p53s"
+    "AutostoreUrl": "http://localhost:81/AsInterfaceHttp/AutoStoreHttpInterface.aspx",
+    "context": "ti-nb-204"
   },
 
   "BrowserSettings": {
@@ -13,12 +13,10 @@
 
   "DatabaseSettings": {
     "UseEmptyDatabase": false,
-    "CopyDatabaseFileTo": "C:\\docker\\XXL", 
-    "DatabasePath": "/var/opt/mssql/backup/",
     "DatabaseName": "UIAutomationDB",
-    "DatabaseDataLogFilePath": "/var/opt/mssql/", //Only required for local test run
+    "DatabaseDataLogFilePath": "C:\\Program Files\\Microsoft SQL Server\\MSSQL14.MSSQLSERVER2017\\MSSQL\\DATA", //Only required for local test run
     "providerName": "System.Data.SqlClient",
-    "connectionString": "Data Source=.;User Id=sa;Password=passord@2040;Persist Security Info=False;"
+    "connectionString": "Data Source=TI-NB-204;User Id=sa;Password=123Ezone;Persist Security Info=False;"
   },
 
   "ExtentReportSettings": {
