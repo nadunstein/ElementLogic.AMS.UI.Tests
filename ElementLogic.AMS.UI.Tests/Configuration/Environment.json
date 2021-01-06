@@ -1,6 +1,7 @@
 {
   "Application": {
     "Url": "http://localhost",
+    "AutostoreUrl": "http://localhost:81/AsInterfaceHttp/AutoStoreHttpInterface.aspx",
     "context": "ti-nb-204"
   },
 

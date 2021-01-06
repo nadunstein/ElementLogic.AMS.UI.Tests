@@ -17,39 +17,60 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
         [BeforeTestRun(Order = 0)]
         public static void CreateDatabase()
         {
-            var databaseName =
-                JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json",
-                    "DatabaseSettings:DatabaseName");
-            Database.Instance.DeleteDatabase(databaseName);
+            var databaseName = JsonFileReader.Instance
+                .GetJsonKeyValue("Configuration/Environment.json", "DatabaseSettings:DatabaseName");
+            Database.Instance
+                .DeleteDatabase(databaseName);
 
-            if (!bool.Parse(JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json",
-                "DatabaseSettings:UseEmptyDatabase")))
+            if (!bool.Parse(JsonFileReader.Instance
+                .GetJsonKeyValue("Configuration/Environment.json", "DatabaseSettings:UseEmptyDatabase")))
             {
-                Database.Instance.RestoreDatabase(databaseName);
-                WindowsServices.Instance.DoIisReset();
+                Database.Instance
+                    .RestoreDatabase(databaseName);
                 return;
             }
 
             Database.Instance.CreateDatabase(databaseName);
-            WindowsServices.Instance.DoIisReset();
         }
 
         [BeforeTestRun(Order = 1)]
-        public static void RestartServices()
+        public static void UpdateMegaparamTable()
         {
-            WindowsServices.Instance.RestartAutostoreEmulatorService();
+            var context = JsonFileReader.Instance
+                .GetJsonKeyValue("Configuration/Environment.json", "Application:context");
+            Parameter.Instance
+                .UpdateContext(context);
+            var autostoreUrl = JsonFileReader.Instance
+                .GetJsonKeyValue("Configuration/Environment.json", "Application:AutostoreUrl");
+            Parameter.Instance
+                .UpdateParameterValue("AutostoreUrl", autostoreUrl);
         }
 
         [BeforeTestRun(Order = 2)]
+        public static void RestartInternetInformationServices()
+        {
+            WindowsServices.Instance
+                .DoIisReset();
+        }
+
+        [BeforeTestRun(Order = 3)]
+        public static void RestartServices()
+        {
+            WindowsServices.Instance
+                .RestartAutostoreEmulatorService();
+        }
+
+        [BeforeTestRun(Order = 4)]
         public static void SynchronizeAsBins()
         {
-            if (bool.Parse(JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", 
-                "DatabaseSettings:UseEmptyDatabase")))
+            if (bool.Parse(JsonFileReader.Instance
+                .GetJsonKeyValue("Configuration/Environment.json", "DatabaseSettings:UseEmptyDatabase")))
             {
                 return;
             }
 
-            SynchronizeAutostoreBins.Instance.DoAutostoreBinSync();
+            SynchronizeAutostoreBins.Instance
+                .DoAutostoreBinSync();
         }
 
         [BeforeScenario(Order = 1)]
@@ -60,8 +81,8 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
                 Assert.Ignore("Failure in warehouse Test data Creation tests");
             }
 
-            if (!bool.Parse(JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", 
-                    "DatabaseSettings:UseEmptyDatabase"))
+            if (!bool.Parse(JsonFileReader.Instance
+                    .GetJsonKeyValue("Configuration/Environment.json", "DatabaseSettings:UseEmptyDatabase"))
                 && _scenarioContext.ScenarioInfo.Tags.Contains("WarehouseImplementationTest"))
             {
                 Assert.Ignore("Ignored the execution of warehouse preTest-data creation tests");
@@ -71,7 +92,8 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
         [BeforeScenario(Order = 3)]
         public void CreateScenarioTestData()
         {
-            TestDataFactory.Instance.PrepareTestDataSet(_scenarioContext);
+            TestDataFactory.Instance
+                .PrepareTestDataSet(_scenarioContext);
         }
         
         [AfterScenario(Order = 2)]
@@ -79,10 +101,12 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
         {
             if (!_scenarioContext.ScenarioInfo.Tags.Contains("WarehouseImplementationTest"))
             {
-                var parametersToBeChanged = SetUpParameters.Instance.GetParametersToBeReset();
+                var parametersToBeChanged = SetUpParameters.Instance
+                    .GetParametersToBeReset();
                 foreach (var parameterToBeChanged in parametersToBeChanged)
                 {
-                    SetUpParameters.Instance.ChangeTheParameterValue(parameterToBeChanged.ParameterName,
+                    SetUpParameters.Instance
+                        .ChangeTheParameterValue(parameterToBeChanged.ParameterName,
                         parameterToBeChanged.ParameterValue);
                 }
             }
@@ -93,13 +117,15 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
         [AfterScenario("Pick", Order = 3)]
         public void FinishUnfinishedPickOrders()
         {
-            FlushPickOrders.Instance.FinishUnfinishedPickOrders();
+            FlushPickOrders.Instance
+                .FinishUnfinishedPickOrders();
         }
 
         [AfterScenario("Inventory", Order = 4)]
         public void FinishUnfinishedInventoryOrders()
         {
-            FlushInventoryOrders.Instance.FinishUnfinishedInventoryOrders();
+            FlushInventoryOrders.Instance
+                .FinishUnfinishedInventoryOrders();
         }
 
         [AfterScenario(Order = 6)]

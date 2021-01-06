@@ -35,6 +35,25 @@ namespace ElementLogic.AMS.UI.Tests.Data.DatabaseQueries
             return paramData;
         }
 
+        public void UpdateContext(string context)
+        {
+            const string mainSql = @"UPDATE MEGAPARAM
+                                     SET CONTEXT = @context";
+
+            ConnectionManager.Instance.Execute(connection => connection.Execute(mainSql,
+                new { context }));
+        }
+
+        public void UpdateParameterValue(string parameterName, string parameterValue)
+        {
+            const string mainSql = @"UPDATE MEGAPARAM
+                                     SET PARAMTXT = @parameterValue
+                                     WHERE PARAMDEF = @parameterName";
+
+            ConnectionManager.Instance.Execute(connection => connection.Execute(mainSql,
+                new { parameterName, parameterValue }));
+        }
+
         private Parameter() { }
 
         private static readonly Lazy<Parameter> Singleton = new Lazy<Parameter>(() => new Parameter());

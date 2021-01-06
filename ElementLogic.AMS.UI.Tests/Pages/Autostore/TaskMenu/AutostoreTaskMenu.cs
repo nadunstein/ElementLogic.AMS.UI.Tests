@@ -64,9 +64,9 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.TaskMenu
             return FluentElement.Instance
                 .WaitForElement(InventoryTaskMenuFinder)
                 .WaitForElement(InventoryTaskMenu)
+                .Wait(2)
                 .FindElements("a h3")
                 .SearchElementByText(taskName)
-                .Wait(1)
                 .Click();
         }
 
