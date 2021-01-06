@@ -28,6 +28,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.Mission
 
         private const string ExitButton = "#ctl00_MonitorContentPlaceholder_PutawayView1_BtnExit";
 
+        private const string PutawayMoreButton = "#ctl00_MonitorContentPlaceholder_PutawayView1_BtnConfirmPlace";
+
         public static PutawayMission Instance => Singleton.Value;
 
         public bool IsPageLoaded()
@@ -43,6 +45,13 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.Mission
         {
             return FluentElement.Instance
                 .WaitForElement(ExitButton)
+                .Click();
+        }
+
+        public bool ClickPutawayMoreButton()
+        {
+            return FluentElement.Instance
+                .WaitForElement(PutawayMoreButton)
                 .Click();
         }
 
@@ -134,6 +143,12 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.Mission
             return FluentElement.Instance
                 .WaitForElement(ConfirmButton)
                 .Click();
+        }
+
+        public bool IsPutawayMoreButtonDisplayed()
+        {
+            return FluentElement.Instance
+                .IsVisible(PutawayMoreButton);
         }
 
         private PutawayMission() { }
