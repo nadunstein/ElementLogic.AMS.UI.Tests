@@ -16,9 +16,9 @@ Scenario: Verify autostore putaway more visibility in putaway mission
 	And I Include max location quantity value as '10' in Autostore putaway quantity confirm popup
 	When I click on Confirm button in Autostore putaway quantity confirm popup
 	Then The Autostore putaway mission '1' is loaded
-	And PutawayMore Button is not displayed in the Autostore putaway mission page 
+	And The PutawayMore Button is not displayed in the Autostore putaway mission page
 	When I click on Confirm button in Autostore putaway mission page
 	Then The Autostore putaway mission '2' is loaded
-	And PutawayMore Button is displayed in the Autostore putaway mission page 	
+	And The PutawayMore Button is displayed in the Autostore putaway mission page 	
 	When I click on PutawayMore button in Autostore putaway mission page
 	Then I Navigate to Autostore Putaway Selection page
