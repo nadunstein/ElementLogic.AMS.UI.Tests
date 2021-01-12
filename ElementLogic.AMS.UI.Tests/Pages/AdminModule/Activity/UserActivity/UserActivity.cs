@@ -122,7 +122,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.UserActivity
                 .WaitUntilInvisible(PageLoadingPanel)
                 .WaitForElement(FirstUserActivityResultBar)
                 .FindElements("td")
-                .GetRowElement(5)
+                .SearchElementByIndex(5)
                 .GetText();
         }
 

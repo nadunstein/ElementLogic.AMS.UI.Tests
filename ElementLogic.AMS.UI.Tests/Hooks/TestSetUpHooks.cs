@@ -30,7 +30,8 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
                 return;
             }
 
-            Database.Instance.CreateDatabase(databaseName);
+            Database.Instance
+                .CreateDatabase(databaseName);
         }
 
         [BeforeTestRun(Order = 1)]
@@ -60,7 +61,7 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
                 .RestartAutostoreEmulatorService();
         }
 
-        [BeforeTestRun(Order = 4)]
+        [BeforeTestRun(Order = 6)]
         public static void SynchronizeAsBins()
         {
             if (bool.Parse(JsonFileReader.Instance
@@ -95,8 +96,22 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
             TestDataFactory.Instance
                 .PrepareTestDataSet(_scenarioContext);
         }
-        
+
+        [BeforeScenario(Order = 4)]
+        public void StartVideoRecorder()
+        {
+            ScreenRecorder.Instance
+                .StartScreenVideoRecording(_scenarioContext);
+        }
+
         [AfterScenario(Order = 2)]
+        public void StopVideoRecorder()
+        {
+            ScreenRecorder.Instance
+                .StopScreenVideoRecording(_scenarioContext);
+        }
+
+        [AfterScenario(Order = 3)]
         public void ResetSystemParametersAfterTestRun()
         {
             if (!_scenarioContext.ScenarioInfo.Tags.Contains("WarehouseImplementationTest"))
@@ -114,21 +129,21 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
             SetUpParameters.Instance.FlushParametersToBeReset();
         }
 
-        [AfterScenario("Pick", Order = 3)]
+        [AfterScenario("Pick", Order = 4)]
         public void FinishUnfinishedPickOrders()
         {
             FlushPickOrders.Instance
                 .FinishUnfinishedPickOrders();
         }
 
-        [AfterScenario("Inventory", Order = 4)]
+        [AfterScenario("Inventory", Order = 5)]
         public void FinishUnfinishedInventoryOrders()
         {
             FlushInventoryOrders.Instance
                 .FinishUnfinishedInventoryOrders();
         }
 
-        [AfterScenario(Order = 6)]
+        [AfterScenario(Order = 7)]
         public void TerminateTestRun()
         {
             if (_scenarioContext.ScenarioInfo.Tags.Contains("WarehouseImplementationTest")

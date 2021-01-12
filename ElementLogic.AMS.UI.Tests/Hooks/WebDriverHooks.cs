@@ -46,7 +46,7 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
             _objectContainer.RegisterInstanceAs(_driver);
         }
 
-        [AfterScenario(Order = 5)]
+        [AfterScenario(Order = 6)]
         public void CloseBrowser()
         {
             _currentFeatureName = _featureContext.FeatureInfo.Title;

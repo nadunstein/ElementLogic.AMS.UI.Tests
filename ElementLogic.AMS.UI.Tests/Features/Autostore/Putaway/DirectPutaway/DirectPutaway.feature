@@ -10,7 +10,7 @@ Background:
 	When I click Enter button in Autostore Putaway Selection page
 	Then The putaway quantity confirm popup is displayed
 	And I Include max location quantity value as '10' in Autostore putaway quantity confirm popup
-	When I click on enter button after include max location quantity in Autostore putaway quantity confirm popup
+	When I click on Confirm button in Autostore putaway quantity confirm popup
 	Then The Autostore putaway mission '1' is loaded
 	And The putaway order information is loaded in the Autostore putaway mission page
 	When I click on Confirm button in Autostore putaway mission page
@@ -26,7 +26,7 @@ Scenario: Autostore Direct Putaway to single compartment bins
 	Then The putaway quantity confirm popup is displayed
     And I enter putaway quantity value as '16' in Autostore putaway quantity confirm popup
 	And I Include max location quantity value as '10' in Autostore putaway quantity confirm popup
-	When I click on enter button after include max location quantity in Autostore putaway quantity confirm popup
+	When I click on Confirm button in Autostore putaway quantity confirm popup
 	Then The Autostore putaway mission '1' is loaded
 	And The putaway order information is loaded in the Autostore putaway mission page
 	When I click on Confirm button in Autostore putaway mission page

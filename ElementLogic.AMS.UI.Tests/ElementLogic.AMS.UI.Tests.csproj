@@ -88,6 +88,9 @@
     <Reference Include="Microsoft.Data.SqlClient, Version=2.0.20168.4, Culture=neutral, PublicKeyToken=23ec7fc2d6eaa4a5, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Data.SqlClient.2.0.0\lib\net46\Microsoft.Data.SqlClient.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Expression.Encoder, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=x86">
+      <HintPath>..\packages\Microsoft.Expression.Encoder.4.0.4276.4\lib\net46\Microsoft.Expression.Encoder.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.Configuration, Version=3.1.4.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Configuration.3.1.4\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll</HintPath>
     </Reference>
@@ -340,6 +343,7 @@
     <Compile Include="Features\Login\AutostoreMultipleSimultaneousLogin\FeatureSteps.cs" />
     <Compile Include="Features\SupportTasks\FlushInventoryOrders.cs" />
     <Compile Include="Integration\JsonFileReader.cs" />
+    <Compile Include="Integration\ScreenRecorder.cs" />
     <Compile Include="Pages\AdminModule\Activity\Pick\PicklistSearch\ConfirmSelectionPopup.cs" />
     <Compile Include="Pages\AdminModule\Activity\Pick\PicklistSearch\PicklistSearch.cs" />
     <Compile Include="Features\AdminModule\Activity\Refill\CommonSteps.cs" />

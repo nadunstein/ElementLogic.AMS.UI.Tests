@@ -20,6 +20,12 @@ namespace SeleniumEssential
             return projectPath;
         }
 
+        public string GetProjectBinPath()
+        {
+            return Directory.GetParent(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location))
+                .ToString();
+        }
+
         public string GetProjectAssemblyPath()
         {
             return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);

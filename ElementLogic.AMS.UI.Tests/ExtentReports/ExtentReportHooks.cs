@@ -32,7 +32,7 @@ namespace ElementLogic.AMS.UI.Tests.ExtentReports
             _driver = driver;
         }
 
-        [BeforeTestRun(Order = 3)]
+        [BeforeTestRun(Order = 5)]
         public static void InitializeReport()
         {
             var extentReportPath = Directory.GetParent(WebDriverHelper.Instance.GetProjectPath()).ToString();

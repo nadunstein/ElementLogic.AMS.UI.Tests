@@ -7,8 +7,11 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.UserActivity
     {
         private const string Iframe = "iframe";
 
-        private const string TransferUserDropdown =
-            "#ctl00_content_TransferUserView1_FlbTransferUser_InputTemplateItem_CboTransferUser";
+        private const string TransferUserField =
+            "#ctl00_content_TransferUserView1_FlbTransferUser_InputTemplateItem_TransferUser_Input";
+
+        private const string TransferUserDropdownSlide =
+            "#ctl00_content_TransferUserView1_FlbTransferUser_InputTemplateItem_TransferUser_DropDown .rcbList";
 
         private const string ConfirmButton = "#ctl00_content_TransferUserView1_BtnConfirm";
 
@@ -27,8 +30,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.UserActivity
         {
             return FluentElement.Instance
                 .SwitchToIframe(Iframe)
-                .WaitForElement(TransferUserDropdown)
-                .SelectDropDown(userName);
+                .WaitForElement(TransferUserField)
+                .SelectSearchDropDown(TransferUserDropdownSlide, "li", userName);
         }
 
         public bool ClickPopupButton(string buttonToBeClicked)
