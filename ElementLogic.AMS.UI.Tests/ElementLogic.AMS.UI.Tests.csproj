@@ -339,6 +339,7 @@
     <Compile Include="Features\Autostore\Pick\SecurePicking\FeatureSteps.cs" />
     <Compile Include="Features\Autostore\Pick\SerialNumberRegistration\FeatureSteps.cs" />
     <Compile Include="Features\Autostore\Putaway\PutawayDeviation\FeatureSteps.cs" />
+    <Compile Include="Features\Autostore\Putaway\PutawayMore\FeatureSteps.cs" />
     <Compile Include="Features\Browser\FeatureSteps.cs" />
     <Compile Include="Features\Login\AutostoreMultipleSimultaneousLogin\FeatureSteps.cs" />
     <Compile Include="Features\SupportTasks\FlushInventoryOrders.cs" />
@@ -468,6 +469,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Configuration\Environment.Example.json" />
     <None Include="Configuration\Environment.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -675,6 +677,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Features\Autostore\Putaway\PutawayDeviation\PutawayDeviation.feature" />
+    <None Include="Features\Autostore\Putaway\PutawayMore\PutawayMore.feature" />
+    <None Include="Features\Autostore\Putaway\PutawayMore\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\Autostore\Refill\GeneralRefill\GeneralRefill.feature" />
     <None Include="Features\Autostore\Refill\GeneralRefill\TestData\FirstScenarioTestData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
