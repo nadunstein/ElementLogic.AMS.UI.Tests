@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Inspection.InspectionDeviation
 {
     [Binding]
-    public class FeatureSteps
+    public sealed class FeatureSteps
     {
         [Then(@"The Change Quantity dialog is displayed in Autostore Inspection mission page")]
         public void ThenTheChangeQuantityDialogIsDisplayedInAutostoreInspectionMissionPage()

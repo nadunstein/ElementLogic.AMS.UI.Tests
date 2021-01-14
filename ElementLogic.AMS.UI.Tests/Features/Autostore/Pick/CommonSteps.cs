@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick
 {
     [Binding]
-    public class CommonSteps
+    public sealed class CommonSteps
     {
         private string _addedNewContainer;
         private readonly ScenarioContext _scenarioContext;

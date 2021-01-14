@@ -3,6 +3,7 @@ using System.Threading;
 using ElementLogic.AMS.UI.Tests.Data.DatabaseQueries;
 using ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Pick.PicklistSearch;
 using NUnit.Framework;
+using AdminLogin = ElementLogic.AMS.UI.Tests.Pages.Login.Login;
 
 namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
 {
@@ -12,38 +13,58 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
 
         public void FinishUnfinishedPickOrders()
         {
-            var pickOrdersToBeFinished = Order.Instance.GetUnFinishedPickOrders();
-            if (pickOrdersToBeFinished.Count.Equals(0))
+            var pickOrdersToBeFinishedCount = Order.Instance.GetUnFinishedPickOrders().Count;
+            if (pickOrdersToBeFinishedCount == 0)
             {
                 return;
             }
 
-            PicklistSearch.Instance.Navigate();
-            Pages.Login.Login.Instance.LoginToApplication("Admin");
-            Assert.IsTrue(PicklistSearch.Instance.IsPageLoaded(),
-                "The Pick list search page is not loaded to finish unfinished pick orders");
-
+            NavigatePicklistSearchPageSteps();
             var unfinishedPickOrderStatus = Order.Instance.GetFirstUnFinishedPickOrderStatus();
             while (unfinishedPickOrderStatus != null)
             {
-                PicklistSearch.Instance.SelectOrderStatus(int.Parse(unfinishedPickOrderStatus));
-                PicklistSearch.Instance.ClickSearchButton();
-                PicklistSearch.Instance.IsFirstPicklistResultBarDisplayed();
-                PicklistSearch.Instance.SelectAllCheckBox();
-                PicklistSearch.Instance.SelectActionMenuOption("Finish");
-                var pickOrderCountForOrderStatus =
-                    Order.Instance.GetUnFinishedPickOrderCount(int.Parse(unfinishedPickOrderStatus));
-                if (pickOrderCountForOrderStatus > 1)
-                {
-                    ConfirmSelectionPopup.Instance.IsPopupDisplayed();
-                    ConfirmSelectionPopup.Instance.ClickConfirmButton();
-                }
-
+                ClickFinishActionMenuOptionSteps(unfinishedPickOrderStatus);
+                ConfirmConfirmSelectionPopup(unfinishedPickOrderStatus);
                 WaitAndConfirmStartedMissionsPopup();
-                PicklistSearch.Instance.RefreshWebPage();
-                PicklistSearch.Instance.IsPageLoaded();
+                RefreshPicklistSearchPageSteps();
                 unfinishedPickOrderStatus = Order.Instance.GetFirstUnFinishedPickOrderStatus();
-            } 
+            }
+        }
+
+        private static void NavigatePicklistSearchPageSteps()
+        {
+            PicklistSearch.Instance.Navigate();
+            AdminLogin.Instance.LoginToApplication("Admin");
+            Assert.IsTrue(PicklistSearch.Instance.IsPageLoaded(),
+                "The Pick list search page is not loaded to finish unfinished pick orders after scenario");
+        }
+
+        private static void ClickFinishActionMenuOptionSteps(string unfinishedPickOrderStatus)
+        {
+            PicklistSearch.Instance.SelectOrderStatus(int.Parse(unfinishedPickOrderStatus));
+            PicklistSearch.Instance.ClickSearchButton();
+            PicklistSearch.Instance.IsFirstPicklistResultBarDisplayed();
+            PicklistSearch.Instance.SelectAllCheckBox();
+            PicklistSearch.Instance.SelectActionMenuOption("Finish");
+        }
+
+        private static void RefreshPicklistSearchPageSteps()
+        {
+            PicklistSearch.Instance.RefreshWebPage();
+            PicklistSearch.Instance.IsPageLoaded();
+        }
+
+        private static void ConfirmConfirmSelectionPopup(string unfinishedPickOrderStatus)
+        {
+            var pickOrderCountForOrderStatus =
+                Order.Instance.GetUnFinishedPickOrderCount(int.Parse(unfinishedPickOrderStatus));
+            if (pickOrderCountForOrderStatus <= 1)
+            {
+                return;
+            }
+
+            ConfirmSelectionPopup.Instance.IsPopupDisplayed();
+            ConfirmSelectionPopup.Instance.ClickConfirmButton();
         }
 
         private static void WaitAndConfirmStartedMissionsPopup()

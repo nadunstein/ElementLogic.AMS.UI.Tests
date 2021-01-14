@@ -14,7 +14,7 @@ using LoginPage = ElementLogic.AMS.UI.Tests.Pages.Login.Login;
 namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
 {
     [Binding]
-    public class FeatureSteps
+    public sealed class FeatureSteps
     {
         [Then(@"The Autostore task Menu is loaded")]
         public void ThenTheAutostoreTaskMenuIsLoaded()
@@ -111,7 +111,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
             {
                 if (PickNoMoreTasksPopup.Instance.IsOkButtonDisplayed())
                 {
-                    SynchronizeTaskGroups.Instance.DoAutostoreTaskGroupSync();
+                    SynchronizeTaskGroups.Instance.AutostoreTaskGroupSynchronizationSteps();
                     LoginPage.Instance.NavigateToAutoStore("01");
                     LoginPage.Instance.IsPageLoaded();
                     LoginPage.Instance.LoginToApplication("Admin");
@@ -151,7 +151,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
                     return true;
                 }
 
-                SynchronizeTaskGroups.Instance.DoAutostoreTaskGroupSync();
+                SynchronizeTaskGroups.Instance.AutostoreTaskGroupSynchronizationSteps();
                 LoginPage.Instance.NavigateToAutoStore("01");
                 LoginPage.Instance.IsPageLoaded();
                 LoginPage.Instance.LoginToApplication("Admin");

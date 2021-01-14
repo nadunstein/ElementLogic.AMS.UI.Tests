@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 namespace ElementLogic.AMS.UI.Tests.Features.Login.AutostoreMultipleSimultaneousLogin
 {
     [Binding]
-    public class AutostoreMultiplePortsSimultaneousLoginSteps
+    public sealed class AutostoreMultiplePortsSimultaneousLoginSteps
     {
         [Then(@"The Duplicate login confirmation popup is displayed in Autostore Task Menu Page")]
         public void ThenTheDuplicateLoginConfirmationPopupIsDisplayedInAutostoreTaskMenuPage()

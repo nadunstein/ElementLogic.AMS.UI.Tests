@@ -4,7 +4,7 @@
 @Regression
 @Scenario:'1'
 @Autostore:Putaway:PutawayMore
-Scenario: Verify autostore putaway more visibility in putaway mission
+Scenario: Verify autostore putaway more button is displayed in putaway mission
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I click on 'A 1/1 AutoStore Bin' putaway tile in AutoStore Main Menu
 	Then I Navigate to Autostore Putaway Selection page
@@ -19,6 +19,6 @@ Scenario: Verify autostore putaway more visibility in putaway mission
 	And The PutawayMore Button is not displayed in the Autostore putaway mission page
 	When I click on Confirm button in Autostore putaway mission page
 	Then The Autostore putaway mission '2' is loaded
-	And The PutawayMore Button is displayed in the Autostore putaway mission page 	
+	And The PutawayMore Button is displayed in the Autostore putaway mission page
 	When I click on PutawayMore button in Autostore putaway mission page
 	Then I Navigate to Autostore Putaway Selection page

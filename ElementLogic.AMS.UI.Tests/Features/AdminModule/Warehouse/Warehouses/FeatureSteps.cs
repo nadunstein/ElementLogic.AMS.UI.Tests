@@ -6,7 +6,7 @@ using TechTalk.SpecFlow.Assist;
 namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Warehouse.Warehouses
 {
     [Binding]
-    public class FeatureSteps
+    public sealed class FeatureSteps
     {
         [Given(@"I navigate to Warehouse List page")]
         public void GivenINavigateToWarehouseListPage()

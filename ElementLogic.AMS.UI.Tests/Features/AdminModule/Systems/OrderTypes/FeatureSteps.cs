@@ -7,7 +7,7 @@ using AdminOrderTypes = ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.Orde
 namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Systems.OrderTypes
 {
     [Binding]
-    public class FeatureSteps
+    public sealed class FeatureSteps
     {
         private static ScenarioContext _scenarioContext;
 

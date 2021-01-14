@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick.PickDeviation
 {
     [Binding]
-    public class FeatureSteps
+    public sealed class FeatureSteps
     {
         [Then(@"I change the quantity of the Quantity field as '(.*)' in Autostore Pick Mission page")]
         public void ThenIChangeTheQuantityOfTheQuantityFieldAsInAutostorePickMissionPage(int quantity)

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Text.RegularExpressions;
-using ElementLogic.AMS.UI.Tests.Features.SupportTasks;
 using ElementLogic.AMS.UI.Tests.Integration;
 using ElementLogic.AMS.UI.Tests.TestDataPreparationHelper.ImportFactory;
 using ElementLogic.AMS.UI.Tests.Types.Dtos;
@@ -67,8 +66,6 @@ namespace ElementLogic.AMS.UI.Tests.TestDataPreparationHelper
                         picklistLineJsonLists.Select(picklistLineJsonList => picklistLineJsonList.ToObject<PicklistLine>()).ToList();
                     PickData.Instance.PreparePickTestData(pickOrderLinesToBeCreated, scenarioContext);
                 }
-
-                SynchronizeTaskGroups.Instance.DoAutostoreTaskGroupSync();
             }
         }
 

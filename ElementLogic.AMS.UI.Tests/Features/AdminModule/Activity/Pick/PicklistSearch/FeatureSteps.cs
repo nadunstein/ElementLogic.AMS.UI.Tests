@@ -5,7 +5,7 @@ using PicklistSearchPage = ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.
 namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Activity.Pick.PicklistSearch
 {
     [Binding]
-    public class FeatureSteps
+    public sealed class FeatureSteps
     {
         private readonly ScenarioContext _scenarioContext;
 

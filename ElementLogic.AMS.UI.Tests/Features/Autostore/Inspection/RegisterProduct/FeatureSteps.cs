@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Inspection.RegisterProduct
 {
     [Binding]
-    public class FeatureSteps
+    public sealed class FeatureSteps
     {
         [Given(@"I include an empty location to the location field in Autostore Inspection-Create Task page")]
         public void GivenIIncludeAnEmptyLocationToTheLocationFieldInAutostoreInspection_CreateTaskPage()

@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick.SecurePicking
 {
     [Binding]
-    public class FeatureSteps
+    public sealed class FeatureSteps
     {
         [Then(@"I verify the confirm quantity field is displayed in Autostore Pick Mission page")]
         public void ThenIVerifyTheConfirmQuantityFieldIsDisplayedInAutostorePickMissionPage()

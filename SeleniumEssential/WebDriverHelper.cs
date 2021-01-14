@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Reflection;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
@@ -10,26 +9,6 @@ namespace SeleniumEssential
     public class WebDriverHelper : WebDriverBase
     {
         public static WebDriverHelper Instance => Singleton.Value;
-
-        public string GetProjectPath()
-        {
-            var projectPath = Directory
-                .GetParent(Directory.GetParent(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location))
-                    .ToString()).ToString();
-
-            return projectPath;
-        }
-
-        public string GetProjectBinPath()
-        {
-            return Directory.GetParent(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location))
-                .ToString();
-        }
-
-        public string GetProjectAssemblyPath()
-        {
-            return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        }
 
         public IWebDriver InitializeChromeDriver(string chromeDriverPath, bool browserHeadless)
         {
@@ -48,7 +27,8 @@ namespace SeleniumEssential
             options.AddArguments("--no-sandbox");
             options.AddArguments("--verbose");
 
-            var chromeDriverFullPath = Path.Combine(GetProjectAssemblyPath(), chromeDriverPath);
+            var projectAssemblyPath = FileHelper.Instance.GetProjectAssemblyPath();
+            var chromeDriverFullPath = Path.Combine(projectAssemblyPath, chromeDriverPath);
             Driver = new ChromeDriver(chromeDriverFullPath, options, TimeSpan.FromMinutes(5));
             Driver.Manage().Window.Maximize();
             return Driver;

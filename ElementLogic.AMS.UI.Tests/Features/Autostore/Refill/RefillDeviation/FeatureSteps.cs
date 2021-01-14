@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Refill.RefillDeviation
 {
     [Binding]
-    public class FeatureSteps
+    public sealed class FeatureSteps
     {
         [Then(@"I change the refill quantity as '(.*)' in Autostore Refill mission page")]
         public void ThenIChangeTheRefillQuantityAsInAutostoreRefillMissionPage(string reducedQuantity)

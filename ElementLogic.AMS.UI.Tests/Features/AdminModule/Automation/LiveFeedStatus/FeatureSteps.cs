@@ -10,7 +10,7 @@ using AutoStoreLiveFeedStatus =
 namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Automation.LiveFeedStatus
 {
     [Binding]
-    public class FeatureSteps
+    public sealed class FeatureSteps
     {
         private readonly ScenarioContext _scenarioContext;
 

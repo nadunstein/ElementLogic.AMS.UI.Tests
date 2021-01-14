@@ -10,7 +10,7 @@ using UserActivityPage = ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Us
 namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Activity.UserActivity
 {
     [Binding]
-    public class FeatureSteps
+    public sealed class FeatureSteps
     {
         private readonly ScenarioContext _scenarioContext;
         private string _finishedMissionId;

@@ -8,7 +8,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
     {
         public static SynchronizeTaskGroups Instance => Singleton.Value;
 
-        public void DoAutostoreTaskGroupSync()
+        public void AutostoreTaskGroupSynchronizationSteps()
         {
             LiveFeedStatus.Instance.Navigate();
             LoginPage.Instance.LoginToApplication("Admin");

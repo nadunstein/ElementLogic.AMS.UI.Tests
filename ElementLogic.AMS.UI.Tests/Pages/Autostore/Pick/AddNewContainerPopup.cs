@@ -43,6 +43,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
             return FluentElement.Instance
                 .SwitchToIframe(Iframe)
                 .WaitForElement(BoxTypeDropDown)
+                .Wait(1)
                 .SelectDropDown(BoxTypeDropDownList, 
                     "li", boxType);
         }

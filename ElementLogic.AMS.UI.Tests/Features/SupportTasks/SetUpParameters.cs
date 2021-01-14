@@ -14,39 +14,20 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
         public IList<ParameterLIne> ParametersToBeReset = new List<ParameterLIne>();
 
         public static SetUpParameters Instance => Singleton.Value;
+
         public void ChangeTheParameterValue(string parameterCode, string paramValue)
         {
             var actualParamValue =
                 string.IsNullOrEmpty(Parameter.Instance.GetParameterData(parameterCode).ParameterValue)
                     ? Parameter.Instance.GetParameterData(parameterCode).ParameterTextValue
                     : Parameter.Instance.GetParameterData(parameterCode).ParameterValue;
-
             if (actualParamValue.Equals(paramValue))
             {
                 return;
             }
 
             AddParametersToBeChangedToList(parameterCode, actualParamValue);
-
-            ParameterList.Instance.Navigate();
-            AdminLogin.Instance.LoginToApplication("Admin");
-            Assert.IsTrue(ParameterList.Instance.IsPageLoaded(),
-                "The Admin parameter List page is not loaded");
-
-            ParameterList.Instance.InsertParameterCode(parameterCode);
-            ParameterList.Instance.ClickSearchButton();
-            Assert.IsTrue(ParameterList.Instance.IsFirstResultRowDisplayed(),
-                "Parameter is not listed on the search grid in Parameter list page");
-
-            ParameterList.Instance.ClickEditButton();
-            Assert.IsTrue(ParameterEditPopup.Instance.IsPopupDisplayed(),
-                "The parameter edit Popup is not displayed in Parameter list page");
-
-            ParameterEditPopup.Instance.ChangeParameterValue(paramValue);
-            ParameterEditPopup.Instance.ClickSaveButton();
-            Assert.IsTrue(ParameterList.Instance.IsFirstResultRowDisplayed(),
-                "Parameter is not listed on the search grid in Parameter list page");
-
+            ChangeParameterSteps(parameterCode, paramValue);
             var changedParamValue =
                 string.IsNullOrEmpty(Parameter.Instance.GetParameterData(parameterCode).ParameterValue)
                     ? Parameter.Instance.GetParameterData(parameterCode).ParameterTextValue
@@ -78,6 +59,26 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
             };
 
             ParametersToBeReset.Add(parameterLIne);
+        }
+
+        private static void ChangeParameterSteps(string parameterCode, string paramValue)
+        {
+            ParameterList.Instance.Navigate();
+            AdminLogin.Instance.LoginToApplication("Admin");
+            var isPageLoaded = ParameterList.Instance.IsPageLoaded();
+            var isInserted = ParameterList.Instance.InsertParameterCode(parameterCode);
+            var isClickedSearchButton = ParameterList.Instance.ClickSearchButton();
+            var isFirstResultRowDisplayed1 = ParameterList.Instance.IsFirstResultRowDisplayed();
+            var isClickedEditButton = ParameterList.Instance.ClickEditButton();
+            var isPopupDisplayed = ParameterEditPopup.Instance.IsPopupDisplayed();
+            var changedParameterValue = ParameterEditPopup.Instance.ChangeParameterValue(paramValue);
+            var isClickedSaveButton = ParameterEditPopup.Instance.ClickSaveButton();
+            var isFirstResultRowDisplayed2 = ParameterList.Instance.IsFirstResultRowDisplayed();
+
+            var result = isPageLoaded && isInserted && isClickedSearchButton && isFirstResultRowDisplayed1 &&
+                   isClickedEditButton && isPopupDisplayed && changedParameterValue && isClickedSaveButton &&
+                   isFirstResultRowDisplayed2;
+            Assert.IsTrue(result, "Unable to change parameter value in TEST DATA PREPARATION");
         }
 
         private SetUpParameters() { }

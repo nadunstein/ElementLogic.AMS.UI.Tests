@@ -14,37 +14,36 @@ namespace ElementLogic.AMS.UI.Tests.Integration
 
         public static ScreenRecorder Instance => Singleton.Value;
 
-        public void StartScreenVideoRecording(ScenarioContext scenarioContext)
+        public void StartScreenRecording(ScenarioContext scenarioContext)
         {
             var nameOfTheScenario = scenarioContext.ScenarioInfo.Title;
             var videoName = string.Concat(nameOfTheScenario, ".wmv");
             var screenRecordingMainPath = Path
-                .Combine(WebDriverHelper.Instance.GetProjectBinPath(), PathToVideos);
+                .Combine(FileHelper.Instance.GetProjectBinPath(), PathToVideos);
             var screenRecordingFullPath = Path.Combine(screenRecordingMainPath, videoName);
             VideoRecorder.CaptureRectangle = Screen.PrimaryScreen.Bounds;
             VideoRecorder.ShowFlashingBoundary = true;
             VideoRecorder.OutputScreenCaptureFileName = screenRecordingFullPath;
-            var directory = new DirectoryInfo(screenRecordingMainPath);
-            if (directory.Exists && File.Exists(screenRecordingFullPath))
-            {
-                File.Delete(screenRecordingFullPath);
-            }
-
-            if (!directory.Exists)
-            {
-                Directory.CreateDirectory(screenRecordingMainPath);
-            }
-
+            CreateScreenRecordingDirectory(screenRecordingMainPath);
             VideoRecorder.Start();
         }
 
-        public void StopScreenVideoRecording(ScenarioContext scenarioContext)
+        public void StopScreenRecording(ScenarioContext scenarioContext)
         {
             var videoFileName = VideoRecorder.ScreenCaptureFileName;
             VideoRecorder.Stop();
             if (scenarioContext.TestError == null)
             {
                 File.Delete(videoFileName);
+            }
+        }
+
+        private static void CreateScreenRecordingDirectory(string directoryPath)
+        {
+            var directory = new DirectoryInfo(directoryPath);
+            if (!directory.Exists)
+            {
+                Directory.CreateDirectory(directoryPath);
             }
         }
 

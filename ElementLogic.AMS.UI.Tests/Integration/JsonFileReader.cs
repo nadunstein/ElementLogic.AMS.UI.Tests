@@ -8,7 +8,7 @@ namespace ElementLogic.AMS.UI.Tests.Integration
 {
     public class JsonFileReader
     {
-        private static readonly string ProjectPath = WebDriverHelper.Instance.GetProjectAssemblyPath();
+        private static readonly string ProjectPath = FileHelper.Instance.GetProjectAssemblyPath();
 
         public static JsonFileReader Instance => Singleton.Value;
 

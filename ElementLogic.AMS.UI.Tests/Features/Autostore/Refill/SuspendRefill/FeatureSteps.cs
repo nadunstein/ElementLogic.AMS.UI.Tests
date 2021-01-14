@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Refill.SuspendRefill
 {
     [Binding]
-    public class FeatureSteps
+    public sealed class FeatureSteps
     {
         [When(@"I click on Exit button in Autostore Refill mission page")]
         public void WhenIClickOnExitButtonInAutostoreRefillMissionPage()

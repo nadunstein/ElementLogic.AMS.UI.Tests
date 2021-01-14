@@ -8,7 +8,7 @@ using AdminTaskTypes = ElementLogic.AMS.UI.Tests.Pages.AdminModule.Systems.TaskT
 namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Systems.TaskTypes
 {
     [Binding]
-    public class FeatureSteps
+    public sealed class FeatureSteps
     {
         private static ScenarioContext _scenarioContext;
 

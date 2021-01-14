@@ -9,7 +9,7 @@ using TechTalk.SpecFlow.Assist;
 namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.CommonStepDefinitions
 {
     [Binding]
-    public class AdminCommonSteps
+    public sealed class AdminCommonSteps
     {
         private static ScenarioContext _scenarioContext;
 

@@ -1,9 +1,11 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using ElementLogic.AMS.UI.Tests.Data.DatabaseQueries;
 using ElementLogic.AMS.UI.Tests.Features.SupportTasks;
 using ElementLogic.AMS.UI.Tests.Integration;
 using ElementLogic.AMS.UI.Tests.TestDataPreparationHelper;
 using NUnit.Framework;
+using SeleniumEssential;
 using TechTalk.SpecFlow;
 
 namespace ElementLogic.AMS.UI.Tests.Hooks
@@ -12,6 +14,7 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
     public class TestSetUpHooks
     {
         private static bool _testRunTerminated;
+        private static bool _recordScreen = true;
         private static ScenarioContext _scenarioContext;
 
         [BeforeTestRun(Order = 0)]
@@ -74,6 +77,14 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
                 .DoAutostoreBinSync();
         }
 
+        [BeforeTestRun(Order = 7)]
+        public static void DeleteOldVideos()
+        {
+            var pathToVideoDirectory = Path
+                .Combine(FileHelper.Instance.GetProjectBinPath(), "ScreenCaptureVideos\\");
+            FileHelper.Instance.DeleteFiles(pathToVideoDirectory);
+        }
+
         [BeforeScenario(Order = 1)]
         public void IgnoreTests()
         {
@@ -86,6 +97,7 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
                     .GetJsonKeyValue("Configuration/Environment.json", "DatabaseSettings:UseEmptyDatabase"))
                 && _scenarioContext.ScenarioInfo.Tags.Contains("WarehouseImplementationTest"))
             {
+                _recordScreen = false;
                 Assert.Ignore("Ignored the execution of warehouse preTest-data creation tests");
             }
         }
@@ -100,15 +112,22 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
         [BeforeScenario(Order = 4)]
         public void StartVideoRecorder()
         {
-            ScreenRecorder.Instance
-                .StartScreenVideoRecording(_scenarioContext);
+            if (_recordScreen)
+            {
+                ScreenRecorder.Instance.StartScreenRecording(_scenarioContext);
+            }
         }
 
         [AfterScenario(Order = 2)]
         public void StopVideoRecorder()
         {
-            ScreenRecorder.Instance
-                .StopScreenVideoRecording(_scenarioContext);
+            if (!_recordScreen)
+            {
+                return;
+            }
+
+            ScreenRecorder.Instance.StopScreenRecording(_scenarioContext);
+            _recordScreen = false;
         }
 
         [AfterScenario(Order = 3)]

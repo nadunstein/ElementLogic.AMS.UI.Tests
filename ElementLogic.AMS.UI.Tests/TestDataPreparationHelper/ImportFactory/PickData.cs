@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using ElementLogic.AMS.UI.Tests.Data.DatabaseQueries;
-using ElementLogic.AMS.UI.Tests.Features.SupportTasks;
 using ElementLogic.Integration.Import.Contracts.Commands;
 using ElementLogic.Integration.Import.Contracts.Types;
 using NUnit.Framework;
@@ -33,8 +32,6 @@ namespace ElementLogic.AMS.UI.Tests.TestDataPreparationHelper.ImportFactory
 
                 PreparePickTestData(pickLines, scenarioContext, true);
             }
-
-            SynchronizeTaskGroups.Instance.DoAutostoreTaskGroupSync();
         }
 
         private static void GeneratePickOrder(IList<PicklistLine> pickLines,

@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick.MaxQuantityPopup
 {
     [Binding]
-    public class FeatureSteps
+    public sealed class FeatureSteps
     {
         private readonly ScenarioContext _scenarioContext;
 

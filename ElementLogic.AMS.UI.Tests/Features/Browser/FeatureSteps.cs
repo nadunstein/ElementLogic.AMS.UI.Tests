@@ -5,7 +5,7 @@ using ChromeBrowser = ElementLogic.AMS.UI.Tests.Pages.Browser.Browser;
 namespace ElementLogic.AMS.UI.Tests.Features.Browser
 {
     [Binding]
-    public class FeatureSteps
+    public sealed class FeatureSteps
     {
         [Then(@"I open a new Chrome browser tab")]
         public void ThenIOpenANewChromeBrowserTab()

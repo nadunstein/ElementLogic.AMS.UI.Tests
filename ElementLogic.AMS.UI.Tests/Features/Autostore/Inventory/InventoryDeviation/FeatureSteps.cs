@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Inventory.InventoryDeviation
 {
     [Binding]
-    public class FeatureSteps
+    public sealed class FeatureSteps
     {
         [Then(@"The Confirm Quantity popup is displayed in Autostore inventory page")]
         public void ThenTheConfirmQuantityPopupIsDisplayedInAutostoreInventoryPage()

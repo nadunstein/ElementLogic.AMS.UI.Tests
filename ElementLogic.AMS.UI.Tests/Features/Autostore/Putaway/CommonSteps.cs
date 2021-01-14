@@ -10,7 +10,7 @@ using TechTalk.SpecFlow;
 namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Putaway
 {
     [Binding]
-    public class CommonSteps
+    public sealed class CommonSteps
     {
         private readonly IList<string> _taskgroupMissionBinLocationList = new List<string>();
         private readonly ScenarioContext _scenarioContext;

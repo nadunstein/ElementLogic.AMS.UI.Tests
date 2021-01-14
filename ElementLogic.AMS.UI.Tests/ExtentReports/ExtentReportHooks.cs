@@ -35,7 +35,7 @@ namespace ElementLogic.AMS.UI.Tests.ExtentReports
         [BeforeTestRun(Order = 5)]
         public static void InitializeReport()
         {
-            var extentReportPath = Directory.GetParent(WebDriverHelper.Instance.GetProjectPath()).ToString();
+            var extentReportPath = Directory.GetParent(FileHelper.Instance.GetProjectPath()).ToString();
             var reportHtmlName = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json",
                 "ExtentReportSettings:reportHtmlName");
             var htmlReporter =

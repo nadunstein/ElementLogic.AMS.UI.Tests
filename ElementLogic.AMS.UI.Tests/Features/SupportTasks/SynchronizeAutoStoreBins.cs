@@ -16,7 +16,11 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
                 bool.Parse(JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json",
                     "BrowserSettings:ChromeBrowser:HeadlessMode"));
             WebDriverHelper.Instance.InitializeChromeDriver("Drivers/ChromeDriver", browserMode);
+            AutostoreBinSynchronizationSteps();
+        }
 
+        private static void AutostoreBinSynchronizationSteps()
+        {
             LiveFeedStatus.Instance.Navigate();
             LoginPage.Instance.LoginToApplication("Admin");
             LiveFeedStatus.Instance.IsPageLoaded();

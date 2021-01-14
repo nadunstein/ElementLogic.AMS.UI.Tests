@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Activity.Refill
 {
     [Binding]
-    public class CommonSteps
+    public sealed class CommonSteps
     {
         private readonly ScenarioContext _scenarioContext;
 

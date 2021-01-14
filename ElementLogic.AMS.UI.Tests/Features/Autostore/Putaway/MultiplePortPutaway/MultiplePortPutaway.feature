@@ -21,7 +21,7 @@ Scenario: (A) Putaway partial quantity from an orderline
 
 @Regression
 @OpenBrowser_Browser02
-Scenario: (B) Continue scenario "Putaway partial quantity from an orderline" from a different user in another port
+Scenario: (B) Continue scenario (Putaway partial quantity from an orderline) from a different user in another port
 	Given I login to the Autostore port '03' as 'UserTwo' user
 	When I click on 'A 1/1 AutoStore Bin' putaway tile in AutoStore Main Menu
 	Then I Navigate to Autostore Putaway Selection page

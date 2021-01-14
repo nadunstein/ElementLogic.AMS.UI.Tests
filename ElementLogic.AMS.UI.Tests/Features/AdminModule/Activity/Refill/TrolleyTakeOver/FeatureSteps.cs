@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Activity.Refill.TrolleyTakeOver
 {
     [Binding]
-    public class FeatureSteps
+    public sealed class FeatureSteps
     {
         [Given(@"The Take over trolley popup is displayed in Refill Order List page")]
         public void GivenTheTakeOverTrolleyPopupIsDisplayedInRefillOrderListPage()

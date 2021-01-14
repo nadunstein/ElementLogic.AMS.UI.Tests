@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Inspection
 {
     [Binding]
-    public class CommonSteps
+    public sealed class CommonSteps
     {
         private string _productLocation;
         private int _changedQuantity;

@@ -6,7 +6,7 @@ using SerialNumberRegistrationPage = ElementLogic.AMS.UI.Tests.Pages.Autostore.P
 namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick.SerialNumberRegistration
 {
     [Binding]
-    public class FeatureSteps
+    public sealed class FeatureSteps
     {
         [Then(@"The Autostore Serial Number Registration page is loaded")]
         public void ThenTheAutostoreSerialNumberRegistrationPageIsLoaded()

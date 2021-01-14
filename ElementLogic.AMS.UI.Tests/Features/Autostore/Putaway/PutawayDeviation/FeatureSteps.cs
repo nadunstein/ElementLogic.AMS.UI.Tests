@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Putaway.PutawayDeviation
 {
     [Binding]
-    public class FeatureSteps
+    public sealed class FeatureSteps
     {
         [Then(@"The maximum bin quantity popup is displayed in Autostore putaway Mission page")]
         public void ThenTheMaximumBinQuantityPopupIsDisplayedInAutostorePutawayMissionPage()

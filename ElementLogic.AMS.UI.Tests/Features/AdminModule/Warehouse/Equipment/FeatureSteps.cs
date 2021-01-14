@@ -7,7 +7,7 @@ using TechTalk.SpecFlow.Assist;
 namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Warehouse.Equipment
 {
     [Binding]
-    public class FeatureSteps
+    public sealed class FeatureSteps
     {
         private static ScenarioContext _scenarioContext;
 

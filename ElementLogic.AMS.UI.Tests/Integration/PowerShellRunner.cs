@@ -7,7 +7,7 @@ namespace ElementLogic.AMS.UI.Tests.Integration
 {
     public class PowerShellRunner
     {
-        private static readonly string ProjectPath = WebDriverHelper.Instance.GetProjectAssemblyPath();
+        private static readonly string ProjectPath = FileHelper.Instance.GetProjectAssemblyPath();
 
         public static PowerShellRunner Instance => Singleton.Value;
 
