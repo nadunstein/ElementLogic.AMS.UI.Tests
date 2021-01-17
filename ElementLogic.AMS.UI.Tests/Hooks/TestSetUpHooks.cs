@@ -17,6 +17,13 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
         private static bool _recordScreen = true;
         private static ScenarioContext _scenarioContext;
 
+        private static readonly bool IsUsingEmptyDatabase = bool.Parse(JsonFileReader.Instance
+            .GetJsonKeyValue("Configuration/Environment.json", "DatabaseSettings:UseEmptyDatabase"));
+
+        private static readonly bool IsBrowserHeadlessMode =
+            bool.Parse(JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json",
+                "BrowserSettings:ChromeBrowser:HeadlessMode"));
+
         [BeforeTestRun(Order = 0)]
         public static void CreateDatabase()
         {
@@ -25,8 +32,7 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
             Database.Instance
                 .DeleteDatabase(databaseName);
 
-            if (!bool.Parse(JsonFileReader.Instance
-                .GetJsonKeyValue("Configuration/Environment.json", "DatabaseSettings:UseEmptyDatabase")))
+            if (!IsUsingEmptyDatabase)
             {
                 Database.Instance
                     .RestoreDatabase(databaseName);
@@ -67,8 +73,7 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
         [BeforeTestRun(Order = 6)]
         public static void SynchronizeAsBins()
         {
-            if (bool.Parse(JsonFileReader.Instance
-                .GetJsonKeyValue("Configuration/Environment.json", "DatabaseSettings:UseEmptyDatabase")))
+            if (IsUsingEmptyDatabase)
             {
                 return;
             }
@@ -93,9 +98,7 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
                 Assert.Ignore("Failure in warehouse Test data Creation tests");
             }
 
-            if (!bool.Parse(JsonFileReader.Instance
-                    .GetJsonKeyValue("Configuration/Environment.json", "DatabaseSettings:UseEmptyDatabase"))
-                && _scenarioContext.ScenarioInfo.Tags.Contains("WarehouseImplementationTest"))
+            if (!IsUsingEmptyDatabase && _scenarioContext.ScenarioInfo.Tags.Contains("WarehouseImplementationTest"))
             {
                 _recordScreen = false;
                 Assert.Ignore("Ignored the execution of warehouse preTest-data creation tests");
@@ -112,7 +115,7 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
         [BeforeScenario(Order = 4)]
         public void StartVideoRecorder()
         {
-            if (_recordScreen)
+            if (_recordScreen && !IsBrowserHeadlessMode)
             {
                 ScreenRecorder.Instance.StartScreenRecording(_scenarioContext);
             }
@@ -121,13 +124,11 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
         [AfterScenario(Order = 2)]
         public void StopVideoRecorder()
         {
-            if (!_recordScreen)
+            if (_recordScreen && !IsBrowserHeadlessMode)
             {
-                return;
+                ScreenRecorder.Instance.StopScreenRecording(_scenarioContext);
+                _recordScreen = false;
             }
-
-            ScreenRecorder.Instance.StopScreenRecording(_scenarioContext);
-            _recordScreen = false;
         }
 
         [AfterScenario(Order = 3)]

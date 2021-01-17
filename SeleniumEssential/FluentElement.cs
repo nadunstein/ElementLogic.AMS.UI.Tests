@@ -258,7 +258,7 @@ namespace SeleniumEssential
         public bool SelectDropDown(string dropdownList, string dropdownOptionsIdentifier, string selectOption)
         {
             Click(_commonElement);
-            WaitForElement(dropdownList, 20);
+            WaitForElement(dropdownList, 5);
             ForcedWait(0.5);
             var attempts = 0;
             while (attempts < 20)
