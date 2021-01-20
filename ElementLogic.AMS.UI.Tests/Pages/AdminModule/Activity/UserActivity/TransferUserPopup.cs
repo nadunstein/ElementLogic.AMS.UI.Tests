@@ -8,7 +8,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.UserActivity
         private const string Iframe = "iframe";
 
         private const string TransferUserField =
-            "#ctl00_content_TransferUserView1_FlbTransferUser_InputTemplateItem_TransferUser_Input";
+            "#ctl00_content_TransferUserView1_FlbTransferUser_InputTemplateItem_CboTransferUser";
 
         private const string TransferUserDropdownSlide =
             "#ctl00_content_TransferUserView1_FlbTransferUser_InputTemplateItem_TransferUser_DropDown .rcbList";
@@ -31,6 +31,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.UserActivity
             return FluentElement.Instance
                 .SwitchToIframe(Iframe)
                 .WaitForElement(TransferUserField)
+                //.SelectDropDown(userName);
                 .SelectSearchDropDown(TransferUserDropdownSlide, "li", userName);
         }
 

@@ -71,6 +71,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
         {
             return FluentElement.Instance
                 .WaitForElement(ScanField)
+                .Wait(1)
                 .Insert(scanValue);
         }
 

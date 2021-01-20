@@ -14,7 +14,8 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
     public class TestSetUpHooks
     {
         private static bool _testRunTerminated;
-        private static bool _recordScreen = true;
+        private  bool _recordScreen = true;
+        private  bool _failureInTestDataCreation = true;
         private static ScenarioContext _scenarioContext;
 
         private static readonly bool IsUsingEmptyDatabase = bool.Parse(JsonFileReader.Instance
@@ -110,12 +111,13 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
         {
             TestDataFactory.Instance
                 .PrepareTestDataSet(_scenarioContext);
+            _failureInTestDataCreation = false;
         }
 
         [BeforeScenario(Order = 4)]
         public void StartVideoRecorder()
         {
-            if (_recordScreen && !IsBrowserHeadlessMode)
+            if (_recordScreen && !IsBrowserHeadlessMode && !_failureInTestDataCreation)
             {
                 ScreenRecorder.Instance.StartScreenRecording(_scenarioContext);
             }
@@ -124,10 +126,9 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
         [AfterScenario(Order = 2)]
         public void StopVideoRecorder()
         {
-            if (_recordScreen && !IsBrowserHeadlessMode)
+            if (_recordScreen && !IsBrowserHeadlessMode && !_failureInTestDataCreation)
             {
                 ScreenRecorder.Instance.StopScreenRecording(_scenarioContext);
-                _recordScreen = false;
             }
         }
 

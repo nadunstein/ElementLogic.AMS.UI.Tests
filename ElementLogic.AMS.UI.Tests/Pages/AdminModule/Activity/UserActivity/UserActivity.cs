@@ -126,38 +126,42 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.UserActivity
                 .GetText();
         }
 
-        public string SelectActivityMissionActionMenuOptionAndGetMissionId(string missionStatus, string option)
+        public string GetMissionIdToBeFinished(string missionStatus)
         {
-            PageObjectHelper.Instance.WaitUntilInvisible(ResultGridLoadingPanel);
+            return FluentElement.Instance
+                .WaitUntilInvisible(ResultGridLoadingPanel)
+                .WaitForElement(FirstUserActivityMissionGrid)
+                .GetTableElements()
+                .FindRowElements(11, missionStatus)
+                .GetRowElement(12)
+                .GetText();
+        }
 
-            var missions = PageObjectHelper.Instance.Finds("tr", 
-                FirstUserActivityMissionGrid);
-
-            return (from mission in missions
-                select PageObjectHelper.Instance.Finds("td", mission)
-                into missionDetails
-                where missionDetails[10].Text.Contains(missionStatus)
-                select PageObjectHelper.Instance
-                    .SelectIWebElementDropDown(missionDetails[12], MissionActionMenuSlide, 
-                    "li > a > span", option)
-                    ? missionDetails[11].Text
-                    : null).FirstOrDefault();
+        public bool SelectActivityMissionActionMenuOption(string missionStatus, string option)
+        {
+            return FluentElement.Instance
+                .WaitUntilInvisible(ResultGridLoadingPanel)
+                .WaitForElement(FirstUserActivityMissionGrid)
+                .GetTableElements()
+                .FindRowElements(11, missionStatus)
+                .GetRowElement(13)
+                .SelectTableDropDown(MissionActionMenuSlide, "li > a > span", option);
         }
 
         public IList<UserActivityMissionData> GetActivityMissionData()
         {
-            PageObjectHelper.Instance
-                .WaitUntilInvisible(PageLoadingPanel);
-            PageObjectHelper.Instance
+            FluentElement.Instance
+                .WaitUntilInvisible(PageLoadingPanel)
                 .WaitUntilInvisible(ResultGridLoadingPanel);
-            var missions = PageObjectHelper.Instance
+
+            var missions = FluentElement.Instance
                 .Finds("tr", FirstUserActivityMissionGrid);
 
-            return missions.Select(mission => PageObjectHelper.Instance
+            return missions.Select(mission => FluentElement.Instance
                 .Finds("td", mission)).Select(missionDetails =>
                 new UserActivityMissionData
                 {
-                    Id = missionDetails[11].Text, 
+                    Id = missionDetails[11].Text,
                     Status = missionDetails[10].Text
                 }).ToList();
         }

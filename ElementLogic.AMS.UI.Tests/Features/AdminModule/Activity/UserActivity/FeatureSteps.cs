@@ -101,11 +101,9 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Activity.UserActivity
         public void WhenIClickOnOptionBySelectingTheGearIconOfTheMissionForTheUserActivityInStatusInUserActivityPage(string optionToBeSelected, string missionStatus)
         {
             _missionsDataBeforeFinish = UserActivityPage.Instance.GetActivityMissionData();
-            _finishedMissionId =
-                UserActivityPage.Instance.SelectActivityMissionActionMenuOptionAndGetMissionId(missionStatus,
-                    optionToBeSelected);
+            _finishedMissionId = UserActivityPage.Instance.GetMissionIdToBeFinished(missionStatus);
 
-            Assert.IsNotNull(_finishedMissionId,
+            Assert.IsTrue(UserActivityPage.Instance.SelectActivityMissionActionMenuOption(missionStatus, optionToBeSelected),
                 $"Unable to click on '{optionToBeSelected}' option by selecting the gear icon of the mission for the user activity in status '{missionStatus}' in User Activity page");
         }
 

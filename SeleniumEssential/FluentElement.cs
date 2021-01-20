@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Linq;
 using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Extensions;
@@ -292,7 +293,7 @@ namespace SeleniumEssential
         public bool SelectSearchDropDown(string searchDropdownList, string dropdownOptionsIdentifier, string searchOption)
         {
             InsertField(_commonElement, searchOption);
-            WaitForElement(searchDropdownList, 20);
+            WaitForElement(searchDropdownList, 5);
             var attempts = 0;
             while (attempts < 20)
             {
@@ -312,6 +313,44 @@ namespace SeleniumEssential
 
                 attempts++;
                 ForcedWait(0.5);
+            }
+
+            return false;
+        }
+
+        public bool SelectTableDropDown(string dropdownListIdentifier, string dropdownOptionsIdentifier, string selectOption)
+        {
+            var dropdownIWebElement = _commonIWebElement;
+            _commonIWebElement = null;
+            var clicked = Click(dropdownIWebElement);
+            if (!clicked)
+            {
+                return false;
+            }
+
+            var attempts = 0;
+            while (attempts < 5)
+            {
+                try
+                {
+                    var dropdownListElement = dropdownIWebElement.FindElement(By.CssSelector(dropdownListIdentifier));
+                    var options = dropdownListElement.FindElements(By.CssSelector(dropdownOptionsIdentifier));
+                    var result = (from option in options
+                        where GetTextValue(option).Contains(selectOption)
+                        select Click(option)).FirstOrDefault();
+
+                    if (result)
+                    {
+                        return true;
+                    }
+                }
+                catch (Exception)
+                {
+                    // ignored
+                }
+
+                ForcedWait(0.5);
+                attempts++;
             }
 
             return false;
@@ -512,6 +551,49 @@ namespace SeleniumEssential
         {
             _commonIWebElement = (IWebElement)_commonDataRowList.ItemArray[searchColumnIndex - 1];
             return this;
+        }
+
+        public ReadOnlyCollection<IWebElement> Finds(string elementFinder, string parentElementString = null)
+        {
+            var attempts = 0;
+            while (attempts < 20)
+            {
+                try
+                {
+                    return string.IsNullOrEmpty(parentElementString)
+                        ? Driver.FindElements(By.CssSelector(elementFinder))
+                        : GetIWebElement(parentElementString).FindElements(By.CssSelector(elementFinder));
+                }
+                catch (Exception)
+                {
+                    ForcedWait(0.5);
+                }
+
+                attempts++;
+            }
+
+            return null;
+        }
+
+        public ReadOnlyCollection<IWebElement> Finds(string elementFinder, object parentElement)
+        {
+            var iWebElementObject = (IWebElement)parentElement;
+            var attempts = 0;
+            while (attempts < 20)
+            {
+                try
+                {
+                    return iWebElementObject.FindElements(By.CssSelector(elementFinder));
+                }
+                catch (Exception)
+                {
+                    ForcedWait(0.5);
+                }
+
+                attempts++;
+            }
+
+            return null;
         }
 
         public void DeleteBrowserCookies()

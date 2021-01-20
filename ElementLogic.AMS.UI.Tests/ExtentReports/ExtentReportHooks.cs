@@ -1,10 +1,12 @@
 ﻿using System.IO;
+using System.Linq;
 using System.Reflection;
 using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
 using AventStack.ExtentReports.Reporter.Configuration;
 using ElementLogic.AMS.UI.Tests.Integration;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using SeleniumEssential;
 using TechTalk.SpecFlow;
@@ -130,9 +132,18 @@ namespace ElementLogic.AMS.UI.Tests.ExtentReports
                 return;
             }
 
+            if (_stepName == null && !_scenarioContext.ScenarioInfo.Tags.Contains("WarehouseImplementationTest"))
+            {
+                var ss = ((ITakesScreenshot)_driver).GetScreenshot();
+                var screenshots = ss.AsBase64EncodedString;
+                _scenario.CreateNode<Given>("<b>ERROR</b>").Fail(TestContext.CurrentContext.Result.Message,
+                    MediaEntityBuilder
+                        .CreateScreenCaptureFromBase64String(screenshots)
+                        .Build());
+            }
+
             var getter = pInfo.GetGetMethod(nonPublic: true);
             var testResult = getter.Invoke(_scenarioContext, null);
-
             if (!testResult.ToString().Equals("UndefinedStep") && !testResult.ToString().Equals("BindingError"))
             {
                 return;
