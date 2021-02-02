@@ -1,10 +1,6 @@
 {
   "ParametersToBeChanged": [
     {
-      "ParameterName": "AllowAutomaticOrderCreation",
-      "ParameterValue": "1"
-    },
-    {
       "ParameterName": "SYS_ALWAYS_ASK_MAXBINQTY",
       "ParameterValue": "1"
     },
