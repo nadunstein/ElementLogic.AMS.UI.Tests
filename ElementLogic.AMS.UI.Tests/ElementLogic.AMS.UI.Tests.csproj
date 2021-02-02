@@ -339,7 +339,6 @@
     <Compile Include="Features\Autostore\Pick\PickReassign\FeatureSteps.cs" />
     <Compile Include="Features\Autostore\Pick\SecurePicking\FeatureSteps.cs" />
     <Compile Include="Features\Autostore\Pick\SerialNumberRegistration\FeatureSteps.cs" />
-    <Compile Include="Features\Autostore\Putaway\ConfirmQuantityPopup\FeatureSteps.cs" />
     <Compile Include="Features\Autostore\Putaway\PutawayDeviation\FeatureSteps.cs" />
     <Compile Include="Features\Autostore\Putaway\PutawayMore\FeatureSteps.cs" />
     <Compile Include="Features\Browser\FeatureSteps.cs" />
@@ -647,10 +646,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Features\Autostore\Pick\TwoStepOnLastMission\TwoStepOnLastMission.feature" />
-    <None Include="Features\Autostore\Putaway\ConfirmQuantityPopup\ConfirmQuantityPopup.feature" />
-    <None Include="Features\Autostore\Putaway\ConfirmQuantityPopup\TestData\FirstScenarioTestData.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Features\Autostore\Putaway\DirectPutaway\DirectPutaway.feature" />
     <None Include="Features\Autostore\Putaway\DirectPutaway\TestData\FirstScenarioTestData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
