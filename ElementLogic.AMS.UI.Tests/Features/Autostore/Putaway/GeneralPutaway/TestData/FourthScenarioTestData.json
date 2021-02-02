@@ -1,0 +1,27 @@
+{
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "SYS_ALWAYS_ASK_MAXBINQTY",
+      "ParameterValue": "1"
+    },
+    {
+      "ParameterName": "BB_MaxQty",
+      "ParameterValue": 123
+    }
+  ],
+
+  "PutawayOrdersToBeCreated": [
+    {
+      "PutawayOrderToBeCreated": [
+        {
+          "Action": "A",
+          "PurchaseOrderLineId": 1,
+          "ExtProductId": "ASPCQP01",
+          "ProductName": "AutostorePutawayConfirmQtyProduct01",
+          "Quantity": 15,
+          "Returned": false
+        }
+      ]
+    }
+  ]
+}
