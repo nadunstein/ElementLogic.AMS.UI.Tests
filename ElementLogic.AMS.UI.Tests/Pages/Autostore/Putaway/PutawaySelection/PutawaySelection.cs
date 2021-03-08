@@ -78,8 +78,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.PutawaySelection
             return FluentElement.Instance
                 .WaitForElement(OrdersListTable)
                 .GetTableElements()
-                .FindRowElements(3, productId)
-                .GetRowElement(2)
+                .FindRowElements(5, productId)
+                .GetRowElement(4)
                 .FindElement(".as-button-md-green")
                 .Click();
         }

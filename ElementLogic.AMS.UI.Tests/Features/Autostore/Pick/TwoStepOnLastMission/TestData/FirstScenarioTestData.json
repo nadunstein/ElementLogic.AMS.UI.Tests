@@ -1,7 +1,7 @@
 {
   "ParametersToBeChanged": [
     {
-      "ParameterName": "AutoStore.Picking.UseTwoStepOnLastMission",
+      "ParameterName": "Picking.UseTwoStepOnLastMission",
       "ParameterValue": "1"
     }
   ],

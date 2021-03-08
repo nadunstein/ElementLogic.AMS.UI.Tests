@@ -1,7 +1,7 @@
 {
   "ParametersToBeChanged": [
     {
-      "ParameterName": "AS_SHOW_MSG_AFTER_TASKGROUP_IS_COMPLEATED_IN_PICK",
+      "ParameterName": "Picking.ShowMessageOnTaskGroupCompleted",
       "ParameterValue": "1"
     }
   ],

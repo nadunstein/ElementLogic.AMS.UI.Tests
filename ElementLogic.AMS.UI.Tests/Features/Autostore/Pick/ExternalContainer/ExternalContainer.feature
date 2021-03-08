@@ -12,11 +12,11 @@ Scenario: Verify single step picking with one open external container
 	And I verify the container scan field is displayed in Autostore Pick Mission page
 	And I include the container scan value as 'Empty' to the container scan field in Autostore Pick Mission page
 	When I click on the confirm button in Autostore Pick Mission page
-	Then The 'Scan value is empty' Validation message is displayed in Autostore Place in Container page
-	And I click on OK button in container validation popup in AutoStore Pick Mission page
+	Then The 'Scan value cannot be empty.' Validation message is displayed in Autostore Place in Container page
+	Then I click on OK button in container validation popup in AutoStore Pick Mission page
 	And I include the container scan value as 'CO-1234567' to the container scan field in Autostore Pick Mission page
 	When I click on the confirm button in Autostore Pick Mission page
-	Then The 'The scanned container ID ('CO-1234567') is not valid for the pick list' Validation message is displayed in Autostore Place in Container page
+	Then The 'Scanned container id ('CO-1234567') is not valid' Validation message is displayed in Autostore Place in Container page
 	And I click on OK button in container validation popup in AutoStore Pick Mission page
 	And I include the container scan value as 'CO-1234' to the container scan field in Autostore Pick Mission page
 	When I click on the confirm button in Autostore Pick Mission page
@@ -45,7 +45,7 @@ Scenario: Verify two step picking with one open external container
 	And I verify the scan field is displayed in AutoStore Place in Container page
 	And I include the container scan value as 'CO-1234567' to the container scan field in Autostore Place in Container page
 	When I click on the Confirm button in AutoStore Place in Container page
-	Then The 'The scanned container ID ('CO-1234567') is not valid for the pick list' Validation message is displayed in Autostore Place in Container page
+	Then The 'Scanned container id ('CO-1234567') is not valid' Validation message is displayed in Autostore Place in Container page
 	And I click on OK button in container validation popup in AutoStore Place in Container page
 	And I include the container scan value as 'CO-1234' to the container scan field in Autostore Place in Container page
 	When I click on the Confirm button in AutoStore Place in Container page
@@ -209,7 +209,7 @@ Scenario: Verify product batch picking with External containers
 	And I verify the container scan field is displayed in Autostore Pick Mission page
 	And I include the container scan value as 'CO-1234' to the container scan field in Autostore Pick Mission page
 	When I click on the confirm button in Autostore Pick Mission page
-	Then The 'The scanned container ID ('CO-1234') is not valid for the pick list' Validation message is displayed in AutoStore Pick Mission page
+	Then The 'The scanned container ID ('CO-1234') is not valid' Validation message is displayed in AutoStore Pick Mission page
 	And I click on OK button in container validation popup in AutoStore Pick Mission page
 	And I include the container scan value as 'CO-1235' to the container scan field in Autostore Pick Mission page
 	When I click on the confirm button in Autostore Pick Mission page

@@ -1,7 +1,7 @@
 {
   "ParametersToBeChanged": [
     {
-      "ParameterName": "AutoStore.Picking.Scanning.ValidateContainer",
+      "ParameterName": "Picking.Scanning.ValidateContainer",
       "ParameterValue": "1"
     },
     {

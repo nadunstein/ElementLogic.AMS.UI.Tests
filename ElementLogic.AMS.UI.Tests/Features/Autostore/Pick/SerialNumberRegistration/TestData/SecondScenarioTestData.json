@@ -1,7 +1,12 @@
 {
   "ParametersToBeChanged": [
     {
-      "ParameterName": "AutoStore.Picking.UseTwoStepOnLastMission",
+      "ParameterName": "Picking.UseTwoStepOnLastMission",
+      "ParameterValue": "1"
+    },
+
+    {
+      "ParameterName": "Picking.Scanning.ValidateContainer",
       "ParameterValue": "1"
     }
   ],

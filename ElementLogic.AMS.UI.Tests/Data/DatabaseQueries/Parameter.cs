@@ -19,20 +19,7 @@ namespace ElementLogic.AMS.UI.Tests.Data.DatabaseQueries
         {
             var parameterDetails = GetParameterData();
             return parameterDetails.FirstOrDefault(parameter =>
-                parameter.ParameterDefinition.Contains(parameterName));
-        }
-
-        private static IEnumerable<MegaParamData> GetParameterData()
-        {
-            const string mainSql = @"SELECT PARAMDEF as ParameterDefinition,
-                                            PARAMVAL as ParameterValue,
-                                            PARAMTXT as ParameterTextValue
-                                       FROM MEGAPARAM
-                                      WHERE CONTEXT = @context";
-
-            var paramData = ConnectionManager.Instance.ExecuteReturn(connection =>
-                connection.Query<MegaParamData>(mainSql, new { Context }).ToList());
-            return paramData;
+                parameter.ParameterDefinition == parameterName);
         }
 
         public void UpdateContext(string context)
@@ -52,6 +39,19 @@ namespace ElementLogic.AMS.UI.Tests.Data.DatabaseQueries
 
             ConnectionManager.Instance.Execute(connection => connection.Execute(mainSql,
                 new { parameterName, parameterValue }));
+        }
+
+        private static IEnumerable<MegaParamData> GetParameterData()
+        {
+            const string mainSql = @"SELECT PARAMDEF as ParameterDefinition,
+                                            PARAMVAL as ParameterValue,
+                                            PARAMTXT as ParameterTextValue
+                                       FROM MEGAPARAM
+                                      WHERE CONTEXT = @context";
+
+            var paramData = ConnectionManager.Instance.ExecuteReturn(connection =>
+                connection.Query<MegaParamData>(mainSql, new { Context }).ToList());
+            return paramData;
         }
 
         private Parameter() { }

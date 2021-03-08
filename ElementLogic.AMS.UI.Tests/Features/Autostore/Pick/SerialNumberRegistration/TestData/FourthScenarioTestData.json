@@ -1,11 +1,15 @@
 {
   "ParametersToBeChanged": [
     {
-      "ParameterName": "MinimumLocationsPerBinForLocationScanningForPicking",
+      "ParameterName": "Picking.ProductValidationScan.AtMinimumLocationsPerBin",
       "ParameterValue": "0"
     },
     {
-      "ParameterName": "AutoStore.Picking.UseTwoStepOnLastMission",
+      "ParameterName": "Picking.Scanning.ValidateProduct",
+      "ParameterValue": "10"
+    },
+    {
+      "ParameterName": "Picking.UseTwoStepOnLastMission",
       "ParameterValue": "1"
     }
   ],

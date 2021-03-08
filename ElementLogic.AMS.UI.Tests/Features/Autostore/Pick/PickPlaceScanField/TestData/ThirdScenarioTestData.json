@@ -1,11 +1,11 @@
 {
   "ParametersToBeChanged": [
     {
-      "ParameterName": "AutoStore.Picking.Scanning.ValidateContainer",
+      "ParameterName": "Picking.Scanning.ValidateContainer",
       "ParameterValue": "1"
     },
     {
-      "ParameterName": "UseCustomerBatching",
+      "ParameterName": "DynamicAutostoreBatching",
       "ParameterValue": "1"
     }
   ],

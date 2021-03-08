@@ -1,7 +1,7 @@
 {
   "ParametersToBeChanged": [
     {
-      "ParameterName": "AutoStore.Putaway.Scanning.ValidateProduct",
+      "ParameterName": "Putaway.Scanning.ValidateProduct",
       "ParameterValue": "1"
     },
     {

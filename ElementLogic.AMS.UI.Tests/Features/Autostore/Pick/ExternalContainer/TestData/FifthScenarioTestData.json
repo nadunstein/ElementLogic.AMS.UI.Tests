@@ -5,7 +5,7 @@
       "ParameterValue": "0"
     },
     {
-      "ParameterName": "AutoStore.Picking.Scanning.ValidateContainer",
+      "ParameterName": "Picking.Scanning.ValidateContainer",
       "ParameterValue": "1"
     },
     {
@@ -13,7 +13,7 @@
       "ParameterValue": "1"
     },
     {
-      "ParameterName": "AutoStore.Picking.UseTwoStepOnLastMission",
+      "ParameterName": "Picking.UseTwoStepOnLastMission",
       "ParameterValue": "1"
     },
     {

@@ -33,7 +33,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
                     ? Parameter.Instance.GetParameterData(parameterCode).ParameterTextValue
                     : Parameter.Instance.GetParameterData(parameterCode).ParameterValue;
 
-            Assert.AreEqual(paramValue, changedParamValue, "The Parameter value is not changed");
+            Assert.AreEqual(paramValue, changedParamValue, $"The Parameter '{parameterCode}' value is not changed");
         }
 
         public IList<ParameterLIne> GetParametersToBeReset()

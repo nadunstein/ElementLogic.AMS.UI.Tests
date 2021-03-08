@@ -1,9 +1,9 @@
 {
   "ParametersToBeChanged": [
-    {
-      "ParameterName": "AutoStore.Picking.Scanning.ValidateContainer",
-      "ParameterValue": "1"
-    }
+    //{
+    //  //"ParameterName": "Picking.Scanning.ValidateContainer",
+    //  //"ParameterValue": "1"
+    //}
   ],
 
   "ProductsToBeCreated": [

@@ -5,11 +5,11 @@
       "ParameterValue": "1"
     },
     {
-      "ParameterName": "MinimumLocationsPerBinForLocationScanningForPicking",
-      "ParameterValue": "0"
+      "ParameterName": "Picking.Scanning.ValidateProduct",
+      "ParameterValue": "10"
     },
     {
-      "ParameterName": "AutoStore.Picking.Scanning.ValidateContainer",
+      "ParameterName": "Picking.Scanning.ValidateContainer",
       "ParameterValue": "1"
     },
     {
