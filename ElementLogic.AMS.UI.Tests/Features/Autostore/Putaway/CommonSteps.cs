@@ -113,7 +113,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Putaway
         {
             var actualMaxLocationQuantity = PutawayConfirmQuantityPopup.Instance.GetMaximumLocationQuantity();
             Assert.AreEqual(expectedMaxLocationQuantity, actualMaxLocationQuantity,
-                "The ax location quantity value is wrong in Autostore putaway quantity confirm popup");
+                "The max location quantity value is wrong in Autostore putaway quantity confirm popup");
         }
 
         [When(@"I click on Confirm button in Autostore putaway quantity confirm popup")]
