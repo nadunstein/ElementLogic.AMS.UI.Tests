@@ -7,7 +7,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
     {
         private const string PageHeader = "#ctl00_head_HeaderView_lblCurrentOperation";
 
-        private const string LoadingPanel = "#ctl00_pnlDataHider .ModalLoadingPanel";
+        private const string LoadingPanel = "#ctl00_LoadingPanel1";
 
         private const string BoxField = "#ctl00_MonitorContentPlaceholder_PickView_txtBoxInfo";
 
