@@ -378,7 +378,6 @@
     <Compile Include="Features\SupportTasks\FlushPickOrders.cs" />
     <Compile Include="Features\SupportTasks\SetUpParameters.cs" />
     <Compile Include="Features\SupportTasks\SynchronizeAutoStoreBins.cs" />
-    <Compile Include="Features\SupportTasks\SynchronizeTaskGroups.cs" />
     <Compile Include="Hooks\TestSetUpHooks.cs" />
     <Compile Include="Hooks\WebDriverHooks.cs" />
     <Compile Include="Integration\WindowsServices.cs" />

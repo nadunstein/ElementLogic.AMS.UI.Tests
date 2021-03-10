@@ -9,6 +9,13 @@ namespace ElementLogic.AMS.UI.Tests.TestDataPreparationHelper.ApiDataFactory
     {
         public static ApiDataFactory Instance => Singleton.Value;
 
+        public static async Task<HttpResponseMessage> CreateProductAsync(ImportProductInformation productData)
+        {
+            var factory = new HttpClientFactory();
+            using var client = factory.CreateHttpClient();
+            return await client.PostAsJsonAsync("api/products", productData);
+        }
+
         public async Task<HttpResponseMessage> CreateGoodsReceivalAsync(ImportGoodsReceival goodsReceivalData)
         {
             var factory = new HttpClientFactory();

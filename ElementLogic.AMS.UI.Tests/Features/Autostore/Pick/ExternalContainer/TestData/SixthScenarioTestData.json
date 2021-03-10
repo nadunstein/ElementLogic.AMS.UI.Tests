@@ -17,6 +17,10 @@
       "ParameterValue": "1"
     },
     {
+      "ParameterName": "DynamicAutostoreBatching",
+      "ParameterValue": "1"
+    },
+    {
       "ParameterName": "UseCustomerBatching",
       "ParameterValue": "1"
     },

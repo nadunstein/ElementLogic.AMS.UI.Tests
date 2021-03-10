@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading;
-using ElementLogic.AMS.UI.Tests.Features.SupportTasks;
 using ElementLogic.AMS.UI.Tests.Pages.Autostore.Inventory;
 using ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick;
 using ElementLogic.AMS.UI.Tests.Pages.Autostore.Refill;
@@ -111,12 +110,14 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
             {
                 if (PickNoMoreTasksPopup.Instance.IsOkButtonDisplayed())
                 {
-                    SynchronizeTaskGroups.Instance.AutostoreTaskGroupSynchronizationSteps();
-                    LoginPage.Instance.NavigateToAutoStore("01");
-                    LoginPage.Instance.IsPageLoaded();
-                    LoginPage.Instance.LoginToApplication("Admin");
-                    Assert.IsTrue(AutostoreTaskMenu.Instance.IsPageLoaded(),
-                        "The Autostore task Menu is not loaded");
+                    //SynchronizeTaskGroups.Instance.AutostoreTaskGroupSynchronizationSteps();
+                    //LoginPage.Instance.NavigateToAutoStore("01");
+                    //LoginPage.Instance.IsPageLoaded();
+                    //LoginPage.Instance.LoginToApplication("Admin");
+                    //Assert.IsTrue(AutostoreTaskMenu.Instance.IsPageLoaded(),
+                    //    "The Autostore task Menu is not loaded");
+                    PickNoMoreTasksPopup.Instance.ClickOkButton();
+                    AutostoreTaskMenu.Instance.IsPageLoaded();
                     return false;
                 }
 
@@ -151,10 +152,11 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
                     return true;
                 }
 
-                SynchronizeTaskGroups.Instance.AutostoreTaskGroupSynchronizationSteps();
-                LoginPage.Instance.NavigateToAutoStore("01");
-                LoginPage.Instance.IsPageLoaded();
-                LoginPage.Instance.LoginToApplication("Admin");
+                //SynchronizeTaskGroups.Instance.AutostoreTaskGroupSynchronizationSteps();
+                //LoginPage.Instance.NavigateToAutoStore("01");
+                //LoginPage.Instance.IsPageLoaded();
+                //LoginPage.Instance.LoginToApplication("Admin");
+                PickNoMoreTasksPopup.Instance.ClickOkButton();
                 AutostoreTaskMenu.Instance.IsPageLoaded();
                 AutostoreTaskMenu.Instance.ClickPickTaskType(pickTaskType);
                 PickNoMoreTasksPopup.Instance.IsPopupLoaded();

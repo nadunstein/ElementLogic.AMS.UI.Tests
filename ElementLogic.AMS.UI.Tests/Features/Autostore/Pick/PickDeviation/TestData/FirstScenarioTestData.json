@@ -3,19 +3,19 @@
     {
       "ExtProductId": "ASPDP01",
       "ProductName": "ASPickDeviationProduct01",
-      "LocationType": "A 1/1 AutoStore Bin",
+      "LocationType": "B 1/2 AutoStore Bin",
       "Quantity": 20
     },
     {
       "ExtProductId": "ASPDP01",
       "ProductName": "ASPickDeviationProduct01",
-      "LocationType": "A 1/1 AutoStore Bin",
+      "LocationType": "B 1/2 AutoStore Bin",
       "Quantity": 20
     },
     {
       "ExtProductId": "ASPDP01",
       "ProductName": "ASPickDeviationProduct01",
-      "LocationType": "A 1/1 AutoStore Bin",
+      "LocationType": "B 1/2 AutoStore Bin",
       "Quantity": 20
     }
   ],

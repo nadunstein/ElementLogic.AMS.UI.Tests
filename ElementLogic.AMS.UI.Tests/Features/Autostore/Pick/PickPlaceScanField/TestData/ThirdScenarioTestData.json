@@ -7,6 +7,10 @@
     {
       "ParameterName": "DynamicAutostoreBatching",
       "ParameterValue": "1"
+    },
+    {
+      "ParameterName": "Picking.UseStorageDeviceBatching",
+      "ParameterValue": "1"
     }
   ],
 
