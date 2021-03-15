@@ -22,6 +22,61 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick.SerialNumberRegistra
                 "The quantity field is not displayed in Autostore Serial Number Registration page is loaded");
         }
 
+        [Then(@"I change the quantity of the Quantity field as '(.*)' in Autostore Serial Number Registration page")]
+        public void ThenIChangeTheQuantityOfTheQuantityFieldAsInAutostoreSerialNumberRegistrationPage(int quantity)
+        {
+            Assert.IsTrue(SerialNumberRegistrationPage.Instance.InsertQuantity(quantity.ToString()),
+                $"Unable to Change the quantity of the Quantity field as '{quantity}' in Autostore Serial Number Registration page");
+        }
+
+        [Then(@"The pick Change Quantity popup is displayed in Autostore Serial Number Registration page")]
+        public void ThenThePickChangeQuantityPopupIsDisplayedInAutostoreSerialNumberRegistrationPage()
+        {
+            Assert.IsTrue(ChangeQuantityPopup.Instance.IsPopupDisplayed(),
+                "The pick Change Quantity dialog is not displayed in Autostore Serial Number Registration page");
+            Assert.AreEqual("Are you sure you want to change the quantity?",
+                ChangeQuantityPopup.Instance.GetPopupMessage(),
+                "The message of the pick Change Quantity popup is wrong");
+        }
+
+        [When(@"I click on '(.*)' button on Change Quantity popup in Autostore Serial Number Registration page")]
+        public void WhenIClickOnButtonOnChangeQuantityPopupInAutostoreSerialNumberRegistrationPage(string buttonToBeClicked)
+        {
+            var isButtonClicked = buttonToBeClicked switch
+            {
+                "Yes" => ChangeQuantityPopup.Instance.ClickYesButton(),
+                "No" => ChangeQuantityPopup.Instance.ClickNoButton(),
+                _ => false
+            };
+
+            Assert.IsTrue(isButtonClicked,
+                $"Unable to Click on {buttonToBeClicked} button on Change Quantity popup in Autostore Serial Number Registration page");
+        }
+
+        [Then(@"The Empty location popup is displayed in Autostore Serial Number Registration page")]
+        public void ThenTheEmptyLocationPopupIsDisplayedInAutostoreSerialNumberRegistrationPage()
+        {
+            Assert.IsTrue(EmptyLocationPopup.Instance.IsPopupDisplayed(),
+                "The Empty location popup is not displayed in Autostore Serial Number Registration page");
+            Assert.AreEqual("Is the location empty?",
+                EmptyLocationPopup.Instance.GetPopupMessage(),
+                "The message of the Empty location popup is wrong");
+        }
+
+        [When(@"I click on '(.*)' button on Empty location popup in Autostore Serial Number Registration page")]
+        public void WhenIClickOnButtonOnEmptyLocationPopupInAutostoreSerialNumberRegistrationPage(string buttonToBeClicked)
+        {
+            var isButtonClicked = buttonToBeClicked switch
+            {
+                "Yes" => EmptyLocationPopup.Instance.ClickYesButton(),
+                "No" => EmptyLocationPopup.Instance.ClickNoButton(),
+                _ => false
+            };
+
+            Assert.IsTrue(isButtonClicked,
+                $"Unable to Click on {buttonToBeClicked} button on Empty location popup in Autostore Serial Number Registration page");
+        }
+
         [Then(@"I verify the autostore bin layout is displayed in Autostore Serial Number Registration page is loaded")]
         public void ThenIVerifyTheAutostoreBinLayoutIsDisplayedInAutostoreSerialNumberRegistrationPageIsLoaded()
         {

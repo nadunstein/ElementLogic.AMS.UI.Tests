@@ -8,7 +8,6 @@ using NUnit.Framework;
 using TechTalk.SpecFlow;
 using PickNoMoreTasksPopup = ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick.NoMoreTasksPopup;
 using InventoryNoMoreTasksPopup = ElementLogic.AMS.UI.Tests.Pages.Autostore.Inventory.NoMoreTasksPopup;
-using LoginPage = ElementLogic.AMS.UI.Tests.Pages.Login.Login;
 
 namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
 {
@@ -99,7 +98,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
                     return;
             }
 
-            Assert.Fail("Activity is not prepared");
+            Assert.Fail("The Inventory activity is not prepared");
         }
 
         private static bool TryPick(string pickTaskType)
@@ -110,12 +109,6 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
             {
                 if (PickNoMoreTasksPopup.Instance.IsOkButtonDisplayed())
                 {
-                    //SynchronizeTaskGroups.Instance.AutostoreTaskGroupSynchronizationSteps();
-                    //LoginPage.Instance.NavigateToAutoStore("01");
-                    //LoginPage.Instance.IsPageLoaded();
-                    //LoginPage.Instance.LoginToApplication("Admin");
-                    //Assert.IsTrue(AutostoreTaskMenu.Instance.IsPageLoaded(),
-                    //    "The Autostore task Menu is not loaded");
                     PickNoMoreTasksPopup.Instance.ClickOkButton();
                     AutostoreTaskMenu.Instance.IsPageLoaded();
                     return false;
@@ -152,10 +145,6 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
                     return true;
                 }
 
-                //SynchronizeTaskGroups.Instance.AutostoreTaskGroupSynchronizationSteps();
-                //LoginPage.Instance.NavigateToAutoStore("01");
-                //LoginPage.Instance.IsPageLoaded();
-                //LoginPage.Instance.LoginToApplication("Admin");
                 PickNoMoreTasksPopup.Instance.ClickOkButton();
                 AutostoreTaskMenu.Instance.IsPageLoaded();
                 AutostoreTaskMenu.Instance.ClickPickTaskType(pickTaskType);

@@ -19,7 +19,7 @@ Scenario: Verify the pick deviation on the last mission adds new mission to the 
 	When I click on the confirm button in Autostore Pick Mission page
 	Then The pick Change Quantity popup is displayed in Autostore Pick Mission page
 	When I click on 'Yes' button on Change Quantity popup in Autostore Pick Mission page
-	Then The Empty location popup is displayed In Autostore Pick Mission page
+	Then The Empty location popup is displayed in Autostore Pick Mission page
 	When I click on 'Yes' button on Empty location popup in Autostore Pick Mission page
 	Then The Autostore pick mission '3' is loaded
 	And I verify the Quantity field value is '5' in Autostore Pick Mission page
@@ -46,7 +46,7 @@ Scenario: Verify the pick deviation on the last mission with a zero pick adds ne
 	When I click on the confirm button in Autostore Pick Mission page
 	Then The pick Change Quantity popup is displayed in Autostore Pick Mission page
 	When I click on 'Yes' button on Change Quantity popup in Autostore Pick Mission page
-	Then The Empty location popup is displayed In Autostore Pick Mission page
+	Then The Empty location popup is displayed in Autostore Pick Mission page
 	When I click on 'Yes' button on Empty location popup in Autostore Pick Mission page
 	Then The Autostore pick mission '3' is loaded
 	And I verify the Quantity field value is '20' in Autostore Pick Mission page

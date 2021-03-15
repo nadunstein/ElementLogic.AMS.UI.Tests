@@ -118,7 +118,7 @@ Scenario: Verify the serial number registration without product scanning
 	And I verify the autostore bin layout is displayed in Autostore Serial Number Registration page is loaded
 	And I verify the name of the serial number scan field is displayed as 'Scan SERIAL (1 of 2)' in Autostore Serial Number Registration page
 	And I include the serial number scan value as '12352' to serial number scan field in Autostore Serial Number Registration page
-	When I click on the confirm button in Autostore Pick Mission page
+	When I click on the Confirm button in Autostore Serial Number Registration page
 	Then The Edit Previous Autostore Serial Number Registration page is loaded
 	And I verify the name of the serial number scan field is displayed as 'Scan SERIAL (2 of 2)' in Autostore Serial Number Registration page
 	And I include the serial number scan value as '12353' to serial number scan field in Autostore Serial Number Registration page
@@ -127,4 +127,43 @@ Scenario: Verify the serial number registration without product scanning
 	When I click on the Confirm button in Autostore Serial Number Registration page
 	Then The AutoStore Place in Container page is loaded
 	When I click on the Confirm button in AutoStore Place in Container page
+	Then The Autostore task Menu is loaded
+
+@Pick
+@Regression
+@Scenario:'5'
+@Autostore:Pick:SerialNumberRegistration
+Scenario: Verify pick deviation with serial number registration
+	Given I login to the Autostore port '01' as 'Admin' user
+	When I click on 'Normal AS' pick task type in AutoStore Main Menu
+	Then The Autostore Serial Number Registration page is loaded
+	And I change the quantity of the Quantity field as '2' in Autostore Serial Number Registration page
+	And I include the serial number scan value as '12354' to serial number scan field in Autostore Serial Number Registration page
+	When I click on the Confirm button in Autostore Serial Number Registration page
+	Then The pick Change Quantity popup is displayed in Autostore Serial Number Registration page
+	When I click on 'Yes' button on Change Quantity popup in Autostore Serial Number Registration page
+	Then The Empty location popup is displayed in Autostore Serial Number Registration page
+	When I click on 'Yes' button on Empty location popup in Autostore Serial Number Registration page
+	Then The Edit Previous Autostore Serial Number Registration page is loaded
+	And I verify the name of the serial number scan field is displayed as 'Scan SERIAL (2 of 2)' in Autostore Serial Number Registration page
+	And I include the serial number scan value as '12355' to serial number scan field in Autostore Serial Number Registration page
+	When I click on the Confirm button in Autostore Serial Number Registration page
+	Then The Edit last Autostore Serial Number Registration page is loaded
+	When I click on the Confirm button in Autostore Serial Number Registration page
+	Then The Autostore task Menu is loaded
+
+@Pick
+@Regression
+@Scenario:'6'
+@Autostore:Pick:SerialNumberRegistration
+Scenario: Verify zero pick deviation with serial number registration
+	Given I login to the Autostore port '01' as 'Admin' user
+	When I click on 'Normal AS' pick task type in AutoStore Main Menu
+	Then The Autostore Serial Number Registration page is loaded
+	And I change the quantity of the Quantity field as '0' in Autostore Serial Number Registration page
+	When I click on the Confirm button in Autostore Serial Number Registration page
+	Then The pick Change Quantity popup is displayed in Autostore Serial Number Registration page
+	When I click on 'Yes' button on Change Quantity popup in Autostore Serial Number Registration page
+	Then The Empty location popup is displayed in Autostore Serial Number Registration page
+	When I click on 'Yes' button on Empty location popup in Autostore Serial Number Registration page
 	Then The Autostore task Menu is loaded

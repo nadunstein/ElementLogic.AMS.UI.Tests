@@ -38,7 +38,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick.PickDeviation
                 $"Unable to Click on {buttonToBeClicked} button on Change Quantity popup in Autostore Pick Mission page");
         }
 
-        [Then(@"The Empty location popup is displayed In Autostore Pick Mission page")]
+        [Then(@"The Empty location popup is displayed in Autostore Pick Mission page")]
         public void ThenTheEmptyLocationPopupIsDisplayedInAutostorePickMissionPage()
         {
             Assert.IsTrue(EmptyLocationPopup.Instance.IsPopupDisplayed(),

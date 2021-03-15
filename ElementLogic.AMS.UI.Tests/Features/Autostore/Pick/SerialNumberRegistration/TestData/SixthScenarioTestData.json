@@ -1,0 +1,39 @@
+{
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "Picking.ProductValidationScan.AtMinimumLocationsPerBin",
+      "ParameterValue": "0"
+    },
+    {
+      "ParameterName": "Picking.Scanning.ValidateProduct",
+      "ParameterValue": "10"
+    }
+  ],
+
+  "ProductsToBeCreated": [
+    {
+      "ExtProductId": "ASSNRP05",
+      "ProductName": "ASPickSerialNumberRegistrationProduct05",
+      "LocationType": "B 1/2 AutoStore Bin",
+      "Quantity": 20
+    }
+  ],
+
+  "PickOrdersToBeCreated": [
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASSNRP05",
+          "ProductName": "ASPickSerialNumberRegistrationProduct05",
+          "Quantity": 2,
+          "AddedInfo": 1
+        }
+      ]
+    }
+  ]
+}

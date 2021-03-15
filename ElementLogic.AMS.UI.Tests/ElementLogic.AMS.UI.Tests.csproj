@@ -617,6 +617,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Features\Autostore\Pick\SerialNumberRegistration\SerialNumberRegistration.feature" />
+    <None Include="Features\Autostore\Pick\SerialNumberRegistration\TestData\SixthScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\SerialNumberRegistration\TestData\FifthScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\Autostore\Pick\SerialNumberRegistration\TestData\FourthScenarioTestData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

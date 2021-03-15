@@ -54,6 +54,13 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
                 .IsVisible(QuantityField);
         }
 
+        public bool InsertQuantity(string quantity)
+        {
+            return FluentElement.Instance
+                .WaitForElement(QuantityField)
+                .Insert(quantity);
+        }
+
         public bool IsAutostoreBinLayoutDisplayed()
         {
             return FluentElement.Instance
