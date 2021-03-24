@@ -28,6 +28,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Inventory
         {
             return FluentElement.Instance
                 .WaitForPageLoad()
+                .WaitUntilInvisible(LoadingPanel)
                 .WaitForElement(PageHeader)
                 .Text()
                 .Equals("Inventory");
@@ -36,8 +37,6 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Inventory
         public bool IsInventoryMissionLoaded()
         {
             return FluentElement.Instance
-                .RefreshWebPage()
-                .Wait(2)
                 .IsVisible(TaskQueueLabel);
         }
 

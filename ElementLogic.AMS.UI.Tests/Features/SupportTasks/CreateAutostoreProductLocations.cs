@@ -24,7 +24,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
         private static void NavigateToPutawaySelectionPageSteps(string putawayTaskName)
         {
             LoginPage.Instance.NavigateToAutoStore("01");
-            LoginPage.Instance.LoginToApplication("Admin");
+            LoginPage.Instance.LoginToApplicationIfNeeded("Admin");
             Assert.IsTrue(AutostoreTaskMenu.Instance.IsPageLoaded(),
                 "The Autostore task menu page is not displayed in TEST DATA PREPARATION");
             Assert.IsTrue(AutostoreTaskMenu.Instance.ClickPutawayTaskType(putawayTaskName),

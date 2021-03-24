@@ -24,12 +24,12 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
         private static void FinishInventoryOrderSteps()
         {
             InventoryOrderList.Instance.Navigate();
-            AdminLogin.Instance.LoginToApplication("Admin");
+            AdminLogin.Instance.LoginToApplicationIfNeeded("Admin");
             var isPageLoaded = InventoryOrderList.Instance.IsPageLoaded();
             var isClickedSearchButton = InventoryOrderList.Instance.ClickSearchButton();
             var isFirstInventoryResultBarDisplayed = InventoryOrderList.Instance.IsFirstInventoryResultBarDisplayed();
             var isSelectedAllCheckBox = InventoryOrderList.Instance.SelectAllCheckBox();
-            var isSelectedActionMenuOption = InventoryOrderList.Instance.SelectActionMenuOption("Delete");
+            var isSelectedActionMenuOption = InventoryOrderList.Instance.SelectActionMenuOption("Finish");
             var isPopupDisplayed = DeleteConfirmationPopup.Instance.IsPopupDisplayed();
             var isClickedYesButton = DeleteConfirmationPopup.Instance.ClickYesButton();
 

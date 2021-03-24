@@ -89,6 +89,21 @@ Scenario: Verify the behavior of Add new container popup with External and Inter
 	When I click on 'Update' button on Add new container popup in Autostore Pick Mission page
 	Then The container validation popup is displayed in Add new container popup in AutoStore Pick Mission page
 	And I click on OK button in container validation popup in Add new container popup in AutoStore Place in Container page
+	And I select the boxtype as 'Externalbox2' from box type selection dropdown in Add new container popup in Autostore Pick Mission page
+	And I verify the scancode field value is displayed as 'Empty' in Add new container popup in Autostore Pick Mission page
+	And I include the container scan value as 'CO-1234' to the container scan field in Add new container popup in Autostore Pick Mission page
+	When I click on 'Update' button on Add new container popup in Autostore Pick Mission page
+	Then The container validation popup is displayed in Add new container popup in AutoStore Pick Mission page
+	And I click on OK button in container validation popup in Add new container popup in AutoStore Place in Container page
+	And I include the container scan value as 'CO-12345' to the container scan field in Add new container popup in Autostore Pick Mission page
+	When I click on 'Update' button on Add new container popup in Autostore Pick Mission page	
+	Then I select the boxtype as 'Externalbox2' from container selection list in Add new container popup in Autostore Pick Mission page
+	Then I verify the scancode field value is displayed as 'CO-12345' in Add new container popup in Autostore Pick Mission page
+	When I click on 'Close' button on Add new container popup in Autostore Pick Mission page
+	Then The Autostore pick mission '2' is loaded
+	And I verify the container scan field is not displayed in Autostore Pick Mission page
+	When I click on 'New container' option item in Autostore Pick Mission page
+	Then The Add new container popup is displayed in Autostore Pick Mission page
 	And I select the boxtype as 'Box1' from box type selection dropdown in Add new container popup in Autostore Pick Mission page
 	When I click on 'Add' button on Add new container popup in Autostore Pick Mission page
 	Then The Autostore pick mission '2' is loaded	

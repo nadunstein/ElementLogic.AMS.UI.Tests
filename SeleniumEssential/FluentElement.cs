@@ -25,6 +25,11 @@ namespace SeleniumEssential
             return this;
         }
 
+        public string GetPageUrl()
+        {
+            return Driver.Url;
+        }
+
         public FluentElement WaitForPageLoad()
         {
             var attempts = 0;

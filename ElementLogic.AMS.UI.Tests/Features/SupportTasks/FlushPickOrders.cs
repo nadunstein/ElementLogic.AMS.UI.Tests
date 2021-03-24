@@ -34,7 +34,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
         private static void NavigatePicklistSearchPageSteps()
         {
             PicklistSearch.Instance.Navigate();
-            AdminLogin.Instance.LoginToApplication("Admin");
+            AdminLogin.Instance.LoginToApplicationIfNeeded("Admin");
             Assert.IsTrue(PicklistSearch.Instance.IsPageLoaded(),
                 "The Pick list search page is not loaded to finish unfinished pick orders after scenario");
         }

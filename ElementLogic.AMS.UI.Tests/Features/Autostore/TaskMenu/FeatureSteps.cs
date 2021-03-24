@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Threading;
-using ElementLogic.AMS.UI.Tests.Pages.Autostore.Inventory;
 using ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick;
 using ElementLogic.AMS.UI.Tests.Pages.Autostore.Refill;
 using ElementLogic.AMS.UI.Tests.Pages.Autostore.TaskMenu;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using PickNoMoreTasksPopup = ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick.NoMoreTasksPopup;
-using InventoryNoMoreTasksPopup = ElementLogic.AMS.UI.Tests.Pages.Autostore.Inventory.NoMoreTasksPopup;
 
 namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
 {
@@ -55,7 +53,8 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
         [When(@"I Click on Inventory tile in AutoStore Main Menu")]
         public void GivenIClickOnInventoryTileInAutoStoreMainMenu()
         {
-            RetryInventoryWhileSuccess(TryInventory, 5);
+            Assert.IsTrue(AutostoreTaskMenu.Instance.ClickInventoryTaskType("Inventory"),
+                "Unable to Click on Inventory tile in AutoStore Main Menu");
         }
 
         [When(@"I Click on Refill tile in Autostore main menu")]
@@ -70,35 +69,6 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
         {
             Assert.IsTrue(AutostoreTaskMenu.Instance.ClickLogout(),
                 "Unable to click on Logout button in Autostore task menu");
-        }
-
-        private static bool TryInventory()
-        {
-            Assert.IsTrue(AutostoreTaskMenu.Instance.ClickInventoryTaskType("Inventory"),
-                "Unable to Click on Inventory tile in AutoStore Main Menu");
-            Assert.IsTrue(InventoryMission.Instance.IsPageLoaded(),
-                "Autostore Inventory mission page is not loaded");
-            if (InventoryMission.Instance.IsInventoryMissionLoaded())
-            {
-                return true;
-            }
-
-            InventoryNoMoreTasksPopup.Instance.IsPopupDisplayed();
-            InventoryNoMoreTasksPopup.Instance.ClickOkButton();
-            AutostoreTaskMenu.Instance.IsPageLoaded();
-            return false;
-        }
-
-        private static void RetryInventoryWhileSuccess(Func<bool> retryAction, int noOfAttempts)
-        {
-            for (var i = 0; i < noOfAttempts; i++)
-            {
-                var result = retryAction();
-                if (result)
-                    return;
-            }
-
-            Assert.Fail("The Inventory activity is not prepared");
         }
 
         private static bool TryPick(string pickTaskType)

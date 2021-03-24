@@ -69,9 +69,21 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Login
 
         public void LoginToApplication(string username)
         {
+            var userData = AccessUserCredentials.Instance
+                .GetUserCredentials(username);
+            InsertUsername(userData.Username);
+            InsertPassword(userData.Password);
+            ClickAdminLoginButton();
+        }
+
+        public void LoginToApplicationIfNeeded(string username)
+        {
+            FluentElement.Instance
+                .WaitForPageLoad();
             if (!FluentElement.Instance
-                .WaitForPageLoad()
-                .IsVisible(UserNameField))
+                    .GetPageUrl().Contains("Login") && 
+                !FluentElement.Instance
+                    .IsVisible(UserNameField))
             {
                 return;
             }

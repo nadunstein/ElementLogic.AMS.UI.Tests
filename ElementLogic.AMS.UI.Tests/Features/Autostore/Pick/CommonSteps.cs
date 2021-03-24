@@ -279,9 +279,17 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick
         {
             Assert.IsTrue(AddNewContainerPopup.Instance.IsScanCodeFieldDisplayed(),
                 "The scancode field is not displayed in Add new container popup in Autostore Pick Mission page");
+            if(containerScanCode == "Empty")
+            {
+                var scanFieldPlaceHolderValue = AddNewContainerPopup.Instance.GetScanCodeFieldPlaceholderValue();
+                Assert.AreEqual("Scan code", scanFieldPlaceHolderValue, 
+                    "The container scancode field value is not empty in Add new container popup in Autostore Pick Mission page");
+                return;
+            }
+
             var actualContainerScanCode = AddNewContainerPopup.Instance.GetScanCodeFieldValue();
             Assert.AreEqual(containerScanCode, actualContainerScanCode,
-                "The Container scancode is different in Add new container popup in Autostore Pick Mission page");
+                "The container scancode is different in Add new container popup in Autostore Pick Mission page");
         }
 
         [Then(@"I verify the scan field is displayed in AutoStore Place in Container page")]

@@ -64,7 +64,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
         private static void ChangeParameterSteps(string parameterCode, string paramValue)
         {
             ParameterList.Instance.Navigate();
-            AdminLogin.Instance.LoginToApplication("Admin");
+            AdminLogin.Instance.LoginToApplicationIfNeeded("Admin");
             var isPageLoaded = ParameterList.Instance.IsPageLoaded();
             var isInserted = ParameterList.Instance.InsertParameterCode(parameterCode);
             var isClickedSearchButton = ParameterList.Instance.ClickSearchButton();

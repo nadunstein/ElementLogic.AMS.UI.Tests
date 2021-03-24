@@ -28,14 +28,14 @@ namespace ElementLogic.AMS.UI.Tests.Features.Login
             }
 
             LoginPage.Instance.NavigateToAdminModule();
-            LoginPage.Instance.LoginToApplication(nameOfTheUser);
+            LoginPage.Instance.LoginToApplicationIfNeeded(nameOfTheUser);
         }
 
         [Given(@"I login to the Autostore port '(.*)' as '(.*)' user")]
         public void GivenILoginToTheAutostorePortAsUser(string portNumber, string nameOfTheUser)
         {
             LoginPage.Instance.NavigateToAutoStore(portNumber);
-            LoginPage.Instance.LoginToApplication(nameOfTheUser);
+            LoginPage.Instance.LoginToApplicationIfNeeded(nameOfTheUser);
         }
 
         private FeatureSteps(ScenarioContext scenarioContext)

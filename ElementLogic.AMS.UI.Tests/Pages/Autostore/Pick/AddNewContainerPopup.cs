@@ -90,6 +90,14 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
                 .GetAttribute("value");
         }
 
+        public string GetScanCodeFieldPlaceholderValue()
+        {
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(ScanCodeField)
+                .GetAttribute("placeholder");
+        }
+
         public bool InsertContainerScanCode(string scanCode)
         {
             return FluentElement.Instance
