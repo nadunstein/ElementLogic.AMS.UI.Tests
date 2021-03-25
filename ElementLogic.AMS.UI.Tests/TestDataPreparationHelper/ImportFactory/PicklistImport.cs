@@ -7,30 +7,11 @@ using TechTalk.SpecFlow;
 
 namespace ElementLogic.AMS.UI.Tests.TestDataPreparationHelper.ImportFactory
 {
-    public class PickData
+    public class PicklistImport
     {
-        public static PickData Instance => Singleton.Value;
+        public static PicklistImport Instance => Singleton.Value;
 
-        public void PreparePickTestData(IList<PicklistLine> pickLines, ScenarioContext scenarioContext)
-        {
-            GeneratePickOrder(pickLines, scenarioContext);
-        }
-
-        public void PrepareMultiplePickTestDataForSameProduct(IList<PicklistLine> pickLines, int count,
-            ScenarioContext scenarioContext)
-        {
-            for (var i = 1; i <= count; i++)
-            {
-                foreach (var picklistLine in pickLines)
-                {
-                    picklistLine.CustId = string.Concat("EWMS-00000", i);
-                }
-
-                PreparePickTestData(pickLines, scenarioContext);
-            }
-        }
-
-        private static void GeneratePickOrder(IList<PicklistLine> pickLines, ScenarioContext scenarioContext)
+        public void ImportPicklist(IList<PicklistLine> pickLines, ScenarioContext scenarioContext)
         {
             var picklistId = Guid.NewGuid().ToString().Substring(0, 8);
             
@@ -65,9 +46,9 @@ namespace ElementLogic.AMS.UI.Tests.TestDataPreparationHelper.ImportFactory
             scenarioContext["ExtOrderlineId"] = pickLines[0].ExtOrderlineId;
         }
 
-        private PickData() { }
+        private PicklistImport() { }
 
-        private static readonly Lazy<PickData>
-            Singleton = new Lazy<PickData>(() => new PickData());
+        private static readonly Lazy<PicklistImport>
+            Singleton = new Lazy<PicklistImport>(() => new PicklistImport());
     }
 }

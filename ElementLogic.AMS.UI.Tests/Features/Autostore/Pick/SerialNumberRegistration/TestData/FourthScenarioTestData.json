@@ -14,7 +14,7 @@
     }
   ],
 
-  "ProductsToBeCreated": [
+  "ProductLocationsToBeCreated": [
     {
       "ExtProductId": "ASSNRP04",
       "ProductName": "ASPickSerialNumberRegistrationProduct04",

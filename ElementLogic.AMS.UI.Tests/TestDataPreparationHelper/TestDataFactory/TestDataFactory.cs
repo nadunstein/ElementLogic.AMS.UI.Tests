@@ -2,13 +2,13 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using ElementLogic.AMS.UI.Tests.Integration;
-using ElementLogic.AMS.UI.Tests.TestDataPreparationHelper.ImportFactory;
+using ElementLogic.AMS.UI.Tests.TestDataPreparationHelper.DataPreparationFactory;
 using ElementLogic.AMS.UI.Tests.Types.Dtos;
 using ElementLogic.Integration.Import.Contracts.Types;
 using Humanizer;
 using TechTalk.SpecFlow;
 
-namespace ElementLogic.AMS.UI.Tests.TestDataPreparationHelper
+namespace ElementLogic.AMS.UI.Tests.TestDataPreparationHelper.TestDataFactory
 {
     public class TestDataFactory
     {
@@ -36,9 +36,18 @@ namespace ElementLogic.AMS.UI.Tests.TestDataPreparationHelper
             {
                 var jsonLists = jsonObject["ProductsToBeCreated"].Children().ToList();
                 var productsToBeCreated =
-                    jsonLists.Select(jsonList => jsonList.ToObject<ProductLocationLine>()).ToList();
+                    jsonLists.Select(jsonList => jsonList.ToObject<ProductLine>()).ToList();
 
                 ProductData.Instance.PrepareProductData(productsToBeCreated);
+            }
+
+            if (jsonObject.ContainsKey("ProductLocationsToBeCreated"))
+            {
+                var jsonLists = jsonObject["ProductLocationsToBeCreated"].Children().ToList();
+                var productsToBeCreated =
+                    jsonLists.Select(jsonList => jsonList.ToObject<ProductLocationLine>()).ToList();
+
+                ProductLocationData.Instance.PrepareProductLocationData(productsToBeCreated);
             }
 
             if (jsonObject.ContainsKey("PutawayOrdersToBeCreated"))
@@ -64,7 +73,7 @@ namespace ElementLogic.AMS.UI.Tests.TestDataPreparationHelper
                     var picklistLineJsonLists = pickOrdersJsonList["PickOrderToBeCreated"].Children().ToList();
                     var pickOrderLinesToBeCreated =
                         picklistLineJsonLists.Select(picklistLineJsonList => picklistLineJsonList.ToObject<PicklistLine>()).ToList();
-                    PickData.Instance.PreparePickTestData(pickOrderLinesToBeCreated, scenarioContext);
+                    PicklistData.Instance.PreparePicklistTestData(pickOrderLinesToBeCreated, scenarioContext);
                 }
             }
         }

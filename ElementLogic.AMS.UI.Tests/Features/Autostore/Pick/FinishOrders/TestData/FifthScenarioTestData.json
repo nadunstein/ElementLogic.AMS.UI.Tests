@@ -10,7 +10,7 @@
     }
   ],
 
-  "ProductsToBeCreated": [
+  "ProductLocationsToBeCreated": [
     {
       "ExtProductId": "ASPLSP08",
       "ProductName": "ASPickListSearchProduct08",

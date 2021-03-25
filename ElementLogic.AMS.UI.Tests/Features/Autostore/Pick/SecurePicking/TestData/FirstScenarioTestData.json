@@ -1,5 +1,5 @@
 {
-  "ProductsToBeCreated": [
+  "ProductLocationsToBeCreated": [
     {
       "ExtProductId": "ASPSPP01",
       "ProductName": "ASPickSecurePickingProduct01",

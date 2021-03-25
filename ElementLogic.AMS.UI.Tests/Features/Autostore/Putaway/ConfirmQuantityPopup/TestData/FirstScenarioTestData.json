@@ -1,0 +1,21 @@
+{
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "AllowAutomaticOrderCreation",
+      "ParameterValue": "1"
+    },
+    {
+      "ParameterName": "BB_MaxQty",
+      "ParameterValue": "139"
+    }
+  ],
+
+  "ProductLocationsToBeCreated": [
+    {
+      "ExtProductId": "ASPCQPP01",
+      "ProductName": "ASPutawayConfirmQuantityPopupProduct01",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 10
+    }
+  ]
+}

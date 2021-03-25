@@ -1,5 +1,5 @@
 ﻿using ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Refill;
-using ElementLogic.AMS.UI.Tests.TestDataPreparationHelper;
+using ElementLogic.AMS.UI.Tests.TestDataPreparationHelper.TestDataFactory;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 

@@ -101,7 +101,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Putaway
         }
 
         [Then(@"The quantity field value should be '(.*)' in Autostore putaway quantity confirm popup")]
-        public void ThenTheQuantityFieldValueShouldBeInAutostorePutawayQuantityConfirmPopup(double expectedPutawayQuantity)
+        public void ThenTheQuantityFieldValueShouldBeInAutostorePutawayQuantityConfirmPopup(int expectedPutawayQuantity)
         {
             var actualPutawayQuantity = PutawayConfirmQuantityPopup.Instance.GetPutawayQuantity();
             Assert.AreEqual(expectedPutawayQuantity, actualPutawayQuantity,
@@ -109,7 +109,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Putaway
         }
 
         [Then(@"I verify max location quantity value is '(.*)' in Autostore putaway quantity confirm popup")]
-        public void ThenIVerifyMaxLocationQuantityValueIsInAutostorePutawayQuantityConfirmPopup(double expectedMaxLocationQuantity)
+        public void ThenIVerifyMaxLocationQuantityValueIsInAutostorePutawayQuantityConfirmPopup(int expectedMaxLocationQuantity)
         {
             var actualMaxLocationQuantity = PutawayConfirmQuantityPopup.Instance.GetMaximumLocationQuantity();
             Assert.AreEqual(expectedMaxLocationQuantity, actualMaxLocationQuantity,

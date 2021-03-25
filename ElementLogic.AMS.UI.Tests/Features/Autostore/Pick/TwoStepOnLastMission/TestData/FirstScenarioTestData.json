@@ -6,7 +6,7 @@
     }
   ],
 
-  "ProductsToBeCreated": [
+  "ProductLocationsToBeCreated": [
     {
       "ExtProductId": "ASPTSLMP01",
       "ProductName": "ASPickTwoStepsOnLastMissionProduct01",

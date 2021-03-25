@@ -39,16 +39,16 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Putaway.PutawaySelection
                 .IsFocused();
         }
 
-        public double GetPutawayQuantity()
+        public int GetPutawayQuantity()
         {
-            return double.Parse(FluentElement.Instance
+            return int.Parse(FluentElement.Instance
                 .WaitForElement(PutawayQuantityField)
                 .GetAttribute("Value"));
         }
 
-        public double GetMaximumLocationQuantity()
+        public int GetMaximumLocationQuantity()
         {
-            return double.Parse(FluentElement.Instance
+            return int.Parse(FluentElement.Instance
                 .WaitForElement(MaxLocationQuantityField)
                 .GetAttribute("Value"));
         }

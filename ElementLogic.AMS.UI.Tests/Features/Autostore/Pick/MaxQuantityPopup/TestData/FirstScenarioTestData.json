@@ -6,7 +6,7 @@
     }
   ],
 
-  "ProductsToBeCreated": [
+  "ProductLocationsToBeCreated": [
     {
       "ExtProductId": "ASPMQPP01",
       "ProductName": "ASPickMaxQuantityPopupProduct01",

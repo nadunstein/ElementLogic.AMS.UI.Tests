@@ -6,7 +6,7 @@
     }
   ],
 
-  "ProductsToBeCreated": [
+  "ProductLocationsToBeCreated": [
     {
       "ExtProductId": "ASINVP02",
       "ProductName": "AutostoreInventoryProduct02",

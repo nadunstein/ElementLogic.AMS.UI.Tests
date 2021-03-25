@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using ElementLogic.AMS.UI.Tests.Features.SupportTasks;
 using ElementLogic.AMS.UI.Tests.Types.Dtos;
 
-namespace ElementLogic.AMS.UI.Tests.TestDataPreparationHelper.ImportFactory
+namespace ElementLogic.AMS.UI.Tests.TestDataPreparationHelper.DataPreparationFactory
 {
     public class ParameterData
     {

@@ -3,7 +3,7 @@ using System.Linq;
 using ElementLogic.AMS.UI.Tests.Data.DatabaseQueries;
 using ElementLogic.AMS.UI.Tests.Features.SupportTasks;
 using ElementLogic.AMS.UI.Tests.Integration;
-using ElementLogic.AMS.UI.Tests.TestDataPreparationHelper;
+using ElementLogic.AMS.UI.Tests.TestDataPreparationHelper.TestDataFactory;
 using NUnit.Framework;
 using SeleniumEssential;
 using TechTalk.SpecFlow;

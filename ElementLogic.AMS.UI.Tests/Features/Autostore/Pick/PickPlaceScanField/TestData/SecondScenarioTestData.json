@@ -14,7 +14,7 @@
     }
   ],
 
-  "ProductsToBeCreated": [
+  "ProductLocationsToBeCreated": [
     {
       "ExtProductId": "ASPPSFP02",
       "ProductName": "ASPickPlaceScanFieldProduct02",

@@ -1,0 +1,19 @@
+{
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "AllowAutomaticOrderCreation",
+      "ParameterValue": "1"
+    },
+    {
+      "ParameterName": "BB_MaxQty",
+      "ParameterValue": "139"
+    }
+  ],
+
+  "ProductsToBeCreated": [
+    {
+      "ExtProductId": "ASPCQPP02",
+      "ProductName": "ASPutawayConfirmQuantityPopupProduct02"
+    }
+  ]
+}

@@ -14,7 +14,7 @@
     }
   ],
 
-  "ProductsToBeCreated": [
+  "ProductLocationsToBeCreated": [
     {
       "ExtProductId": "ASPSCP01",
       "ProductName": "ASPicSplitContainerProduct01",

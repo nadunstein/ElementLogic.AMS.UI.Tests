@@ -1,7 +1,7 @@
 {
   "RefillTrolley": "Refill Trolley 02",
 
-  "ProductsToBeCreated": [
+  "ProductLocationsToBeCreated": [
     {
       "ExtProductId": "ASRP02",
       "ProductName": "ASRefillProduct02",

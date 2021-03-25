@@ -22,7 +22,7 @@
     }
   ],
 
-  "ProductsToBeCreated": [
+  "ProductLocationsToBeCreated": [
     {
       "ExtProductId": "ASPECP11",
       "ProductName": "ASPickExternalContainerProduct11",
