@@ -5,7 +5,7 @@
 @Regression
 @Scenario:'1'
 @Autostore:Pick:SerialNumberRegistration
-#Scenario: Verify the serial number registration with single step picking
+Scenario: Verify the serial number registration with single step picking
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I click on 'Normal AS' pick task type in AutoStore Main Menu
 	Then The Autostore pick mission '1' is loaded
@@ -50,7 +50,7 @@
 @Regression
 @Scenario:'2'
 @Autostore:Pick:SerialNumberRegistration
-#Scenario: Verify the serial number registration with two step picking and one open container
+Scenario: Verify the serial number registration with two step picking and one open container
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I click on 'Normal AS' pick task type in AutoStore Main Menu
 	Then The Autostore pick mission '1' is loaded
@@ -74,7 +74,7 @@
 @Regression
 @Scenario:'3'
 @Autostore:Pick:SerialNumberRegistration
-#Scenario: Verify the serial number registration with two step picking and two open containers
+Scenario: Verify the serial number registration with two step picking and two open containers
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I click on 'Normal AS' pick task type in AutoStore Main Menu
 	Then The Autostore pick mission '1' is loaded
@@ -108,7 +108,7 @@
 @Regression
 @Scenario:'4'
 @Autostore:Pick:SerialNumberRegistration
-#Scenario: Verify the serial number registration without product scanning
+Scenario: Verify the serial number registration without product scanning
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I click on 'Normal AS' pick task type in AutoStore Main Menu
 	Then The Autostore Serial Number Registration page is loaded
@@ -131,7 +131,7 @@
 @Regression
 @Scenario:'5'
 @Autostore:Pick:SerialNumberRegistration
-#Scenario: Verify pick deviation with serial number registration
+Scenario: Verify pick deviation with serial number registration
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I click on 'Normal AS' pick task type in AutoStore Main Menu
 	Then The Autostore Serial Number Registration page is loaded
@@ -154,7 +154,7 @@
 @Regression
 @Scenario:'6'
 @Autostore:Pick:SerialNumberRegistration
-#Scenario: Verify zero pick deviation with serial number registration
+Scenario: Verify zero pick deviation with serial number registration
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I click on 'Normal AS' pick task type in AutoStore Main Menu
 	Then The Autostore Serial Number Registration page is loaded
