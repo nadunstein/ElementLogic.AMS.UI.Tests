@@ -1,10 +1,8 @@
 ﻿using System.IO;
-using System.Linq;
 using ElementLogic.AMS.UI.Tests.Data.DatabaseQueries;
 using ElementLogic.AMS.UI.Tests.Features.SupportTasks;
 using ElementLogic.AMS.UI.Tests.Integration;
 using ElementLogic.AMS.UI.Tests.TestDataPreparationHelper.TestDataFactory;
-using NUnit.Framework;
 using SeleniumEssential;
 using TechTalk.SpecFlow;
 
@@ -13,7 +11,6 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
     [Binding]
     public class TestSetUpHooks
     {
-        private static bool _testRunTerminated;
         private  bool _recordScreen = true;
         private  bool _failureInTestDataCreation = true;
         private static ScenarioContext _scenarioContext;
@@ -26,22 +23,14 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
                 "BrowserSettings:ChromeBrowser:HeadlessMode"));
 
         [BeforeTestRun(Order = 0)]
-        public static void CreateDatabase()
+        public static void RestoreDatabase()
         {
             var databaseName = JsonFileReader.Instance
                 .GetJsonKeyValue("Configuration/Environment.json", "DatabaseSettings:DatabaseName");
             Database.Instance
                 .DeleteDatabase(databaseName);
-
-            if (!IsUsingEmptyDatabase)
-            {
-                Database.Instance
-                    .RestoreDatabase(databaseName);
-                return;
-            }
-
             Database.Instance
-                .CreateDatabase(databaseName);
+                .RestoreDatabase(databaseName);
         }
 
         [BeforeTestRun(Order = 1)]
@@ -65,7 +54,7 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
         }
 
         [BeforeTestRun(Order = 3)]
-        public static void RestartServices()
+        public static void RestartAutostoreEmulatorService()
         {
             WindowsServices.Instance
                 .RestartAutostoreEmulatorService();
@@ -87,26 +76,11 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
         public static void DeleteOldVideos()
         {
             var pathToVideoDirectory = Path
-                .Combine(FileHelper.Instance.GetProjectBinPath(), "ScreenCaptureVideos\\");
-            FileHelper.Instance.DeleteFiles(pathToVideoDirectory);
+                .Combine(FileHelper.GetProjectBinPath(), "ScreenCaptureVideos\\");
+            FileHelper.DeleteFiles(pathToVideoDirectory);
         }
 
-        [BeforeScenario(Order = 1)]
-        public void IgnoreTests()
-        {
-            if (_testRunTerminated.Equals(true))
-            {
-                Assert.Ignore("Failure in warehouse Test data Creation tests");
-            }
-
-            if (!IsUsingEmptyDatabase && _scenarioContext.ScenarioInfo.Tags.Contains("WarehouseImplementationTest"))
-            {
-                _recordScreen = false;
-                Assert.Ignore("Ignored the execution of warehouse preTest-data creation tests");
-            }
-        }
-
-        [BeforeScenario(Order = 3)]
+        [BeforeScenario(Order = 2)]
         public void CreateScenarioTestData()
         {
             TestDataFactory.Instance
@@ -114,7 +88,7 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
             _failureInTestDataCreation = false;
         }
 
-        [BeforeScenario(Order = 4)]
+        [BeforeScenario(Order = 3)]
         public void StartVideoRecorder()
         {
             if (_recordScreen && !IsBrowserHeadlessMode && !_failureInTestDataCreation)
@@ -135,19 +109,16 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
         [AfterScenario(Order = 3)]
         public void ResetSystemParametersAfterTestRun()
         {
-            if (!_scenarioContext.ScenarioInfo.Tags.Contains("WarehouseImplementationTest"))
+            var parametersToBeChanged = SetUpParameters.Instance
+                .GetParametersToBeReset();
+            foreach (var parameterToBeChanged in parametersToBeChanged)
             {
-                var parametersToBeChanged = SetUpParameters.Instance
-                    .GetParametersToBeReset();
-                foreach (var parameterToBeChanged in parametersToBeChanged)
-                {
-                    SetUpParameters.Instance
-                        .ChangeTheParameterValue(parameterToBeChanged.ParameterName,
+                SetUpParameters.Instance
+                    .ChangeTheParameterValue(parameterToBeChanged.ParameterName,
                         parameterToBeChanged.ParameterValue);
-                }
             }
 
-            SetUpParameters.Instance.FlushParametersToBeReset();
+            SetUpParameters.Instance.FlushParametersToBeResetList();
         }
 
         [AfterScenario("Pick", Order = 4)]
@@ -162,16 +133,6 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
         {
             FlushInventoryOrders.Instance
                 .FinishUnfinishedInventoryOrders();
-        }
-
-        [AfterScenario(Order = 7)]
-        public void TerminateTestRun()
-        {
-            if (_scenarioContext.ScenarioInfo.Tags.Contains("WarehouseImplementationTest")
-                && _scenarioContext.TestError != null)
-            {
-                _testRunTerminated = true;
-            }
         }
 
         private TestSetUpHooks(ScenarioContext scenarioContext)

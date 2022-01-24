@@ -23,6 +23,9 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Inventory
         private const string FirstInventoryResultBar =
             "#ctl00_ContentPlaceHolderContent_InventoryOrderListView1_resultGrid_ctl00__0";
 
+        private const string FirstInventoryTaskgroupTable =
+            "#ctl00_ContentPlaceHolderContent_InventoryOrderListView1_resultGrid_ctl00_ctl06_TaskgroupGrid_ctl00 tbody";
+
         private const string ActionMenuGearIcon =
             "#ctl00_ContentPlaceHolderContent_InventoryOrderListView1_resultGrid_ctl00_ctl04_ctl01";
 
@@ -69,6 +72,15 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Inventory
                 .WaitUntilInvisible(PageLoadingPanel)
                 .WaitForElement(FirstInventoryResultBar)
                 .IsVisible();
+        }
+
+        public int GetFirstInventoryTaskgroupCount()
+        {
+            return FluentElement.Instance
+                .WaitUntilInvisible(PageLoadingPanel)
+                .WaitForElement(FirstInventoryTaskgroupTable)
+                .GetTableElements()
+                .GetRowCount();
         }
 
         public bool SelectAllCheckBox()

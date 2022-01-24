@@ -5,7 +5,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Inventory
 {
     public class NoMoreTasksPopup
     {
-        private const string Popup = ".rwTable";
+        private const string Popup = ".rwTable #radAlertOkButton";
 
         private const string OkButton = "#radAlertOkButton";
 

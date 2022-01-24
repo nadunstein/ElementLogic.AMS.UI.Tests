@@ -137,7 +137,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick
         {
             Assert.IsTrue(ContainerValidationPopup.Instance.IsPopupDisplayed(),
                 "The container validation popup is not displayed in AutoStore Pick Mission page");
-            Assert.IsTrue(ContainerValidationPopup.Instance.GetPopupMessage().Contains(expectedValidationMessage),
+            Assert.AreEqual(expectedValidationMessage, ContainerValidationPopup.Instance.GetPopupMessage(),
                 "The container validation popup message is wrong in AutoStore Pick Mission page");
         }
 
@@ -148,20 +148,6 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick
                 "The container validation popup is not displayed in AutoStore Place in Container page");
             Assert.AreEqual(expectedValidationMessage, ContainerValidationPopup.Instance.GetPopupMessage(),
                 "The container validation popup message is wrong in AutoStore Place in Container page");
-        }
-
-        [Then(@"I click on OK button in container validation popup in AutoStore Pick Mission page")]
-        public void ThenIClickOnOKButtonInContainerValidationPopupInAutostorePickMissionPage()
-        {
-            Assert.IsTrue(ContainerValidationPopup.Instance.ClickOkButton(),
-                "Unable to click on OK button in container validation popup in AutoStore Pick Mission page");
-        }
-
-        [Then(@"I click on OK button in container validation popup in AutoStore Place in Container page")]
-        public void ThenIClickOnOKButtonInContainerValidationPopupInAutostorePlaceInContainerPage()
-        {
-            Assert.IsTrue(ContainerValidationPopup.Instance.ClickOkButton(),
-                "Unable to click on OK button in container validation popup in AutoStore Place in Container page");
         }
 
         [Then(@"The AutoStore Place in Container page is loaded")]
@@ -248,7 +234,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick
             Assert.IsTrue(AddNewContainerPopup.Instance.IsContainerValidationPopupDisplayed(),
                 "The container validation popup is not displayed in Add new container popup in AutoStore Pick Mission page");
             var containerScanFieldValue = AddNewContainerPopup.Instance.GetScanCodeFieldValue();
-            var expectedValidationMessage = $"Scanned container id ('{containerScanFieldValue}') is not valid";
+            var expectedValidationMessage = $"Scanned container ID '{containerScanFieldValue}' is not valid";
             Assert.AreEqual(expectedValidationMessage, AddNewContainerPopup.Instance.GetValidationPopupMessage(),
                 "The container validation popup message is wrong in Add new container popup in AutoStore Pick Mission page");
         }

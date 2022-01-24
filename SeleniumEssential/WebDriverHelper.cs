@@ -8,9 +8,7 @@ namespace SeleniumEssential
 {
     public class WebDriverHelper : WebDriverBase
     {
-        public static WebDriverHelper Instance => Singleton.Value;
-
-        public IWebDriver InitializeChromeDriver(string chromeDriverPath, bool browserHeadless)
+        public static IWebDriver InitializeChromeDriver(string chromeDriverPath, bool browserHeadless)
         {
             var options = new ChromeOptions();
 
@@ -27,24 +25,24 @@ namespace SeleniumEssential
             options.AddArguments("--no-sandbox");
             options.AddArguments("--verbose");
 
-            var projectAssemblyPath = FileHelper.Instance.GetProjectAssemblyPath();
+            var projectAssemblyPath = FileHelper.GetProjectAssemblyPath();
             var chromeDriverFullPath = Path.Combine(projectAssemblyPath, chromeDriverPath);
             Driver = new ChromeDriver(chromeDriverFullPath, options, TimeSpan.FromMinutes(5));
             Driver.Manage().Window.Maximize();
             return Driver;
         }
 
-        public void QuitDriver()
+        public static void QuitDriver()
         {
             Driver.Quit();
         }
 
-        public void QuitDriver(IWebDriver driver)
+        public static void QuitDriver(IWebDriver driver)
         {
             driver.Quit();
         }
 
-        public void KillProcess(string processName)
+        public static void KillProcess(string processName)
         {
             var chromeDriverProcesses = Process.GetProcessesByName(processName);
 
@@ -53,10 +51,5 @@ namespace SeleniumEssential
                 chromeDriverProcess.Kill();
             }
         }
-
-        private WebDriverHelper() { }
-
-        private static readonly Lazy<WebDriverHelper> Singleton =
-            new Lazy<WebDriverHelper>(() => new WebDriverHelper());
     }
 }

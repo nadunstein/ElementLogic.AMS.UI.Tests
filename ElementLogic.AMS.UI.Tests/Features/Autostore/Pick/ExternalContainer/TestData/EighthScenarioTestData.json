@@ -1,0 +1,122 @@
+{
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "Picking.AutoStore.CloseCurrentContainer",
+      "ParameterValue": "1"
+    },
+    {
+      "ParameterName": "Picking.Scanning.ValidateProduct",
+      "ParameterValue": "10"
+    },
+    {
+      "ParameterName": "Picking.Scanning.ValidateContainer",
+      "ParameterValue": "1"
+    },
+    {
+      "ParameterName": "PickingAutoPlaceOnTrolleyAfterPick",
+      "ParameterValue": "1"
+    },
+    {
+      "ParameterName": "Picking.AutoPlaceIfSingleContainer",
+      "ParameterValue": "1"
+    },
+    {
+      "ParameterName": "DynamicAutostoreBatching",
+      "ParameterValue": "1"
+    },
+    {
+      "ParameterName": "Picking.UseStorageDeviceBatching",
+      "ParameterValue": "1"
+    },
+    {
+      "ParameterName": "ContainerScanValuePicking",
+      "ParameterValue": "6"
+    },
+    {
+      "ParameterName": "Picking.ProductValidationScan.AtMinimumLocationsPerBin",
+      "ParameterValue": "0"
+    },
+    {
+      "ParameterName": "Picking.PlaceScanOnlyOnFirstTaskWhenPutToLightAndLicensePlateBox",
+      "ParameterValue": "1"
+    }
+  ],
+
+  "ProductLocationsToBeCreated": [
+    {
+      "ExtProductId": "ASPECP18",
+      "ProductName": "ASPickExternalContainerProduct18",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    },
+    {
+      "ExtProductId": "ASPECP19",
+      "ProductName": "ASPickExternalContainerProduct19",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    }
+  ],
+
+  "PickOrdersToBeCreated": [
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "CustId": "EWMS-000001",
+          "CustName": "Rose Marie",
+          "ExtProductId": "ASPECP18",
+          "ProductName": "ASPickExternalContainerProduct18",
+          "Quantity": 2,
+          "Boxtype": "Externalbox1"
+        },
+        {
+          "Action": "A",
+          "ExtOrderlineId": 2,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "CustId": "EWMS-000001",
+          "CustName": "Rose Marie",
+          "ExtProductId": "ASPECP19",
+          "ProductName": "ASPickExternalContainerProduct19",
+          "Quantity": 2,
+          "Boxtype": "Externalbox1"
+        }
+      ]
+    },
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "CustId": "EWMS-000002",
+          "CustName": "Louise Roth",
+          "ExtProductId": "ASPECP18",
+          "ProductName": "ASPickExternalContainerProduct18",
+          "Quantity": 2,
+          "Boxtype": "Externalbox1"
+        },
+        {
+          "Action": "A",
+          "ExtOrderlineId": 2,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "CustId": "EWMS-000001",
+          "CustName": "Rose Marie",
+          "ExtProductId": "ASPECP19",
+          "ProductName": "ASPickExternalContainerProduct19",
+          "Quantity": 2,
+          "Boxtype": "Externalbox1"
+        }
+      ]
+    }
+  ]
+}

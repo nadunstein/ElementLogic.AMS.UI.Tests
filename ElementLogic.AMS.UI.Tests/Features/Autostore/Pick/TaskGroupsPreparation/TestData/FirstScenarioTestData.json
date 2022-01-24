@@ -3,6 +3,10 @@
     {
       "ParameterName": "Picking.ShowMessageOnTaskGroupCompleted",
       "ParameterValue": "1"
+    },
+    {
+      "ParameterName": "AutoStore.TaskMenuUpdateIntervalInSeconds",
+      "ParameterValue": "1"
     }
   ],
 

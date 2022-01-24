@@ -11,6 +11,10 @@
     {
       "ParameterName": "Picking.UseTwoStepOnLastMission",
       "ParameterValue": "1"
+    },
+    {
+      "ParameterName": "Picking.ProductValidationScan.AtMinimumLocationsPerBin",
+      "ParameterValue": "0"
     }
   ],
 

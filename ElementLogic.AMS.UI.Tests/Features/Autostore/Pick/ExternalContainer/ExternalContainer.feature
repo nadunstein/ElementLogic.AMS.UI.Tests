@@ -5,7 +5,7 @@
 @Regression
 @Scenario:'1'
 @Autostore:Pick:ExternalContainer
-Scenario: Verify single step picking with one open external container
+Scenario: (A)Verify single step picking with one open external container
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I click on 'Normal AS' pick task type in AutoStore Main Menu
 	Then The Autostore pick mission '1' is loaded
@@ -13,11 +13,9 @@ Scenario: Verify single step picking with one open external container
 	And I include the container scan value as 'Empty' to the container scan field in Autostore Pick Mission page
 	When I click on the confirm button in Autostore Pick Mission page
 	Then The 'Scan value cannot be empty.' Validation message is displayed in Autostore Place in Container page
-	Then I click on OK button in container validation popup in AutoStore Pick Mission page
 	And I include the container scan value as 'CO-1234567' to the container scan field in Autostore Pick Mission page
 	When I click on the confirm button in Autostore Pick Mission page
-	Then The 'Scanned container id ('CO-1234567') is not valid' Validation message is displayed in Autostore Place in Container page
-	And I click on OK button in container validation popup in AutoStore Pick Mission page
+	Then The 'Scanned container ID 'CO-1234567' is not valid' Validation message is displayed in Autostore Place in Container page
 	And I include the container scan value as 'CO-1234' to the container scan field in Autostore Pick Mission page
 	When I click on the confirm button in Autostore Pick Mission page
 	Then The Autostore pick mission '2' is loaded
@@ -35,7 +33,7 @@ Scenario: Verify single step picking with one open external container
 @Regression
 @Scenario:'2'
 @Autostore:Pick:ExternalContainer
-Scenario: Verify two step picking with one open external container
+Scenario: (B)Verify two step picking with one open external container
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I click on 'Normal AS' pick task type in AutoStore Main Menu
 	Then The Autostore pick mission '1' is loaded
@@ -45,8 +43,7 @@ Scenario: Verify two step picking with one open external container
 	And I verify the scan field is displayed in AutoStore Place in Container page
 	And I include the container scan value as 'CO-1234567' to the container scan field in Autostore Place in Container page
 	When I click on the Confirm button in AutoStore Place in Container page
-	Then The 'Scanned container id ('CO-1234567') is not valid' Validation message is displayed in Autostore Place in Container page
-	And I click on OK button in container validation popup in AutoStore Place in Container page
+	Then The 'Scanned container ID 'CO-1234567' is not valid' Validation message is displayed in Autostore Place in Container page
 	And I include the container scan value as 'CO-1234' to the container scan field in Autostore Place in Container page
 	When I click on the Confirm button in AutoStore Place in Container page
 	Then The Autostore pick mission '2' is loaded
@@ -67,7 +64,7 @@ Scenario: Verify two step picking with one open external container
 @Regression
 @Scenario:'3'
 @Autostore:Pick:ExternalContainer
-Scenario: Verify the behavior of Add new container popup with External and Internal containers
+Scenario: (C)Verify the behavior of Add new container popup with External and Internal containers
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I click on 'Normal AS' pick task type in AutoStore Main Menu
 	Then The Autostore pick mission '1' is loaded
@@ -125,7 +122,7 @@ Scenario: Verify the behavior of Add new container popup with External and Inter
 @Regression
 @Scenario:'4'
 @Autostore:Pick:ExternalContainer
-Scenario: Verify pick place previous mission with External containers
+Scenario: (D)Verify pick place previous mission with External containers
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I click on 'Normal AS' pick task type in AutoStore Main Menu
 	Then The Autostore pick mission '1' is loaded
@@ -145,8 +142,7 @@ Scenario: Verify pick place previous mission with External containers
 	And I verify the scan field is displayed in AutoStore Place in Container page
 	And I include the container scan value as 'CO-1234' to the container scan field in Autostore Place in Container page
 	When I click on the Confirm button in AutoStore Place in Container page
-	Then The 'The scanned container ('CO-1234') has already been closed, cannot scan a closed container' Validation message is displayed in Autostore Place in Container page
-	And I click on OK button in container validation popup in AutoStore Place in Container page
+	Then The 'The scanned container 'CO-1234' has already been closed. Cannot scan a closed container' Validation message is displayed in Autostore Place in Container page
 	And I include the container scan value as 'CO-1235' to the container scan field in Autostore Place in Container page
 	When I click on the Confirm button in AutoStore Place in Container page
 	Then The Autostore pick mission '2' is loaded
@@ -158,7 +154,7 @@ Scenario: Verify pick place previous mission with External containers
 @Regression
 @Scenario:'5'
 @Autostore:Pick:ExternalContainer
-Scenario: Verify two step picking with two open external containers
+Scenario: (E)Verify two step picking with two open external containers
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I click on 'Normal AS' pick task type in AutoStore Main Menu
 	Then The Autostore pick mission '1' is loaded
@@ -190,7 +186,7 @@ Scenario: Verify two step picking with two open external containers
 @Regression
 @Scenario:'6'
 @Autostore:Pick:ExternalContainer
-Scenario: Verify customer batch picking with External containers
+Scenario: (F)Verify customer batch picking with External containers
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I click on 'Normal AS' pick task type in AutoStore Main Menu
 	Then The Autostore pick mission '1' is loaded
@@ -213,7 +209,7 @@ Scenario: Verify customer batch picking with External containers
 @Regression
 @Scenario:'7'
 @Autostore:Pick:ExternalContainer
-Scenario: Verify product batch picking with External containers
+Scenario: (G)Verify product batch picking with External containers
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I click on 'Normal AS' pick task type in AutoStore Main Menu
 	Then The Autostore pick mission '1' is loaded
@@ -224,12 +220,34 @@ Scenario: Verify product batch picking with External containers
 	And I verify the container scan field is displayed in Autostore Pick Mission page
 	And I include the container scan value as 'CO-1234' to the container scan field in Autostore Pick Mission page
 	When I click on the confirm button in Autostore Pick Mission page
-	Then The 'The scanned container ID ('CO-1234') is not valid' Validation message is displayed in AutoStore Pick Mission page
-	And I click on OK button in container validation popup in AutoStore Pick Mission page
+	Then The 'The scanned container ID 'CO-1234' is already in use' Validation message is displayed in AutoStore Pick Mission page
 	And I include the container scan value as 'CO-1235' to the container scan field in Autostore Pick Mission page
 	When I click on the confirm button in Autostore Pick Mission page
 	Then The Autostore pick mission '3' is loaded
 	And I verify the container scan field is displayed in Autostore Pick Mission page
 	And I include the container scan value as 'CO-1236' to the container scan field in Autostore Pick Mission page
+	When I click on the confirm button in Autostore Pick Mission page
+	Then The Autostore task Menu is loaded
+
+@Pick
+@Regression
+@Scenario:'8'
+@Autostore:Pick:ExternalContainer
+Scenario: (H)Verify the container scanning is only required once for each order when using PTL and license plate with batch picking
+	Given I login to the Autostore port '03' as 'Admin' user
+	When I click on 'Normal AS' pick task type in AutoStore Main Menu
+	Then The Autostore pick mission '1' is loaded
+	And I verify the container scan field is displayed in Autostore Pick Mission page
+	And I include the container scan value as 'CO-1234' to the container scan field in Autostore Pick Mission page
+	When I click on the confirm button in Autostore Pick Mission page
+	Then The Autostore pick mission '2' is loaded
+	And I verify the container scan field is displayed in Autostore Pick Mission page
+	And I include the container scan value as 'CO-1235' to the container scan field in Autostore Pick Mission page
+	When I click on the confirm button in Autostore Pick Mission page
+	Then The Autostore pick mission '3' is loaded
+	And I verify the container scan field is not displayed in Autostore Pick Mission page
+	When I click on the confirm button in Autostore Pick Mission page
+	Then The Autostore pick mission '4' is loaded
+	And I verify the container scan field is not displayed in Autostore Pick Mission page
 	When I click on the confirm button in Autostore Pick Mission page
 	Then The Autostore task Menu is loaded

@@ -19,7 +19,7 @@ namespace ElementLogic.AMS.UI.Tests.Integration
             var nameOfTheScenario = scenarioContext.ScenarioInfo.Title;
             var videoName = string.Concat(nameOfTheScenario, ".wmv");
             var screenRecordingMainPath = Path
-                .Combine(FileHelper.Instance.GetProjectBinPath(), PathToVideos);
+                .Combine(FileHelper.GetProjectBinPath(), PathToVideos);
             var screenRecordingFullPath = Path.Combine(screenRecordingMainPath, videoName);
             VideoRecorder.CaptureRectangle = Screen.PrimaryScreen.Bounds;
             VideoRecorder.ShowFlashingBoundary = true;

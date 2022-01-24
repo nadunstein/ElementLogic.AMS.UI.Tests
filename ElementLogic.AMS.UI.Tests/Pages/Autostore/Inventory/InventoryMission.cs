@@ -18,9 +18,19 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Inventory
 
         private const string ReasonField = "#ctl00_MonitorContentPlaceholder_InventoryView_cboReasons_Input";
 
+        private const string HandlingUnitScanCodeField =
+            "#ctl00_MonitorContentPlaceholder_InventoryView_txtHandlingUnitScanCode";
+
+        private const string HandlingUnitScanCodeConfirmedText =
+            "#ctl00_MonitorContentPlaceholder_InventoryView_lblHandlingUnitScannedValue";
+
         private const string QuantityField = "#ctl00_MonitorContentPlaceholder_InventoryView_txtBinQuantity";
 
+        private const string HandlingUnitQuantityField = "#ctl00_MonitorContentPlaceholder_InventoryView_txtHandlingUnitQuantity";
+
         private const string ConfirmButton = "#ctl00_MonitorContentPlaceholder_InventoryView_btnConfirm";
+
+        private const string LocationCompleteButton = "#ctl00_MonitorContentPlaceholder_InventoryView_btnLocationComplete";
 
         public static InventoryMission Instance => Singleton.Value;
 
@@ -76,6 +86,35 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Inventory
                 .GetAttribute("value");
         }
 
+        public bool InsertHandlingUnitScanCode(string handlingUnitScanCode)
+        {
+            return FluentElement.Instance
+                .WaitForElement(HandlingUnitScanCodeField)
+                .Insert(handlingUnitScanCode);
+        }
+
+        public string GetHandlingUnitScanCodeConfirmedText()
+        {
+            return FluentElement.Instance
+                .WaitForElement(HandlingUnitScanCodeConfirmedText)
+                .GetText();
+        }
+
+        public bool IsQuantityFieldDisplayed()
+        {
+            return FluentElement.Instance
+                .WaitForElement(QuantityField)
+                .IsVisible();
+        }
+
+        public bool IsHandlingUnitQuantityFieldDisplayed()
+        {
+            return FluentElement.Instance
+                .WaitUntilInvisible(LoadingPanel)
+                .WaitForElement(HandlingUnitQuantityField)
+                .IsVisible();
+        }
+
         public bool InsertQuantity(int quantity)
         {
             var quantityString = quantity.ToString();
@@ -84,10 +123,32 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Inventory
                 .Insert(quantityString);
         }
 
+        public bool InsertHandlingUnitQuantity(int quantity)
+        {
+            var quantityString = quantity.ToString();
+            return FluentElement.Instance
+                .WaitForElement(HandlingUnitQuantityField)
+                .Insert(quantityString);
+        }
+
         public bool ClickConfirmButton()
         {
             return FluentElement.Instance
                 .WaitForElement(ConfirmButton)
+                .Click();
+        }
+
+        public bool IsLocationCompleteButtonDisable()
+        {
+            return !FluentElement.Instance
+                .WaitForElement(LocationCompleteButton)
+                .IsEnable();
+        }
+
+        public bool ClickLocationCompleteButton()
+        {
+            return FluentElement.Instance
+                .WaitForElement(LocationCompleteButton)
                 .Click();
         }
 

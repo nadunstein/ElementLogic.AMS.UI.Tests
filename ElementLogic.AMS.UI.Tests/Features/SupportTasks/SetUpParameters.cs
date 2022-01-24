@@ -41,7 +41,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
             return ParametersToBeReset;
         }
 
-        public void FlushParametersToBeReset()
+        public void FlushParametersToBeResetList()
         {
             ParametersToBeReset.Clear();
         }

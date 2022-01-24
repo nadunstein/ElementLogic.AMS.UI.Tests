@@ -1,0 +1,28 @@
+{
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "Putaway.AutoStore.AllowMultipleLinesPerLocation",
+      "ParameterValue": "1"
+    }
+  ],
+
+  "ProductLocationsToBeCreated": [
+    {
+      "ExtProductId": "ASINHUP03",
+      "ProductName": "AutostoreInventoryHandlingUnitProduct03",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "HandlingUnitScanCode": "HU-T300001",
+      "IsHandlingUnitProduct": true,
+      "UseSameLocation": true,
+      "Quantity": 20
+    }
+  ],
+
+  "InventoryCountsToBeCreated": [
+    {
+      "ExtProductId": "ASINHUP03",
+      "HandlingUnitScanCode": "HU-T300001",
+      "HandlingUnitQuantity": 20
+    }
+  ] 
+}

@@ -19,6 +19,10 @@
     {
       "ParameterName": "ContainerScanValuePicking",
       "ParameterValue": "6"
+    },
+    {
+      "ParameterName": "Picking.ProductValidationScan.AtMinimumLocationsPerBin",
+      "ParameterValue": "0"
     }
   ],
 

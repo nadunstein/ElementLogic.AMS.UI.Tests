@@ -1,34 +1,31 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
 
 namespace SeleniumEssential
 {
     public class FileHelper
     {
-        public static FileHelper Instance => Singleton.Value;
-
-        public string GetProjectPath()
+        public static string GetProjectPath()
         {
             var projectPath = Directory
-                .GetParent(Directory.GetParent(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location))
-                    .ToString()).ToString();
+                .GetParent(Directory.GetParent(Directory
+                    .GetParent(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location))
+                    .ToString()).ToString()).ToString();
 
             return projectPath;
         }
 
-        public string GetProjectBinPath()
+        public static string GetProjectBinPath()
         {
-            return Directory.GetParent(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location))
-                .ToString();
+            return Directory.GetParent(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)).ToString();
         }
 
-        public string GetProjectAssemblyPath()
+        public static string GetProjectAssemblyPath()
         {
             return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         }
 
-        public void DeleteFiles(string pathToDirectory)
+        public static void DeleteFiles(string pathToDirectory)
         {
             var directory = new DirectoryInfo(pathToDirectory);
 
@@ -42,10 +39,5 @@ namespace SeleniumEssential
                 file.Delete();
             }
         }
-
-        private FileHelper() { }
-
-        private static readonly Lazy<FileHelper> Singleton =
-            new Lazy<FileHelper>(() => new FileHelper());
     }
 }

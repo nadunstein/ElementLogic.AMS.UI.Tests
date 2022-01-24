@@ -15,7 +15,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
             var browserMode =
                 bool.Parse(JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json",
                     "BrowserSettings:ChromeBrowser:HeadlessMode"));
-            WebDriverHelper.Instance.InitializeChromeDriver("Drivers/ChromeDriver", browserMode);
+            WebDriverHelper.InitializeChromeDriver("Drivers/ChromeDriver", browserMode);
             AutostoreBinSynchronizationSteps();
         }
 
@@ -27,7 +27,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.SupportTasks
             LiveFeedStatus.Instance.SelectActionDropDownOption("Synchronize bin contents");
             SynchronizeBinContentsPopup.Instance.IsPopupDisplayed();
             SynchronizeBinContentsPopup.Instance.ClickSynchronizeButton();
-            WebDriverHelper.Instance.QuitDriver();
+            WebDriverHelper.QuitDriver();
         }
 
         private SynchronizeAutostoreBins() { }

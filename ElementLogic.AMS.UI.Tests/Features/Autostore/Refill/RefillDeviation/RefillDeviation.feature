@@ -22,7 +22,7 @@ Scenario: Verify A New Mission is Created upon Refill Deviation On Last Mission 
 	When I Click on Refill tile in Autostore main menu
 	Then I Navigate to refill taskgroup selection page in Autostore
 	When I click on Select button from refill taskgroup selection page in Autostore
-	Then The Autostore Refill mission '1' is loaded    
+	Then The Autostore Refill mission '1' is loaded
 	And I check the refill product Id is correct in Autostore Refill mission page
 	And I check the Refill Product Quantity is '10' in Autostore Refill mission page
     And I check the proposed refill bin is NOT an empty bin in Autostore Refill mission page

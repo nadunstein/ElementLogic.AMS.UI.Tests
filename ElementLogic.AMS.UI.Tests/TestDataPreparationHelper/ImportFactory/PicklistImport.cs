@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using ElementLogic.Integration.Import.Contracts.Commands;
-using ElementLogic.Integration.Import.Contracts.Types;
+using ElementLogic.AMS.UI.Tests.Types.Dtos;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -11,7 +10,7 @@ namespace ElementLogic.AMS.UI.Tests.TestDataPreparationHelper.ImportFactory
     {
         public static PicklistImport Instance => Singleton.Value;
 
-        public void ImportPicklist(IList<PicklistLine> pickLines, ScenarioContext scenarioContext)
+        public async void ImportPicklist(IList<PicklistLine> pickLines, ScenarioContext scenarioContext)
         {
             var picklistId = Guid.NewGuid().ToString().Substring(0, 8);
             
@@ -33,7 +32,7 @@ namespace ElementLogic.AMS.UI.Tests.TestDataPreparationHelper.ImportFactory
                 Lines = pickLines
             };
 
-            var plData = ApiDataFactory.ApiDataFactory.Instance.CreatePicklistAsync(pickData).Result;
+            var plData = await ApiDataFactory.ApiDataFactory.Instance.CreatePicklistAsync(pickData);
             if (!plData.IsSuccessStatusCode)
             {
                 Assert.Fail($"The pick order {picklistId} is not created");

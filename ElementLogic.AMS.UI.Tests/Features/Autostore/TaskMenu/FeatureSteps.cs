@@ -38,7 +38,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
         public void ThenIVerifyThePreparedTaskgroupCountIsForPickTaskTypeInAutoStoreMainMenu(int taskgroupCount, string pickTaskType)
         {
             var isPickTaskgroupPreparedCountCorrect =
-                RetryPreparePickWhileSuccess(TryPreparePickActivities, taskgroupCount, pickTaskType, 10);
+                RetryPreparePickWhileSuccess(TryPreparePickActivities, taskgroupCount, pickTaskType, 20);
             Assert.IsTrue(isPickTaskgroupPreparedCountCorrect,
                 $"The prepared pick taskgroup count is wrong for {pickTaskType} in AutoStore task menu");
         }
@@ -114,13 +114,6 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
                 {
                     return true;
                 }
-
-                PickNoMoreTasksPopup.Instance.ClickOkButton();
-                AutostoreTaskMenu.Instance.IsPageLoaded();
-                AutostoreTaskMenu.Instance.ClickPickTaskType(pickTaskType);
-                PickNoMoreTasksPopup.Instance.IsPopupLoaded();
-                PickMission.Instance.ClickExitButton();
-                return false;
             }
 
             AutostoreTaskMenu.Instance.ClickPickTaskType(pickTaskType);
@@ -136,7 +129,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.TaskMenu
             {
                 var result = retryAction(taskgroupCount, pickTaskType);
                 if (result)
-                    return true;
+                    return true; 
             }
 
             return false;

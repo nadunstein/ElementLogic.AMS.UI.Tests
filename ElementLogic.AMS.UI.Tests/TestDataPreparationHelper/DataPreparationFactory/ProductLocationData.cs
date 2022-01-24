@@ -16,7 +16,8 @@ namespace ElementLogic.AMS.UI.Tests.TestDataPreparationHelper.DataPreparationFac
             {
                 GoodsReceivalImport.Instance.ImportGoodsReceival(productLocationToBeCreated);
                 CreateAutostoreProductLocations.Instance.DoAutostorePutaway(productLocationToBeCreated.LocationType,
-                    productLocationToBeCreated.ExtProductId);
+                    productLocationToBeCreated.ExtProductId, productLocationToBeCreated.IsHandlingUnitProduct,
+                    productLocationToBeCreated.UseSameLocation);
             }
         }
 

@@ -1,0 +1,70 @@
+{
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "Inventory.MaxLocationsInTaskgroup",
+      "ParameterValue": "2"
+    }
+  ],
+
+  "ProductLocationsToBeCreated": [
+    {
+      "ExtProductId": "ASINHUP09",
+      "ProductName": "AutostoreInventoryHandlingUnitProduct09",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "HandlingUnitScanCode": "HU-T900001",
+      "IsHandlingUnitProduct": true,
+      "UseSameLocation": false,
+      "Quantity": 20
+    },
+    {
+      "ExtProductId": "ASINHUP09",
+      "ProductName": "AutostoreInventoryHandlingUnitProduct09",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "HandlingUnitScanCode": "HU-T900002",
+      "IsHandlingUnitProduct": true,
+      "UseSameLocation": false,
+      "Quantity": 20
+    },
+    {
+      "ExtProductId": "ASINHUP09",
+      "ProductName": "AutostoreInventoryHandlingUnitProduct09",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "HandlingUnitScanCode": "HU-T900003",
+      "IsHandlingUnitProduct": true,
+      "UseSameLocation": false,
+      "Quantity": 20
+    },
+    {
+      "ExtProductId": "ASINHUP09",
+      "ProductName": "AutostoreInventoryHandlingUnitProduct09",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "HandlingUnitScanCode": "HU-T900004",
+      "IsHandlingUnitProduct": true,
+      "UseSameLocation": false,
+      "Quantity": 20
+    }
+  ],
+
+  "InventoryCountsToBeCreated": [
+    {
+      "ExtProductId": "ASINHUP09",
+      "HandlingUnitScanCode": "HU-T900001",
+      "HandlingUnitQuantity": 20
+    },
+    {
+      "ExtProductId": "ASINHUP09",
+      "HandlingUnitScanCode": "HU-T900002",
+      "HandlingUnitQuantity": 20
+    },
+    {
+      "ExtProductId": "ASINHUP09",
+      "HandlingUnitScanCode": "HU-T900003",
+      "HandlingUnitQuantity": 20
+    },
+    {
+      "ExtProductId": "ASINHUP09",
+      "HandlingUnitScanCode": "HU-T900004",
+      "HandlingUnitQuantity": 20
+    }
+  ] 
+}

@@ -35,6 +35,9 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.UserActivity
         private const string SearchButton =
             "#ctl00_ContentPlaceHolderContent_UserActivityView_RadPanelBar1_i0_btnSearch";
 
+        private const string FirstRowExpander =
+            "#ctl00_ContentPlaceHolderContent_UserActivityView_userGrid_ctl00_ctl04_GECBtnExpandColumn";
+
         private const string FirstUserActivityResultBar =
             "#ctl00_ContentPlaceHolderContent_UserActivityView_userGrid_ctl00__0";
 
@@ -45,11 +48,11 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.UserActivity
             "#ctl00_ContentPlaceHolderContent_UserActivityView_userGrid_ctl00_ctl04_ctl01 .rmSlide";
 
         private const string FirstUserActivityMissionGrid =
-            "#ctl00_ContentPlaceHolderContent_UserActivityView_userGrid_ctl00_ctl06_missionGrid tbody";
+            "#ctl00_ContentPlaceHolderContent_UserActivityView_userGrid_ctl00_ctl06_missionGrid_ctl00 tbody";
 
         private const string MissionActionMenuSlide = ".rmSlide";
 
-        public static UserActivity Instance => Singleton.Value;
+        public static UserActivity Instance => Singleton.Value; 
 
         public void Navigate()
         {
@@ -148,15 +151,28 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.UserActivity
                 .SelectTableDropDown(MissionActionMenuSlide, "li > a > span", option);
         }
 
+        public bool ExpandActivityMissions()
+        {
+            FluentElement.Instance
+                .WaitUntilInvisible(PageLoadingPanel)
+                .WaitUntilInvisible(ResultGridLoadingPanel);
+            if (!FluentElement.Instance.IsVisible(FirstUserActivityMissionGrid))
+            {
+                return FluentElement.Instance
+                    .WaitForElement(FirstRowExpander)
+                    .Click();
+            }
+
+            return true;
+        }
+
         public IList<UserActivityMissionData> GetActivityMissionData()
         {
             FluentElement.Instance
                 .WaitUntilInvisible(PageLoadingPanel)
                 .WaitUntilInvisible(ResultGridLoadingPanel);
-
             var missions = FluentElement.Instance
                 .Finds("tr", FirstUserActivityMissionGrid);
-
             return missions.Select(mission => FluentElement.Instance
                 .Finds("td", mission)).Select(missionDetails =>
                 new UserActivityMissionData

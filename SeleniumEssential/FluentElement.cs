@@ -6,10 +6,12 @@ using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Extensions;
 using OpenQA.Selenium.Support.UI;
+using SeleniumEssential.Interfaces;
 
 namespace SeleniumEssential
 {
-    public class FluentElement : WebDriverBase
+    public class FluentElement : WebDriverBase, IWaitForElement, IFindElements, IGetTableElements, IFindRowElements, 
+        ISearchElementByIndex, IGetRowElement, IFindElement, IScrollToTheElement, ISearchElementByText, IText
     {
         private ReadOnlyCollection<IWebElement> _commonElementList;
         private string _commonElement;
@@ -67,7 +69,7 @@ namespace SeleniumEssential
             return this;
         }
 
-        public FluentElement WaitForElement(string element)
+        public IWaitForElement WaitForElement(string element)
         {
             WaitForElement(element, 20);
             _commonElement = element;
@@ -185,7 +187,7 @@ namespace SeleniumEssential
             return textValue;
         }
 
-        public FluentElement Text()
+        public IText Text()
         {
             _commonElementText = GetTextValue(_commonElement);
             return this;
@@ -207,6 +209,24 @@ namespace SeleniumEssential
             }
 
             return false;
+        }
+
+        public bool IsAttributePresent(string attribute)
+        {
+            var isAttributePresent = false;
+            try
+            {
+                var iWebElement = GetIWebElement(_commonElement);
+                var value = iWebElement.GetAttribute(attribute);
+                if(value != string.Empty)
+                    isAttributePresent = true;
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
+
+            return isAttributePresent;
         }
 
         public string GetAttribute(string attribute)
@@ -305,11 +325,18 @@ namespace SeleniumEssential
                 try
                 {
                     var options = GetList(searchDropdownList, dropdownOptionsIdentifier);
-                    if (options.Count.Equals(1) && options[0].Text.Contains(searchOption))
+                    foreach (var option in options)
                     {
-                        options[0].Click();
+                        if (!option.Text.Contains(searchOption)) continue;
+                        option.Click();
                         return true;
+
                     }
+                    //if (options.Count.Equals(1) && options[0].Text.Contains(searchOption))
+                    //{
+                    //    options[0].Click();
+                    //    return true;
+                    //}
                 }
                 catch (Exception)
                 {
@@ -383,7 +410,7 @@ namespace SeleniumEssential
             return this;
         }
 
-        public FluentElement ScrollToTheElement()
+        public IScrollToTheElement ScrollToTheElement()
         {
             try
             {
@@ -411,7 +438,7 @@ namespace SeleniumEssential
             return this;
         }
 
-        public FluentElement FindElements(string elementListFinder)
+        public IFindElements FindElements(string elementListFinder)
         {
             ReadOnlyCollection<IWebElement> elementList = null;
             var attempts = 0;
@@ -437,7 +464,7 @@ namespace SeleniumEssential
             return _commonElementList.Count;
         }
 
-        public FluentElement SearchElementByText(string elementText)
+        public ISearchElementByText SearchElementByText(string elementText)
         {
             foreach (var element in _commonElementList)
             {
@@ -453,13 +480,13 @@ namespace SeleniumEssential
             return this;
         }
 
-        public FluentElement SearchElementByIndex(int elementIndex)
+        public ISearchElementByIndex SearchElementByIndex(int elementIndex)
         {
             _commonIWebElement = _commonElementList[elementIndex - 1];
             return this;
         }
 
-        public FluentElement FindElement(string element)
+        public IFindElement FindElement(string element)
         {
             var elementBy = By.CssSelector(element);
             try
@@ -474,7 +501,7 @@ namespace SeleniumEssential
             return this;
         }
 
-        public FluentElement GetTableElements()
+        public IGetTableElements GetTableElements()
         {
             var elementTable = new DataTable();
             elementTable.Clear();
@@ -515,12 +542,7 @@ namespace SeleniumEssential
             return _commonDataTable.Rows.Count;
         }
 
-        public bool IsExists()
-        {
-            return _commonDataRowList != null;
-        }
-
-        public FluentElement FindRowElements(int searchColumnIndex, string expectedSearchValue)
+        public IFindRowElements FindRowElements(int searchColumnIndex, string expectedSearchValue)
         {
             var attempts = 0;
             while (attempts < 20)
@@ -552,7 +574,12 @@ namespace SeleniumEssential
             return this;
         }
 
-        public FluentElement GetRowElement(int searchColumnIndex)
+        public bool IsExists()
+        {
+            return _commonDataRowList != null;
+        }
+
+        public IGetRowElement GetRowElement(int searchColumnIndex)
         {
             _commonIWebElement = (IWebElement)_commonDataRowList.ItemArray[searchColumnIndex - 1];
             return this;

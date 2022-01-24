@@ -1,0 +1,30 @@
+{
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "Inspection_ShowExpectedQuantity",
+      "ParameterValue": "1"
+    }
+  ],
+
+  "ProductLocationsToBeCreated": [
+    {
+      "ExtProductId": "ASIP03",
+      "ProductName": "AutostoreInspectionProduct03",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    },
+    {
+      "ExtProductId": "ASIP03",
+      "ProductName": "AutostoreInspectionProduct03",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "Quantity": 20
+    },
+    {
+      "ExtProductId": "ASIP04",
+      "ProductName": "AutostoreInspectionProduct04",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "EanId": "ASIP03_EAN",
+      "Quantity": 20
+    }
+  ]
+}

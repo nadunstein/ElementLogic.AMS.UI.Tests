@@ -37,7 +37,7 @@ namespace ElementLogic.AMS.UI.Tests.ExtentReports
         [BeforeTestRun(Order = 5)]
         public static void InitializeReport()
         {
-            var extentReportPath = Directory.GetParent(FileHelper.Instance.GetProjectPath()).ToString();
+            var extentReportPath = FileHelper.GetProjectPath();
             var reportHtmlName = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json",
                 "ExtentReportSettings:reportHtmlName");
             var htmlReporter =
@@ -53,7 +53,7 @@ namespace ElementLogic.AMS.UI.Tests.ExtentReports
             _extent.AttachReporter(htmlReporter);
         }
 
-        [BeforeScenario(Order = 2)]
+        [BeforeScenario(Order = 1)]
         public void BeforeScenario()
         {
             if (_featureName is null)

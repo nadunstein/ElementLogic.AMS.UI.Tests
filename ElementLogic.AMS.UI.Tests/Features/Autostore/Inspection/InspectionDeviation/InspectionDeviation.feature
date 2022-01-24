@@ -12,7 +12,7 @@ Background:
 Scenario: Perform an Inspection with Deviation
 	Given I include the location of 'ASIDP01' product to the location field in Autostore Inspection-Create Task page
 	When I click on confirm button in Autostore Inspection-Create Task page
-	Then The Autostore Inspection mission page is loaded
+	Then The Autostore Inspection mission '1' is loaded
 	And I include a Quantity to the Location Quantity field which is less than the Original Quantity in Autostore Inspection mission page
 	When I click on Confirm button in Autostore Inspection mission page
 	Then The Change Quantity dialog is displayed in Autostore Inspection mission page
@@ -25,7 +25,7 @@ Scenario: Perform an Inspection with Deviation
 Scenario: Perform an Inspection with Deviation and Reason Code
 	Given I include the location of 'ASIDP02' product to the location field in Autostore Inspection-Create Task page
 	When I click on confirm button in Autostore Inspection-Create Task page
-	Then The Autostore Inspection mission page is loaded
+	Then The Autostore Inspection mission '1' is loaded
 	And I include a Quantity to the Location Quantity field which is less than the Original Quantity in Autostore Inspection mission page
 	Then I Select the reason code as 'breakage' in Autostore Inspection page
 	When I click on Confirm button in Autostore Inspection mission page

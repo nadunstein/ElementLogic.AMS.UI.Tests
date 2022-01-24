@@ -4,7 +4,6 @@ using System.Text.RegularExpressions;
 using ElementLogic.AMS.UI.Tests.Integration;
 using ElementLogic.AMS.UI.Tests.TestDataPreparationHelper.DataPreparationFactory;
 using ElementLogic.AMS.UI.Tests.Types.Dtos;
-using ElementLogic.Integration.Import.Contracts.Types;
 using Humanizer;
 using TechTalk.SpecFlow;
 
@@ -75,6 +74,15 @@ namespace ElementLogic.AMS.UI.Tests.TestDataPreparationHelper.TestDataFactory
                         picklistLineJsonLists.Select(picklistLineJsonList => picklistLineJsonList.ToObject<PicklistLine>()).ToList();
                     PicklistData.Instance.PreparePicklistTestData(pickOrderLinesToBeCreated, scenarioContext);
                 }
+            }
+
+            if (jsonObject.ContainsKey("InventoryCountsToBeCreated"))
+            {
+                var inventoryCountsJsonLists = jsonObject["InventoryCountsToBeCreated"].Children().ToList();
+                var inventoryCountsToBeCreated =
+                    inventoryCountsJsonLists.Select(jsonList => jsonList.ToObject<InventoryLine>()).ToList();
+
+                InventoryCountData.Instance.PrepareInventoryCountData(inventoryCountsToBeCreated);
             }
         }
 

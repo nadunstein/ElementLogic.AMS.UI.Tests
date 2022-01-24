@@ -100,6 +100,8 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Activity.UserActivity
         [When(@"I click on '(.*)' option by selecting the gear icon of the mission for the user activity in status '(.*)' in User Activity page")]
         public void WhenIClickOnOptionBySelectingTheGearIconOfTheMissionForTheUserActivityInStatusInUserActivityPage(string optionToBeSelected, string missionStatus)
         {
+            Assert.IsTrue(UserActivityPage.Instance.ExpandActivityMissions(),
+                "Unable to click on mission expander for the user activity in User Activity page");
             _missionsDataBeforeFinish = UserActivityPage.Instance.GetActivityMissionData();
             _finishedMissionId = UserActivityPage.Instance.GetMissionIdToBeFinished(missionStatus);
 
@@ -136,6 +138,8 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Activity.UserActivity
                         : missionDataBeforeFinish.Status
                 }).ToList();
 
+            Assert.IsTrue(UserActivityPage.Instance.ExpandActivityMissions(),
+                "Unable to click on mission expander for the user activity in User Activity page");
             var actualMissionsData = UserActivityPage.Instance.GetActivityMissionData();
 
             foreach (var expectedMissionData in expectedMissionsData)

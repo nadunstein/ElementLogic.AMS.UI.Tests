@@ -30,10 +30,10 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Pick.PicklistSear
             "#ctl00_ContentPlaceHolderContent_PickListSearchView1_orderGrid_ctl00_ctl02_ctl01_headerChkbox";
 
         private const string ActionMenuGearIcon =
-            "#ctl00_ContentPlaceHolderContent_PickListSearchView1_orderGrid_ctl00_ctl04_ctl01";
+            "#ctl00_ContentPlaceHolderContent_PickListSearchView1_orderGrid_ctl00_ctl04_ctl02";
 
         private const string ActionMenuSlide =
-            "#ctl00_ContentPlaceHolderContent_PickListSearchView1_orderGrid_ctl00_ctl04_ctl01 > ul > li > div";
+            "#ctl00_ContentPlaceHolderContent_PickListSearchView1_orderGrid_ctl00_ctl04_ctl02 > ul > li > div";
 
         private const string FirstPicklistResultBar =
             "#ctl00_ContentPlaceHolderContent_PickListSearchView1_orderGrid_ctl00__0";
@@ -48,8 +48,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Pick.PicklistSear
             const string picklistSearchPageUrl = "/pages/activity/pick/picklistsearch.aspx";
             var baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
             var pageUrl = baseUrl + picklistSearchPageUrl;
-            FluentElement.Instance
-                .Navigate(pageUrl);
+            FluentElements.Instance.Navigate(pageUrl);
         }
 
         public void RefreshWebPage()

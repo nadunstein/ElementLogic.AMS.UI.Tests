@@ -9,10 +9,12 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Inspection
 
         private const string LoadingPanel = "#ctl00_pnlDataHider .ModalLoadingPanel";
 
+        private const string TaskQueueLabel = "#ctl00_head_HeaderView_LblTaskQueue";
+
         private const string ProductNumberLabel =
             "#ctl00_MonitorContentPlaceholder_InspectionView_flbProdNo_InputTemplateItem_txtProdNo";
 
-        private const string InspectionQuantityField = "#ctl00_MonitorContentPlaceholder_InspectionView_txtBinQuantity";
+        private const string QuantityField = "#ctl00_MonitorContentPlaceholder_InspectionView_txtBinQuantity";
 
         private const string ReasonCodeDropdown = "#ctl00_MonitorContentPlaceholder_InspectionView_cboReasons_Input";
 
@@ -26,6 +28,8 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Inspection
 
         private const string ConfirmButton = "#ctl00_MonitorContentPlaceholder_InspectionView_btnConfirm";
 
+        private const string ExitButton = "#ctl00_MonitorContentPlaceholder_InspectionView_btnExit";
+
         public static InspectionMission Instance => Singleton.Value;
 
         public bool IsPageLoaded()
@@ -38,6 +42,14 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Inspection
                 .Equals("Inspection");
         }
 
+        public string GetTaskQueueValue()
+        {
+            return FluentElement.Instance
+                .WaitUntilInvisible(LoadingPanel)
+                .WaitForElement(TaskQueueLabel)
+                .GetText();
+        }
+
         public string GetProductNumberLabelValue()
         {
             return FluentElement.Instance
@@ -45,11 +57,25 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Inspection
                 .GetAttribute("Value");
         }
 
+        public string GetQuantityFieldValue()
+        {
+            return FluentElement.Instance
+                .WaitForElement(QuantityField)
+                .GetAttribute("Value");
+        }
+
+        public bool IsQuantityDisplayed()
+        {
+            return FluentElement.Instance
+                .WaitForElement(QuantityField)
+                .IsAttributePresent("value");
+        }
+
         public bool IncludeLocationQuantityValue(int quantity)
         {
             var quantityString = quantity.ToString();
             return FluentElement.Instance
-                .WaitForElement(InspectionQuantityField)
+                .WaitForElement(QuantityField)
                 .Insert(quantityString);
         }
 
@@ -83,6 +109,15 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Inspection
                 .WaitForPageLoad()
                 .WaitUntilInvisible(LoadingPanel)
                 .WaitForElement(ConfirmButton)
+                .Click();
+        }
+
+        public bool ClickExitButton()
+        {
+            return FluentElement.Instance
+                .WaitForPageLoad()
+                .WaitUntilInvisible(LoadingPanel)
+                .WaitForElement(ExitButton)
                 .Click();
         }
 

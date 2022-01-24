@@ -1,8 +1,7 @@
-﻿using ElementLogic.Integration.Import.Contracts.Commands;
-using ElementLogic.Integration.Import.Contracts.Types;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using ElementLogic.AMS.UI.Tests.Types.Dtos;
 
 namespace ElementLogic.AMS.UI.Tests.TestDataPreparationHelper.ImportFactory
 {
@@ -10,7 +9,7 @@ namespace ElementLogic.AMS.UI.Tests.TestDataPreparationHelper.ImportFactory
     {
         public static ProductImport Instance => Singleton.Value;
 
-        public void ImportProduct(IList<ProductLine> productLines)
+        public async void ImportProduct(IList<ProductLine> productLines)
         {
             var productData = new ImportProductInformation
             {
@@ -18,7 +17,7 @@ namespace ElementLogic.AMS.UI.Tests.TestDataPreparationHelper.ImportFactory
                 Lines = productLines
             };
 
-            var grData = ApiDataFactory.ApiDataFactory.Instance.CreateProductAsync(productData).Result;
+            var grData = await ApiDataFactory.ApiDataFactory.Instance.CreateProductAsync(productData);
             if (grData.IsSuccessStatusCode)
             {
                 return;

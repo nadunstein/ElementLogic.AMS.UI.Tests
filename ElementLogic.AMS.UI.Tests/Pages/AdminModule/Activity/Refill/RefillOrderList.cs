@@ -43,8 +43,9 @@ namespace ElementLogic.AMS.UI.Tests.Pages.AdminModule.Activity.Refill
             const string refillOrderListPageUrl = "/pages/activity/refill/refillorders.aspx";
             var baseUrl = JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json", "Application:Url");
             var pageUrl = baseUrl + refillOrderListPageUrl;
-            FluentElement.Instance
-                .Navigate(pageUrl);
+            //FluentElement.Instance
+            //    .Navigate(pageUrl);
+            FluentElements.Instance.Navigate(pageUrl);
         }
 
         public bool IsPageLoaded()

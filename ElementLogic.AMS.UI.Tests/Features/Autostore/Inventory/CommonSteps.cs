@@ -24,6 +24,13 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Inventory
                 ProductLocation.Instance.GetLocationQuantity(locationBinId, extProductId);
         }
 
+        [Then(@"The quantity field is displayed in Autostore inventory mission page")]
+        public void ThenTheQuantityFieldIsDisplayedInAutostoreInventoryMissionPage()
+        {
+            Assert.IsTrue(InventoryMission.Instance.IsQuantityFieldDisplayed(),
+                "The quantity field is NOT displayed in Autostore inventory mission page");
+        }
+
         [Then(@"I include the location quantity as '(.*)' to the Location quantity field in Autostore inventory mission page")]
         public void ThenIIncludeTheLocationQuantityAsToTheLocationQuantityFieldInAutostoreInventoryMissionPage(int quantity)
         {

@@ -22,7 +22,7 @@ namespace ElementLogic.AMS.UI.Tests.ExcelDataAccess.UserCredentials
 
         private static IEnumerable<UserData> AccessUserDetails()
         {
-            var projectPath = FileHelper.Instance.GetProjectAssemblyPath();
+            var projectPath = FileHelper.GetProjectAssemblyPath();
             var fullExcelFilePath = Path.Combine(projectPath, $"ExcelDataAccess/UserCredentials/{FileName}");
 
             var dataTable = AccessManager.Instance.ImportExcelData(fullExcelFilePath);

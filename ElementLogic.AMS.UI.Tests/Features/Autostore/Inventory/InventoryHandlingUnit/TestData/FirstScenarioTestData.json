@@ -1,0 +1,42 @@
+{
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "Putaway.AutoStore.AllowMultipleLinesPerLocation",
+      "ParameterValue": "1"
+    }
+  ],
+
+  "ProductLocationsToBeCreated": [
+    {
+      "ExtProductId": "ASINHUP01",
+      "ProductName": "AutostoreInventoryHandlingUnitProduct01",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "HandlingUnitScanCode": "HU-T100001",
+      "IsHandlingUnitProduct": true,
+      "UseSameLocation": true,
+      "Quantity": 20
+    },
+    {
+      "ExtProductId": "ASINHUP01",
+      "ProductName": "AutostoreInventoryHandlingUnitProduct01",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "HandlingUnitScanCode": "HU-T100002",
+      "IsHandlingUnitProduct": true,
+      "UseSameLocation": true,
+      "Quantity": 20
+    }
+  ],
+
+  "InventoryCountsToBeCreated": [
+    {
+      "ExtProductId": "ASINHUP01",
+      "HandlingUnitScanCode": "HU-T100001",
+      "HandlingUnitQuantity": 20
+    },
+    {
+      "ExtProductId": "ASINHUP01",
+      "HandlingUnitScanCode": "HU-T100002",
+      "HandlingUnitQuantity": 20
+    }
+  ] 
+}

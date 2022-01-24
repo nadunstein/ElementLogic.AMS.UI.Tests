@@ -1,4 +1,11 @@
 {
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "Inspection_ShowExpectedQuantity",
+      "ParameterValue": "1"
+    }
+  ],
+
   "ProductLocationsToBeCreated": [
     {
       "ExtProductId": "ASIP01",

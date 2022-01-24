@@ -1,0 +1,42 @@
+{
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "Picking.ConfirmRemainingQuantityShowExpectedValue",
+      "ParameterValue": "0"
+    }
+  ],
+
+  "ProductsToBeCreated": [
+    {
+      "ExtProductId": "ASPCRQP02",
+      "ProductName": "ASPickConfirmRestQuantityProduct02",
+      "QuantityVerificationThreshold": 5
+    }
+  ],
+
+  "ProductLocationsToBeCreated": [
+    {
+      "ExtProductId": "ASPCRQP02",
+      "LocationType": "A 1/1 AutoStore Bin",
+      "ProductName": "ASPickConfirmRestQuantityProduct02",
+      "Quantity": 20
+    }
+  ],
+
+  "PickOrdersToBeCreated": [
+    {
+      "PickOrderToBeCreated": [
+        {
+          "Action": "A",
+          "ExtOrderlineId": 1,
+          "SpeditorId": 73,
+          "OrderTypeId": 25,
+          "OrderTypeText": "Normal AS",
+          "ExtProductId": "ASPCRQP02",
+          "ProductName": "ASPickConfirmRestQuantityProduct02",
+          "Quantity": 15
+        }
+      ]
+    }
+  ]
+}

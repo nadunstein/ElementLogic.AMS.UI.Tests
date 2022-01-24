@@ -1,0 +1,17 @@
+{
+  "ParametersToBeChanged": [
+    {
+      "ParameterName": "Inspection_ShowExpectedQuantity",
+      "ParameterValue": "1"
+    }
+  ],
+
+  "ProductLocationsToBeCreated": [
+    {
+      "ExtProductId": "ASIP02",
+      "ProductName": "AutostoreInspectionProduct02",
+      "LocationType": "C 1/4 AutoStore Bin",
+      "Quantity": 20
+    }
+  ]
+}

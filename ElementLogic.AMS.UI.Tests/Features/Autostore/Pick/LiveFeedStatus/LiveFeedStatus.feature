@@ -47,4 +47,4 @@ Scenario: Verify the live feed for port and bin when starting a pick taskgroup
 	| bin_id       | Key[bin_id]  |
 	| task_id      | Key[task_id] |
 	| taskcomplete | true         |
-	| content      | 1010         |
+	| content      | 11	          |

@@ -12,7 +12,7 @@ Scenario: Verify max location quantity when BB_MaxQty is used for existing produ
 	And I Include Product Id as 'ASPCQPP01' to the Scan field in Autostore Putaway Selection page
 	When I click Enter button in Autostore Putaway Selection page
 	Then The putaway quantity confirm popup is displayed
-	Then I verify max location quantity value is '123' in Autostore putaway quantity confirm popup
+	Then I verify max location quantity value is '139' in Autostore putaway quantity confirm popup
 
 @Regression
 @Scenario:'2'
@@ -25,4 +25,4 @@ Scenario: Verify max location quantity when BB_MaxQty is used for new product fo
 	And I Include Product Id as 'ASPCQPP02' to the Scan field in Autostore Putaway Selection page
 	When I click Enter button in Autostore Putaway Selection page
 	Then The putaway quantity confirm popup is displayed
-	Then I verify max location quantity value is '123' in Autostore putaway quantity confirm popup
+	Then I verify max location quantity value is '139' in Autostore putaway quantity confirm popup

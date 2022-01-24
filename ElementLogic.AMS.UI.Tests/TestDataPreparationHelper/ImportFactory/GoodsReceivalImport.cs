@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using ElementLogic.AMS.UI.Tests.Types.Dtos;
-using ElementLogic.Integration.Import.Contracts.Commands;
-using ElementLogic.Integration.Import.Contracts.Types;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -14,33 +12,16 @@ namespace ElementLogic.AMS.UI.Tests.TestDataPreparationHelper.ImportFactory
 
         public void ImportGoodsReceival(IList<GoodsReceivalLine> putawayLines, ScenarioContext scenarioContext)
         {
-            var retryCount = 0;
-            while (true)
+            var picklistId = Guid.NewGuid().ToString().Substring(0, 8);
+            foreach (var putawayLine in putawayLines)
             {
-                var picklistId = Guid.NewGuid().ToString().Substring(0, 8);
-                foreach (var putawayLine in putawayLines)
-                {
-                    putawayLine.ExtPicklistId = picklistId;
-                    putawayLine.ExtOrderId = picklistId;
-                    putawayLine.PurchaseOrderId = picklistId;
-                }
-
-                CreateScenarioContextsForPutaway(putawayLines, scenarioContext);
-                var goodsReceivalData = new ImportGoodsReceival {UniqueMessageId = Guid.NewGuid().ToString(), Lines = putawayLines};
-
-                var grData = ApiDataFactory.ApiDataFactory.Instance.CreateGoodsReceivalAsync(goodsReceivalData).Result;
-                if (grData.IsSuccessStatusCode)
-                {
-                    return;
-                }
-
-                if (retryCount == 2)
-                {
-                    Assert.Fail($"The putaway order is not created");
-                }
-
-                retryCount++;
+                putawayLine.ExtPicklistId = picklistId;
+                putawayLine.ExtOrderId = picklistId;
+                putawayLine.PurchaseOrderId = picklistId;
             }
+
+            CreateScenarioContextsForPutaway(putawayLines, scenarioContext);
+            ImportGoodsReceivalAsync(putawayLines);
         }
 
         public void ImportGoodsReceival(ProductLocationLine productLocationsToBeCreated)
@@ -57,22 +38,32 @@ namespace ElementLogic.AMS.UI.Tests.TestDataPreparationHelper.ImportFactory
                     PurchaseOrderId = picklistId,
                     ExtProductId = productLocationsToBeCreated.ExtProductId,
                     ProductName = productLocationsToBeCreated.ProductName,
-                    Quantity = productLocationsToBeCreated.Quantity,
+                    Quantity = productLocationsToBeCreated.Quantity, 
+                    HandlingUnitScanCode = productLocationsToBeCreated.HandlingUnitScanCode,
+                    EanId = productLocationsToBeCreated.EanId,
+                    BatchId = productLocationsToBeCreated.BatchId,
                     Returned = false
                 }
             };
 
+            ImportGoodsReceivalAsync(putawayLines);
+        }
+
+        private static async void ImportGoodsReceivalAsync(IList<GoodsReceivalLine> putawayLines)
+        {
             var goodsReceivalData = new ImportGoodsReceival
             {
                 UniqueMessageId = Guid.NewGuid().ToString(),
                 Lines = putawayLines
             };
 
-            var grData = ApiDataFactory.ApiDataFactory.Instance.CreateGoodsReceivalAsync(goodsReceivalData).Result;
-            if (!grData.IsSuccessStatusCode)
+            var grData = await ApiDataFactory.ApiDataFactory.Instance.CreateGoodsReceivalAsync(goodsReceivalData);
+            if (grData.IsSuccessStatusCode)
             {
-                Assert.Fail($"The Test data preparation GR order {picklistId} is not created");
+                return;
             }
+
+            Assert.Fail($"The putaway order {putawayLines[0].ExtPicklistId} is not created");
         }
 
         private static void CreateScenarioContextsForPutaway(IList<GoodsReceivalLine> putawayLines, ScenarioContext scenarioContext)

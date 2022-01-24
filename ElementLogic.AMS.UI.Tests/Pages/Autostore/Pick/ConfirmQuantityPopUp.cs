@@ -30,6 +30,22 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
                 .GetText();
         }
 
+        public bool IsQuantityFieldValueEmpty()
+        {
+            return !FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(QuantityField)
+                .IsAttributePresent("value");
+        }
+
+        public string GetQuantityFieldValue()
+        {
+            return FluentElement.Instance
+                .SwitchToIframe(Iframe)
+                .WaitForElement(QuantityField)
+                .GetAttribute("value");
+        }
+
         public bool InsertQuantity(string quantity)
         {
             return FluentElement.Instance

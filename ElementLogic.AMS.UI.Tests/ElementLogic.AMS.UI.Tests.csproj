@@ -59,12 +59,6 @@
     <Reference Include="Dynamitey, Version=2.0.9.136, Culture=neutral, PublicKeyToken=cbf53ea3aeb972c6, processorArchitecture=MSIL">
       <HintPath>..\packages\Dynamitey.2.0.9.136\lib\net40\Dynamitey.dll</HintPath>
     </Reference>
-    <Reference Include="ElementLogic.Integration.Import.Contracts, Version=9.1.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ElementLogic.Integration.Import.Contracts.9.1.4\lib\net471\ElementLogic.Integration.Import.Contracts.dll</HintPath>
-    </Reference>
-    <Reference Include="ElementLogic.Integration.ServiceBus.Contracts, Version=2.0.163.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ElementLogic.Integration.ServiceBus.Contracts.2.0.163\lib\net45\ElementLogic.Integration.ServiceBus.Contracts.dll</HintPath>
-    </Reference>
     <Reference Include="ExcelDataReader, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
       <HintPath>..\packages\ExcelDataReader.3.6.0\lib\net45\ExcelDataReader.dll</HintPath>
     </Reference>
@@ -315,6 +309,7 @@
     <Compile Include="Data\DatabaseQueries\AddedInfoRules.cs" />
     <Compile Include="Data\DatabaseQueries\Database.cs" />
     <Compile Include="Data\DatabaseQueries\Depth.cs" />
+    <Compile Include="Data\DatabaseQueries\Inventory.cs" />
     <Compile Include="Data\DatabaseQueries\Mission.cs" />
     <Compile Include="Data\DatabaseQueries\Order.cs" />
     <Compile Include="Data\DatabaseQueries\Parameter.cs" />
@@ -327,14 +322,12 @@
     <Compile Include="ExcelDataAccess\Manager\AccessManager.cs" />
     <Compile Include="ExcelDataAccess\UserCredentials\AccessUserCredentials.cs" />
     <Compile Include="ExtentReports\ExtentReportHooks.cs" />
-    <Compile Include="Features\AbstractWarehouse\H_AddReasonCodes\FeatureSteps.cs" />
-    <Compile Include="Features\AbstractWarehouse\I_AddBoxTypes\FeatureSteps.cs" />
-    <Compile Include="Features\AbstractWarehouse\J_AddAddedInfoRules\FeatureSteps.cs" />
-    <Compile Include="Features\AbstractWarehouse\K_PrepareAutostore\FeatureSteps.cs" />
     <Compile Include="Features\AdminModule\Activity\Pick\PicklistSearch\FeatureSteps.cs" />
     <Compile Include="Features\AdminModule\Activity\UserActivity\FeatureSteps.cs" />
     <Compile Include="Features\AdminModule\Systems\OrderTypes\FeatureSteps.cs" />
     <Compile Include="Features\Autostore\Inventory\InventoryDeviation\FeatureSteps.cs" />
+    <Compile Include="Features\Autostore\Inventory\InventoryHandlingUnit\FeatureSteps.cs" />
+    <Compile Include="Features\Autostore\Pick\ConfirmRestQuantity\FeatureSteps.cs" />
     <Compile Include="Features\Autostore\Pick\PickDeviation\FeatureSteps.cs" />
     <Compile Include="Features\Autostore\Pick\PickReassign\FeatureSteps.cs" />
     <Compile Include="Features\Autostore\Pick\SecurePicking\FeatureSteps.cs" />
@@ -413,13 +406,18 @@
     <Compile Include="Pages\AdminModule\Warehouse\Warehouses\WarehouseList.cs" />
     <Compile Include="Pages\AdminModule\Warehouse\Zones\AddEditZone.cs" />
     <Compile Include="Pages\AdminModule\Warehouse\Zones\WarehouseZoneList.cs" />
+    <Compile Include="Pages\Autostore\Inspection\DeleteMissionsPopup.cs" />
     <Compile Include="Pages\Autostore\Inspection\ChangeQuantityPopup.cs" />
     <Compile Include="Pages\Autostore\Inspection\InspectionCreateTask.cs" />
     <Compile Include="Pages\Autostore\Inspection\InspectionMission.cs" />
+    <Compile Include="Pages\Autostore\Inspection\InspectionSelectLocationsPage.cs" />
     <Compile Include="Pages\Autostore\Inspection\RegisterProductPopup.cs" />
     <Compile Include="Pages\Autostore\Inventory\ConfirmQuantityPopup.cs" />
     <Compile Include="Pages\Autostore\Inventory\InventoryMission.cs" />
     <Compile Include="Pages\Autostore\Inventory\NoMoreTasksPopup.cs" />
+    <Compile Include="Pages\Autostore\Inventory\HandlingUnitEnterQuantityPopup.cs" />
+    <Compile Include="Pages\Autostore\Inventory\HandlingUnitsMissingPopup.cs" />
+    <Compile Include="Pages\Autostore\Inventory\UnexpectedHandlingUnitsPopup.cs" />
     <Compile Include="Pages\Autostore\Pick\AddNewContainerPopup.cs" />
     <Compile Include="Pages\Autostore\Pick\ChangedConfirmQuantityPopUp.cs" />
     <Compile Include="Pages\Autostore\Pick\ConfirmTaskExitPopup.cs" />
@@ -427,6 +425,7 @@
     <Compile Include="Pages\Autostore\Pick\EmptyLocationPopup.cs" />
     <Compile Include="Pages\Autostore\Pick\ChangeQuantityPopup.cs" />
     <Compile Include="Pages\Autostore\Pick\ConfirmQuantityPopUp.cs" />
+    <Compile Include="Pages\Autostore\Pick\RemainingQuantityChangedPopup.cs" />
     <Compile Include="Pages\Autostore\Pick\SerialNumberRegistration.cs" />
     <Compile Include="Pages\Autostore\Pick\SerialNumberValidationPopup.cs" />
     <Compile Include="Pages\Autostore\Pick\TaskgroupCompletedPopup.cs" />
@@ -456,15 +455,26 @@
     <Compile Include="TestDataPreparationHelper\ApiDataFactory\ApiDataFactory.cs" />
     <Compile Include="TestDataPreparationHelper\ApiDataFactory\HttpClientFactory.cs" />
     <Compile Include="TestDataPreparationHelper\DataPreparationFactory\GoodsReceivalData.cs" />
+    <Compile Include="TestDataPreparationHelper\DataPreparationFactory\InventoryCountData.cs" />
     <Compile Include="TestDataPreparationHelper\DataPreparationFactory\PicklistData.cs" />
     <Compile Include="TestDataPreparationHelper\DataPreparationFactory\ProductData.cs" />
     <Compile Include="TestDataPreparationHelper\ImportFactory\GoodsReceivalImport.cs" />
     <Compile Include="TestDataPreparationHelper\DataPreparationFactory\ParameterData.cs" />
+    <Compile Include="TestDataPreparationHelper\ImportFactory\InventoryCountImport.cs" />
     <Compile Include="TestDataPreparationHelper\ImportFactory\PicklistImport.cs" />
     <Compile Include="TestDataPreparationHelper\ImportFactory\ProductImport.cs" />
     <Compile Include="TestDataPreparationHelper\DataPreparationFactory\ProductLocationData.cs" />
     <Compile Include="TestDataPreparationHelper\TestDataFactory\TestDataFactory.cs" />
     <Compile Include="Types\Dtos\DirectPutawayLine.cs" />
+    <Compile Include="Types\Dtos\GoodsReceivalLine.cs" />
+    <Compile Include="Types\Dtos\ImportGoodsReceival.cs" />
+    <Compile Include="Types\Dtos\ImportInventoryCount.cs" />
+    <Compile Include="Types\Dtos\ImportPicklist.cs" />
+    <Compile Include="Types\Dtos\ImportProductInformation.cs" />
+    <Compile Include="Types\Dtos\InventoryLine.cs" />
+    <Compile Include="Types\Dtos\IProductLine.cs" />
+    <Compile Include="Types\Dtos\PicklistLine.cs" />
+    <Compile Include="Types\Dtos\ProductLine.cs" />
     <Compile Include="Types\Dtos\ProductLocationLine.cs" />
     <Compile Include="Types\Dtos\ParameterLIne.cs" />
     <Compile Include="Types\Dtos\UserActivityMissionData.cs" />
@@ -473,7 +483,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Configuration\Environment.Example.json" />
     <None Include="Configuration\Environment.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -483,20 +492,6 @@
     <None Include="ExcelDataAccess\UserCredentials\UserCredentials.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Features\AbstractWarehouse\A_AddWarehouses\AddWarehouses.feature" />
-    <None Include="Features\AbstractWarehouse\B_AddWarehouseZones\AddWarehouseZones.feature" />
-    <None Include="Features\AbstractWarehouse\C_AddLocationTypes\AddLocationTypes.feature" />
-    <None Include="Features\AbstractWarehouse\D_AddTaskTypes\AddTaskTypes.feature" />
-    <None Include="Features\AbstractWarehouse\E_AddOrderTypes\AddOrderTypes.feature" />
-    <None Include="Features\AbstractWarehouse\F_AddEquipments\A_AutostoreGrid\AutostoreGrid.feature" />
-    <None Include="Features\AbstractWarehouse\F_AddEquipments\B_AutostorePorts\AutostorePorts.feature" />
-    <None Include="Features\AbstractWarehouse\F_AddEquipments\C_AutostoreTaskTrolleys\AutostoreTaskTrolleys.feature" />
-    <None Include="Features\AbstractWarehouse\F_AddEquipments\D_AutostoreRefillTrolleys\AutostoreRefillTrolleys.feature" />
-    <None Include="Features\AbstractWarehouse\G_AddUsers\AddUsers.feature" />
-    <None Include="Features\AbstractWarehouse\H_AddReasonCodes\AddReasonCodes.feature" />
-    <None Include="Features\AbstractWarehouse\I_AddBoxTypes\AddBoxTypes.feature" />
-    <None Include="Features\AbstractWarehouse\J_AddAddedInfoRules\AddAddedInfoRules.feature" />
-    <None Include="Features\AbstractWarehouse\K_PrepareAutostore\PrepareAutostore.feature" />
     <None Include="Features\AdminModule\Activity\Refill\Search\RefillSearch.feature" />
     <None Include="Features\AdminModule\Activity\Refill\Search\TestData\FifthScenarioTestData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -525,6 +520,21 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Features\Autostore\Inspection\GeneralInspection\GeneralInspection.feature" />
+    <None Include="Features\Autostore\Inspection\GeneralInspection\TestData\SixthScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Inspection\GeneralInspection\TestData\FifthScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Inspection\GeneralInspection\TestData\FourthScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Inspection\GeneralInspection\TestData\ThirdScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Inspection\GeneralInspection\TestData\SecondScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\Autostore\Inspection\GeneralInspection\TestData\FirstScenarioTestData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -543,7 +553,54 @@
     <None Include="Features\Autostore\Inventory\GeneralInventory\TestData\FirstScenarioTestData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Features\Autostore\Inventory\InventoryHandlingUnit\InventoryHandlingUnit.feature" />
+    <None Include="Features\Autostore\Inventory\InventoryHandlingUnit\TestData\NinthScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Inventory\InventoryHandlingUnit\TestData\EighthScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Inventory\InventoryHandlingUnit\TestData\SeventhScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Inventory\InventoryHandlingUnit\TestData\SixthScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Inventory\InventoryHandlingUnit\TestData\FifthScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Inventory\InventoryHandlingUnit\TestData\FourthScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Inventory\InventoryHandlingUnit\TestData\ThirdScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Inventory\InventoryHandlingUnit\TestData\SecondScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Inventory\InventoryHandlingUnit\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\ConfirmRestQuantity\ConfirmRestQuantity.feature" />
+    <None Include="Features\Autostore\Pick\ConfirmRestQuantity\TestData\FifthScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\ConfirmRestQuantity\TestData\FourthScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\ConfirmRestQuantity\TestData\ThirdScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\ConfirmRestQuantity\TestData\SecondScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Autostore\Pick\ConfirmRestQuantity\TestData\FirstScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\Autostore\Pick\ExternalContainer\ExternalContainer.feature" />
+    <None Include="Features\Autostore\Pick\ExternalContainer\TestData\EighthScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\Autostore\Pick\ExternalContainer\TestData\SeventhScenarioTestData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -613,6 +670,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Features\Autostore\Pick\PickReassign\PickReassign.feature" />
+    <None Include="Features\Autostore\Pick\PickReassign\TestData\SecondScenarioTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\Autostore\Pick\PickReassign\TestData\FirstScenarioTestData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -754,4 +814,9 @@
   <Import Project="..\packages\SpecFlow.NUnit.3.1.97\build\SpecFlow.NUnit.targets" Condition="Exists('..\packages\SpecFlow.NUnit.3.1.97\build\SpecFlow.NUnit.targets')" />
   <Import Project="..\packages\SpecFlow.Tools.MsBuild.Generation.3.1.97\build\SpecFlow.Tools.MsBuild.Generation.targets" Condition="Exists('..\packages\SpecFlow.Tools.MsBuild.Generation.3.1.97\build\SpecFlow.Tools.MsBuild.Generation.targets')" />
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.2.0.0\build\net46\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.2.0.0\build\net46\Microsoft.Data.SqlClient.SNI.targets')" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties configuration_4environment_1json__JsonSchema="https://ffizer.github.io/ffizer/ffizer.schema.json" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

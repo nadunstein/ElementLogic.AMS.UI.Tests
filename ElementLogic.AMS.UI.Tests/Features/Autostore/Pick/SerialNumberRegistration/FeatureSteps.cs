@@ -84,11 +84,17 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick.SerialNumberRegistra
                 "The autostore bin layout is not displayed in Autostore Serial Number Registration page is loaded");
         }
 
-        [Then(@"I verify the name of the serial number scan field is displayed as '(.*)' in Autostore Serial Number Registration page")]
-        public void ThenIVerifyTheNameOfTheSerialNumberScanFieldIsDisplayedAsInAutostoreSerialNumberRegistrationPage(string expectedFieldName)
+        [Then(@"I verify the name of the serial numbers panel is displayed as '(.*)' in Autostore Serial Number Registration page")]
+        public void ThenIVerifyTheNameOfTheSerialNumbersPanelIsDisplayedAsInAutostoreSerialNumberRegistrationPage(string expectedFieldName)
         {
             Assert.AreEqual(expectedFieldName, SerialNumberRegistrationPage.Instance.GetScanFieldLabelValue(),
                 $"The name of the serial number scan field is displayed as '{expectedFieldName}' in Autostore Serial Number Registration page");
+        }
+
+        [Then(@"I verify the name of the serial number scan fields are correct in the on serial numbers panel in Autostore Serial Number Registration page")]
+        public void ThenIVerifyTheNameOfTheSerialNumberScanFieldsAreCorrectInTheOnSerialNumbersPanelInAutostoreSerialNumberRegistrationPage()
+        {
+            ScenarioContext.Current.Pending();
         }
 
         [Then(@"I include the serial number scan value as '(.*)' to serial number scan field in Autostore Serial Number Registration page")]
@@ -132,16 +138,10 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick.SerialNumberRegistra
         [Then(@"The '(.*)' validation Popup is displayed in Autostore Serial Number Registration page")]
         public void ThenTheValidationPopupIsDisplayedInAutostoreSerialNumberRegistrationPage(string expectedValidationMessage)
         {
+            Assert.IsTrue(SerialNumberValidationPopup.Instance.IsPopupDisplayed(),
+                "The serial number validation popup is not displayed in Autostore Serial Number Registration page");
             Assert.AreEqual(expectedValidationMessage, SerialNumberValidationPopup.Instance.GetPopupMessage(),
                 "The Serial Number Validation Popup message is wrong in Autostore Serial Number Registration page");
-        }
-
-
-        [When(@"I click on OK button in Serial Number Validation Popup in Autostore Serial Number Registration page")]
-        public void WhenIClickOnOKButtonInSerialNumberValidationPopupInAutostoreSerialNumberRegistrationPage()
-        {
-            Assert.IsTrue(SerialNumberValidationPopup.Instance.ClickOkButton(),
-                "Unable to click on OK button in Serial Number Validation Popup in Autostore Serial Number Registration page");
         }
 
         [Then(@"The Edit Previous Autostore Serial Number Registration page is loaded")]

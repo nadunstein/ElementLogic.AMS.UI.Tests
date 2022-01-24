@@ -8,6 +8,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick.MaxQuantityPopup
     public sealed class FeatureSteps
     {
         private readonly ScenarioContext _scenarioContext;
+        private int _enteredQuantity;
 
         [Then(@"The Zero Quantity confirmation popup is displayed in Autostore Pick Mission page")]
         public void ThenTheZeroQuantityConfirmationPopupIsDisplayedInAutostorePickMissionPage()
@@ -60,6 +61,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick.MaxQuantityPopup
         [Then(@"I include the Quantity as '(.*)' to the quantity field on Confirm Quantity popup in Autostore Pick Mission page")]
         public void ThenIIncludeTheQuantityAsToTheQuantityFieldOnConfirmQuantityPopupInAutostorePickMissionPage(int quantity)
         {
+            _enteredQuantity = quantity;
             Assert.IsTrue(ConfirmQuantityPopUp.Instance.InsertQuantity(quantity.ToString()),
                 $"Unable to include the Quantity as {quantity} to the quantity field on Confirm Quantity popup in Autostore Pick Mission page");
         }
@@ -76,9 +78,12 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick.MaxQuantityPopup
         {
             Assert.IsTrue(ChangedConfirmQuantityPopUp.Instance.IsPopupDisplayed(),
                 "The Changed confirm quantity popup is not displayed in Autostore Pick Mission page");
-            Assert.AreEqual(
-                "The entered quantity is higher than the maximum allowed (10000). Do you want to continue?",
-                ChangedConfirmQuantityPopUp.Instance.GetPopupMessage(),
+            var expectedPopupMessage =
+                $"The entered quantity ({_enteredQuantity}) is higher than the maximum allowed (10000).\r\n\r\nDo you want to continue?";
+
+            var r = ChangedConfirmQuantityPopUp.Instance.GetPopupMessage();
+
+            Assert.AreEqual(expectedPopupMessage, ChangedConfirmQuantityPopUp.Instance.GetPopupMessage(),
                 "The Changed confirm quantity popup message is wrong in Autostore Pick Mission page");
         }
 

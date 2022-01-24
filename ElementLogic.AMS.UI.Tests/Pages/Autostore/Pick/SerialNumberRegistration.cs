@@ -11,9 +11,11 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
 
         private const string QuantityField = "#ctl00_MonitorContentPlaceholder_PickView_txtQuantity";
 
-        private const string ScanFieldLabel = "#ctl00_MonitorContentPlaceholder_PickView_lblSerialNumberScanField";
+        private const string ScanFieldLabel = "#ctl00_MonitorContentPlaceholder_PickView_headerSerialNumberScanField";
 
         private const string AutostoreBinLayout = "#ctl00_MonitorContentPlaceholder_PickView_ShelfLayoutControl_ContainerDiv";
+
+        private const string ScanFieldIdentifier = "#serialNumbersPanel div";
 
         private const string ScanField = "#ctl00_MonitorContentPlaceholder_PickView_txtSerialNumberScanField";
 

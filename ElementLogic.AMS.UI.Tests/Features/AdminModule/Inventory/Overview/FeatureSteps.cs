@@ -1,4 +1,6 @@
-﻿using ElementLogic.AMS.UI.Tests.Pages.AdminModule.Inventory;
+﻿using System.Linq;
+using System.Text.RegularExpressions;
+using ElementLogic.AMS.UI.Tests.Pages.AdminModule.Inventory;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -22,6 +24,40 @@ namespace ElementLogic.AMS.UI.Tests.Features.AdminModule.Inventory.Overview
         {
             Assert.IsTrue(InventoryOrderList.Instance.IsPageLoaded(),
                 "The Admin Inventory order list page is not loaded");
+        }
+
+        [When(@"I click on Search button in Inventory order list page")]
+        public void WhenIClickOnSearchButtonInInventoryOrderListPage()
+        {
+            Assert.IsTrue(InventoryOrderList.Instance.ClickSearchButton(),
+                "Unable to click on Search button in Inventory order list page");
+        }
+
+        [Then(@"The inventory record is listed on the inventory details grid in Inventory order list page")]
+        public void ThenTheInventoryRecordIsListedOnTheInventoryDetailsGridInInventoryOrderListPage()
+        {
+            Assert.IsTrue(InventoryOrderList.Instance.IsFirstInventoryResultBarDisplayed(),
+                "The inventory record is NOT listed on the inventory details grid in Inventory order list page");
+        }
+
+        [Then(@"I verify the taskgroup count for the inventory order list is correct on the inventory details grid in Inventory order list page")]
+        public void ThenIVerifyTheTaskgroupCountForTheInventoryOrderListIsCorrectOnTheInventoryDetailsGridInInventoryOrderListPage()
+        {
+            var scenarioTags = _scenarioContext.ScenarioInfo.Tags;
+            var expectedInventoryTaskgroupCountTag =
+                scenarioTags.FirstOrDefault(scenarioTag => scenarioTag.Contains("InventoryTaskgroupCount"));
+            var expectedInventoryTaskgroupCount =
+                int.Parse(Regex.Match(expectedInventoryTaskgroupCountTag ?? string.Empty, @"\d+").Value);
+            Assert.AreEqual(expectedInventoryTaskgroupCount,
+                InventoryOrderList.Instance.GetFirstInventoryTaskgroupCount(),
+                "The taskgroup count for the inventory order list is WRONG on the inventory details grid in Inventory order list page");
+        }
+
+        [Then(@"I click on the Activate menu item for the inventory activity in Inventory order list page")]
+        public void ThenIClickOnTheActivateMenuItemForTheInventoryActivityInInventoryOrderListPage()
+        {
+            Assert.IsTrue(InventoryOrderList.Instance.SelectActionMenuOption("Activate"),
+                "Unable to click on the Activate menu item for the inventory activity in Inventory order list page");
         }
 
         [When(@"I click on the inventory add button of the Inventory order list page")]

@@ -1,7 +1,7 @@
 ﻿using ElementLogic.AMS.UI.Tests.TestDataPreparationHelper.ImportFactory;
-using ElementLogic.Integration.Import.Contracts.Types;
 using System;
 using System.Collections.Generic;
+using ElementLogic.AMS.UI.Tests.Types.Dtos;
 
 namespace ElementLogic.AMS.UI.Tests.TestDataPreparationHelper.DataPreparationFactory
 {

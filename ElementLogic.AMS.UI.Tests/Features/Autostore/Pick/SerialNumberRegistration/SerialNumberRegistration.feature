@@ -5,31 +5,31 @@
 @Regression
 @Scenario:'1'
 @Autostore:Pick:SerialNumberRegistration
-Scenario: Verify the serial number registration with single step picking
+#Scenario: Verify the serial number registration with single step picking
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I click on 'Normal AS' pick task type in AutoStore Main Menu
 	Then The Autostore pick mission '1' is loaded
 	And I include the product scan value to scan field in Autostore Pick Mission page
 	When I click on the confirm button in Autostore Pick Mission page
 	Then The Autostore Serial Number Registration page is loaded
-	And I verify the name of the serial number scan field is displayed as 'Scan SERIAL (1 of 2)' in Autostore Serial Number Registration page
+	And I verify the name of the serial numbers panel is displayed as 'Scan item numbers (Item 1 of 2)' in Autostore Serial Number Registration page
+	And I verify the name of the serial number scan fields are correct in the on serial numbers panel in Autostore Serial Number Registration page
+
+
 	When I click on the Confirm button in Autostore Serial Number Registration page	
 	Then The 'The scanned serial number is empty or too long' validation Popup is displayed in Autostore Serial Number Registration page
-	When I click on OK button in Serial Number Validation Popup in Autostore Serial Number Registration page
-	Then The Autostore Serial Number Registration page is loaded
+
+
+
 	And I include the serial number scan value as '123' to serial number scan field in Autostore Serial Number Registration page
 	When I click on the Confirm button in Autostore Serial Number Registration page	
 	Then The 'The scanned serial number does not have the correct format' validation Popup is displayed in Autostore Serial Number Registration page
-	When I click on OK button in Serial Number Validation Popup in Autostore Serial Number Registration page
-	Then The Autostore Serial Number Registration page is loaded
 	And I include the serial number scan value as '12345' to serial number scan field in Autostore Serial Number Registration page
 	When I click on the Confirm button in Autostore Serial Number Registration page
 	Then The Edit Previous Autostore Serial Number Registration page is loaded
 	And I update the previously scanned serial number as '123' in Autostore Serial Number Registration page
 	When I click on Update button in Autostore Serial Number Registration page
 	Then The 'The scanned serial number does not have the correct format' validation Popup is displayed in Autostore Serial Number Registration page
-	When I click on OK button in Serial Number Validation Popup in Autostore Serial Number Registration page
-	Then The Autostore Serial Number Registration page is loaded
 	And I update the previously scanned serial number as '12346' in Autostore Serial Number Registration page
 	When I click on Update button in Autostore Serial Number Registration page
 	Then The successfully updated serial number notification is displayed in Autostore Serial Number Registration page
@@ -40,8 +40,6 @@ Scenario: Verify the serial number registration with single step picking
 	And I include the serial number scan value as '12345' to serial number scan field in Autostore Serial Number Registration page
 	When I click on the Confirm button in Autostore Serial Number Registration page
 	Then The 'Serial number "12345" is already registered' validation Popup is displayed in Autostore Serial Number Registration page
-	When I click on OK button in Serial Number Validation Popup in Autostore Serial Number Registration page
-	Then The Edit Previous Autostore Serial Number Registration page is loaded
 	And I include the serial number scan value as '12346' to serial number scan field in Autostore Serial Number Registration page
 	When I click on the Confirm button in Autostore Serial Number Registration page
 	Then The Edit last Autostore Serial Number Registration page is loaded
@@ -52,7 +50,7 @@ Scenario: Verify the serial number registration with single step picking
 @Regression
 @Scenario:'2'
 @Autostore:Pick:SerialNumberRegistration
-Scenario: Verify the serial number registration with two step picking and one open container
+#Scenario: Verify the serial number registration with two step picking and one open container
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I click on 'Normal AS' pick task type in AutoStore Main Menu
 	Then The Autostore pick mission '1' is loaded
@@ -76,7 +74,7 @@ Scenario: Verify the serial number registration with two step picking and one op
 @Regression
 @Scenario:'3'
 @Autostore:Pick:SerialNumberRegistration
-Scenario: Verify the serial number registration with two step picking and two open containers
+#Scenario: Verify the serial number registration with two step picking and two open containers
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I click on 'Normal AS' pick task type in AutoStore Main Menu
 	Then The Autostore pick mission '1' is loaded
@@ -110,7 +108,7 @@ Scenario: Verify the serial number registration with two step picking and two op
 @Regression
 @Scenario:'4'
 @Autostore:Pick:SerialNumberRegistration
-Scenario: Verify the serial number registration without product scanning
+#Scenario: Verify the serial number registration without product scanning
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I click on 'Normal AS' pick task type in AutoStore Main Menu
 	Then The Autostore Serial Number Registration page is loaded
@@ -133,7 +131,7 @@ Scenario: Verify the serial number registration without product scanning
 @Regression
 @Scenario:'5'
 @Autostore:Pick:SerialNumberRegistration
-Scenario: Verify pick deviation with serial number registration
+#Scenario: Verify pick deviation with serial number registration
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I click on 'Normal AS' pick task type in AutoStore Main Menu
 	Then The Autostore Serial Number Registration page is loaded
@@ -156,7 +154,7 @@ Scenario: Verify pick deviation with serial number registration
 @Regression
 @Scenario:'6'
 @Autostore:Pick:SerialNumberRegistration
-Scenario: Verify zero pick deviation with serial number registration
+#Scenario: Verify zero pick deviation with serial number registration
 	Given I login to the Autostore port '01' as 'Admin' user
 	When I click on 'Normal AS' pick task type in AutoStore Main Menu
 	Then The Autostore Serial Number Registration page is loaded
