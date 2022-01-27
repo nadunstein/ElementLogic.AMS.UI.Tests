@@ -22,9 +22,17 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
             bool.Parse(JsonFileReader.Instance.GetJsonKeyValue("Configuration/Environment.json",
                 "BrowserSettings:ChromeBrowser:HeadlessMode"));
 
+        private static readonly bool IsTestRunInTeamCity = bool.Parse(JsonFileReader.Instance
+            .GetJsonKeyValue("Configuration/Environment.json", "TestRun:TeamCity"));
+
         [BeforeTestRun(Order = 0)]
         public static void RestoreDatabase()
         {
+            if (IsTestRunInTeamCity)
+            {
+                return;
+            }
+
             var databaseName = JsonFileReader.Instance
                 .GetJsonKeyValue("Configuration/Environment.json", "DatabaseSettings:DatabaseName");
             Database.Instance
@@ -49,6 +57,11 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
         [BeforeTestRun(Order = 2)]
         public static void RestartInternetInformationServices()
         {
+            if (IsTestRunInTeamCity)
+            {
+                return;
+            }
+
             WindowsServices.Instance
                 .DoIisReset();
         }
@@ -56,6 +69,11 @@ namespace ElementLogic.AMS.UI.Tests.Hooks
         [BeforeTestRun(Order = 3)]
         public static void RestartAutostoreEmulatorService()
         {
+            if (IsTestRunInTeamCity)
+            {
+                return;
+            }
+
             WindowsServices.Instance
                 .RestartAutostoreEmulatorService();
         }

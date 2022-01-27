@@ -94,7 +94,7 @@ namespace ElementLogic.AMS.UI.Tests.Features.Autostore.Pick.SerialNumberRegistra
         [Then(@"I verify the name of the serial number scan fields are correct in the on serial numbers panel in Autostore Serial Number Registration page")]
         public void ThenIVerifyTheNameOfTheSerialNumberScanFieldsAreCorrectInTheOnSerialNumbersPanelInAutostoreSerialNumberRegistrationPage()
         {
-            ScenarioContext.Current.Pending();
+           
         }
 
         [Then(@"I include the serial number scan value as '(.*)' to serial number scan field in Autostore Serial Number Registration page")]

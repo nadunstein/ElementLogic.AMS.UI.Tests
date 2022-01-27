@@ -234,7 +234,7 @@ Scenario: (G)Verify product batch picking with External containers
 @Scenario:'8'
 @Autostore:Pick:ExternalContainer
 Scenario: (H)Verify the container scanning is only required once for each order when using PTL and license plate with batch picking
-	Given I login to the Autostore port '03' as 'Admin' user
+	Given I login to the Autostore port '01' as 'Admin' user
 	When I click on 'Normal AS' pick task type in AutoStore Main Menu
 	Then The Autostore pick mission '1' is loaded
 	And I verify the container scan field is displayed in Autostore Pick Mission page

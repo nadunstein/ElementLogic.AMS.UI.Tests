@@ -101,6 +101,7 @@ namespace ElementLogic.AMS.UI.Tests.Pages.Autostore.Pick
         public bool InsertContainerScanCode(string scanCode)
         {
             return FluentElement.Instance
+                .Wait(1)
                 .SwitchToIframe(Iframe)
                 .WaitForElement(ScanCodeField)
                 .Insert(scanCode);

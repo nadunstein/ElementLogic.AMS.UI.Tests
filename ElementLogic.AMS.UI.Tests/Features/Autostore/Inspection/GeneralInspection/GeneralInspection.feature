@@ -77,7 +77,11 @@ Scenario: Verify the quantity can be hidden from the parameter in Autostore Insp
 Scenario: Perform a General Inspection with batch Id
 	Given I include the product as 'ASIP06' to the Product field and select in Autostore Inspection-Create Task page
 	And I select the Batch Id as '20' to the Batch field in Autostore Inspection-Create Task page
-	When I click on confirm button in Autostore Inspection-Create Task page
+	When I click on Select Locations button in Autostore Inspection-Create Task page
+	Then The Autostore Inspection-Select locations page is loaded
+	And I verify the location count is '1' in Autostore Inspection-Select locations page
+	And I click on Select all locations button in Autostore Inspection-Select locations page
+	When I click on confirm button in Autostore Inspection-Select locations page
 	Then The Autostore Inspection mission '1' is loaded
 	And I verify the Quantity field value is '20' in Autostore Inspection Mission page
 	When I click on Confirm button in Autostore Inspection mission page
